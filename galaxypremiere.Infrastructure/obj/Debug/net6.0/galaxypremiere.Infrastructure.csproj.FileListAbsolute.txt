@@ -1,0 +1,12 @@
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\bin\Debug\net6.0\galaxypremiere.Infrastructure.deps.json
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\bin\Debug\net6.0\galaxypremiere.Infrastructure.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\bin\Debug\net6.0\galaxypremiere.Infrastructure.pdb
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\obj\Debug\net6.0\galaxypremiere.Infrastructure.csproj.AssemblyReference.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\obj\Debug\net6.0\galaxypremiere.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\obj\Debug\net6.0\galaxypremiere.Infrastructure.AssemblyInfoInputs.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\obj\Debug\net6.0\galaxypremiere.Infrastructure.AssemblyInfo.cs
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\obj\Debug\net6.0\galaxypremiere.Infrastructure.csproj.CoreCompileInputs.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\obj\Debug\net6.0\galaxypremiere.Infrastructure.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\obj\Debug\net6.0\refint\galaxypremiere.Infrastructure.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\obj\Debug\net6.0\galaxypremiere.Infrastructure.pdb
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Infrastructure\obj\Debug\net6.0\ref\galaxypremiere.Infrastructure.dll

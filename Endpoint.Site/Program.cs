@@ -1,7 +1,15 @@
+using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//
+var ConStr = builder.Configuration.GetConnectionString("LocalServer");
+builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(x => x.UseSqlServer(ConStr));
 
 var app = builder.Build();
 
@@ -21,7 +29,13 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
 
 app.Run();

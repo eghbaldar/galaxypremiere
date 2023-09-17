@@ -1,0 +1,12 @@
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\bin\Debug\net6.0\galaxypremiere.Domain.deps.json
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\bin\Debug\net6.0\galaxypremiere.Domain.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\bin\Debug\net6.0\galaxypremiere.Domain.pdb
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\obj\Debug\net6.0\galaxypremiere.Domain.csproj.AssemblyReference.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\obj\Debug\net6.0\galaxypremiere.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\obj\Debug\net6.0\galaxypremiere.Domain.AssemblyInfoInputs.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\obj\Debug\net6.0\galaxypremiere.Domain.AssemblyInfo.cs
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\obj\Debug\net6.0\galaxypremiere.Domain.csproj.CoreCompileInputs.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\obj\Debug\net6.0\galaxypremiere.Domain.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\obj\Debug\net6.0\refint\galaxypremiere.Domain.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\obj\Debug\net6.0\galaxypremiere.Domain.pdb
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Domain\obj\Debug\net6.0\ref\galaxypremiere.Domain.dll
