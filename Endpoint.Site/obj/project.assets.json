@@ -3728,6 +3728,16 @@
           "bin/placeholder/galaxypremiere.Application.dll": {}
         }
       },
+      "galaxypremiere.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/galaxypremiere.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/galaxypremiere.Common.dll": {}
+        }
+      },
       "galaxypremiere.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -3745,6 +3755,7 @@
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "galaxypremiere.Application": "1.0.0",
+          "galaxypremiere.Common": "1.0.0",
           "galaxypremiere.Domain": "1.0.0"
         },
         "compile": {
@@ -10611,6 +10622,11 @@
       "type": "project",
       "path": "../galaxypremiere.Application/galaxypremiere.Application.csproj",
       "msbuildProject": "../galaxypremiere.Application/galaxypremiere.Application.csproj"
+    },
+    "galaxypremiere.Common/1.0.0": {
+      "type": "project",
+      "path": "../galaxypremiere.Common/galaxypremiere.Common.csproj",
+      "msbuildProject": "../galaxypremiere.Common/galaxypremiere.Common.csproj"
     },
     "galaxypremiere.Domain/1.0.0": {
       "type": "project",

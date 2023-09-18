@@ -794,6 +794,16 @@
           "bin/placeholder/galaxypremiere.Application.dll": {}
         }
       },
+      "galaxypremiere.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/galaxypremiere.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/galaxypremiere.Common.dll": {}
+        }
+      },
       "galaxypremiere.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2028,6 +2038,11 @@
       "path": "../galaxypremiere.Application/galaxypremiere.Application.csproj",
       "msbuildProject": "../galaxypremiere.Application/galaxypremiere.Application.csproj"
     },
+    "galaxypremiere.Common/1.0.0": {
+      "type": "project",
+      "path": "../galaxypremiere.Common/galaxypremiere.Common.csproj",
+      "msbuildProject": "../galaxypremiere.Common/galaxypremiere.Common.csproj"
+    },
     "galaxypremiere.Domain/1.0.0": {
       "type": "project",
       "path": "../galaxypremiere.Domain/galaxypremiere.Domain.csproj",
@@ -2040,6 +2055,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.0",
       "galaxypremiere.Application >= 1.0.0",
+      "galaxypremiere.Common >= 1.0.0",
       "galaxypremiere.Domain >= 1.0.0"
     ]
   },
@@ -2076,6 +2092,9 @@
           "projectReferences": {
             "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Application\\galaxypremiere.Application.csproj": {
               "projectPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Application\\galaxypremiere.Application.csproj"
+            },
+            "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Common\\galaxypremiere.Common.csproj": {
+              "projectPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Common\\galaxypremiere.Common.csproj"
             },
             "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Domain\\galaxypremiere.Domain.csproj": {
               "projectPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Domain\\galaxypremiere.Domain.csproj"
