@@ -16,8 +16,13 @@ namespace Endpoint.Site.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var roles = new SelectList(_rolesFacade.GetRolesService.Execute(),"Id", "Name");
+            var roles = new SelectList(_rolesFacade.GetRolesService.Execute(), "Id", "Name");
             ViewBag.Roles = roles;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateUser()
+        {
             return View();
         }
     }

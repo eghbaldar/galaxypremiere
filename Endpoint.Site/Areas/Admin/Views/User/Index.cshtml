@@ -1,6 +1,7 @@
 ﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
-
+@using galaxypremiere.Application.Services.Users.PostUser.Commands
+@model RequestPostUserServiceDto
 @{
     ViewData["Title"] = "Galaxy Premiere - Add New User";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -11,12 +12,18 @@
     </div>
     <div class="card-body">
         <div class="basic-form">
-            <form action="#">
+            <form asp-action="/admin/user/CreateUser" id="frmAddUser" method="post">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Fullname</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Firstname and Lastname">
+                    <input
+                        asp-for="Fullname"
+                        name="Fullname"
+                        type="text"
+                        class="form-control"
+                        placeholder="Firstname and Lastname">
+                    <span asp-validation-for="Fullname" />
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -30,10 +37,7 @@
                     </div>
                     <input type="text" class="form-control">
                 </div>
-
-
                 <label>User Role:</label>
-
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text">Roles</label>
@@ -42,7 +46,7 @@
                         <option selected="">Choose...</option>
                     </select>
                 </div>
-                <button type="button" class="btn btn-rounded btn-info">
+                <button type="button" onclick="btnAddUser()" class="btn btn-rounded btn-info">
                     <span class="btn-icon-left text-info">
                         <i class="fa fa-plus color-info"></i>
                     </span>Add
@@ -51,3 +55,15 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        function btnAddUser(){
+            if ($("#frmAddUser").valid())
+            {
+                Swal.fire('');
+
+            }
+        }
+    </script>
+}

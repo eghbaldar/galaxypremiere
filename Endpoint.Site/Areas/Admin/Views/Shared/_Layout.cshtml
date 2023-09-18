@@ -40,7 +40,7 @@
     <div class="full_container">
         <div class="inner_container">
             <!-- Sidebar  -->
-           
+
             <nav id="sidebar">
                 <div class="sidebar_blog_1">
                     <div class="sidebar-header">
@@ -185,5 +185,15 @@
     <!-- custom js -->
     <script src="~/admintemplate/js/custom.js"></script>
     <script src="~/admintemplate/js/chart_custom_style1.js"></script>
+    <!-- Sweat Alert -->
+    <script src="~/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="~/sweetalert/sweetalert2.min.js"></script>
+    <link href="~/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <!-- These validation libraries need to be included for unobtrusive validation -->
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <!-- End -->
+    <!-- Render Sections -->
+    @RenderSection("Scripts",required:false)
 </body>
 </html>

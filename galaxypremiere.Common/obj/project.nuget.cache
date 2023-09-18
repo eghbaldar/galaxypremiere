@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "2rUaqc8c3vMA87V1HRe7Ixb+tpA7IsANwRwCB5khOKgFCJp/z7q1x9qIRJLrtLjWzjrRSgTmJxTcyXjAnW2TPQ==",
+  "dgSpecHash": "SKqxJK+Gm3gYaxFxxS9sV+yh38rM844XB2jde004Y34kxO5ZCpomITArAVqzpwewhazQnzcpX30wa4sp0nqPkQ==",
   "success": true,
   "projectFilePath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Common\\galaxypremiere.Common.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.8\\microsoft.aspnetcore.cryptography.internal.7.0.8.nupkg.sha512",
-    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.8\\microsoft.aspnetcore.cryptography.keyderivation.7.0.8.nupkg.sha512"
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.0\\microsoft.aspnetcore.cryptography.internal.6.0.0.nupkg.sha512",
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.0\\microsoft.aspnetcore.cryptography.keyderivation.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

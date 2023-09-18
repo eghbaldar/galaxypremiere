@@ -1797,16 +1797,8 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\js\\owl.carousel.min.js"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
-    },
-    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\bootstrap\\LICENSE",
@@ -1875,22 +1867,6 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.css.map"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map",
-      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-theme.min.css.map"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
@@ -2051,6 +2027,18 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\sweetalert\\sweetalert2.all.min.js",
+      "PackagePath": "staticwebassets\\sweetalert\\sweetalert2.all.min.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\sweetalert\\sweetalert2.min.css",
+      "PackagePath": "staticwebassets\\sweetalert\\sweetalert2.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\sweetalert\\sweetalert2.min.js",
+      "PackagePath": "staticwebassets\\sweetalert\\sweetalert2.min.js"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Endpoint.Site.Microsoft.AspNetCore.StaticWebAssets.props",
