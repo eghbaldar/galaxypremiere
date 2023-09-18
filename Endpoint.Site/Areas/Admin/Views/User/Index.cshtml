@@ -1,0 +1,53 @@
+﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Galaxy Premiere - Add New User";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Input Group</h4>
+    </div>
+    <div class="card-body">
+        <div class="basic-form">
+            <form action="#">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Fullname</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Firstname and Lastname">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Email Address</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="emaxple: youremail@gmail.com">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Password:</span>
+                    </div>
+                    <input type="text" class="form-control">
+                </div>
+
+
+                <label>User Role:</label>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Roles</label>
+                    </div>
+                    <select class="custom-select" asp-items="@ViewBag.Roles" item>
+                        <option selected="">Choose...</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-rounded btn-info">
+                    <span class="btn-icon-left text-info">
+                        <i class="fa fa-plus color-info"></i>
+                    </span>Add
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

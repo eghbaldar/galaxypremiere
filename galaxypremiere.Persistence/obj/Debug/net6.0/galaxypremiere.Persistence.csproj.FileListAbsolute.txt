@@ -1,9 +1,12 @@
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Persistence.deps.json
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Persistence.runtimeconfig.json
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Persistence.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Persistence.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Application.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Common.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Domain.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Application.pdb
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Common.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Domain.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\galaxypremiere.Persistence.csproj.AssemblyReference.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\galaxypremiere.Persistence.GeneratedMSBuildEditorConfig.editorconfig
@@ -14,6 +17,5 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\galaxypremiere.Persistence.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\refint\galaxypremiere.Persistence.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\galaxypremiere.Persistence.pdb
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\ref\galaxypremiere.Persistence.dll
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Persistence.runtimeconfig.json
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\galaxypremiere.Persistence.genruntimeconfig.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\ref\galaxypremiere.Persistence.dll

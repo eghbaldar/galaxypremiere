@@ -34,6 +34,33 @@ namespace galaxypremiere.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (byte)1,
+                            Name = "King"
+                        },
+                        new
+                        {
+                            Id = (byte)2,
+                            Name = "SuperAdmin"
+                        },
+                        new
+                        {
+                            Id = (byte)3,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = (byte)4,
+                            Name = "Client"
+                        },
+                        new
+                        {
+                            Id = (byte)5,
+                            Name = "User"
+                        });
                 });
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.Users", b =>
@@ -49,7 +76,7 @@ namespace galaxypremiere.Persistence.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Fullname")
                         .IsRequired()
@@ -69,6 +96,9 @@ namespace galaxypremiere.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

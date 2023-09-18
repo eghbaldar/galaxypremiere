@@ -19,7 +19,7 @@ namespace galaxypremiere.Domain.Entities.Users
         [Required(ErrorMessage = "Password is mandatory")]
         [MinLength(5, ErrorMessage = "Password characters should be more than 5 characters.")]
         public string Password { get; set; }
-        public bool IsActive{ get; set; }
+        public bool IsActive { get; set; } = true;
         public ICollection<UsersInRoles> UsersInRoles { get; set; }
     }
 }

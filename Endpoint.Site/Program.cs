@@ -1,4 +1,6 @@
 using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.Roles.FacadePattern;
 using galaxypremiere.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//
+//// Add DataContext Dependencies & Other Dependecies such as "Users Services"
+builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
+// Facades
+builder.Services.AddScoped<IRolesFacade, RoleFacade>();
+
+// SqlServer
 var ConStr = builder.Configuration.GetConnectionString("LocalServer");
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(x => x.UseSqlServer(ConStr));
 

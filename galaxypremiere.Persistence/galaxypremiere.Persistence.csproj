@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\galaxypremiere.Application\galaxypremiere.Application.csproj" />
+    <ProjectReference Include="..\galaxypremiere.Common\galaxypremiere.Common.csproj" />
     <ProjectReference Include="..\galaxypremiere.Domain\galaxypremiere.Domain.csproj" />
   </ItemGroup>
 

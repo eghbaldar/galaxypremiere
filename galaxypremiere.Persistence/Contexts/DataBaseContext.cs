@@ -32,6 +32,10 @@ namespace galaxypremiere.Persistence.Context
             modelBuilder.Entity<Roles>().HasData(new Roles { Id = 4, Name = nameof(RoleConstants.Client) });
             modelBuilder.Entity<Roles>().HasData(new Roles { Id = 5, Name = nameof(RoleConstants.User) });
             // End
+
+            // To avoid Duplicated Records
+            modelBuilder.Entity<Users>().HasIndex(x=>x.Email).IsUnique();
+            // End
         }
     }
 }
