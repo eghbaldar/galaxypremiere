@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace galaxypremiere.Application.Services.Users.PostUser.Commands
+namespace galaxypremiere.Application.Services.Users.Commands.PostUser
 {
     public class RequestPostUserServiceDto
     {

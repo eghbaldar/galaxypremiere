@@ -2,7 +2,7 @@
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
 
-namespace galaxypremiere.Application.Services.Users.PostUser.Commands
+namespace galaxypremiere.Application.Services.Users.Commands.PostUser
 {
     public class PostUserService : IPostUserService
     {

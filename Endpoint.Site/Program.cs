@@ -1,6 +1,7 @@
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.Roles.FacadePattern;
+using galaxypremiere.Application.Services.Users.FacadePattern;
 using galaxypremiere.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
 // Facades
 builder.Services.AddScoped<IRolesFacade, RoleFacade>();
+builder.Services.AddScoped<IUserFacade, UserFacade>();
 
 // SqlServer
 var ConStr = builder.Configuration.GetConnectionString("LocalServer");

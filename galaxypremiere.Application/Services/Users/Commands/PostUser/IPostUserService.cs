@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace galaxypremiere.Application.Services.Users.PostUser.Commands
+namespace galaxypremiere.Application.Services.Users.Commands.PostUser
 {
     public interface IPostUserService
     {

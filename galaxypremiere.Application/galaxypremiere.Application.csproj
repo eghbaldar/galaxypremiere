@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Services\Roles\Commands\" />
-    <Folder Include="Services\Users\PostUser\Queries\" />
+    <Folder Include="Services\Users\Queries\" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
-@using galaxypremiere.Application.Services.Users.PostUser.Commands
+@using galaxypremiere.Application.Services.Users.Commands.PostUser
 @model RequestPostUserServiceDto
 @{
     ViewData["Title"] = "Galaxy Premiere - Add New User";
@@ -12,40 +12,58 @@
     </div>
     <div class="card-body">
         <div class="basic-form">
-            <form asp-action="/admin/user/CreateUser" id="frmAddUser" method="post">
+            <form asp-action="Index" id="frmAddUser" method="post">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Fullname</span>
                     </div>
-                    <input
-                        asp-for="Fullname"
-                        name="Fullname"
-                        type="text"
-                        class="form-control"
-                        placeholder="Firstname and Lastname">
-                    <span asp-validation-for="Fullname" />
+                    <input asp-for="Fullname"
+                           type="text"
+                           class="form-control"
+                           id="txtFullname"
+                           placeholder="Firstname and Lastname">
                 </div>
+                <span asp-validation-for="Fullname" class="text-danger"></span>
+
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Email Address</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="emaxple: youremail@gmail.com">
+                    <input asp-for="Email"
+                           type="text"
+                           id="txtEmail"
+                           class="form-control"
+                           placeholder="emaxple: youremail@gmail.com">
                 </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Password:</span>
                     </div>
-                    <input type="text" class="form-control">
+                    <input asp-for="Password"
+                           type="password"
+                           id="txtPassword"
+                           class="form-control">
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Re-Password:</span>
+                    </div>
+                    <input type="password"
+                           id="txtRePassword"
+                           class="form-control">
                 </div>
                 <label>User Role:</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text">Roles</label>
                     </div>
-                    <select class="custom-select" asp-items="@ViewBag.Roles" item>
+                    <select class="custom-select" id="listRoles" asp-items="@ViewBag.Roles" item>
                         <option selected="">Choose...</option>
                     </select>
                 </div>
+
                 <button type="button" onclick="btnAddUser()" class="btn btn-rounded btn-info">
                     <span class="btn-icon-left text-info">
                         <i class="fa fa-plus color-info"></i>
@@ -58,12 +76,127 @@
 
 @section Scripts{
     <script>
-        function btnAddUser(){
-            if ($("#frmAddUser").valid())
-            {
-                Swal.fire('');
+        function btnAddUser() {
+            if ($("#frmAddUser").valid()) {
+                Swal.fire(
+                    {
+                        title: 'Register!',
+                        text: 'Do you want to add this user?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#15283c',
+                        cancelButtonColor: '#ff5722',
+                        confirmButtonText: 'Yes, Do It',
+                        cancelButtonText: 'No'
+                    }
+                ).then((result) => {
+                    if (result.value) {
 
+                        var fullname = $("#txtFullname").val();
+                        var email = $("#txtEmail").val();
+                        var password = $("#txtPassword").val();
+                        var rePassword = $("#txtRePassword").val();
+                        var IdRole = $("#listRoles").val();
+
+                        if (matchPassword(password, rePassword)) return false;
+                        if (checkIdRole(IdRole)) return false;
+
+                        var dataPost = {
+                            'Fullname': fullname,
+                            'Email': email,
+                            'Password': password,
+                            'IdRole': IdRole,
+                        };
+                        $.ajax({
+                            contentType: 'application/x-www-form-urlencoded',
+                            dataType: 'json',
+                            type: 'POST',
+                            url: 'Index',
+                            data: dataPost,
+                            success: function (data) {
+                                Swal.fire(data.isSuccess);
+                            },
+                            error: function (request, status, error) {
+                                alert(request.status);
+                            }
+                        });
+                        //$.ajax({
+                        //    contentType: 'application/x-www-form-urlencoded',
+                        //    dataType: 'json',
+                        //    type: 'POST',
+                        //    data: dataPost,
+                        //    url: '/user/Index',
+                        //    success: function (data) {
+                        //        if (data.isSuccess) {
+                        //            Swal.fire({
+                        //                title: 'Succeed!',
+                        //                text: data.message,
+                        //                icon: 'success',
+                        //                confirmButtonColor: 'green',
+                        //                confirmButtonText: 'OK',
+                        //            }).then((result) => {
+                        //                if (result) {
+                        //                    location.reload();
+                        //                }
+                        //            });
+                        //        }
+                        //        else {
+                        //            Swal.fire({
+                        //                title: 'Error!',
+                        //                text: data.message,
+                        //                icon: 'error',
+                        //                confirmButtonColor: 'red',
+                        //                confirmButtonText: 'Ok',
+                        //            }).then((result) => {
+                        //                //
+                        //            });
+                        //        }
+                        //    },
+                        //    error: function (request, status, error) {
+                        //        alert(request.status);
+                        //    }
+                        //});
+                        alert('Ok3')
+                    }
+                    else {
+                        Swal.fire("No");
+                    }
+                });
             }
+            else {
+                alert('error');
+            }
+        }
+        function matchPassword(pass, rePass) {
+            if (pass != rePass) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Password doesnt match with repassword.',
+                    icon: 'error',
+                    confirmButtonColor: '#ff5722',
+                    confirmButtonText: 'OK',
+                }).then((result) => {
+                    //
+                });
+                return true;
+            } else
+                return false;
+        }
+        function checkIdRole(IdRole) {
+            if (IdRole == 'Choose...') {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Choose a role.',
+                    icon: 'error',
+                    confirmButtonColor: '#ff5722',
+                    confirmButtonText: 'OK',
+                }).then((result) => {
+                    //
+                });
+                return true;
+            }
+            else
+                return false
         }
     </script>
 }

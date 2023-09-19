@@ -1,4 +1,5 @@
 ﻿using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.Users.Commands.PostUser;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -8,9 +9,11 @@ namespace Endpoint.Site.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly IRolesFacade _rolesFacade;
-        public UserController(IRolesFacade rolesFacade)
+        private readonly IUserFacade _userFacade;
+        public UserController(IRolesFacade rolesFacade, IUserFacade userFacade)
         {
             _rolesFacade = rolesFacade;
+            _userFacade = userFacade;
         }
 
         [HttpGet]
@@ -21,9 +24,22 @@ namespace Endpoint.Site.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreateUser()
+        public IActionResult Index(RequestPostUserServiceDto req)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            else
+            {
+                return Json(_userFacade.PostUserService.Execute(new RequestPostUserServiceDto
+                {
+                    Fullname = req.Fullname,
+                    Email = req.Email,
+                    Password = req.Password,
+                    IdRole = req.IdRole,
+                }));
+            }
         }
     }
 }
