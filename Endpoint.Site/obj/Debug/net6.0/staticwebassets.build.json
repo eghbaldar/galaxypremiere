@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RO0YHjWBnk85v8m1oSB7dzzsBEbh7QMegNpCzu4BHG4=",
+  "Hash": "fSWp+IkmauJY3HCwWY7oBDZ/f21WDuRxPdsKKt3WPBk=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -7172,6 +7172,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\jquery-validation\\dist\\validator.min.js",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "lib/jquery-validation/dist/validator.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\validator.min.js"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
