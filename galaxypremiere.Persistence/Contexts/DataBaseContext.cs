@@ -14,7 +14,6 @@ namespace galaxypremiere.Persistence.Context
     {
         public DataBaseContext(DbContextOptions option) : base(option)
         {
-
         }
 
         // Tables

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace galaxypremiere.Application.Interfaces.Contexts
 {
-    public interface IDataBaseContext
+    public interface IDataBaseContext 
     {
         DbSet<Users> Users { get; set; } // Users Table
         DbSet<Roles> Roles { get; set; } // Roles Table

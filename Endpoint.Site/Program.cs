@@ -2,6 +2,7 @@ using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.Roles.FacadePattern;
 using galaxypremiere.Application.Services.Users.FacadePattern;
+using galaxypremiere.Infrastructure.MappingProfiles.Users;
 using galaxypremiere.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,9 @@ builder.Services.AddScoped<IUserFacade, UserFacade>();
 // SqlServer
 var ConStr = builder.Configuration.GetConnectionString("LocalServer");
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(x => x.UseSqlServer(ConStr));
+
+//Mapper
+builder.Services.AddAutoMapper(typeof(UsersMappingProfile));
 
 var app = builder.Build();
 

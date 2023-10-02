@@ -17,14 +17,14 @@ namespace Endpoint.Site.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Create()
         {
             var roles = new SelectList(_rolesFacade.GetRolesService.Execute(), "Id", "Name");
             ViewBag.Roles = roles;
             return View();
         }
         [HttpPost]
-        public IActionResult Index(RequestPostUserServiceDto req)
+        public IActionResult Create(RequestPostUserServiceDto req)
         {
             if (!ModelState.IsValid)
             {
@@ -40,6 +40,11 @@ namespace Endpoint.Site.Areas.Admin.Controllers
                     IdRole = req.IdRole,
                 }));
             }
+        }
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View(_userFacade.GetUsersService.Execute());
         }
     }
 }

@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "gpZpKlDXscR8G7IBA46k4GyihpGxpsKCyGUvvA4gr1t6qKqwDc1iR6Lpg7ctQ8MqxhxM0pyZcjWRO7DqyaQzDQ==",
+  "dgSpecHash": "lEGfrKadQHDveVo5cRFNWYuR1MbqLsUtjlEU9+uQf55g+7jXxgXRnr6elkKLmz8yCEqBs6MmTSsSbM4UfFwHBg==",
   "success": true,
   "projectFilePath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Application\\galaxypremiere.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.0\\microsoft.aspnetcore.cryptography.internal.6.0.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.0\\microsoft.aspnetcore.cryptography.keyderivation.6.0.0.nupkg.sha512",
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.0\\microsoft.entityframeworkcore.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.0\\microsoft.entityframeworkcore.analyzers.6.0.0.nupkg.sha512",

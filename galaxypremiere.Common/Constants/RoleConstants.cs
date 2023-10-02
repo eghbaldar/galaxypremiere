@@ -11,7 +11,7 @@ namespace galaxypremiere.Common.Constants
         public const string King = "King";
         public const string SuperAdmin = "SuperAdmin";
         public const string Admin = "Admin";
-        public const string Client = "SuperAdmin";
+        public const string Client = "Client";
         public const string User = "User";
     }
 }
