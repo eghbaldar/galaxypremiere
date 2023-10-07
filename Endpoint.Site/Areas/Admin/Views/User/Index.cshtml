@@ -19,23 +19,19 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Product</th>
-                        <th>quantity</th>
-                        <th>Status</th>
+                        <th>Last Login</th>
+                        <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var user in Model.resultGetUsersServiceDto)
                     {
                         <tr>
-                            <td>
-                                <div class="round-img">
-                                    <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                </div>
-                            </td>
+                            <td>@user.Id</td>
                             <td>@user.Fullname</td>
                             <td>@user.Email</td>
                             <td><span>456 pcs</span></td>
-                            <td><span class="badge badge-success">Done</span></td>
+                            <td><span class="badge badge-success">@user.Role</span></td>
                         </tr>
                     }
                 </tbody>
