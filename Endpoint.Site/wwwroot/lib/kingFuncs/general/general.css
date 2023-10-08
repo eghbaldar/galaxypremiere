@@ -1,0 +1,9 @@
+﻿/* Validation Style */
+input[type="text"].input-validation-error {
+    background-color: #fcc;
+}
+
+input[type="password"].input-validation-error {
+    background-color: #fcc;
+}
+/* End Validation Style */

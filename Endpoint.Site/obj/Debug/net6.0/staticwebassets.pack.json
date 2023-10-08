@@ -2037,6 +2037,18 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\general\\general.css",
+      "PackagePath": "staticwebassets\\lib\\kingFuncs\\general\\general.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\password\\password.css",
+      "PackagePath": "staticwebassets\\lib\\kingFuncs\\password\\password.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\password\\password.js",
+      "PackagePath": "staticwebassets\\lib\\kingFuncs\\password\\password.js"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\sweetalert\\sweetalert2.all.min.js",
       "PackagePath": "staticwebassets\\sweetalert\\sweetalert2.all.min.js"
     },

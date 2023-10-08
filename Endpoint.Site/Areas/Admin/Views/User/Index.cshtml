@@ -21,6 +21,7 @@
                         <th>Product</th>
                         <th>Last Login</th>
                         <th>Role</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,20 @@
                             <td>@user.Email</td>
                             <td><span>456 pcs</span></td>
                             <td><span class="badge badge-success">@user.Role</span></td>
+                            <td>
+                                <div class="dropdown show">
+                                    <a class="btn btn-secondary dropdown-toggle"
+                                   href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Action
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item"
+                                       onclick="ShowUpdateModal('@user.Id','@user.Fullname','@user.Email','@user.Role')" href="#">Update</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -39,3 +54,264 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+<div class="modal fade" id="upadteModal" tabindex="-1" role="dialog" aria-labelledby="upadteModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Update User:<label class="text-danger " id="updateUserTitle"></label>
+                </h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form asp-action="Update" id="frmUpdate" method="post">
+                <div class="modal-body">
+                    <input type="hidden" id="IdUser" />
+                    <span asp-validation-for="Validation.Fullname" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Fullname</span>
+                        </div>
+                        <input asp-for="Validation.Fullname"
+                               type="text"
+                               class="form-control"
+                               id="txtEditFullname"
+                               placeholder="example: John K Fox">
+                    </div>
+                    <span asp-validation-for="Validation.Email" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Email Address</span>
+                        </div>
+                        <input asp-for="Validation.Email"
+                               type="text"
+                               id="txtEditEmail"
+                               class="form-control"
+                               placeholder="emaxple: youremail@gmail.com">
+                    </div>
+
+                    <input type="checkbox" id="chkPassword" />
+                    <label>Change Password</label>
+
+                    <span asp-validation-for="Validation.Password" class="text-danger"></span>
+                    <div class="input-group transparent-append">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input asp-for="Validation.Password"
+                               type="password"
+                               onkeyup="checkPassMatchRePass()"
+                               id="txtPassword"
+                               class="form-control">
+                        <div class="input-group-append show-pass" style="cursor:pointer;">
+                            <span class="input-group-text">
+                                <div id="meter"></div>
+                            </span>
+
+                            <span class="input-group-text" onclick="generatePass()">
+                                <i class="fa fa-bolt"></i>
+                            </span>
+
+                            <span class="input-group-text">
+                                <i id="spanPassVisibilty" onclick="showPassword()" class="fa fa-eye-slash"></i>
+                            </span>
+
+                        </div>
+                        <div id="val-password1-error" class="invalid-feedback animated fadeInUp" style="display: block;"></div>
+                    </div>
+                    <div id="spanInvalidRePassword" class="text-danger"></div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Re-Password:</span>
+                        </div>
+                        <input type="password"
+                               id="txtRePassword"
+                               onkeyup="checkPassMatchRePass()"
+                               class="form-control">
+                    </div>
+
+                    <label>User Role:</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">Roles</label>
+                        </div>
+                        <select class="custom-select" id="listRoles" asp-items="@ViewBag.Roles" item
+                                data-error-text="Please select an option" required
+                                onchange="checkRoleValidation()">
+                            <option selected="">Choose...</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" onclick="Update()" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <link href="~/lib/kingfuncs/password/password.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script>
+        function Update() {
+            if ($("#frmUpdate").valid()) {
+                Swal.fire(
+                    {
+                        title: 'Update User!',
+                        text: 'Do you want to update this user?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#15283c',
+                        cancelButtonColor: '#ff5722',
+                        confirmButtonText: 'Yes, Do It',
+                        cancelButtonText: 'No'
+                    }
+                ).then((result) => {
+                    if (result.value) {
+
+                        var IdUser = $("#IdUser").val();
+                        var fullname = $("#txtEditFullname").val();
+                        var email = $("#txtEditEmail").val();
+                        var password = $("#txtPassword").val();
+                        var rePassword = $("#txtRePassword").val();
+                        var IdRole = $("#listRoles").val();
+
+                        var postData = {
+                            'IdUser': IdUser,
+                            'Fullname': fullname,
+                            'Email': email,
+                            'Password': password,
+                            'IdRole': IdRole,
+                        }
+
+                        if (matchPassword(password, rePassword)) return false;
+                        if (checkIdRole(IdRole)) return false;
+
+                        $.ajax({
+                            contentType: 'application/www-x-form-urlencoded',
+                            dataType: 'json',
+                            type: 'POST',
+                            data: postData,
+                            url: 'Update',
+                            success: function (data) {
+                                if (data.isSuccess) {
+                                    Swal.fire({
+                                        title: 'Succeed!',
+                                        text: data.message,
+                                        icon: 'success',
+                                        confirmButtonColor: 'green',
+                                        confirmButtonText: 'OK',
+                                    }).then((result) => {
+                                        if (result) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                                else {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: data.message,
+                                        icon: 'error',
+                                        confirmButtonColor: 'red',
+                                        confirmButtonText: 'Ok',
+                                    }).then((result) => {
+                                        //
+                                    });
+                                }
+                            },
+                            error: function (request, status, error) {
+                                alert('errAjax=' + request.responseText);
+                            }
+                        });
+                    }
+                })
+            }
+
+        }
+        function ShowUpdateModal(id, name, email, role) {
+            $("#upadteModal").modal("show");
+            $("#IdUser").val(id);
+            $("#updateUserTitle").text(name);
+            $("#txtEditFullname").val(name);
+            $("#txtEditEmail").val(email);
+            jQuery('[id^=listRoles] > option').each(function () { if (this.text.toLowerCase() == role.toLowerCase()) { jQuery('[id^=listRoles]').val(this.value); } });
+        }
+        function checkSomeOtherValidation() {
+            checkRePassValidation();
+            checkRoleValidation();
+        }
+        function checkRePassValidation() {
+            var rePass = $("#txtRePassword");
+            if (rePass.val() == '')
+                rePass.css("background-color", "#fcc");
+            else
+                rePass.css("background-color", "#fff");
+        }
+        function checkRoleValidation() {
+            var LstRoles = $("#listRoles");
+            if (LstRoles.val() == "Choose...")
+                LstRoles.css("background-color", "#fcc");
+            else
+                LstRoles.css("background-color", "#fff");
+        }
+        function checkPassMatchRePass() {
+
+            var Pass = $("#txtPassword");
+            if (checkStrength(Pass.val())) {
+                Pass.css("background-color", "#fff");
+                var rePass = $("#txtRePassword");
+                if (Pass.val() != rePass.val()) {
+                    $("#spanInvalidRePassword").text("Passwords don't match.");
+                    rePass.css("background-color", "#fcc");
+                }
+                else {
+                    $("#spanInvalidRePassword").text("");
+                    rePass.css("background-color", "#fff");
+                }
+            }
+            else {
+                Pass.css("background-color", "#fcc");
+            }
+        }
+        function checkIdRole(IdRole) {
+            if (IdRole == 'Choose...') {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Choose a role.',
+                    icon: 'error',
+                    confirmButtonColor: '#ff5722',
+                    confirmButtonText: 'OK',
+                }).then((result) => {
+                    //
+                });
+                return true;
+            }
+            else
+                return false
+        }
+        function showPassword() {
+            var x = document.getElementById("txtPassword");
+            if (x.type == "text") {
+                x.type = "password";
+                $("#spanPassVisibilty").toggleClass('fa-eye-slash').toggleClass('fa-eye');
+            }
+            else {
+                x.type = "text";
+                $("#spanPassVisibilty").toggleClass('fa-eye-slash').toggleClass('fa-eye');
+            }
+        }
+    </script>
+    <script src="~/lib/kingfuncs/password/password.js"></script>
+}
