@@ -18,38 +18,34 @@
         if (no == 1) {
             $("#meter").animate({ width: '25px' }, 300);
             meter.style.backgroundColor = "red";
-            document.getElementById("pass_type").innerHTML = "Very Weak";
             return false // means invalidated
         }
 
         if (no == 2) {
             $("#meter").animate({ width: '25px' }, 300);
             meter.style.backgroundColor = "#F5BCA9";
-            document.getElementById("pass_type").innerHTML = "Weak";
             return false // means invalidated
         }
 
         if (no == 3) {
             $("#meter").animate({ width: '25px' }, 300);
             meter.style.backgroundColor = "#FF8000";
-            document.getElementById("pass_type").innerHTML = "Good";
             return false // means invalidated
         }
 
         if (no == 4) {
             $("#meter").animate({ width: '25px' }, 300);
             meter.style.backgroundColor = "#00FF40";
-            document.getElementById("pass_type").innerHTML = "Strong";
             return true // means validated
         }
     }
 
     else {
         meter.style.backgroundColor = "white";
-        document.getElementById("pass_type").innerHTML = "";
         return false // means invalidated
     }
 }
+
 function generatePass() {
 
     let pass = '';
@@ -68,6 +64,7 @@ function generatePass() {
     document.getElementById("txtPassword").type = "text";
     checkStrength(pass);
 }
+
 function matchPassword(pass, rePass) {
     if (pass != rePass) {
         Swal.fire({
@@ -77,9 +74,24 @@ function matchPassword(pass, rePass) {
             confirmButtonColor: '#ff5722',
             confirmButtonText: 'OK',
         }).then((result) => {
-            //
+            return false;
         });
-        return true;
-    } else
         return false;
+    }
+    else
+    {
+        if (!checkStrength(pass)) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Password Is Not Enough Strong.',
+                icon: 'error',
+                confirmButtonColor: '#ff5722',
+                confirmButtonText: 'OK',
+            }).then((result) => {
+                return false;
+            })
+        };
+        return false;
+    }
+    return true;
 }

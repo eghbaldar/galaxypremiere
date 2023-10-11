@@ -98,7 +98,7 @@
                                placeholder="emaxple: youremail@gmail.com">
                     </div>
 
-                    <input type="checkbox" id="chkPassword" />
+                    <input type="checkbox" id="chkPassword" onchange="changeCheckbox(this)" />
                     <label>Change Password</label>
 
                     <span asp-validation-for="Validation.Password" class="text-danger"></span>
@@ -110,7 +110,8 @@
                                type="password"
                                onkeyup="checkPassMatchRePass()"
                                id="txtPassword"
-                               class="form-control">
+                               class="form-control"
+                               disabled>
                         <div class="input-group-append show-pass" style="cursor:pointer;">
                             <span class="input-group-text">
                                 <div id="meter"></div>
@@ -135,7 +136,8 @@
                         <input type="password"
                                id="txtRePassword"
                                onkeyup="checkPassMatchRePass()"
-                               class="form-control">
+                               class="form-control"
+                               disabled>
                     </div>
 
                     <label>User Role:</label>
@@ -184,9 +186,17 @@
                         var IdUser = $("#IdUser").val();
                         var fullname = $("#txtEditFullname").val();
                         var email = $("#txtEditEmail").val();
-                        var password = $("#txtPassword").val();
-                        var rePassword = $("#txtRePassword").val();
                         var IdRole = $("#listRoles").val();
+
+                        var password;
+                        var rePassword;
+                        if ($("#chkPassword").is(":checked")) {
+                            password = $("#txtPassword").val();
+                            rePassword = $("#txtRePassword").val();
+                            if (matchPassword(password, rePassword)) return false;
+                        }
+                        else
+                            password = null;
 
                         var postData = {
                             'IdUser': IdUser,
@@ -196,11 +206,10 @@
                             'IdRole': IdRole,
                         }
 
-                        if (matchPassword(password, rePassword)) return false;
                         if (checkIdRole(IdRole)) return false;
 
                         $.ajax({
-                            contentType: 'application/www-x-form-urlencoded',
+                            contentType: 'application/x-www-form-urlencoded',
                             dataType: 'json',
                             type: 'POST',
                             data: postData,
@@ -310,6 +319,19 @@
             else {
                 x.type = "text";
                 $("#spanPassVisibilty").toggleClass('fa-eye-slash').toggleClass('fa-eye');
+            }
+        }
+        function changeCheckbox(e) {
+            var check = $(e).is(":checked");
+            if (check) {
+                $('#txtPassword').removeAttr('disabled');
+                $('#txtRePassword').removeAttr('disabled');
+            }
+            else {
+                $('#txtPassword').attr('disabled', 'disabled');
+                $('#txtRePassword').attr('disabled', 'disabled');
+                $('#txtPassword').val('');
+                $('#txtRePassword').val('');
             }
         }
     </script>

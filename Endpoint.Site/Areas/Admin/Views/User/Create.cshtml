@@ -35,8 +35,8 @@
                            class="form-control"
                            placeholder="emaxple: youremail@gmail.com">
                 </div>
-                <span asp-validation-for="Password" class="text-danger"></span>
 
+                <span asp-validation-for="Password" class="text-danger"></span>
                 <div class="input-group transparent-append">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
@@ -101,9 +101,10 @@
 </div>
 
 @section Styles{
-<link href="~/lib/kingfuncs/password/password.css" rel="stylesheet" />
+    <link href="~/lib/kingfuncs/password/password.css" rel="stylesheet" />
 }
 @section Scripts{
+     <script src="~/lib/kingfuncs/password/password.js"></script>
     <script>
         function btnAddUser() {
             if ($("#frmAddUser").valid()) {
@@ -127,7 +128,7 @@
                         var rePassword = $("#txtRePassword").val();
                         var IdRole = $("#listRoles").val();
 
-                        if (matchPassword(password, rePassword)) return false;
+                        if (!matchPassword(password, rePassword)) return false;
                         if (checkIdRole(IdRole)) return false;
 
                         var dataPost = {
@@ -136,6 +137,8 @@
                             'Password': password,
                             'IdRole': IdRole,
                         };
+                        //------------------------------------------------------------------
+                        return false;
                         $.ajax({
                             contentType: 'application/x-www-form-urlencoded',
                             dataType: 'json',
@@ -246,6 +249,5 @@
                 $("#spanPassVisibilty").toggleClass('fa-eye-slash').toggleClass('fa-eye');
             }
         }
-    </script>
-    <script src="~/lib/kingfuncs/password/password.js"></script>
+    </script>   
 }
