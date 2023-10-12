@@ -46,9 +46,9 @@
     }
 }
 
-function generatePass() {
+function generatePass(pass, rePass) {
 
-    let pass = '';
+    let passMadeUp = '';
     let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
         'a%b!cd_e+fg(hi/%jklm*n[%op]qrs/tu|vwxyz%01%23$456@@78%9@@#$';
 
@@ -56,17 +56,31 @@ function generatePass() {
         let char = Math.floor(Math.random()
             * str.length + 1);
 
-        pass += str.charAt(char)
+        passMadeUp += str.charAt(char)
     }
 
-    $("#txtPassword").val(pass);
-    $("#txtRePassword").val(pass);
-    document.getElementById("txtPassword").type = "text";
-    checkStrength(pass);
+    $(pass).val(passMadeUp);
+    $(rePass).val(passMadeUp);
+    $(pass).get(0).type = 'text';
+    if (!checkStrength(passMadeUp))
+        validationColorSet(pass, rePass);
+    else
+        validationColorClear(pass, rePass);
 }
 
 function matchPassword(pass, rePass) {
-    if (pass != rePass) {
+    //check validation status of rePass
+    var rePass = $(rePass);
+    if (rePass.val() == '') {
+        rePass.css("background-color", "#fcc");
+        return;
+    }
+    else {
+        rePass.css("background-color", "#fff");
+    }
+    //check match pass and rePass
+    if (pass.val() != rePass.val()) {
+        validationColorSet(pass, rePass);
         Swal.fire({
             title: 'Error!',
             text: 'Password doesnt match with repassword.',
@@ -78,9 +92,9 @@ function matchPassword(pass, rePass) {
         });
         return false;
     }
-    else
-    {
-        if (!checkStrength(pass)) {
+    else {
+        if (!checkStrength(pass.val())) {
+            validationColorSet(pass, rePass);
             Swal.fire({
                 title: 'Error!',
                 text: 'Password Is Not Enough Strong.',
@@ -90,8 +104,52 @@ function matchPassword(pass, rePass) {
             }).then((result) => {
                 return false;
             })
+            return false;
         };
-        return false;
     }
+    validationColorClear(pass, rePass);
     return true;
+}
+
+function showPassword(sender, object) {
+    var x = document.getElementById(sender);
+    if (x.type == "text") {
+        x.type = "password";
+        $(object).toggleClass('fa-eye-slash').toggleClass('fa-eye');
+    }
+    else {
+        x.type = "text";
+        $(object).toggleClass('fa-eye-slash').toggleClass('fa-eye');
+    }
+}
+
+function checkPassMatchRePass(originalPass, repeatedPass, warningSpan) {
+    var Pass = $(originalPass);
+    if (checkStrength(Pass.val())) {
+        Pass.css("background-color", "#fff");
+        var rePass = $(repeatedPass);
+        if (Pass.val() != rePass.val()) {
+            $(warningSpan).text("Passwords don't match.");
+            Pass.css("background-color", "#fcc");
+            rePass.css("background-color", "#fcc");
+        }
+        else {
+            $(warningSpan).text("");
+            Pass.css("background-color", "#fff");
+            rePass.css("background-color", "#fff");
+            $(warningSpan).text("");
+        }
+    }
+    else {
+        Pass.css("background-color", "#fcc");
+    }
+}
+
+function validationColorSet(pass, rePass) {
+    $(pass).css("background-color", "#fcc");
+    $(rePass).css("background-color", "#fcc");
+}
+function validationColorClear(pass, rePass) {
+    $(pass).css("background-color", "#fff");
+    $(rePass).css("background-color", "#fff");
 }

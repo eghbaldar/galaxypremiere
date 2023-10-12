@@ -43,7 +43,7 @@
                     </div>
                     <input asp-for="Password"
                            type="password"
-                           onkeyup="checkPassMatchRePass()"
+                            onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
                            id="txtPassword"
                            class="form-control">
                     <div class="input-group-append show-pass" style="cursor:pointer;">
@@ -53,12 +53,12 @@
                             <div id="meter"></div>
                         </span>
 
-                        <span class="input-group-text" onclick="generatePass()">
+                        <span class="input-group-text" onclick="generatePass('#txtPassword','#txtRePassword')">
                             <i class="fa fa-bolt"></i>
                         </span>
 
                         <span class="input-group-text">
-                            <i id="spanPassVisibilty" onclick="showPassword()" class="fa fa-eye-slash"></i>
+                            <i id="spanPassVisibilty" onclick="showPassword('txtPassword','#spanPassVisibilty')" class="fa fa-eye-slash"></i>
                         </span>
 
                     </div>
@@ -74,7 +74,7 @@
                     </div>
                     <input type="password"
                            id="txtRePassword"
-                           onkeyup="checkPassMatchRePass()"
+                           onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
                            class="form-control">
                 </div>
 
@@ -108,6 +108,11 @@
     <script>
         function btnAddUser() {
             if ($("#frmAddUser").valid()) {
+
+                if (!matchPassword($("#txtPassword"), $("#txtRePassword"))) return;
+                var IdRole = $("#listRoles").val();
+                if (!checkIdRole(IdRole)) return;
+
                 Swal.fire(
                     {
                         title: 'Register!',
@@ -125,20 +130,15 @@
                         var fullname = $("#txtFullname").val();
                         var email = $("#txtEmail").val();
                         var password = $("#txtPassword").val();
-                        var rePassword = $("#txtRePassword").val();
-                        var IdRole = $("#listRoles").val();
-
-                        if (!matchPassword(password, rePassword)) return false;
-                        if (checkIdRole(IdRole)) return false;
-
+                        var rePassword = $("#txtRePassword").val();                        
+                        
                         var dataPost = {
                             'Fullname': fullname,
                             'Email': email,
                             'Password': password,
                             'IdRole': IdRole,
                         };
-                        //------------------------------------------------------------------
-                        return false;
+
                         $.ajax({
                             contentType: 'application/x-www-form-urlencoded',
                             dataType: 'json',
@@ -172,12 +172,12 @@
                                 }
                             },
                             error: function (request, status, error) {
-                                alert(request.status);
+                                //alert(request.status);
                             }
                         });
                     }
                     else {
-                        alert('error1');
+                        //alert('error1');
                     }
                 });
             }
@@ -186,15 +186,8 @@
             }
         }
         function checkSomeOtherValidation() {
-            checkRePassValidation();
             checkRoleValidation();
-        }
-        function checkRePassValidation() {
-            var rePass = $("#txtRePassword");
-            if (rePass.val() == '')
-                rePass.css("background-color", "#fcc");
-            else
-                rePass.css("background-color", "#fff");
+            matchPassword($("#txtPassword"), $("#txtRePassword"));
         }
         function checkRoleValidation() {
             var LstRoles = $("#listRoles");
@@ -203,51 +196,12 @@
             else
                 LstRoles.css("background-color", "#fff");
         }
-        function checkPassMatchRePass() {
-
-            var Pass = $("#txtPassword");
-            if (checkStrength(Pass.val())) {
-                Pass.css("background-color", "#fff");
-                var rePass = $("#txtRePassword");
-                if (Pass.val() != rePass.val()) {
-                    $("#spanInvalidRePassword").text("Passwords don't match.");
-                    rePass.css("background-color", "#fcc");
-                }
-                else {
-                    $("#spanInvalidRePassword").text("");
-                    rePass.css("background-color", "#fff");
-                }
-            }
-            else {
-                Pass.css("background-color", "#fcc");
-            }
-        }
         function checkIdRole(IdRole) {
             if (IdRole == 'Choose...') {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Choose a role.',
-                    icon: 'error',
-                    confirmButtonColor: '#ff5722',
-                    confirmButtonText: 'OK',
-                }).then((result) => {
-                    //
-                });
-                return true;
+                return false;
             }
             else
-                return false
-        }
-        function showPassword() {
-            var x = document.getElementById("txtPassword");
-            if (x.type == "text") {
-                x.type = "password";
-                $("#spanPassVisibilty").toggleClass('fa-eye-slash').toggleClass('fa-eye');
-            }
-            else {
-                x.type = "text";
-                $("#spanPassVisibilty").toggleClass('fa-eye-slash').toggleClass('fa-eye');
-            }
+                return true
         }
     </script>   
 }
