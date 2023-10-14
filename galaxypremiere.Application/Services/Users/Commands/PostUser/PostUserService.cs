@@ -17,6 +17,17 @@ namespace galaxypremiere.Application.Services.Users.Commands.PostUser
         }
         public ResultDto Execute(RequestPostUserServiceDto req)
         {
+            // To avoid adding a user with the same email address
+            var checkUser = _context.Users.Where(u => u.Email == req.Email && u.DeleteDate==null).FirstOrDefault();
+            if(checkUser != null)
+            {
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "The Email address already exists",
+                };
+            }
+
             // --- MAPPER ----
             Domain.Entities.Users.Users user = _mapper.Map<Domain.Entities.Users.Users>(req);
             // --- OR THE BELOW CODE ---

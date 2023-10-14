@@ -16,7 +16,7 @@ namespace galaxypremiere.Application.Configurations
         public void Configure(EntityTypeBuilder<Users> builder)
         {
             // Filter Deleted Records [show only records who are not deleted]
-            builder.HasQueryFilter(u => u.DeleteDate != null);
+            builder.HasQueryFilter(u => u.DeleteDate == null);
             // End
         }
     }
