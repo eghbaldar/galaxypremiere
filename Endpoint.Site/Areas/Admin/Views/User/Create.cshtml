@@ -43,7 +43,7 @@
                     </div>
                     <input asp-for="Password"
                            type="password"
-                            onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
+                           onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
                            id="txtPassword"
                            class="form-control">
                     <div class="input-group-append show-pass" style="cursor:pointer;">
@@ -104,14 +104,15 @@
     <link href="~/lib/kingfuncs/password/password.css" rel="stylesheet" />
 }
 @section Scripts{
-     <script src="~/lib/kingfuncs/password/password.js"></script>
+    <script src="~/lib/kingfuncs/password/password.js"></script>
     <script>
         function btnAddUser() {
+            
             if ($("#frmAddUser").valid()) {
 
                 if (!matchPassword($("#txtPassword"), $("#txtRePassword"))) return;
                 var IdRole = $("#listRoles").val();
-                if (!checkIdRole(IdRole)) return;
+                if (!(checkRoleValidation())) return;
 
                 Swal.fire(
                     {
@@ -130,8 +131,8 @@
                         var fullname = $("#txtFullname").val();
                         var email = $("#txtEmail").val();
                         var password = $("#txtPassword").val();
-                        var rePassword = $("#txtRePassword").val();                        
-                        
+                        var rePassword = $("#txtRePassword").val();
+
                         var dataPost = {
                             'Fullname': fullname,
                             'Email': email,
@@ -186,22 +187,19 @@
             }
         }
         function checkSomeOtherValidation() {
-            checkRoleValidation();
+            if (!(checkRoleValidation())) return;
             matchPassword($("#txtPassword"), $("#txtRePassword"));
         }
         function checkRoleValidation() {
             var LstRoles = $("#listRoles");
-            if (LstRoles.val() == "Choose...")
+            if (LstRoles.val() == "Choose...") {
                 LstRoles.css("background-color", "#fcc");
-            else
-                LstRoles.css("background-color", "#fff");
-        }
-        function checkIdRole(IdRole) {
-            if (IdRole == 'Choose...') {
                 return false;
             }
-            else
-                return true
+            else {
+                LstRoles.css("background-color", "#fff");
+                return true;
+            }
         }
-    </script>   
+    </script>
 }

@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.Users.Commands.DeleteUser;
 using galaxypremiere.Application.Services.Users.Commands.PostUser;
 using galaxypremiere.Application.Services.Users.Commands.UpdateUser;
 using galaxypremiere.Application.Services.Users.Queries.GetUsers;
 using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +40,12 @@ namespace galaxypremiere.Application.Services.Users.FacadePattern
         public UpdateUserService UpdateUserService
         {
             get { return _updateUserService = _updateUserService ?? new UpdateUserService(_context); }
+        }
+        //////////////////////////////////////////////////// Delete Users
+        private DeleteUserService _deleteUserService;
+        public DeleteUserService DeleteUserService
+        {
+            get { return _deleteUserService = _deleteUserService ?? new DeleteUserService(_context); }
         }
     }
 }

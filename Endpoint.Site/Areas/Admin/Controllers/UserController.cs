@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.Users.Commands.DeleteUser;
 using galaxypremiere.Application.Services.Users.Commands.PostUser;
 using galaxypremiere.Application.Services.Users.Commands.UpdateUser;
 using galaxypremiere.Domain.Entities.Users;
@@ -51,6 +52,11 @@ namespace Endpoint.Site.Areas.Admin.Controllers
         public IActionResult Update(RequestUpdateUserServiceDto req)
         {
             return Json(_userFacade.UpdateUserService.Execute(_mapper.Map<RequestUpdateUserServiceDto>(req)));
+        }
+        [HttpPost]
+        public IActionResult Delete(RequestDeleteUserServiceDto req)
+        {
+            return Json(_userFacade.DeleteUserService.Execute(req));
         }
     }
 }

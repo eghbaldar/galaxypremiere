@@ -43,7 +43,7 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item"
                                        onclick="ShowUpdateModal('@user.Id','@user.Fullname','@user.Email','@user.Role')" href="#">Update</a>
-                                        <a class="dropdown-item" href="#">Delete</a>
+                                        <a class="dropdown-item" onclick="deleteUser('@user.Id');" href="#">Delete</a>
                                     </div>
                                 </div>
                             </td>
@@ -54,10 +54,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 <div class="modal fade" id="upadteModal" tabindex="-1" role="dialog" aria-labelledby="upadteModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -333,6 +329,61 @@
                 $('#txtPassword').val('');
                 $('#txtRePassword').val('');
             }
+        }
+        function deleteUser(idUser) {
+            Swal.fire({
+                title: 'Warning',
+                text: 'Are you getting ready to DELETE this use forever?',
+                icon: 'error',
+                showCancelButton: true,
+                confirmButtonColor: '#000222',
+                cancelButtonColor: '#000222',
+                confirmButtonText: 'Yes, Sure!',
+                cancelButtonText: 'No, At All.'
+            }).then((result) => {
+                if (result) {
+
+                    var postData = { 'IdUser': idUser };
+
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: postData,
+                        url: 'delete',
+                        success: function (data) {
+                            if (data.isSuccess) {
+                                Swal.fire({
+                                    title: 'Succeed!',
+                                    text: data.message,
+                                    icon: 'success',
+                                    confirmButtonColor: 'green',
+                                    confirmButtonText: 'Ok',
+                                }).then((result) => {
+                                    if (result) {
+                                        location.reload();
+                                    }
+                                });
+                            }
+                            else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: data.message,
+                                    icon: 'error',
+                                    confirmButtonColor: 'red',
+                                    confirmButtonText: 'Ok',
+                                }).then((result) => {
+                                    //
+                                });
+                            }
+                        },
+                        error: function (request, status, error) {
+                            alert('err:' + request.responseText);
+                        }
+                    });
+
+                }
+            });
         }
     </script>
     <script src="~/lib/kingfuncs/password/password.js"></script>
