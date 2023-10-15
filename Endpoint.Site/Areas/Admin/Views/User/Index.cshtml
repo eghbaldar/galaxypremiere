@@ -113,8 +113,8 @@
                                 <div id="meter"></div>
                             </span>
                             <span id="spanGeneratePass"
-                                class="input-group-text" onclick="generatePass('#txtPassword','#txtRePassword')"
-                            style="pointer-events:none;">
+                                  class="input-group-text" onclick="generatePass('#txtPassword','#txtRePassword')"
+                                  style="pointer-events:none;">
                                 <i class="fa fa-bolt"></i>
                             </span>
                             <span class="input-group-text">
@@ -177,6 +177,7 @@
                 var IdRole = $("#listRoles").val();
                 if (!(checkRoleValidation())) return;
                 // Body
+                btnWaitMe_Start('btnUpdate'); // Loading Button Start
                 Swal.fire(
                     {
                         title: 'Update User!',
@@ -191,7 +192,7 @@
                 ).then((result) => {
                     if (result.value) {
 
-                        $('#btnUpdate').attr('disabled', 'disabled');
+                        pageWaitMe("progress"); // loading process starts                        
 
                         var IdUser = $("#IdUser").val();
                         var fullname = $("#txtEditFullname").val();
@@ -226,11 +227,13 @@
                                     }).then((result) => {
                                         if (result) {
                                             $("#tbUser").load("index #tbUser"); //update table automatically!
-                                            $('#btnUpdate').attr('disabled', false);
+                                            btnWaitMe_Stop('btnUpdate'); // Loading Button Stops
+                                            pageWaitMeRemove(); // loading process stops
                                         }
                                     });
                                 }
                                 else {
+                                    btnWaitMe_Stop('btnUpdate'); // Loading Button Stops
                                     Swal.fire({
                                         title: 'Error!',
                                         text: data.message,
@@ -243,10 +246,13 @@
                                 }
                             },
                             error: function (request, status, error) {
+                                btnWaitMe_Stop('btnUpdate'); // Loading Button Stops
                                 alert('errAjax=' + request.responseText);
                             }
                         });
                     }
+                    else
+                        btnWaitMe_Stop('btnUpdate'); // Loading Button Stops
                 })
             }
             else {
@@ -322,6 +328,9 @@
             }).then((result) => {
                 if (result) {
 
+                    run_waitMe_body("progress"); // loading process starts
+                    $('#btnUpdate').attr('disabled', 'disabled'); // disable submit button temporary
+
                     var postData = { 'IdUser': idUser };
 
                     $.ajax({
@@ -341,6 +350,8 @@
                                 }).then((result) => {
                                     if (result) {
                                         $("#tbUser").load("index #tbUser"); //update table automatically!
+                                        $('#btnUpdate').attr('disabled', false); // enable submit button
+                                        run_waitMe_body_remove(); // loading process stops
                                     }
                                 });
                             }

@@ -2061,6 +2061,38 @@
       "PackagePath": "staticwebassets\\sweetalert\\sweetalert2.min.js"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\waitMe\\LICENSE.md",
+      "PackagePath": "staticwebassets\\waitMe\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\waitMe\\README.md",
+      "PackagePath": "staticwebassets\\waitMe\\README.md"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\waitMe\\img.svg",
+      "PackagePath": "staticwebassets\\waitMe\\img.svg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\waitMe\\waitMe.css",
+      "PackagePath": "staticwebassets\\waitMe\\waitMe.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\waitMe\\waitMe.js",
+      "PackagePath": "staticwebassets\\waitMe\\waitMe.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\waitMe\\waitMe.min.css",
+      "PackagePath": "staticwebassets\\waitMe\\waitMe.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\waitMe\\waitMe.min.js",
+      "PackagePath": "staticwebassets\\waitMe\\waitMe.min.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\waitMe\\waitMeKing.js",
+      "PackagePath": "staticwebassets\\waitMe\\waitMeKing.js"
+    },
+    {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Endpoint.Site.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
