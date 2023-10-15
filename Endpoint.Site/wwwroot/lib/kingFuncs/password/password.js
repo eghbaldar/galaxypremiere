@@ -71,12 +71,11 @@ function generatePass(pass, rePass) {
 function matchPassword(pass, rePass) {
     //check validation status of rePass
     var rePass = $(rePass);
-    if (rePass.val() == '') {
-        rePass.css("background-color", "#fcc");
+    var pass = $(pass);
+    if (rePass.val() == '' || pass.val() == '') {
+        if (rePass.val() == '') rePass.css("background-color", "#fcc"); else rePass.css("background-color", "#fff");
+        if (pass.val() == '') pass.css("background-color", "#fcc"); else pass.css("background-color", "#fff");
         return;
-    }
-    else {
-        rePass.css("background-color", "#fff");
     }
     //check match pass and rePass
     if (pass.val() != rePass.val()) {

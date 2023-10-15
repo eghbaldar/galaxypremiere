@@ -47,25 +47,18 @@
                            id="txtPassword"
                            class="form-control">
                     <div class="input-group-append show-pass" style="cursor:pointer;">
-
-
                         <span class="input-group-text">
                             <div id="meter"></div>
                         </span>
-
                         <span class="input-group-text" onclick="generatePass('#txtPassword','#txtRePassword')">
                             <i class="fa fa-bolt"></i>
                         </span>
-
                         <span class="input-group-text">
                             <i id="spanPassVisibilty" onclick="showPassword('txtPassword','#spanPassVisibilty')" class="fa fa-eye-slash"></i>
                         </span>
-
                     </div>
                     <div id="val-password1-error" class="invalid-feedback animated fadeInUp" style="display: block;"></div>
                 </div>
-
-
 
                 <div id="spanInvalidRePassword" class="text-danger"></div>
                 <div class="input-group mb-3">
@@ -109,11 +102,12 @@
         function btnAddUser() {
             
             if ($("#frmAddUser").valid()) {
-
+                // Check password
                 if (!matchPassword($("#txtPassword"), $("#txtRePassword"))) return;
+                // Check role
                 var IdRole = $("#listRoles").val();
                 if (!(checkRoleValidation())) return;
-
+                // Body
                 Swal.fire(
                     {
                         title: 'Register!',
