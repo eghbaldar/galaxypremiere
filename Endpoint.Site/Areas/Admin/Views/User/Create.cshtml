@@ -83,7 +83,7 @@
                     </select>
                 </div>
 
-                <button type="button" onclick="btnAddUser()" class="btn btn-rounded btn-info">
+                <button type="button" onclick="AddUser()" id="btnAddUser" class="btn btn-rounded btn-info">
                     <span class="btn-icon-left text-info">
                         <i class="fa fa-plus color-info"></i>
                     </span>Add
@@ -99,8 +99,8 @@
 @section Scripts{
     <script src="~/lib/kingfuncs/password/password.js"></script>
     <script>
-        function btnAddUser() {
-            
+        function AddUser() {
+
             if ($("#frmAddUser").valid()) {
                 // Check password
                 if (!matchPassword($("#txtPassword"), $("#txtRePassword"))) return;
@@ -108,6 +108,7 @@
                 var IdRole = $("#listRoles").val();
                 if (!(checkRoleValidation())) return;
                 // Body
+                btnWaitMe_Start('btnAddUser'); // Loading Button Start
                 Swal.fire(
                     {
                         title: 'Register!',
@@ -150,11 +151,12 @@
                                         confirmButtonText: 'OK',
                                     }).then((result) => {
                                         if (result) {
-                                            location.reload();
+                                            window.location.href = "/admin/user/Index";
                                         }
                                     });
                                 }
                                 else {
+                                    btnWaitMe_Stop('btnAddUser'); // Loading Button Stops
                                     Swal.fire({
                                         title: 'Error!',
                                         text: data.message,
@@ -167,12 +169,12 @@
                                 }
                             },
                             error: function (request, status, error) {
-                                //alert(request.status);
+                                btnWaitMe_Stop('btnAddUser'); // Loading Button Stops
                             }
                         });
                     }
                     else {
-                        //alert('error1');
+                        btnWaitMe_Stop('btnAddUser'); // Loading Button Stops
                     }
                 });
             }
@@ -195,5 +197,8 @@
                 return true;
             }
         }
+
+
+
     </script>
 }

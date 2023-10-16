@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Common;
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -62,6 +63,8 @@ namespace galaxypremiere.Application.Services.Users.Commands.PostUser
                     };
                 }
             }
+            PasswordHasher passHasher = new PasswordHasher();
+            user.Password = passHasher.HashPassword(req.Password);
             user.UsersInRoles = usersInRoles;
             _context.Users.Add(user);
             _context.SaveChanges();

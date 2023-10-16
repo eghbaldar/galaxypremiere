@@ -192,7 +192,7 @@
                 ).then((result) => {
                     if (result.value) {
 
-                        pageWaitMe("progress"); // loading process starts                        
+                        pageWaitMe("progress"); // loading process starts
 
                         var IdUser = $("#IdUser").val();
                         var fullname = $("#txtEditFullname").val();
@@ -329,7 +329,6 @@
                 if (result) {
 
                     run_waitMe_body("progress"); // loading process starts
-                    $('#btnUpdate').attr('disabled', 'disabled'); // disable submit button temporary
 
                     var postData = { 'IdUser': idUser };
 
@@ -350,7 +349,6 @@
                                 }).then((result) => {
                                     if (result) {
                                         $("#tbUser").load("index #tbUser"); //update table automatically!
-                                        $('#btnUpdate').attr('disabled', false); // enable submit button
                                         run_waitMe_body_remove(); // loading process stops
                                     }
                                 });

@@ -1,4 +1,5 @@
 ﻿using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Common;
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,7 @@ namespace galaxypremiere.Application.Services.Users.Commands.UpdateUser
 
             user.Fullname= req.Fullname;
             user.Email= req.Email;
-
+            
             user.UsersInRoles.Clear();
             user.UsersInRoles.Add(new UsersInRoles
             {
@@ -34,7 +35,8 @@ namespace galaxypremiere.Application.Services.Users.Commands.UpdateUser
                 RolesId = req.IdRole[0],
             });
 
-            if (req.Password != null) user.Password = req.Password;
+            PasswordHasher passHasher = new PasswordHasher();
+            if (req.Password != null) user.Password= passHasher.HashPassword(req.Password);
 
             user.UpdateDate = DateTime.Now;
 

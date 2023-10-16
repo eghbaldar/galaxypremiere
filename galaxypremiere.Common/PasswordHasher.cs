@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Bugeto_Store.Common
+namespace galaxypremiere.Common
 {
-    public class  PasswordHasher
+    public class PasswordHasher
     {
         // Format Markers:
         // IdentityV2: PBKDF2 with HMAC-SHA1, 128-bit salt, 256-bit subkey, 1000 iterations.
@@ -233,6 +236,4 @@ namespace Bugeto_Store.Common
             buffer[offset + 3] = (byte)(value >> 0);
         }
     }
-
-
 }
