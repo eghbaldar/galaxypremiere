@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.Users.Commands.ActivateUser;
 using galaxypremiere.Application.Services.Users.Commands.DeleteUser;
 using galaxypremiere.Application.Services.Users.Commands.PostUser;
 using galaxypremiere.Application.Services.Users.Commands.UpdateUser;
@@ -46,6 +47,12 @@ namespace galaxypremiere.Application.Services.Users.FacadePattern
         public DeleteUserService DeleteUserService
         {
             get { return _deleteUserService = _deleteUserService ?? new DeleteUserService(_context); }
+        }
+        //////////////////////////////////////////////////// Activate User
+        private ActiviateUserService _activiateUserService;
+        public ActiviateUserService ActiviateUserService
+        {
+            get { return _activiateUserService = _activiateUserService ?? new ActiviateUserService(_context); }
         }
     }
 }

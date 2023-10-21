@@ -21,6 +21,7 @@
                         <th>Product</th>
                         <th>Last Login</th>
                         <th>Role</th>
+                        <th>Status</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -34,6 +35,23 @@
                             <td><span>456 pcs</span></td>
                             <td><span class="badge badge-success">@user.Role</span></td>
                             <td>
+                                @{
+                                    if (user.IsActive)
+                                    {
+                                        <span class="badge badge-primary">
+                                            <span>Active</span>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-danger">
+                                            <span>Deactivated</span>
+                                        </span>
+                                    }
+                                }
+
+                            </td>
+                            <td>
                                 <div class="dropdown show">
                                     <a class="btn btn-secondary dropdown-toggle"
                                    href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,6 +62,19 @@
                                         <a class="dropdown-item"
                                        onclick="ShowUpdateModal('@user.Id','@user.Fullname','@user.Email','@user.Role')" href="#">Update</a>
                                         <a class="dropdown-item" onclick="deleteUser('@user.Id');" href="#">Delete</a>
+                                        <a class="dropdown-item" onclick="activateUser('@user.Id','@user.IsActive');" href="#">
+                                            @{
+                                                if (@user.IsActive)
+                                                {
+                                                    <span>Change to Deactivated</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Change to Activated</span>
+                                                }
+                                            }
+                                        </a>
+
                                     </div>
                                 </div>
                             </td>
@@ -372,6 +403,71 @@
 
                 }
             });
+        }
+        function activateUser(idUser, status) {
+
+            var statusText;
+            if (status)
+                statusText = 'from Deactivated to Activated?';
+            else
+                statusText = 'from Deactivated to Activated?';
+
+            Swal.fire({
+                title: 'User Status Change',
+                text: "Do you wish to change user's satus " + statusText,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#000222',
+                cancelButtonColor: '#000222',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'Not at all',
+            }).then((result) => {
+                if (result.value) {
+                    var postData = { 'IdUser': idUser };
+                    pageWaitMe("progress"); // loading process starts
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: postData,
+                        url: 'Activate',
+                        success: function (data) {
+                            if (data.isSuccess) {
+                                Swal.fire({
+                                    title: 'Succeed!',
+                                    text: data.message,
+                                    icon: 'success',
+                                    confirmButtonColor: 'green',
+                                    confirmButtonText: 'Ok',
+                                }).then((result) => {
+                                    if (result) {
+                                        pageWaitMeRemove(); // loading process stops
+                                        $("#tbUser").load("index #tbUser"); //update table automatically!
+                                    }
+                                });
+                            }
+                            else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: data.message,
+                                    icon: 'error',
+                                    confirmButtonColor: 'red',
+                                    confirmButtonText: 'Ok',
+                                }).then((result) => {
+                                    //
+                                });
+                            }
+                        },
+                        error: function (request, status, error) {
+                            alert('err:' + request.responseText);
+                        }
+                    });
+                }
+                else {
+                    //Swal.fire('NO');
+                }
+            });
+
         }
     </script>
 }

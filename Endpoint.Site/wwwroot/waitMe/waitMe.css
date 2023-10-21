@@ -8,7 +8,7 @@ body.waitMe_container .waitMe .waitMe_content {top:50%!important;transform:none!
 .waitMe_container .waitMe .waitMe_text {position:relative;margin:20px 0 0}
 /*before load animation*/ 
 body.waitMe_body {overflow:hidden;height:100%}
-body.waitMe_body.hideMe {transition:opacity .2s ease-in-out;opacity:0}
+body.waitMe_body.hideMe {transition:opacity .2s ease-in-out;}
 /*=====================Page loading ====================*/ 
 .waitMe_container.progress {border-radius: 0;}
 .waitMe_body .waitMe_container:not([data-waitme_id])
