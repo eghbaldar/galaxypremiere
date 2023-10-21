@@ -117,6 +117,10 @@
       "PackagePath": "staticwebassets\\AdminTemplate\\css\\semantic.min.css"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\AdminTemplate\\css\\signin.css",
+      "PackagePath": "staticwebassets\\AdminTemplate\\css\\signin.css"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\AdminTemplate\\css\\style.css",
       "PackagePath": "staticwebassets\\AdminTemplate\\css\\style.css"
     },
@@ -463,6 +467,10 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\AdminTemplate\\js\\settings.html",
       "PackagePath": "staticwebassets\\AdminTemplate\\js\\settings.html"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\AdminTemplate\\js\\signin.js",
+      "PackagePath": "staticwebassets\\AdminTemplate\\js\\signin.js"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\AdminTemplate\\js\\utils.js",

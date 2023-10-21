@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WMdrzGGo/KlYMrjvdUUP11JzlcF6TJLFza4Mj/ZWyek=",
+  "Hash": "8RUNR1BMSAywkK+gj6/hlwEYZc3+hx4IwxRHUXWRVO4=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -525,6 +525,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\AdminTemplate\\css\\semantic.min.css"
+    },
+    {
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\AdminTemplate\\css\\signin.css",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "AdminTemplate/css/signin.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\AdminTemplate\\css\\signin.css"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\AdminTemplate\\css\\style.css",
@@ -2004,6 +2021,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\AdminTemplate\\js\\settings.html"
+    },
+    {
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\AdminTemplate\\js\\signin.js",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "AdminTemplate/js/signin.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\AdminTemplate\\js\\signin.js"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\AdminTemplate\\js\\utils.js",

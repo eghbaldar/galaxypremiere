@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Areas/Admin/Views/Auth/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXV0aFxsb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Areas/Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
