@@ -2,6 +2,7 @@
 using galaxypremiere.Application.Services.Users.Commands.DeleteUser;
 using galaxypremiere.Application.Services.Users.Commands.PostUser;
 using galaxypremiere.Application.Services.Users.Commands.UpdateUser;
+using galaxypremiere.Application.Services.Users.Queries.AuthUsers;
 using galaxypremiere.Application.Services.Users.Queries.GetUsers;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         public UpdateUserService UpdateUserService { get; }
         public DeleteUserService DeleteUserService { get; } 
         public ActiviateUserService ActiviateUserService { get; }
+        public AuthLoginUsersService AuthLoginUsersService { get; }
     }
 }

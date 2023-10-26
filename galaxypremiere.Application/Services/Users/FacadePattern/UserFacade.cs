@@ -5,6 +5,7 @@ using galaxypremiere.Application.Services.Users.Commands.ActivateUser;
 using galaxypremiere.Application.Services.Users.Commands.DeleteUser;
 using galaxypremiere.Application.Services.Users.Commands.PostUser;
 using galaxypremiere.Application.Services.Users.Commands.UpdateUser;
+using galaxypremiere.Application.Services.Users.Queries.AuthUsers;
 using galaxypremiere.Application.Services.Users.Queries.GetUsers;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,12 @@ namespace galaxypremiere.Application.Services.Users.FacadePattern
         public ActiviateUserService ActiviateUserService
         {
             get { return _activiateUserService = _activiateUserService ?? new ActiviateUserService(_context); }
+        }
+        /////////////////////////////////////////////////// Auth User Login
+        private AuthLoginUsersService _authLoginUsersService;
+        public AuthLoginUsersService AuthLoginUsersService
+        {
+            get { return _authLoginUsersService = _authLoginUsersService ?? new AuthLoginUsersService(_context); }
         }
     }
 }

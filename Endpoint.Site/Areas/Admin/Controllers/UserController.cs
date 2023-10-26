@@ -4,8 +4,10 @@ using galaxypremiere.Application.Services.Users.Commands.ActivateUser;
 using galaxypremiere.Application.Services.Users.Commands.DeleteUser;
 using galaxypremiere.Application.Services.Users.Commands.PostUser;
 using galaxypremiere.Application.Services.Users.Commands.UpdateUser;
+using galaxypremiere.Common.Constants;
 using galaxypremiere.Domain.Entities.Users;
 using galaxypremiere.Infrastructure.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,6 +16,7 @@ namespace Endpoint.Site.Areas.Admin.Controllers
 {
     [ModelStateAttribute]
     [Area("Admin")]
+    [Authorize(RoleConstants.King)]
     public class UserController : Controller
     {
         private readonly IRolesFacade _rolesFacade;
