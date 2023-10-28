@@ -50,5 +50,10 @@ namespace Endpoint.Site.Areas.Admin.Controllers
             }
             return Json(login);
         }
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }

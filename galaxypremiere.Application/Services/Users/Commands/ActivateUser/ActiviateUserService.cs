@@ -3,7 +3,7 @@ using galaxypremiere.Common.DTOs;
 
 namespace galaxypremiere.Application.Services.Users.Commands.ActivateUser
 {
-    public class ActiviateUserService: IActiviateUserService
+    public class ActiviateUserService : IActiviateUserService
     {
         private readonly IDataBaseContext _context;
         public ActiviateUserService(IDataBaseContext context)
@@ -12,7 +12,7 @@ namespace galaxypremiere.Application.Services.Users.Commands.ActivateUser
         }
         public ResultDto Execute(RequestActiviateUserServiceDto req)
         {
-            var user = _context.Users.Where(u=>u.Id==req.IdUser).FirstOrDefault();
+            var user = _context.Users.Where(u => u.Id == req.IdUser).FirstOrDefault();
             if (user == null)
             {
                 return new ResultDto
@@ -22,7 +22,7 @@ namespace galaxypremiere.Application.Services.Users.Commands.ActivateUser
                 };
             }
             user.IsActive = !user.IsActive;
-            user.UpdateDate= DateTime.Now;
+            user.UpdateDate = DateTime.Now;
             _context.SaveChanges();
             var a = user.IsActive ? "true" : "false";
             return new ResultDto

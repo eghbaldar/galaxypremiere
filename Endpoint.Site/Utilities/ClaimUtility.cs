@@ -29,6 +29,18 @@ namespace Endpoint.Site.Utilities
                 return null;
             }
         }
+        public static string GetUserFullname(ClaimsPrincipal User)
+        {
+            try
+            {
+                var claimIdentity = User.Identity as ClaimsIdentity;
+                return claimIdentity.FindFirst(ClaimTypes.Name).Value;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         public static List<string> GetUserRoles(ClaimsPrincipal User)
         {
             try

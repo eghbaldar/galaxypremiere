@@ -121,6 +121,16 @@
                     if (data.isSuccess) {
                         location.replace('/admin/home/index');
                     }
+                    else
+                    {
+                        Swal.fire({
+                            icon: 'error',
+                            text:data.message,
+                            backdrop: 'rgba(0,0,0,0.6)',
+                            confirmButtonText:'<i class="fa fa-thumbs-up"></i>',
+                            footer: '<a href="">What did I possibly do wrong?</a>',
+                        });
+                    }
                 },
                 error: function (request, status, error) {
                     alert('err:' + request.responseText);
