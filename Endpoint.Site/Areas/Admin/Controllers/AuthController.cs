@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using galaxypremiere.Application.Services.UserLoginLog.Commands.PostUserLoginLog;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http;
+using AutoMapper;
 
 namespace Endpoint.Site.Areas.Admin.Controllers
 {
@@ -14,10 +19,15 @@ namespace Endpoint.Site.Areas.Admin.Controllers
     public class AuthController : Controller
     {
         private readonly IUserFacade _userFacade;
-        public AuthController(IUserFacade userFacade)
+        private readonly IUserLoginLogFacade _userLoginLogFacade;
+        public AuthController(
+            IUserFacade userFacade,
+            IUserLoginLogFacade userLoginLogFacade)
         {
             _userFacade = userFacade;
+            _userLoginLogFacade = userLoginLogFacade;
         }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -45,6 +55,11 @@ namespace Endpoint.Site.Areas.Admin.Controllers
                         IsPersistent = true,
                         ExpiresUtc = DateTime.Now.AddYears(1),
                     };
+                    _userLoginLogFacade.PostUserLoginLogService.Execute(new RequestPostUserLoginLogServiceDto
+                    {
+                        UsersId = login.Data.IdUser,
+                        IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
+                    });
                     HttpContext.SignInAsync(principal, propertise);
                 }
             }

@@ -1,13 +1,25 @@
-﻿using galaxypremiere.Application.Configurations;
+﻿using AutoMapper;
+using AutoMapper.Internal;
+using galaxypremiere.Application.Configurations;
 using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UserActionsLog.Commands.PostUserActionLog;
+using galaxypremiere.Application.Services.UserActionsLog.FacadePattern;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace galaxypremiere.Persistence.Context
 {
@@ -21,7 +33,8 @@ namespace galaxypremiere.Persistence.Context
         public DbSet<Users> Users { get; set; } // Users Table
         public DbSet<Roles> Roles { get; set; } // Roles Table
         public DbSet<UsersInRoles> UsersInRoles { get; set; } // UsersInRoles Table
-        // End
+        public DbSet<UsersActionsLog> UsersActionsLog { get; set; } // UsersActionsLog Table
+        public DbSet<UsersLoginLog> UsersLoginLog { get; set; } // UsersLoginLog Table
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +44,91 @@ namespace galaxypremiere.Persistence.Context
             //---- ROles
             modelBuilder.ApplyConfiguration(new RolesConfigurations());
             //< End
+        }
+        public override int SaveChanges()
+        {
+            var modifiedEntries = ChangeTracker.Entries()
+           .Where(e =>
+               e.State == EntityState.Modified ||
+               e.State == EntityState.Added ||
+               e.State == EntityState.Deleted
+               ).ToList();
+            foreach (var entry in modifiedEntries)
+            {
+                var entityType = entry.Context.Model.FindEntityType(entry.Entity.GetType());
+                var inserted = entityType.FindProperty("InsertDate");
+                var updated = entityType.FindProperty("UpdateDate");
+                var deleted = entityType.FindProperty("DeleteDate");               
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        if (inserted != null) entry.Property("InsertDate").CurrentValue = DateTime.Now;
+                        break;
+                    case EntityState.Modified:
+                        if (updated != null) entry.Property("UpdateDate").CurrentValue = DateTime.Now;
+                        break;
+                    case EntityState.Deleted:
+                        if (deleted != null)
+                        {
+                            entry.Property("DeleteDate").CurrentValue = DateTime.Now;
+                            entry.State = EntityState.Modified;
+                        }
+                        break;
+                }
+            }
+            return base.SaveChanges();
+        }
+        private void RecordModifiedProperties(EntityEntry entry)
+        {
+
+            foreach (var property in entry.Entity.GetType().GetTypeInfo().DeclaredProperties)
+            {
+                bool CheckCollection = property.PropertyType.IsCollection();
+                if (!CheckCollection)
+                {
+                    try
+                    {
+                        var originalValue = entry.Property(property.Name).OriginalValue;
+                        var currentValue = entry.Property(property.Name).CurrentValue;
+
+                        //https://stackoverflow.com/questions/37548766/dbcontext-override-savechanges-not-firing
+                        //https://stackoverflow.com/questions/32597498/show-original-values-entity-framework-7
+                        //https://stackoverflow.com/questions/12699892/many-to-many-relationship-detecting-changes
+                        //https://stackoverflow.com/questions/21025778/entity-framework-6-getobjectstateentries-expected-modified-entities-have-state
+
+                        if (originalValue.ToString() != currentValue.ToString()) //only will be changed when a thing changes!
+                        {
+                            UsersActionsLog postUserActionLogService = new UsersActionsLog()
+                            {
+                                Entity = entry.Entity.GetType().Name, //entityName 
+                                Action = entry.State.ToString(),
+                                NewValue = currentValue.ToString(),
+                                OldValue = originalValue.ToString(),
+                                PrimaryKeyValue = "0",
+                                PropertyName = property.Name,
+                                Successful = true,
+                                UserId = 1,
+                            };
+                            UsersActionsLog.Add(postUserActionLogService);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        UsersActionsLog postUserActionLogService = new UsersActionsLog()
+                        {
+                            Entity = entry.Entity.GetType().Name, //entityName 
+                            Action = entry.State.ToString(),
+                            NewValue = "",
+                            OldValue = "",
+                            PrimaryKeyValue = "0",
+                            PropertyName = property.Name,
+                            Successful = false,
+                            UserId = 0,
+                        };
+                        UsersActionsLog.Add(postUserActionLogService);
+                    }
+                }
+            }
         }
     }
 }

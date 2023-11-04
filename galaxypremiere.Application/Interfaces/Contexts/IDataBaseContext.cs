@@ -13,6 +13,8 @@ namespace galaxypremiere.Application.Interfaces.Contexts
         DbSet<Users> Users { get; set; } // Users Table
         DbSet<Roles> Roles { get; set; } // Roles Table
         DbSet<UsersInRoles> UsersInRoles { get; set; } // UsersInRoles Table
+        DbSet<UsersActionsLog> UsersActionsLog { get; set; } // UsersActionsLog Table
+        DbSet<UsersLoginLog> UsersLoginLog { get; set; } // UsersLoginLog
 
         //SaveChanges
         int SaveChanges(bool acceptAllChangesOnSuccess);

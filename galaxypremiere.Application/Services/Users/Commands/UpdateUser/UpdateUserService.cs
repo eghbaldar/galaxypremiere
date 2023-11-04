@@ -37,9 +37,7 @@ namespace galaxypremiere.Application.Services.Users.Commands.UpdateUser
 
             PasswordHasher passHasher = new PasswordHasher();
             if (req.Password != null) user.Password= passHasher.HashPassword(req.Password);
-
-            user.UpdateDate = DateTime.Now;
-
+            //_context.Users.Update(user);
             _context.SaveChanges();
 
             return new ResultDto

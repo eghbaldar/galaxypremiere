@@ -100,6 +100,51 @@ namespace galaxypremiere.Persistence.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersActionsLog", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Entity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OldValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrimaryKeyValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PropertyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Successful")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UsersActionsLog");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersInRoles", b =>
                 {
                     b.Property<long>("Id")
@@ -123,6 +168,31 @@ namespace galaxypremiere.Persistence.Migrations
                     b.ToTable("UsersInRoles");
                 });
 
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersLoginLog", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("IP")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LoginDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UsersId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("UsersLoginLog");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersInRoles", b =>
                 {
                     b.HasOne("galaxypremiere.Domain.Entities.Users.Roles", "Roles")
@@ -138,6 +208,17 @@ namespace galaxypremiere.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Roles");
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersLoginLog", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Users");
                 });

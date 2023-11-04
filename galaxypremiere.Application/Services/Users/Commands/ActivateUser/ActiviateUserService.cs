@@ -22,7 +22,6 @@ namespace galaxypremiere.Application.Services.Users.Commands.ActivateUser
                 };
             }
             user.IsActive = !user.IsActive;
-            user.UpdateDate = DateTime.Now;
             _context.SaveChanges();
             var a = user.IsActive ? "true" : "false";
             return new ResultDto
