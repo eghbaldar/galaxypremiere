@@ -7,6 +7,7 @@ using galaxypremiere.Application.Services.Users.Commands.PostUser;
 using galaxypremiere.Application.Services.Users.Commands.UpdateUser;
 using galaxypremiere.Application.Services.Users.Queries.AuthUsers;
 using galaxypremiere.Application.Services.Users.Queries.GetUsers;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO.Pipes;
@@ -20,10 +21,15 @@ namespace galaxypremiere.Application.Services.Users.FacadePattern
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        public UserFacade(IDataBaseContext context, IMapper mapper)
+        private readonly IConfiguration _configuration;
+        public UserFacade(
+            IDataBaseContext context,
+            IMapper mapper,
+            IConfiguration configuration)
         {
             _context = context;
             _mapper = mapper;
+            _configuration= configuration;
         }
         //////////////////////////////////////////////////// Post User
         private PostUserService _postUserService;
@@ -35,7 +41,7 @@ namespace galaxypremiere.Application.Services.Users.FacadePattern
         private GetUsersService _getUsersService;
         public GetUsersService GetUsersService
         {
-            get { return _getUsersService = _getUsersService ?? new GetUsersService(_context); }
+            get { return _getUsersService = _getUsersService ?? new GetUsersService(_context, _configuration); }
         }
         //////////////////////////////////////////////////// Update Users
         private UpdateUserService _updateUserService;

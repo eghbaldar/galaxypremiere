@@ -260,3 +260,10 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.MvcApplicationPartsAssemblyInfo.cs
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Dapper.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\System.Data.SqlClient.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
