@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Services\Roles\Commands\" />
     <Folder Include="Services\UserActionsLog\Queries\" />
-    <Folder Include="Services\UserLoginLog\Queries\" />
   </ItemGroup>
 
 </Project>

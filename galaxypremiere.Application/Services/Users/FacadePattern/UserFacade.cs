@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UserLoginLog.Queries.GetUsersLoginLogs;
 using galaxypremiere.Application.Services.Users.Commands.ActivateUser;
 using galaxypremiere.Application.Services.Users.Commands.DeleteUser;
 using galaxypremiere.Application.Services.Users.Commands.PostUser;
@@ -29,7 +30,7 @@ namespace galaxypremiere.Application.Services.Users.FacadePattern
         {
             _context = context;
             _mapper = mapper;
-            _configuration= configuration;
+            _configuration = configuration;
         }
         //////////////////////////////////////////////////// Post User
         private PostUserService _postUserService;

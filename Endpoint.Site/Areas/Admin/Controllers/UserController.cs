@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UserLoginLog.Queries.GetUsersLoginLogs;
 using galaxypremiere.Application.Services.Users.Commands.ActivateUser;
 using galaxypremiere.Application.Services.Users.Commands.DeleteUser;
 using galaxypremiere.Application.Services.Users.Commands.PostUser;
@@ -19,18 +20,21 @@ namespace Endpoint.Site.Areas.Admin.Controllers
     [Authorize(RoleConstants.King)]
     public class UserController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IRolesFacade _rolesFacade;
         private readonly IUserFacade _userFacade;
-        private readonly IMapper _mapper;
+        private readonly IUserLoginLogFacade _userLoginLogFacade;
         public UserController(
             IRolesFacade rolesFacade,
             IUserFacade userFacade,
-            IMapper mapper
+            IMapper mapper,
+            IUserLoginLogFacade userLoginLogFacade
             )
         {
             _rolesFacade = rolesFacade;
             _userFacade = userFacade;
             _mapper = mapper;
+            _userLoginLogFacade = userLoginLogFacade;
         }
 
         [HttpGet]
@@ -66,6 +70,15 @@ namespace Endpoint.Site.Areas.Admin.Controllers
         public IActionResult Activate(RequestActiviateUserServiceDto req)
         {
             return Json(_userFacade.ActiviateUserService.Execute(req));
+        }
+        [HttpGet]
+        public IActionResult LoginLogs(RequestGetUsersLoginLogsServiceDto req)
+        {
+            string userId = RouteData.Values["id"].ToString();
+            return View(_userLoginLogFacade.GetUsersLoginLogsService.Execute(new RequestGetUsersLoginLogsServiceDto
+            {
+                UsersId = int.Parse(userId),
+            })) ;
         }
     }
 }

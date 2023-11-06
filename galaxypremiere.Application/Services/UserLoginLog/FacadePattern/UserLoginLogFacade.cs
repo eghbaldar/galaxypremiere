@@ -2,6 +2,7 @@
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UserLoginLog.Commands.PostUserLoginLog;
+using galaxypremiere.Application.Services.UserLoginLog.Queries.GetUsersLoginLogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,12 @@ namespace galaxypremiere.Application.Services.UserLoginLog.FacadePattern
         {
             get { return _postUserLoginLogService = _postUserLoginLogService ?? new PostUserLoginLogService(_context,_mapper); }
         }
+        /////////////////////////////////////////////////// GetUsersLoginLogsService
+        private GetUsersLoginLogsService _getUsersLoginLogsService;
+        public GetUsersLoginLogsService GetUsersLoginLogsService
+        {
+            get { return _getUsersLoginLogsService = _getUsersLoginLogsService ?? new GetUsersLoginLogsService(_context); }
+        }
+        ///////////////////////////////////////////////////
     }
 }

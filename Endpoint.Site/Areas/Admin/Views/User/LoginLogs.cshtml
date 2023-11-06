@@ -1,0 +1,45 @@
+﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
+@using galaxypremiere.Application.Services.UserLoginLog.Queries.GetUsersLoginLogs
+@model ResultGetUsersLoginLogsServiceDto
+@{
+    ViewData["PageTitle"] = "Galaxy Premiere - Users' Login Logs";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">User's Login Logs</h4>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            @{
+                if (!Model.GetUsersLoginLogsServiceDto.Any())
+                {
+                    <span>Empty</span>
+                }
+                else
+                {
+                    <table class="table mb-0" id="tbUser">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>IP</th>
+                                <th>Login Date&Time</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var loginLog in Model.GetUsersLoginLogsServiceDto)
+                            {
+                                <tr>
+                                    <td>@loginLog.Id</td>
+                                    <td>@loginLog.IP</td>
+                                    <td>@loginLog.LoginDateTime</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+        </div>
+    </div>
+</div>

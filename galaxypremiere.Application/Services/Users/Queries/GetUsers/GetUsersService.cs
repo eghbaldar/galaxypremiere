@@ -20,7 +20,7 @@ namespace galaxypremiere.Application.Services.Users.Queries.GetUsers
         public ResultGetUsersServiceDto Execute()
         {
             string connString = _configuration.GetConnectionString("LocalServer");
-            string command = "SELECT * FROM [dbo].[Users] u LEFT OUTER JOIN (select top 1 [logindatetime],[usersid] from [dbo].[UsersLoginLog] order by LoginDateTime desc ) ul ON u.id = ul.usersid";
+            string command = "SELECT u.*,r.Name 'Role',ul.LoginDateTime FROM [dbo].[Users] u LEFT OUTER JOIN (select top 1 [logindatetime],[usersid] from [dbo].[UsersLoginLog] order by LoginDateTime desc ) ul  ON u.id = ul.usersid JOIN  [dbo].[UsersInRoles] ur ON u.id = ur.[UsersId] JOIN  [dbo].[Roles] r ON ur.RolesId=r.Id";
             var connection = new SqlConnection(connString);
             var result = connection.Query<GetUsersServiceDto>(command).ToList();
             return new ResultGetUsersServiceDto
