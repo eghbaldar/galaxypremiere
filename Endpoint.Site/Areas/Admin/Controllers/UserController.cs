@@ -72,12 +72,13 @@ namespace Endpoint.Site.Areas.Admin.Controllers
             return Json(_userFacade.ActiviateUserService.Execute(req));
         }
         [HttpGet]
-        public IActionResult LoginLogs(RequestGetUsersLoginLogsServiceDto req)
+        public IActionResult LoginLogs(RequestGetUsersLoginLogsServiceDto req, int p)
         {
             string userId = RouteData.Values["id"].ToString();
             return View(_userLoginLogFacade.GetUsersLoginLogsService.Execute(new RequestGetUsersLoginLogsServiceDto
             {
                 UsersId = int.Parse(userId),
+                Page=p,
             })) ;
         }
     }

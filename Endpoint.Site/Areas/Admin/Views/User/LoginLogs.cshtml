@@ -1,9 +1,13 @@
 ﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
+@addTagHelper *,LazZiya.TagHelpers
 @using galaxypremiere.Application.Services.UserLoginLog.Queries.GetUsersLoginLogs
 @model ResultGetUsersLoginLogsServiceDto
 @{
     ViewData["PageTitle"] = "Galaxy Premiere - Users' Login Logs";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    //Pagination
+    int currentPage = 1;
+    int.TryParse(Context.Request.Query["p"], out currentPage);
 }
 <div class="card">
     <div class="card-header">
@@ -40,6 +44,17 @@
                     </table>
                 }
             }
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers"
+             id="datatable-buttons_paginate">
+            <paging page-no="@currentPage==0?1:currentPage"
+                    page-size="@Model.RowsInEachOage"
+                    total-records="@Model.RowCount">
+            </paging>
         </div>
     </div>
 </div>

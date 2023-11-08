@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Application.Interfaces.Contexts;
+﻿using alefbafilms.Common;
+using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.DTOs;
 
 namespace galaxypremiere.Application.Services.UserLoginLog.Queries.GetUsersLoginLogs
@@ -15,8 +16,11 @@ namespace galaxypremiere.Application.Services.UserLoginLog.Queries.GetUsersLogin
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {
+                int RowsCount; //for Pagination
+                int RowsInEachOage = 20; //for Pagination
                 var result = _context.UsersLoginLog
                     .Where(ull => ull.UsersId == req.UsersId)
+                    .ToPaged(req.Page, RowsInEachOage, out RowsCount)
                     .Select(ull => new GetUsersLoginLogsServiceDto
                     {
                         Id = ull.Id,
@@ -28,6 +32,8 @@ namespace galaxypremiere.Application.Services.UserLoginLog.Queries.GetUsersLogin
                 return new ResultGetUsersLoginLogsServiceDto
                 {
                     GetUsersLoginLogsServiceDto = result,
+                    RowCount = RowsCount,
+                    RowsInEachOage= RowsInEachOage,
                 };
             }
             else

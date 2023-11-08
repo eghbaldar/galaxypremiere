@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "r94JeizO6rDC3AZ3VBUoxnKiZXHQ80g+A2VUcxExT9thxBNv+ntFRcWwtAx3bhJWZgmro+gjMxkNTg4XJ5Rfaw==",
+  "dgSpecHash": "fwAvjyPWCOiVVWH1/sCQ+V/qEkWnB6o3h6EjM50Js7dkLVto0Qgf9njKYHxbELFTd+Me5b6J2uLLnsbbYhnTLA==",
   "success": true,
   "projectFilePath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\Endpoint.Site.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\lazziya.taghelpers\\6.0.2\\lazziya.taghelpers.6.0.2.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
