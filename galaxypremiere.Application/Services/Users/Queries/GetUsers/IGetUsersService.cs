@@ -2,6 +2,6 @@
 {
     public interface IGetUsersService
     {
-        ResultGetUsersServiceDto Execute();
+        ResultGetUsersServiceDto Execute(RequestGetUserServiceDto req);
     }
 }

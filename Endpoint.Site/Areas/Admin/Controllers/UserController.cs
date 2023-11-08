@@ -50,11 +50,14 @@ namespace Endpoint.Site.Areas.Admin.Controllers
             return Json(_userFacade.PostUserService.Execute(_mapper.Map<RequestPostUserServiceDto>(req)));
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int p)
         {
             var roles = new SelectList(_rolesFacade.GetRolesService.Execute(), "Id", "Name");
             ViewBag.Roles = roles;
-            return View(_userFacade.GetUsersService.Execute());
+            return View(_userFacade.GetUsersService.Execute(new galaxypremiere.Application.Services.Users.Queries.GetUsers.RequestGetUserServiceDto
+            {
+                CurrentPage = p,
+            }));
         }
         [HttpPost]
         public IActionResult Update(RequestUpdateUserServiceDto req)
@@ -78,8 +81,8 @@ namespace Endpoint.Site.Areas.Admin.Controllers
             return View(_userLoginLogFacade.GetUsersLoginLogsService.Execute(new RequestGetUsersLoginLogsServiceDto
             {
                 UsersId = int.Parse(userId),
-                Page=p,
-            })) ;
+                Page = p,
+            }));
         }
     }
 }

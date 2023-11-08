@@ -7,5 +7,7 @@ namespace galaxypremiere.Application.Services.Users.Queries.GetUsers
     {
         public List<GetUsersServiceDto> resultGetUsersServiceDto { get; set; }
         public RequestUpdateUserServiceDto Validation { get; set; }
+        public int RowCount { get; set; }
+        public int RowsOnEachPage { get; set; }
     }
 }

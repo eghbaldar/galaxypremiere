@@ -1,10 +1,14 @@
 ﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *,LazZiya.TagHelpers
 @using galaxypremiere.Application.Services.Users.Queries.GetUsers
 @model ResultGetUsersServiceDto
 @{
     ViewData["PageTitle"] = "Galaxy Premiere - Users List";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    //Pagination
+    int currentPage = 1;
+    int.TryParse(Context.Request.Query["p"], out currentPage);
 }
 <div class="card">
     <div class="card-header">
@@ -81,9 +85,20 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>
-
+<div class="row">
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers"
+                    id="datatable-buttons_paginate">
+            <paging page-no="@currentPage==0?1:currentPage"
+                              page-size="@Model.RowsOnEachPage"
+                              total-records="@Model.RowCount">
+            </paging>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="upadteModal" tabindex="-1" role="dialog" aria-labelledby="upadteModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -357,7 +372,7 @@
             }).then((result) => {
                 if (result) {
 
-                   pageWaitMe("progress"); // loading process starts
+                    pageWaitMe("progress"); // loading process starts
 
                     var postData = { 'IdUser': idUser };
 
