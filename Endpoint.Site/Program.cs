@@ -53,6 +53,13 @@ builder.Services.AddAuthorization(option =>
     option.AddPolicy(RoleConstants.User, policy => policy.RequireRole(RoleConstants.User));
 });
 
+builder.Services.AddAuthentication()
+    .AddGoogle(option =>
+    {
+        option.ClientId = "337937604991-tdk4jupupcoepdggcjvhadral147udto.apps.googleusercontent.com";
+        option.ClientSecret = "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";
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
