@@ -1885,6 +1885,10 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\mainpage\\assets\\img\\apple-touch-icon.png"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\mainpage\\assets\\img\\astronaut.png",
+      "PackagePath": "staticwebassets\\SiteTemplate\\mainpage\\assets\\img\\astronaut.png"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\mainpage\\assets\\img\\favicon.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\mainpage\\assets\\img\\favicon.png"
     },
