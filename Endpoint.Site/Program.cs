@@ -10,6 +10,7 @@ using galaxypremiere.Infrastructure.MappingProfiles.UsersLoginLog;
 using galaxypremiere.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +59,13 @@ builder.Services.AddAuthentication()
     {
         option.ClientId = "337937604991-tdk4jupupcoepdggcjvhadral147udto.apps.googleusercontent.com";
         option.ClientSecret = "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";
+    });
+builder.Services.AddAuthentication()
+    .AddInstagram(option =>
+    {
+        option.ClientId = "1006444983921222";
+        option.ClientSecret = "38c543ac536b375f157cf6a1499cf08b";
+        //option.CallbackPath = "/signin-instagram";
     });
 
 var app = builder.Build();

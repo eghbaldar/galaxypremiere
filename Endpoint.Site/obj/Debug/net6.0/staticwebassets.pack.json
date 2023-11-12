@@ -2569,6 +2569,10 @@
       "PackagePath": "staticwebassets\\lib\\kingFuncs\\password\\password.js"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\modal\\modal.css",
+      "PackagePath": "staticwebassets\\modal\\modal.css"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\sweetalert\\sweetalert2.all.min.js",
       "PackagePath": "staticwebassets\\sweetalert\\sweetalert2.all.min.js"
     },

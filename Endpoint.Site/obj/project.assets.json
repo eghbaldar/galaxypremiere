@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "AspNet.Security.OAuth.Instagram/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/AspNet.Security.OAuth.Instagram.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/AspNet.Security.OAuth.Instagram.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "AutoMapper/12.0.1": {
         "type": "package",
         "dependencies": {
@@ -4390,6 +4406,20 @@
     }
   },
   "libraries": {
+    "AspNet.Security.OAuth.Instagram/6.0.0": {
+      "sha512": "EPfFMaQnX2/400ZrEsrVGQsKD/nTfkybSMueix9F0sL9qb6eIoiWXF2cCoc3unDCs5c2iFWjBo9bnvJOaiHl5Q==",
+      "type": "package",
+      "path": "aspnet.security.oauth.instagram/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "aspnet.security.oauth.instagram.6.0.0.nupkg.sha512",
+        "aspnet.security.oauth.instagram.nuspec",
+        "lib/net6.0/AspNet.Security.OAuth.Instagram.dll",
+        "lib/net6.0/AspNet.Security.OAuth.Instagram.xml"
+      ]
+    },
     "AutoMapper/12.0.1": {
       "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
       "type": "package",
@@ -11940,6 +11970,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "AspNet.Security.OAuth.Instagram >= 6.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "LazZiya.TagHelpers >= 6.0.2",
       "Microsoft.AspNetCore.Authentication.Google >= 6.0.0",
@@ -12004,6 +12035,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "AspNet.Security.OAuth.Instagram": {
+            "target": "Package",
+            "version": "[6.0.0, )"
+          },
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[12.0.1, )"

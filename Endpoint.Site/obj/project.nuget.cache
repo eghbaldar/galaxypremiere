@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NWfUMoVBvijKkGUd8sXru4ByMQeDIFwP7cAeq7BIK+k94pViUlh8ggNajzy0wExnsBBIPPIWO7weARXbcjPS5A==",
+  "dgSpecHash": "whgw7/O2cy/mGobUfA34IlsjMGaS3BHV6nn5+qMYixbUWBoxfusIGQHola31GX9Pf1I/KvpuKA10rVKlk4bfOg==",
   "success": true,
   "projectFilePath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\Endpoint.Site.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\aspnet.security.oauth.instagram\\6.0.0\\aspnet.security.oauth.instagram.6.0.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\dapper\\2.1.15\\dapper.2.1.15.nupkg.sha512",

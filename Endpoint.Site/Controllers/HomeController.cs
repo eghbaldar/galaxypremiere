@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
+using AspNet.Security.OAuth.Instagram;
+using Microsoft.AspNetCore.Http;
 
 namespace Endpoint.Site.Controllers
 {
@@ -18,32 +20,27 @@ namespace Endpoint.Site.Controllers
         {
             return View();
         }
-
-        public async Task Login()
+        public async Task Login(string returnUrl)
         {
             await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties()
             {
                 RedirectUri = Url.Action("GoogleResponse")
             });
         }
-
-        public async Task<IActionResult> GoogleResponse()
+        public async Task<IActionResult> GoogleResponse(string returnUrl)
         {
             var loginInfo = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            //var claims = result.Principal.Identities
-            //    .FirstOrDefault().Claims.Select(claim => new
-            //    {
-            //        claim.Issuer,
-            //        claim.OriginalIssuer,
-            //        claim.Type,
-            //        claim.Value
-            //    });
-            //return Json(claims);
+
             string email = loginInfo.Principal.FindFirst(ClaimTypes.Email).Value;
             string firstname = loginInfo.Principal.FindFirst(ClaimTypes.GivenName)?.Value?? null;
             string lastname = loginInfo.Principal.FindFirst(ClaimTypes.Surname)?.Value?? null;
 
+            if(Url.IsLocalUrl(returnUrl)) { 
+                //
+            }
+
             return View();
         }
+
     }
 }
