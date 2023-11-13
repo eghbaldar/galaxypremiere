@@ -5,9 +5,9 @@
             <h2>Let's go ...</h2>
 
             <form>
-                <input type="text" class="txtLoginEmail" placeholder="Email ...">
+                <input type="text" id="txtLoginEmail" placeholder="Email ...">
                 <br />
-                <input type="text" class="txtLoginPass" placeholder="Password ...">
+                <input type="password" id="txtLoginPass" placeholder="Password ...">
             </form>
             <a href="#" class="link">
                 forgot your password ?
@@ -15,7 +15,7 @@
             <br />
             <div>
                 <button id="btnRegister" onclick="btnLogin()">
-                  login
+                    login
                 </button>
                 <button id="btnRegister" onclick="btnLogin()">
                     register
@@ -55,6 +55,33 @@
         $("#loginModal").modal("show");
     }
     function btnLogin() {
-
+        var postData = {
+            'Email': $('#txtLoginEmail').val(),
+            'Password': $('#txtLoginPass').val()
+        };
+        $.ajax({
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'json',
+            type: 'POST',
+            data: postData,
+            url: '/home/Login',
+            success: function (data) {
+                if (data.isSuccess) {
+                    location.replace('/admin/home/index');
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        text: data.message,
+                        backdrop: 'rgba(0,0,0,0.6)',
+                        confirmButtonText: '<i class="fa fa-thumbs-up"></i>',
+                        footer: '<a href="">What did I possibly do wrong?</a>',
+                    });
+                }
+            },
+            error: function (request, status, error) {
+                alert('err:' + request.responseText);
+            }
+        });
     }
 </script>
