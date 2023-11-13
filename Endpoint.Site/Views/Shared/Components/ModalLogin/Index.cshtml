@@ -1,29 +1,26 @@
-﻿    <script>
-        function showLoginModal() {
-            $("#loginModal").modal("show");
-        }
-    </script>
-
-<div class="modal fade" id="loginModal" role="dialog">
+﻿<div class="modal fade" id="loginModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <h2>login</h2>
+            <h2>Let's go ...</h2>
 
             <form>
-                <input type="text" class="email" placeholder="email">
+                <input type="text" class="txtLoginEmail" placeholder="Email ...">
                 <br />
-                <input type="text" class="pwd" placeholder="password">
+                <input type="text" class="txtLoginPass" placeholder="Password ...">
             </form>
             <a href="#" class="link">
                 forgot your password ?
             </a>
             <br />
-
-            <br />
-            <button id="btnRegister">
-                register | login
-            </button>
+            <div>
+                <button id="btnRegister" onclick="btnLogin()">
+                  login
+                </button>
+                <button id="btnRegister" onclick="btnLogin()">
+                    register
+                    </bu    tton>
+            </div>
 
             <div class="orSeparation">
                 <div class="or">or</div>
@@ -53,3 +50,11 @@
         </div>
     </div>
 </div>
+<script>
+    function showLoginModal() {
+        $("#loginModal").modal("show");
+    }
+    function btnLogin() {
+
+    }
+</script>
