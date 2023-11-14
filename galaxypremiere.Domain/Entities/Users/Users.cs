@@ -13,7 +13,7 @@ namespace galaxypremiere.Domain.Entities.Users
         [Required(ErrorMessage = "Name is mandatory")]
         [MinLength(10, ErrorMessage = "Name characters should be more than 10 characters.")]
         [MaxLength(50,ErrorMessage ="Name characters should not be more than 50 characters.")]
-        public string Fullname { get; set; }
+        public string Nickname { get; set; }
         [Required(ErrorMessage = "Email Address is mandatory.")]
         [EmailAddress(ErrorMessage = "Email Address is invalid.")]
         public string Email { get; set; }

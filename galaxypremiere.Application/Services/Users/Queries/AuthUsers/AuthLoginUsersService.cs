@@ -33,7 +33,7 @@ namespace galaxypremiere.Application.Services.Users.Queries.AuthUsers
                                 Data = new ResultAuthLoginUsersServiceDto
                                 {
                                     IdUser = user.Id,
-                                    Fullname = user.Fullname,
+                                    Nickname = user.Nickname,
                                     Role = _context.Roles.Where(r => r.Id == IdRole).First().Name,
                                 },
                                 IsSuccess = true,

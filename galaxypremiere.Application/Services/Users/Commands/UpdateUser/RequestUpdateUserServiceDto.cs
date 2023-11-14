@@ -8,7 +8,8 @@ namespace galaxypremiere.Application.Services.Users.Commands.UpdateUser
         public long IdUser { get; set; }
         [Required(ErrorMessage = "Name is mandatory")]
         [MinLength(10, ErrorMessage = "Name characters should be more than 10 characters.")]
-        public string Fullname { get; set; }
+        [MaxLength(50, ErrorMessage = "Name characters should not be more than 50 characters.")]
+        public string Nickname { get; set; }
         [Required(ErrorMessage = "Email Address is mandatory.")]
         [EmailAddress(ErrorMessage = "Email Address is invalid.")]
         public string Email { get; set; }

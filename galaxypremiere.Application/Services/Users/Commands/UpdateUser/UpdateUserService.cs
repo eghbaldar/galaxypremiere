@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace galaxypremiere.Application.Services.Users.Commands.UpdateUser
 {
-    public class UpdateUserService: IUpdateUserService
+    public class UpdateUserService : IUpdateUserService
     {
         private readonly IDataBaseContext _context;
         public UpdateUserService(IDataBaseContext context)
@@ -15,7 +15,7 @@ namespace galaxypremiere.Application.Services.Users.Commands.UpdateUser
         }
         public ResultDto Execute(RequestUpdateUserServiceDto req)
         {
-            var user = _context.Users.Include(u=>u.UsersInRoles).SingleOrDefault(u => u.Id == req.IdUser);
+            var user = _context.Users.Include(u => u.UsersInRoles).SingleOrDefault(u => u.Id == req.IdUser);
             if (user == null)
             {
                 return new ResultDto
@@ -23,11 +23,11 @@ namespace galaxypremiere.Application.Services.Users.Commands.UpdateUser
                     IsSuccess = false,
                     Message = "The User Not Found.",
                 };
-            }            
+            }
 
-            user.Fullname= req.Fullname;
-            user.Email= req.Email;
-            
+            user.Nickname = req.Nickname;
+            user.Email = req.Email;
+
             user.UsersInRoles.Clear();
             user.UsersInRoles.Add(new UsersInRoles
             {
@@ -36,7 +36,7 @@ namespace galaxypremiere.Application.Services.Users.Commands.UpdateUser
             });
 
             PasswordHasher passHasher = new PasswordHasher();
-            if (req.Password != null) user.Password= passHasher.HashPassword(req.Password);
+            if (req.Password != null) user.Password = passHasher.HashPassword(req.Password);
             //_context.Users.Update(user);
             _context.SaveChanges();
 

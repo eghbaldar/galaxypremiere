@@ -22,7 +22,7 @@ namespace galaxypremiere.Application.Services.Users.Queries.GetUsers
             int RowCount;
             int RowsOnEachPage = 10; //page-size
             string connString = _configuration.GetConnectionString("LocalServer");
-            string command = "SELECT u.*,r.Name 'Role',ul.LoginDateTime FROM [dbo].[Users] u LEFT OUTER JOIN (select top 1 [logindatetime],[usersid] from [dbo].[UsersLoginLog] order by LoginDateTime desc ) ul  ON u.id = ul.usersid JOIN  [dbo].[UsersInRoles] ur ON u.id = ur.[UsersId] JOIN  [dbo].[Roles] r ON ur.RolesId=r.Id";
+            string command = "SELECT ul.LoginDateTime,u.*,r.Name 'Role' FROM [dbo].[Users] u JOIN  [dbo].[UsersInRoles] ur ON u.id = ur.[UsersId] JOIN  [dbo].[Roles] r ON ur.RolesId=r.Id OUTER APPLY  (select top 1 [logindatetime],[usersid] from [dbo].[UsersLoginLog] ul where u.Id=ul.UsersId order by LoginDateTime desc ) ul";
             var connection = new SqlConnection(connString);
             var result = connection
                 .Query<GetUsersServiceDto>(command)

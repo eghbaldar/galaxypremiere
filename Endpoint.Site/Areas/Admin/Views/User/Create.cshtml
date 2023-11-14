@@ -13,12 +13,12 @@
     <div class="card-body">
         <div class="basic-form">
             <form asp-action="Create" id="frmAddUser" method="post">
-                <span asp-validation-for="Fullname" class="text-danger"></span>
+                <span asp-validation-for="Nickname" class="text-danger"></span>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Fullname</span>
                     </div>
-                    <input asp-for="Fullname"
+                    <input asp-for="Nickname"
                            type="text"
                            class="form-control"
                            id="txtFullname"
@@ -123,13 +123,13 @@
                 ).then((result) => {
                     if (result.value) {
 
-                        var fullname = $("#txtFullname").val();
+                        var nickname = $("#txtFullname").val();
                         var email = $("#txtEmail").val();
                         var password = $("#txtPassword").val();
                         var rePassword = $("#txtRePassword").val();
 
                         var dataPost = {
-                            'Fullname': fullname,
+                            'Nickname': nickname,
                             'Email': email,
                             'Password': password,
                             'IdRole': IdRole,

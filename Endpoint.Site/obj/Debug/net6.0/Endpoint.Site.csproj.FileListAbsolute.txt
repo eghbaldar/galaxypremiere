@@ -16,6 +16,7 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.runtimeconfig.json
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.pdb
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\AspNet.Security.OAuth.Instagram.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\AutoMapper.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Dapper.dll
@@ -23,6 +24,7 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\LazZiya.TagHelpers.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\MessagePack.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\MessagePack.Annotations.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Microsoft.Build.dll
@@ -268,5 +270,3 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.genruntimeconfig.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\ref\Endpoint.Site.dll
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\AspNet.Security.OAuth.Instagram.dll

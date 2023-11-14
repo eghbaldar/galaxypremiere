@@ -33,7 +33,7 @@
                     {
                         <tr>
                             <td>@user.Id</td>
-                            <td>@user.Fullname</td>
+                            <td>@user.Nickname</td>
                             <td>@user.Email</td>
                             <td><span>@user.LoginDateTime</span></td>
                             <td><span class="badge badge-success">@user.Role</span></td>
@@ -62,7 +62,7 @@
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item"
-                                       onclick="ShowUpdateModal('@user.Id','@user.Fullname','@user.Email','@user.Role')" href="#">Update</a>
+                                       onclick="ShowUpdateModal('@user.Id','@user.Nickname','@user.Email','@user.Role')" href="#">Update</a>
                                         <a class="dropdown-item" onclick="deleteUser('@user.Id');" href="#">Delete</a>
                                         <a class="dropdown-item" onclick="activateUser('@user.Id','@user.IsActive');" href="#">
                                             @{
@@ -115,12 +115,12 @@
             <form asp-action="Update" id="frmUpdate" method="post">
                 <div class="modal-body">
                     <input type="hidden" id="IdUser" />
-                    <span asp-validation-for="Validation.Fullname" class="text-danger"></span>
+                    <span asp-validation-for="Validation.Nickname" class="text-danger"></span>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">Fullname</span>
+                            <span class="input-group-text">Nickname</span>
                         </div>
-                        <input asp-for="Validation.Fullname"
+                        <input asp-for="Validation.Nickname"
                                type="text"
                                class="form-control"
                                id="txtEditFullname"
@@ -239,13 +239,13 @@
                         pageWaitMe("progress"); // loading process starts
 
                         var IdUser = $("#IdUser").val();
-                        var fullname = $("#txtEditFullname").val();
+                        var nickname = $("#txtEditFullname").val();
                         var email = $("#txtEditEmail").val();
                         var IdRole = $("#listRoles").val();
 
                         var postData = {
                             'IdUser': IdUser,
-                            'Fullname': fullname,
+                            'Nickname': nickname,
                             'Email': email,
                             'Password': password,
                             'IdRole': IdRole,

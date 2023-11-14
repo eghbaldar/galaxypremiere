@@ -66,7 +66,7 @@ namespace Endpoint.Site.Controllers
                     var claims = new List<Claim>() {
                         new Claim(ClaimTypes.NameIdentifier,login.Data.IdUser.ToString()),
                         new Claim(ClaimTypes.Email,req.Email),
-                        new Claim(ClaimTypes.Name,login.Data.Fullname),
+                        new Claim(ClaimTypes.Name,login.Data.Nickname),
                         new Claim(ClaimTypes.Role,login.Data.Role),
                     };
 
