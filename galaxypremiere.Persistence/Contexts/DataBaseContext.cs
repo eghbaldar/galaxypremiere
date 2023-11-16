@@ -6,6 +6,7 @@ using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UserActionsLog.Commands.PostUserActionLog;
 using galaxypremiere.Application.Services.UserActionsLog.FacadePattern;
 using galaxypremiere.Common.Constants;
+using galaxypremiere.Domain.Common;
 using galaxypremiere.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -35,14 +36,21 @@ namespace galaxypremiere.Persistence.Context
         public DbSet<UsersInRoles> UsersInRoles { get; set; } // UsersInRoles Table
         public DbSet<UsersActionsLog> UsersActionsLog { get; set; } // UsersActionsLog Table
         public DbSet<UsersLoginLog> UsersLoginLog { get; set; } // UsersLoginLog Table
+        public DbSet<UsersInformation> UsersInformation { get; set; } // UsersInformation Table
+        public DbSet<Countries> Countries { get; set; } // Countries Table
+        public DbSet<Languages> Languages { get; set; } // Languages Table
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //> FLuent API of Entity Configurations
             //---- Users
             modelBuilder.ApplyConfiguration(new UsersConfigurations());
-            //---- ROles
+            //---- Roles
             modelBuilder.ApplyConfiguration(new RolesConfigurations());
+            //---- Countries
+            modelBuilder.ApplyConfiguration(new CountriesConfigurations()); 
+            //---- Languages
+            modelBuilder.ApplyConfiguration(new LanguagesConfigurations());
             //< End
         }
         public override int SaveChanges()

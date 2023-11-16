@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Domain.Entities.Users;
+﻿using galaxypremiere.Domain.Common;
+using galaxypremiere.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,16 @@ using System.Threading.Tasks;
 
 namespace galaxypremiere.Application.Interfaces.Contexts
 {
-    public interface IDataBaseContext 
+    public interface IDataBaseContext
     {
         DbSet<Users> Users { get; set; } // Users Table
         DbSet<Roles> Roles { get; set; } // Roles Table
         DbSet<UsersInRoles> UsersInRoles { get; set; } // UsersInRoles Table
         DbSet<UsersActionsLog> UsersActionsLog { get; set; } // UsersActionsLog Table
         DbSet<UsersLoginLog> UsersLoginLog { get; set; } // UsersLoginLog
+        DbSet<UsersInformation> UsersInformation { get; set; } // UsersInformation Table
+        DbSet<Countries> Countries { get; set; } // Countries Table
+        DbSet<Languages> Languages { get; set; } // Languages Table
 
         //SaveChanges
         int SaveChanges(bool acceptAllChangesOnSuccess);
