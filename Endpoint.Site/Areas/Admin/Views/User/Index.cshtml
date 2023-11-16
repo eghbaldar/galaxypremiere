@@ -63,6 +63,7 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item"
                                        onclick="ShowUpdateModal('@user.Id','@user.Nickname','@user.Email','@user.Role')" href="#">Update</a>
+                                        <a class="dropdown-item" href="information/@user.Id">Information</a>
                                         <a class="dropdown-item" onclick="deleteUser('@user.Id');" href="#">Delete</a>
                                         <a class="dropdown-item" onclick="activateUser('@user.Id','@user.IsActive');" href="#">
                                             @{

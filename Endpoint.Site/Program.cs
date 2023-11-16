@@ -5,7 +5,9 @@ using galaxypremiere.Application.Services.UserActionsLog.FacadePattern;
 using galaxypremiere.Application.Services.UserLoginLog.FacadePattern;
 using galaxypremiere.Application.Services.Users.FacadePattern;
 using galaxypremiere.Common.Constants;
+using galaxypremiere.Domain.Entities.Users;
 using galaxypremiere.Infrastructure.MappingProfiles.Users;
+using galaxypremiere.Infrastructure.MappingProfiles.UsersInformation;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersLoginLog;
 using galaxypremiere.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -32,6 +34,7 @@ builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(x =
 //Mapper
 builder.Services.AddAutoMapper(typeof(UsersMappingProfile));
 builder.Services.AddAutoMapper(typeof(UserLoginLogMappingProfile));
+builder.Services.AddAutoMapper(typeof(UsersInformationProfile));
 
 // ASN // Add Authentication & Auhortization
 builder.Services.AddAuthentication(option =>

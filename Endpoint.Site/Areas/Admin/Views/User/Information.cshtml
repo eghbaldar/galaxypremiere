@@ -1,0 +1,175 @@
+﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
+@{
+    ViewData["PageTitle"] = "Galaxy Premiere - User's Information";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">UPDATE : GENERAL INFORMATION</h4>
+    </div>
+    <div class="card-body">
+        <div class="basic-form">
+            <form asp-action="Create" id="frmAddUser" method="post">
+                <span asp-validation-for="Nickname" class="text-danger"></span>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Fullname</span>
+                    </div>
+                    <input asp-for="Nickname"
+                           type="text"
+                           class="form-control"
+                           id="txtFullname"
+                           placeholder="example: John K Fox">
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Email Address</span>
+                    </div>
+                    <input asp-for="Email"
+                           type="text"
+                           id="txtEmail"
+                           class="form-control"
+                           placeholder="emaxple: youremail@gmail.com">
+                </div>
+
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="input-group transparent-append">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input asp-for="Password"
+                           type="password"
+                           onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
+                           id="txtPassword"
+                           class="form-control">
+                    <div class="input-group-append show-pass" style="cursor:pointer;">
+                        <span class="input-group-text">
+                            <div id="meter"></div>
+                        </span>
+                        <span class="input-group-text" onclick="generatePass('#txtPassword','#txtRePassword')">
+                            <i class="fa fa-bolt"></i>
+                        </span>
+                        <span class="input-group-text">
+                            <i id="spanPassVisibilty" onclick="showPassword('txtPassword','#spanPassVisibilty')" class="fa fa-eye-slash"></i>
+                        </span>
+                    </div>
+                    <div id="val-password1-error" class="invalid-feedback animated fadeInUp" style="display: block;"></div>
+                </div>
+
+                <div id="spanInvalidRePassword" class="text-danger"></div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Re-Password:</span>
+                    </div>
+                    <input type="password"
+                           id="txtRePassword"
+                           onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
+                           class="form-control">
+                </div>
+
+                <label>User Role:</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Roles</label>
+                    </div>
+                    <select class="custom-select" id="listRoles" asp-items="@ViewBag.Roles" item
+                            data-error-text="Please select an option" required
+                            onchange="checkRoleValidation()">
+                        <option selected="">Choose...</option>
+                    </select>
+                </div>
+
+                <button type="button" onclick="AddUser()" id="btnAddUser" class="btn btn-rounded btn-info">
+                    <span class="btn-icon-left text-info">
+                        <i class="fa fa-plus color-info"></i>
+                    </span>Add
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="card-header">
+        <h4 class="card-title">UPDATE : CONTACT INFORMATION</h4>
+    </div>
+    <div class="card-body">
+        <div class="basic-form">
+            <form asp-action="Create" id="frmAddUser" method="post">
+                <span asp-validation-for="Nickname" class="text-danger"></span>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Fullname</span>
+                    </div>
+                    <input asp-for="Nickname"
+                           type="text"
+                           class="form-control"
+                           id="txtFullname"
+                           placeholder="example: John K Fox">
+                </div>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Email Address</span>
+                    </div>
+                    <input asp-for="Email"
+                           type="text"
+                           id="txtEmail"
+                           class="form-control"
+                           placeholder="emaxple: youremail@gmail.com">
+                </div>
+
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="input-group transparent-append">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input asp-for="Password"
+                           type="password"
+                           onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
+                           id="txtPassword"
+                           class="form-control">
+                    <div class="input-group-append show-pass" style="cursor:pointer;">
+                        <span class="input-group-text">
+                            <div id="meter"></div>
+                        </span>
+                        <span class="input-group-text" onclick="generatePass('#txtPassword','#txtRePassword')">
+                            <i class="fa fa-bolt"></i>
+                        </span>
+                        <span class="input-group-text">
+                            <i id="spanPassVisibilty" onclick="showPassword('txtPassword','#spanPassVisibilty')" class="fa fa-eye-slash"></i>
+                        </span>
+                    </div>
+                    <div id="val-password1-error" class="invalid-feedback animated fadeInUp" style="display: block;"></div>
+                </div>
+
+                <div id="spanInvalidRePassword" class="text-danger"></div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Re-Password:</span>
+                    </div>
+                    <input type="password"
+                           id="txtRePassword"
+                           onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
+                           class="form-control">
+                </div>
+
+                <label>User Role:</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Roles</label>
+                    </div>
+                    <select class="custom-select" id="listRoles" asp-items="@ViewBag.Roles" item
+                            data-error-text="Please select an option" required
+                            onchange="checkRoleValidation()">
+                        <option selected="">Choose...</option>
+                    </select>
+                </div>
+
+                <button type="button" onclick="AddUser()" id="btnAddUser" class="btn btn-rounded btn-info">
+                    <span class="btn-icon-left text-info">
+                        <i class="fa fa-plus color-info"></i>
+                    </span>Add
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

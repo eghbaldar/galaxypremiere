@@ -84,5 +84,10 @@ namespace Endpoint.Site.Areas.Admin.Controllers
                 Page = p,
             }));
         }
+        [HttpGet]
+        public IActionResult Information()
+        {
+            return View();
+        }
     }
 }
