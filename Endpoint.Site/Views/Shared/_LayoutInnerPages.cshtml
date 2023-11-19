@@ -16,6 +16,7 @@
     <link rel="icon" href="~/SiteTemplate/innerpages/innerpages/images/fevicon.png" type="image/png" />
     <!-- bootstrap css -->
     <link rel="stylesheet" href="~/SiteTemplate/innerpages/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" />*@
     <!-- site css -->
     <link rel="stylesheet" href="~/SiteTemplate/innerpages/css/style.css" />
     <link rel="stylesheet" href="~/SiteTemplate/innerpages/css/animate.css" />
@@ -65,15 +66,8 @@
                     <h4>Dashboard</h4>
                     <ul class="list-unstyled components">
                         <li class="active">
-                            <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
-                            <ul class="collapse list-unstyled" id="dashboard">
-                                <li>
-                                    <a href="~/admin/user/Create">> <span>Add New User</span></a>
-                                </li>
-                                <li>
-                                    <a href="~/admin/user/Index">> <span>Users List</span></a>
-                                </li>
-                            </ul>
+                            <a href="me/account" data-toggle="collapse" aria-expanded="false">
+                                <i class="fa fa-dashboard yellow_color"></i> <span>Account</span></a>                            
                         </li>
                         <li><a href="widgets.html"><i class="fa fa-clock-o orange_color"></i> <span>Widgets</span></a></li>
                         <li>
@@ -136,7 +130,6 @@
                             </div>
                             <div class="right_topbar">
                                 @await Component.InvokeAsync("TopRightUserPanel") <i class="mdi mdi-chevron-down"></i>
-                                @*@await Component.InvokeAsync(nameof(Endpoint.Site.Areas.Admin.Views.Shared.Components.TopRightUserPanel)));*@
                             </div>
                         </div>
                     </nav>

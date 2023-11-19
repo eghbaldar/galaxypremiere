@@ -3,44 +3,103 @@
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
 @section Styles{
-    <link href="~/sitetemplate/innerpages/plugins/innernavigation/style.css" rel="stylesheet" />
-}
-<headerNavigation>
+    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+ }
 
-<div class="drop">
-<ul class="drop_menu">
-<li><a href='#'>Acount</a></li>
-<li><a href='#'>Drop</a>
-	<ul>
-	<li><a href='#'>Sub Link 1</a></li>
-	<li><a href='#'>Sub Link 2</a></li>
-	<li><a href='#'>Sub Link 3</a></li>
-	<li><a href='#'>Sub Link 4</a></li>
-	</ul>
-</li>
-<li><a href='#'>Down</a>
-	<ul>
-	<li><a href='#'>Sub Link 1</a></li>
-	<li><a href='#'>Sub Link 2</a></li>
-	<li><a href='#'>Sub Link 3</a></li>
-	<li><a href='#'>Sub Link 4</a></li>
-	</ul>
-</li>
-<li><a href='#'>CSS</a>
-	<ul>
-	<li><a href='#'>Sub Link 1</a></li>
-	<li><a href='#'>Sub Link 2</a></li>
-	</ul>
-</li>
-<li><a href='#'>Menu</a></li>
-</ul>
+@await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
+
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">ACCOUNT</h4>
+    </div>
+    <div class="card-body">
+        <div class="basic-form">
+            <form asp-action="Create" id="frmAddUser" method="post">
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Firstname</span>
+                    <input type="text"
+                           class="form-control"
+                           id="txtFullname"
+                           placeholder="example: John K Fox">
+                
+                    <span class="input-group-text">MiddleName</span>
+                    <input type="text"
+                           class="form-control"
+                           id="txtFullname"
+                           placeholder="example: John K Fox">
+                
+                    <span class="input-group-text">Surname</span>
+                    <input type="text"
+                           class="form-control"
+                           id="txtFullname"
+                           placeholder="example: John K Fox">
+                </div>
+
+<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+  <select class="form-select" id="inputGroupSelect01">
+    <option selected>Choose...</option>
+    <option value="1">Male</option>
+    <option value="2">Female</option>
+    <option value="3">Other</option>
+  </select>
 </div>
-<br/>
-</headerNavigation>
 
-<main>
-    asdas
-</main>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Country</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Choose...</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="3">Other</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Language</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Choose...</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="3">Other</option>
+                    </select>
+                </div>
+
+                <input id="datepicker" width="276" />
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Birth City</span>
+                    <input type="text"
+                           class="form-control"
+                           id="txtFullname"
+                           placeholder="example: John K Fox">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Current City</span>
+                    <input type="text"
+                           class="form-control"
+                           id="txtFullname"
+                           placeholder="example: John K Fox">
+                </div>
+
+
+                <button type="button" onclick="AddUser()" id="btnAddUser" class="btn btn-rounded btn-info">
+                    <span class="btn-icon-left text-info">
+                        <i class="fa fa-plus color-info"></i>
+                    </span>Add
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 @section Scripts{
-    <script src="~/sitetemplate/innerpages/plugins/innernavigation/main.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap5'
+        });
+    </script>
 }

@@ -2285,6 +2285,10 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\LoginTemplate\\vendor\\select2\\select2.min.js"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css.rar",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css.rar"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\animate.css",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\animate.css"
     },
@@ -2309,6 +2313,22 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-grid.min.css.map"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.css"
     },
@@ -2325,8 +2345,56 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.min.css.map"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-select.css",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-select.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap.css",
@@ -2343,6 +2411,22 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\bootstrap.rtl.min.css.map"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\calendar.css",
@@ -3739,10 +3823,6 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\modules\\zingchart-zoom.min.js",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\modules\\zingchart-zoom.min.js"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\plugins\\innerNavigation\\main.js",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\plugins\\innerNavigation\\main.js"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\plugins\\innerNavigation\\style.css",

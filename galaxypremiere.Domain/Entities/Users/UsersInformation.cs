@@ -23,9 +23,7 @@ namespace galaxypremiere.Domain.Entities.Users
         public byte Gender { get; set; } = 0; // Check: [GenderConstants.cs]
         public int CountryId { get; set; } = 0; // derived from [Countries] entity
         public int LanguageId { get; set; }
-        public string? BirthYear { get; set; } // 1989
-        public string? BirthMonth { get; set; } // 09
-        public string? BirthDay { get; set; } // 02
+        public string? BirthDay { get; set; } // 1989/02/09
         public string? BirthCity { get; set; }
         public string? CurrentCity { get; set; }
         public string? Position { get; set; } // Director, Producer, Actor, etc.
