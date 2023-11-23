@@ -11,6 +11,8 @@ using galaxypremiere.Infrastructure.Filters;
 using galaxypremiere.Application.Services.Users.Queries.AuthUsers;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UserLoginLog.Commands.PostUserLoginLog;
+using galaxypremiere.Common.Constants;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Endpoint.Site.Controllers
 {
@@ -82,10 +84,19 @@ namespace Endpoint.Site.Controllers
                         UsersId = login.Data.IdUser,
                         IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     });
-                    HttpContext.SignInAsync(principal, propertise);
+                    HttpContext.SignInAsync(
+                        "myscheme2",
+                        principal,
+                        propertise);
                 }
             }
             return Json(login);
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.SignOutAsync("myscheme2");
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
     }

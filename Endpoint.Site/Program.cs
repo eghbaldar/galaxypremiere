@@ -4,6 +4,7 @@ using galaxypremiere.Application.Services.Roles.FacadePattern;
 using galaxypremiere.Application.Services.UserActionsLog.FacadePattern;
 using galaxypremiere.Application.Services.UserLoginLog.FacadePattern;
 using galaxypremiere.Application.Services.Users.FacadePattern;
+using galaxypremiere.Application.Services.UsersInformation.FacadePattern;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Domain.Entities.Users;
 using galaxypremiere.Infrastructure.MappingProfiles.Users;
@@ -11,6 +12,7 @@ using galaxypremiere.Infrastructure.MappingProfiles.UsersInformation;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersLoginLog;
 using galaxypremiere.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -26,6 +28,7 @@ builder.Services.AddScoped<IRolesFacade, RoleFacade>();
 builder.Services.AddScoped<IUserFacade, UserFacade>();
 builder.Services.AddScoped<IUserActionLogFacade, UserActionsLogFacade>();
 builder.Services.AddScoped<IUserLoginLogFacade, UserLoginLogFacade>();
+builder.Services.AddScoped<IUserInformation, UserInformationFacade>();
 
 // SqlServer
 var ConStr = builder.Configuration.GetConnectionString("LocalServer");
@@ -45,6 +48,11 @@ builder.Services.AddAuthentication(option =>
 }).AddCookie(option =>
 {
     option.LoginPath = new PathString("/admin/auth/login");
+    option.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+    option.AccessDeniedPath = new PathString("/");
+}).AddCookie("myscheme2", option => //scheme2
+{
+    option.LoginPath = new PathString("/?login=true");
     option.ExpireTimeSpan = TimeSpan.FromMinutes(1);
     option.AccessDeniedPath = new PathString("/");
 });

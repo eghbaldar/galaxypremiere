@@ -12,7 +12,7 @@ namespace galaxypremiere.Infrastructure.MappingProfiles.UsersInformation
     {
         public UsersInformationProfile()
         {
-            CreateMap<Domain.Entities.Users.UsersInformation, RequestUpdateUsersInformationGeneralDto>().ReverseMap();
+            CreateMap<Domain.Entities.Users.UsersInformation, RequestUpdateUsersInformationAccountDto>().ReverseMap();
         }
     }
 }

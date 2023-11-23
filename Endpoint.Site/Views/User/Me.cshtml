@@ -21,35 +21,35 @@
                     <span class="input-group-text">Firstname</span>
                     <input type="text"
                            class="form-control"
-                           id="txtFullname"
-                           placeholder="example: John K Fox">
-                
-                    <span class="input-group-text">MiddleName</span>
+                           id="txtFirstname"
+                           placeholder="for example: John">
+
+                    <span class="input-group-text">Middle Name</span>
                     <input type="text"
                            class="form-control"
-                           id="txtFullname"
-                           placeholder="example: John K Fox">
-                
+                           id="txtMiddlename"
+                           placeholder="forexample: Karan">
+
                     <span class="input-group-text">Surname</span>
                     <input type="text"
                            class="form-control"
-                           id="txtFullname"
-                           placeholder="example: John K Fox">
+                           id="txtSurname"
+                           placeholder="for example: Fox">
                 </div>
 
-<div class="input-group mb-3">
-  <label class="input-group-text" for="inputGroupSelect01">Gender</label>
-  <select class="form-select" id="inputGroupSelect01">
-    <option selected>Choose...</option>
-    <option value="1">Male</option>
-    <option value="2">Female</option>
-    <option value="3">Other</option>
-  </select>
-</div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+                    <select class="form-select" id="selectGender">
+                        <option selected>Choose...</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                        <option value="3">Other</option>
+                    </select>
+                </div>
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Country</label>
-                    <select class="form-select" id="inputGroupSelect01">
+                    <select class="form-select" id="selectCountry">
                         <option selected>Choose...</option>
                         <option value="1">Male</option>
                         <option value="2">Female</option>
@@ -59,7 +59,7 @@
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Language</label>
-                    <select class="form-select" id="inputGroupSelect01">
+                    <select class="form-select" id="selectLanguage">
                         <option selected>Choose...</option>
                         <option value="1">Male</option>
                         <option value="2">Female</option>
@@ -67,26 +67,26 @@
                     </select>
                 </div>
 
-                <input id="datepicker" width="276" />
+                <input id="datepickerBirthday" width="276" />
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Birth City</span>
                     <input type="text"
                            class="form-control"
-                           id="txtFullname"
-                           placeholder="example: John K Fox">
+                           id="txtBirthcity"
+                           placeholder="for example: New York">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Current City</span>
                     <input type="text"
                            class="form-control"
-                           id="txtFullname"
-                           placeholder="example: John K Fox">
+                           id="txtCurrentCity"
+                           placeholder="for example: New York">
                 </div>
 
 
-                <button type="button" onclick="AddUser()" id="btnAddUser" class="btn btn-rounded btn-info">
+                <button type="button" onclick="UpdateInfoAccount()" id="btnAddUser" class="btn btn-rounded btn-info">
                     <span class="btn-icon-left text-info">
                         <i class="fa fa-plus color-info"></i>
                     </span>Add
@@ -98,8 +98,47 @@
 @section Scripts{
     <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
     <script>
-        $('#datepicker').datepicker({
+        $('#datepickerBirthday').datepicker({
             uiLibrary: 'bootstrap5'
         });
+    </script>
+    <script>
+        function UpdateInfoAccount() {
+            var firstname = $('#txtFirstname').val();
+            var middlename = $('#txtMiddlename').val();
+            var surname = $('#txtSurname').val();
+            var genderId = $('#selectGender').val();
+            var countryId = $('#selectCountry').val();
+            var languageId = $('#selectLanguage').val();
+            var birthday = $('#datepickerBirthday').val();
+            var birthcity = $('#txtBirthcity').val();
+            var currentCity = $('#txtCurrentCity').val();
+
+            var postData = {
+                'Firstname':firstname,
+                'MiddleName': middlename,
+                'Surname': surname,
+                'Gender': genderId,
+                'CountryId': countryId,
+                'LanguageId': languageId,
+                'BirthDay': birthday,
+                'BirthCity': birthcity,
+                'CurrentCity': currentCity,
+            }
+
+            $.ajax({
+                contentType:'application/x-www-form-urlencoded',
+                dataType:'json',
+                type:'POST',
+                data:postData,
+                url:'me',
+                success:function(data){
+                    Swal.fire(data.message);
+                },
+                error:function(request, status, error){
+                    alert(request.responseText);
+                }
+            });
+        }
     </script>
 }

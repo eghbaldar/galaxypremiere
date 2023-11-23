@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace galaxypremiere.Infrastructure.Filters
 {
-    public class ModelStateAttribute :Attribute, IActionFilter   
+    public class ModelStateAttribute :Attribute, IActionFilter
     {
         // Before executing action
         public void OnActionExecuting(ActionExecutingContext context)
