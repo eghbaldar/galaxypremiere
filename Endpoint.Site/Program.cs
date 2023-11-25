@@ -12,9 +12,11 @@ using galaxypremiere.Infrastructure.MappingProfiles.UsersInformation;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersLoginLog;
 using galaxypremiere.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,14 +47,14 @@ builder.Services.AddAuthentication(option =>
     option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-}).AddCookie(option =>
+}).AddCookie(option => // Admins' Scheme
 {
     option.LoginPath = new PathString("/admin/auth/login");
     option.ExpireTimeSpan = TimeSpan.FromMinutes(1);
     option.AccessDeniedPath = new PathString("/");
-}).AddCookie("myscheme2", option => //scheme2
+}).AddCookie("user", option => // Users' Scheme
 {
-    option.LoginPath = new PathString("/?login=true");
+    option.LoginPath = new PathString("/");
     option.ExpireTimeSpan = TimeSpan.FromMinutes(1);
     option.AccessDeniedPath = new PathString("/");
 });

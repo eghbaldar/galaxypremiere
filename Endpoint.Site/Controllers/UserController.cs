@@ -11,10 +11,9 @@ using System.Security.Claims;
 
 namespace Endpoint.Site.Controllers
 {
-    //[Authorize(RoleConstants.King)]
     [ModelStateAttribute]
     [Authorize(
-        AuthenticationSchemes =CookieAuthenticationDefaults.AuthenticationScheme + "," + "myscheme2",
+        AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme + "," + "user",
         Roles =
         nameof(RoleConstants.King)
         + "," +

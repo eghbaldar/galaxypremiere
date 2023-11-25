@@ -116,8 +116,16 @@
     <!-- End -->
     <!-- Modal Component -->
     @await Component.InvokeAsync("ModalLogin")
-    <!-- Modal -->
-
+    <!-- End Modal -->
+    <script>
+        // run when page loads
+        $(document).ready(function () {
+            // when users back to the fist page because unauthenticated
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('login') != null) showLoginModal();
+            // end
+        });
+    </script>
 </body>
 
 </html>

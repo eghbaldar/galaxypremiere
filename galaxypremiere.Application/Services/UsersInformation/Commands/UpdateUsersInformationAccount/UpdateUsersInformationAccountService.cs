@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.DTOs;
+using galaxypremiere.Domain.Entities.Users;
 
 namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral
 {
@@ -8,13 +9,13 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        public UpdateUsersInformationAccountService(IDataBaseContext context,IMapper mapper)
+        public UpdateUsersInformationAccountService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public ResultDto Execute(RequestUpdateUsersInformationAccountDto req)
-        {
+            public ResultDto Execute(RequestUpdateUsersInformationAccountDto req)
+            {
             try
             {
                 var userInfo = _context.UsersInformation.Where(u => u.UsersId == req.UsersId).FirstOrDefault();
@@ -37,6 +38,9 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                     var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
                     if (user != null)
                     {
+                        var mappedDto = _mapper.Map<RequestUpdateUsersInformationAccountDto>(req);
+                        _mapper.Map(mappedDto, userInfo);                        
+                        _context.SaveChanges();
                         return new ResultDto
                         {
                             IsSuccess = true,
@@ -53,7 +57,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new ResultDto
                 {

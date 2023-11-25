@@ -28,8 +28,10 @@ namespace Endpoint.Site.Controllers
             _userFacade = userFacade;
             _userLoginLogFacade = userLoginLogFacade;
         }
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Index(string ReturnUrl)
         {
+            if (!String.IsNullOrWhiteSpace(ReturnUrl)) return Redirect(Url.Content("~/?login=true"));
             return View();
         }
         public IActionResult Films()
@@ -85,7 +87,7 @@ namespace Endpoint.Site.Controllers
                         IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     });
                     HttpContext.SignInAsync(
-                        "myscheme2",
+                        "user",
                         principal,
                         propertise);
                 }
@@ -95,7 +97,7 @@ namespace Endpoint.Site.Controllers
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.SignOutAsync("myscheme2");
+            HttpContext.SignOutAsync("user");
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
