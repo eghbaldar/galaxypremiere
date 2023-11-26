@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Endpoint.Site.Models.Users.GetInformation;
 using Endpoint.Site.Utilities;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
@@ -7,11 +8,12 @@ using galaxypremiere.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 
 namespace Endpoint.Site.Controllers
 {
-    [ModelStateAttribute]
+    //[ModelStateAttribute]
     [Authorize(
         AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme + "," + "user",
         Roles =
@@ -27,23 +29,40 @@ namespace Endpoint.Site.Controllers
         )]
     public class UserController : Controller
     {
-        private readonly IUserInformation _userInformation;
+        private readonly IUserInformationFacade _userInformationFacade;
+        private readonly ICountiresFacade _countiresFacade;
+        private readonly ILanguagesFacade _languagesFacade;
         private readonly IMapper _mapper;
-        public UserController(IUserInformation userInformation,IMapper mapper)
+        public UserController(
+            IUserInformationFacade userInformationFacade,
+            ICountiresFacade countiresFacade,
+            ILanguagesFacade languagesFacade,
+            IMapper mapper)
         {
-            _userInformation = userInformation;
+            _userInformationFacade = userInformationFacade;
+            _countiresFacade = countiresFacade;
+            _languagesFacade = languagesFacade;
             _mapper = mapper;
         }
         [HttpGet]
         public IActionResult Me()
         {
-            return View();
+            //// Get all user's information ...
+            //// Get Countries List ...
+            //// Get languages List ...
+            long userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);            
+            return View(new ModelGetInformation
+            {
+                getUsersInformationServiceDto = _userInformationFacade.GetUsersInformationServiceService.Execute(userId),
+                resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),
+                resultGetLanguagesServiceDto = _languagesFacade.GetLanguagesService.Execute(),
+            });
         }
         [HttpPost]
         public IActionResult Me(RequestUpdateUsersInformationAccountDto req)
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
-            return Json(_userInformation
+            return Json(_userInformationFacade
                 .UsersInformationAccountService
                 .Execute(_mapper.Map<RequestUpdateUsersInformationAccountDto>(req)));
         }

@@ -1,4 +1,6 @@
 ﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
+@using Endpoint.Site.Models.Users.GetInformation;
+@model ModelGetInformation;
 @{
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
@@ -7,7 +9,6 @@
  }
 
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
-
 
 <div class="card">
     <div class="card-header">
@@ -22,52 +23,71 @@
                     <input type="text"
                            class="form-control"
                            id="txtFirstname"
-                           placeholder="for example: John">
+                           placeholder="for example: John"
+                           value=@Model.getUsersInformationServiceDto.Firstname>
 
                     <span class="input-group-text">Middle Name</span>
                     <input type="text"
                            class="form-control"
                            id="txtMiddlename"
-                           placeholder="forexample: Karan">
+                           placeholder="forexample: Karan"
+                           value=@Model.getUsersInformationServiceDto.MiddleName>
 
                     <span class="input-group-text">Surname</span>
                     <input type="text"
                            class="form-control"
                            id="txtSurname"
-                           placeholder="for example: Fox">
+                           placeholder="for example: Fox"
+                           value=@Model.getUsersInformationServiceDto.Surname>
                 </div>
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Gender</label>
                     <select class="form-select" id="selectGender">
                         <option selected>Choose...</option>
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
-                        <option value="3">Other</option>
+                        <option value="1" selected="@(Model.getUsersInformationServiceDto.Gender == 1)">Male</option>
+                        <option value="2" selected="@(Model.getUsersInformationServiceDto.Gender == 2)">Female</option>
+                        <option value="3" selected="@(Model.getUsersInformationServiceDto.Gender == 3)">Other</option>
                     </select>
                 </div>
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Country</label>
-                    <select class="form-select" id="selectCountry">
+                    <select
+                            class="form-select"
+                            id="selectCountry">
                         <option selected>Choose...</option>
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
-                        <option value="3">Other</option>
+                        @{
+                            foreach (var country in Model.resultGetCountriesServiceDto.getCountriesServiceDto)
+                            {
+                                <option>@country.Name</option>
+                            }
+                        }
                     </select>
                 </div>
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Language</label>
-                    <select class="form-select" id="selectLanguage">
+                    <select
+                            class="form-select" id="selectLanguage">
                         <option selected>Choose...</option>
-                        <option value="1">Male</option>
-                        <option value="2">Female</option>
-                        <option value="3">Other</option>
+                        @{
+                            foreach (var lang in Model.resultGetLanguagesServiceDto.getLanguagesServiceDto)
+                            {
+                                <option value="@lang.Id" selected="@(lang.Id == Model.getUsersInformationServiceDto.LanguageId)">"@lang.Name"</option>
+                            }
+                        }
                     </select>
                 </div>
 
-                <input id="datepickerBirthday" width="276" />
+                <div style="display:flex;">
+                    <div>
+                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;" for="inputGroupSelect01">Birthday</label>
+                    </div>
+                    <div>
+                        <input id="datepickerBirthday" style="border-radius:0px;border-left:0;" width="276" />
+                    </div>
+                </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Birth City</span>
@@ -115,7 +135,7 @@
             var currentCity = $('#txtCurrentCity').val();
 
             var postData = {
-                'Firstname':firstname,
+                'Firstname': firstname,
                 'MiddleName': middlename,
                 'Surname': surname,
                 'Gender': genderId,
@@ -127,15 +147,15 @@
             }
 
             $.ajax({
-                contentType:'application/x-www-form-urlencoded',
-                dataType:'json',
-                type:'POST',
-                data:postData,
-                url:'me',
-                success:function(data){
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'me',
+                success: function (data) {
                     Swal.fire(data.message);
                 },
-                error:function(request, status, error){
+                error: function (request, status, error) {
                     alert(request.responseText);
                 }
             });
