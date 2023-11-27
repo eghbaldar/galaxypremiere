@@ -2505,6 +2505,22 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\FontAwesome.otf"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\FuturaFuturisC-Bold.otf",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\FuturaFuturisC-Bold.otf"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\FuturaFuturisC-BoldItalic.otf",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\FuturaFuturisC-BoldItalic.otf"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\FuturaFuturisC-Italic.otf",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\FuturaFuturisC-Italic.otf"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\FuturaFuturisC.otf",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\FuturaFuturisC.otf"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\_flaticon.scss",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\_flaticon.scss"
     },

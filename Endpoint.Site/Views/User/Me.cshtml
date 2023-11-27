@@ -151,12 +151,14 @@
     </div>
 </div>
 @section Scripts{
+    @*Datapicker*@
     <script src="~/lib/datapicker/datapicker.js"></script>
     <script>
         $('#datepickerBirthday').datepicker({
             uiLibrary: 'bootstrap5'
         });
     </script>
+    @*End of Datapicker*@
     <script>
         function UpdateInfoAccount() {
             var firstname = $('#txtFirstname').val();

@@ -1,57 +1,62 @@
-﻿/* CSSTerm.com Horizontal Easy DropDown CSS menu */
+﻿@font-face {
+font-family: 'futurafuturisc-italic';
+src: url('../../fonts/futurafuturisc-italic.otf') format('opentype');
+}
+/* CSSTerm.com Horizontal Easy DropDown CSS menu */
 headerNavigation .drop_menu {
-    z-index: 2;
-    position: relative;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    height: 50px;
-    box-shadow: -3px 30px 11px -21px rgba(0,0,0,0.62);
-    -webkit-box-shadow: -3px 30px 11px -21px rgba(0,0,0,0.62);
-    -moz-box-shadow: -3px 30px 11px -21px rgba(0,0,0,0.62);
+position: absolute;
+z-index: 2;
+padding: 0;
+margin: 0;
+list-style-type: none;
+/*
+box-shadow: -3px 30px 11px -21px rgba(0,0,0,0.62);
+-webkit-box-shadow: -3px 30px 11px -21px rgba(0,0,0,0.62);
+-moz-box-shadow: -3px 30px 11px -21px rgba(0,0,0,0.62);*/
 }
 
-    headerNavigation .drop_menu li {
-        float: left;
-    }
+headerNavigation .drop_menu li {
+float: left;
+}
 
-        headerNavigation .drop_menu li a {
-            padding: 17px 15px;
-            display: block;
-            color: #4c4c4c;
-            text-decoration: none;
-            font: 14px arial, verdana, sans-serif;
-            font-weight: bold;
-        }
+headerNavigation .drop_menu li a {
+padding: 17px 15px;
+display: block;
+color: #4c4c4c;
+text-decoration: none;
+font: 18px futurafuturisc-italic;
+font-weight: normal;
+}
 
-    /* Submenu */
-    headerNavigation .drop_menu ul {
-        position: absolute;
-        left: -9999px;
-        top: -9999px;
-        list-style-type: none;
-    }
+/* Submenu */
+headerNavigation .drop_menu ul {
+position: absolute;
+left: -9999px;
+top: -9999px;
+list-style-type: none;
+}
 
     headerNavigation .drop_menu li:hover {
         position: relative;
-        background: #f1f1f1;
+        /*background: #f1f1f1;*/
     }
 
-        headerNavigation .drop_menu li:hover ul {
-            left: 0px;
-            top: 38px;
-            background: #d6d6d6;
-            padding: 0px;
-        }
+headerNavigation .drop_menu li:hover ul {
+left: 0px;
+top: 53px;
+background: #d6d6d6;
+padding: 0px;
+}
 
-            headerNavigation .drop_menu li:hover ul li a {
-                padding: 10px;
-                display: block;
-                width: 168px;
-                text-indent: 15px;
-                background-color: #fff;
-            }
+headerNavigation .drop_menu li:hover ul li a {
+padding: 10px;
+display: block;
+width: 168px;
+text-indent: 15px;
+background-color: #fff;
+font-size:14px;
+}
 
-                headerNavigation .drop_menu li:hover ul li a:hover {
-                    background: #f1f1f1;
-                }
+headerNavigation .drop_menu li:hover ul li a:hover {
+background: #f1f1f1;
+}
