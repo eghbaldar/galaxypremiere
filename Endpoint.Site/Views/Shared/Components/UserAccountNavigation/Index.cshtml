@@ -1,21 +1,19 @@
 ﻿<link href="~/sitetemplate/innerpages/plugins/innernavigation/style.css" rel="stylesheet" />
-<headerNavigation>
-	<div class="drop">
-		<ul class="drop_menu">
-			<li><a href='me/account'>Account</a></li>
-			<li><a href='me/account'>Contact</a></li>
-			@*<li>
-				<a href='#'>Drop</a>
-				<ul>
-					<li><a href='#'>Sub Link 1</a></li>
-					<li><a href='#'>Sub Link 2</a></li>
-					<li><a href='#'>Sub Link 3</a></li>
-					<li><a href='#'>Sub Link 4</a></li>
-				</ul>
-			</li>*@
-			
-		</ul>
-	</div>
-	<br />
-</headerNavigation>
-<br/>
+<div class="headerNavigation">
+    <ul class="drop_menu">
+        <li><button class="tablinks" onclick="userAccountNavigation(event, 'TabUserAccount')" id="TabUserAccountDefaultOpen">Account</button></li>
+        <li><button class="tablinks" onclick="userAccountNavigation(event, 'TabUserContact')">Contact</button></li>
+        <li><button class="tablinks" onclick="userAccountNavigation(event, 'TabUserContact')">Other</button></li>
+        @*<li>
+        <a href='#'>Drop</a>
+        <ul>
+        <li><a href='#'>Sub Link 1</a></li>
+        <li><a href='#'>Sub Link 2</a></li>
+        <li><a href='#'>Sub Link 3</a></li>
+        <li><a href='#'>Sub Link 4</a></li>
+        </ul>
+        </li>*@
+
+    </ul>
+</div>
+<br />

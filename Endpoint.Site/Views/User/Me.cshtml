@@ -5,10 +5,13 @@
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
 @section Styles{
+    @*datapicker*@
     <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
+    @*end of datapicker*@
 }
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
 
+<div id="TabUserAccount" class="TabUserTabcontent">
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">ACCOUNT</h4>
@@ -150,6 +153,12 @@
         </div>
     </div>
 </div>
+</div>
+
+<div id="TabUserContact" class="TabUserTabcontent">
+  <h3>2</h3>
+</div>
+
 @section Scripts{
     @*Datapicker*@
     <script src="~/lib/datapicker/datapicker.js"></script>
@@ -197,4 +206,31 @@
             });
         }
     </script>
+
+    @*Tabs*@
+    <script>
+        function userAccountNavigation(evt, tabName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("TabUserTabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            //alert(evt.currentTarget.className);
+            evt.currentTarget.className += " active";
+        }
+       document.getElementById("TabUserAccountDefaultOpen").click();   
+    </script>
+    @*End of Tabs*@
 }
