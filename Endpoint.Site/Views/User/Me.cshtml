@@ -5,9 +5,8 @@
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
 @section Styles{
-    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
- }
-
+    <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
+}
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
 
 <div class="card">
@@ -24,43 +23,59 @@
                            class="form-control"
                            id="txtFirstname"
                            placeholder="for example: John"
-                           value=@Model.getUsersInformationServiceDto.Firstname>
+                           value=@{
+                           if(Model.getUsersInformationServiceDto != null)
+                               @Model.getUsersInformationServiceDto.Firstname
+                           }>
 
                     <span class="input-group-text">Middle Name</span>
                     <input type="text"
                            class="form-control"
                            id="txtMiddlename"
                            placeholder="forexample: Karan"
-                           value=@Model.getUsersInformationServiceDto.MiddleName>
+                           value=@{
+                           if(Model.getUsersInformationServiceDto != null)
+                               @Model.getUsersInformationServiceDto.MiddleName
+                           }>
 
                     <span class="input-group-text">Surname</span>
                     <input type="text"
                            class="form-control"
                            id="txtSurname"
                            placeholder="for example: Fox"
-                           value=@Model.getUsersInformationServiceDto.Surname>
+                           value=@{
+                           if(Model.getUsersInformationServiceDto != null)
+                               @Model.getUsersInformationServiceDto.Surname
+                           }>
                 </div>
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Gender</label>
                     <select class="form-select" id="selectGender">
-                        <option selected>Choose...</option>
-                        <option value="1" selected="@(Model.getUsersInformationServiceDto.Gender == 1)">Male</option>
-                        <option value="2" selected="@(Model.getUsersInformationServiceDto.Gender == 2)">Female</option>
-                        <option value="3" selected="@(Model.getUsersInformationServiceDto.Gender == 3)">Other</option>
+                        <option selected>Choose...</option>                      
+                        <option value="1" selected="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Gender == 1)">Male</option>
+                        <option value="2" selected="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Gender == 2)">Female</option>
+                        <option value="3" selected="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Gender == 4)">Other</option>                        
                     </select>
                 </div>
 
+                @*&& Model.getUsersInformationServiceDto != null*@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Country</label>
-                    <select
-                            class="form-select"
+                    <select class="form-select"
                             id="selectCountry">
                         <option selected>Choose...</option>
                         @{
-                            foreach (var country in Model.resultGetCountriesServiceDto.getCountriesServiceDto)
+                            if (Model.resultGetCountriesServiceDto != null)
                             {
-                                <option>@country.Name</option>
+                                foreach (var country in Model.resultGetCountriesServiceDto.getCountriesServiceDto)
+                                {
+                                    <option value="@country.Id"
+                                selected="@(Model.getUsersInformationServiceDto != null && country.Id == Model.getUsersInformationServiceDto.CountryId)">
+                                        @country.Name
+                                    </option>
+
+                                }
                             }
                         }
                     </select>
@@ -68,13 +83,16 @@
 
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Language</label>
-                    <select
-                            class="form-select" id="selectLanguage">
+                    <select class="form-select" id="selectLanguage">
                         <option selected>Choose...</option>
                         @{
-                            foreach (var lang in Model.resultGetLanguagesServiceDto.getLanguagesServiceDto)
+                            if (Model.resultGetLanguagesServiceDto != null)
                             {
-                                <option value="@lang.Id" selected="@(lang.Id == Model.getUsersInformationServiceDto.LanguageId)">"@lang.Name"</option>
+                                foreach (var lang in Model.resultGetLanguagesServiceDto.getLanguagesServiceDto)
+                                {
+                                    <option value="@lang.Id"
+                                selected="@(Model.getUsersInformationServiceDto != null && lang.Id == Model.getUsersInformationServiceDto.LanguageId)">@lang.Name</option>
+                                }
                             }
                         }
                     </select>
@@ -82,10 +100,19 @@
 
                 <div style="display:flex;">
                     <div>
-                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;" for="inputGroupSelect01">Birthday</label>
+                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                               for="inputGroupSelect01">Birthday</label>
                     </div>
                     <div>
-                        <input id="datepickerBirthday" style="border-radius:0px;border-left:0;" width="276" />
+                        <input readonly
+                               placeholder="select your birthday ..."
+                               style="border-radius:0px;border-left:0;" width="200"
+                               id="datepickerBirthday"
+                               value=@{
+                               if(Model.getUsersInformationServiceDto != null)
+                                   @Model.getUsersInformationServiceDto.BirthDay
+                               }
+                               >
                     </div>
                 </div>
 
@@ -94,7 +121,11 @@
                     <input type="text"
                            class="form-control"
                            id="txtBirthcity"
-                           placeholder="for example: New York">
+                           placeholder="for example: New York"
+                           value=@{
+                           if(Model.getUsersInformationServiceDto != null)
+                               @Model.getUsersInformationServiceDto.BirthCity
+                           }>
                 </div>
 
                 <div class="input-group mb-3">
@@ -102,7 +133,11 @@
                     <input type="text"
                            class="form-control"
                            id="txtCurrentCity"
-                           placeholder="for example: New York">
+                           placeholder="for example: New York"
+                           value=@{
+                           if(Model.getUsersInformationServiceDto != null)
+                               @Model.getUsersInformationServiceDto.CurrentCity
+                           }>
                 </div>
 
 
@@ -116,7 +151,7 @@
     </div>
 </div>
 @section Scripts{
-    <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+    <script src="~/lib/datapicker/datapicker.js"></script>
     <script>
         $('#datepickerBirthday').datepicker({
             uiLibrary: 'bootstrap5'
@@ -145,7 +180,6 @@
                 'BirthCity': birthcity,
                 'CurrentCity': currentCity,
             }
-
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
                 dataType: 'json',

@@ -4457,6 +4457,34 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\datapicker\\datapicker.js",
+      "PackagePath": "staticwebassets\\lib\\datapicker\\datapicker.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\datapicker\\datepicker.min.css",
+      "PackagePath": "staticwebassets\\lib\\datapicker\\datepicker.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\datapicker\\gijgo-material (1).eot",
+      "PackagePath": "staticwebassets\\lib\\datapicker\\gijgo-material (1).eot"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\datapicker\\gijgo-material.eot",
+      "PackagePath": "staticwebassets\\lib\\datapicker\\gijgo-material.eot"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\datapicker\\gijgo-material.svg",
+      "PackagePath": "staticwebassets\\lib\\datapicker\\gijgo-material.svg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\datapicker\\gijgo-material.ttf",
+      "PackagePath": "staticwebassets\\lib\\datapicker\\gijgo-material.ttf"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\datapicker\\gijgo-material.woff",
+      "PackagePath": "staticwebassets\\lib\\datapicker\\gijgo-material.woff"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
