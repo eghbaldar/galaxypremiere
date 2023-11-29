@@ -23,7 +23,6 @@ namespace galaxypremiere.Application.Services.UserLoginLog.Queries.GetUsersLogin
                     .ToPaged(req.Page, RowsInEachOage, out RowsCount)
                     .Select(ull => new GetUsersLoginLogsServiceDto
                     {
-                        Id = ull.Id,
                         IP = ull.IP,
                         LoginDateTime = ull.LoginDateTime,
                     })

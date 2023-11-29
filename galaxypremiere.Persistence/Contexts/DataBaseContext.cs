@@ -39,6 +39,7 @@ namespace galaxypremiere.Persistence.Context
         public DbSet<UsersInformation> UsersInformation { get; set; } // UsersInformation Table
         public DbSet<Countries> Countries { get; set; } // Countries Table
         public DbSet<Languages> Languages { get; set; } // Languages Table
+        public DbSet<UsersAddress> UsersAddress { get; set; } // Users' Address Table
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -115,7 +116,7 @@ namespace galaxypremiere.Persistence.Context
                                 PrimaryKeyValue = "0",
                                 PropertyName = property.Name,
                                 Successful = true,
-                                UserId = 1,
+                                //UserId = 1,
                             };
                             UsersActionsLog.Add(postUserActionLogService);
                         }
@@ -131,7 +132,7 @@ namespace galaxypremiere.Persistence.Context
                             PrimaryKeyValue = "0",
                             PropertyName = property.Name,
                             Successful = false,
-                            UserId = 0,
+                            //UserId = 0,
                         };
                         UsersActionsLog.Add(postUserActionLogService);
                     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,8 +11,9 @@ namespace galaxypremiere.Domain.Entities.Users
     public class UsersActionsLog
     {
         [Key]
-        public long Id { get; set; }
-        public long UserId { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public long UsersId { get; set; }
+        public virtual Users Users { get; set; }
         public string Entity { get; set; }
         public string? PrimaryKeyValue { get; set; }
         public string PropertyName { get; set; }

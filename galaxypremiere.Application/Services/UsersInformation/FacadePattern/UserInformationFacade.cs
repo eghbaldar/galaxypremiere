@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
 using System;
@@ -31,6 +32,12 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
         public UpdateUsersInformationAccountService UsersInformationAccountService
         {
             get { return _usersInformationAccountService = _usersInformationAccountService ?? new UpdateUsersInformationAccountService(_context, _mapper);  }
+        }
+        // Update User Information => Contact
+        private UpdateUsersInformationContactService updateUsersInformationContactService;
+        public UpdateUsersInformationContactService UpdateUsersInformationContactService
+        {
+            get { return updateUsersInformationContactService = updateUsersInformationContactService ?? new UpdateUsersInformationContactService(_context, _mapper); }
         }
     }
 }

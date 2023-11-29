@@ -15,6 +15,16 @@
         public string? BirthCity { get; set; }
         public string? CurrentCity { get; set; }
         public string? Position { get; set; } // Director, Producer, Actor, etc.
+        /// <summary>
+        /// //////////////////////////////////////////////// User's Address
+        /// </summary>
+        public string? Address1 { get; set; } //line1
+        public string? Address2 { get; set; } //lien2
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public string? PostalCode { get; set; }
+        public string? Phone { get; set; }
+        public string? RecoveryEmail { get; set; }
         public string? Website { get; set; }
         public string? Facebook { get; set; }
         public string? Instagram { get; set; }
@@ -24,6 +34,9 @@
         public string? Linkden { get; set; }
         public string? Vimeo { get; set; }
         public string? Imdb { get; set; }
+        /// <summary>
+        /// //////////////////////////////////////////////// End of User's Address
+        /// </summary>
         public byte TimeZoneId { get; set; }
         public byte CurrencyId { get; set; }
         public string? Photo { get; set; } // avatar

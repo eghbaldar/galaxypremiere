@@ -3518,11 +3518,9 @@ namespace galaxypremiere.Persistence.Migrations
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersActionsLog", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Action")
                         .IsRequired()
@@ -3553,21 +3551,85 @@ namespace galaxypremiere.Persistence.Migrations
                     b.Property<bool>("Successful")
                         .HasColumnType("bit");
 
-                    b.Property<long>("UserId")
+                    b.Property<long>("UsersId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UsersId");
+
                     b.ToTable("UsersActionsLog");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersAddress", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Facebook")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Imdb")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Instagram")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Linkden")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecoveryEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Stage32")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Twitter")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("UsersId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Vimeo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Youtube")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("UsersAddress");
                 });
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersInformation", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<byte>("AccountType")
                         .HasColumnType("tinyint");
@@ -3590,9 +3652,6 @@ namespace galaxypremiere.Persistence.Migrations
                     b.Property<string>("CurrentCity")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Facebook")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Firstname")
                         .HasColumnType("nvarchar(max)");
 
@@ -3602,20 +3661,11 @@ namespace galaxypremiere.Persistence.Migrations
                     b.Property<string>("Header")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Imdb")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Instagram")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Introduction")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Linkden")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(max)");
@@ -3632,17 +3682,11 @@ namespace galaxypremiere.Persistence.Migrations
                     b.Property<byte>("Privacy")
                         .HasColumnType("tinyint");
 
-                    b.Property<string>("Stage32")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("TimeZoneId")
                         .HasColumnType("tinyint");
-
-                    b.Property<string>("Twitter")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .HasMaxLength(30)
@@ -3650,15 +3694,6 @@ namespace galaxypremiere.Persistence.Migrations
 
                     b.Property<long>("UsersId")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("Vimeo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Website")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Youtube")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -3692,11 +3727,9 @@ namespace galaxypremiere.Persistence.Migrations
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersLoginLog", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IP")
                         .IsRequired()
@@ -3713,6 +3746,28 @@ namespace galaxypremiere.Persistence.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("UsersLoginLog");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersActionsLog", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersAddress", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersInformation", b =>

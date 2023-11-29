@@ -2786,6 +2786,9 @@
         }
       },
       "galaxypremiere.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.0"
+        },
         "runtime": {
           "galaxypremiere.Domain.dll": {}
         }

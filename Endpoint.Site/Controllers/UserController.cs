@@ -2,6 +2,7 @@
 using Endpoint.Site.Models.Users.GetInformation;
 using Endpoint.Site.Utilities;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Infrastructure.Filters;
@@ -59,12 +60,20 @@ namespace Endpoint.Site.Controllers
             });
         }
         [HttpPost]
-        public IActionResult Me(RequestUpdateUsersInformationAccountDto req)
+        public IActionResult MeAccount(RequestUpdateUsersInformationAccountDto req)
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UsersInformationAccountService
                 .Execute(_mapper.Map<RequestUpdateUsersInformationAccountDto>(req)));
+        }
+        [HttpPost]
+        public IActionResult MeContact(RequestUpdateUsersInformationContactServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userInformationFacade
+                .UpdateUsersInformationContactService 
+                .Execute(_mapper.Map<RequestUpdateUsersInformationContactServiceDto>(req)));
         }
     }
 }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "iJ61qZbH8p0j4zWZtm8OE8CsEURy476i6ndpBoD3KUyKHSJgsEEU5tang1Z6zPcWC04bJ9iDErwV9vzffCw5BQ==",
+  "dgSpecHash": "Lm2eceHBHviSvUQu839QjrJ889fKp4DxOgUfv8lEqxCCNBoY2UJlsvDCxOkOhcOmNR/aQqG4pj6WBHdOQCwUVw==",
   "success": true,
   "projectFilePath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Domain\\galaxypremiere.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.0\\microsoft.entityframeworkcore.abstractions.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
