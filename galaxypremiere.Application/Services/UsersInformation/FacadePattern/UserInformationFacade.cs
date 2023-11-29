@@ -4,6 +4,7 @@ using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
             _context= context;
             _mapper= mapper;
         }
-        // Get User ALL INFORmATION
+        // Get User Information => Account
         private GetUsersInformationService _getUsersInformationServiceService;
         public GetUsersInformationService GetUsersInformationServiceService
         {
@@ -31,13 +32,19 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
         private UpdateUsersInformationAccountService _usersInformationAccountService;
         public UpdateUsersInformationAccountService UsersInformationAccountService
         {
-            get { return _usersInformationAccountService = _usersInformationAccountService ?? new UpdateUsersInformationAccountService(_context, _mapper);  }
+            get { return _usersInformationAccountService = _usersInformationAccountService ?? new UpdateUsersInformationAccountService(_context, _mapper); }
+        }
+        // Get User Information => Contact
+        private GetUsersInformationContactService _getUsersInformationContactService;
+        public GetUsersInformationContactService GetUsersInformationContactService
+        {
+            get { return _getUsersInformationContactService = _getUsersInformationContactService ?? new GetUsersInformationContactService(_context, _mapper); }
         }
         // Update User Information => Contact
-        private UpdateUsersInformationContactService updateUsersInformationContactService;
+        private UpdateUsersInformationContactService _updateUsersInformationContactService;
         public UpdateUsersInformationContactService UpdateUsersInformationContactService
         {
-            get { return updateUsersInformationContactService = updateUsersInformationContactService ?? new UpdateUsersInformationContactService(_context, _mapper); }
+            get { return _updateUsersInformationContactService = _updateUsersInformationContactService ?? new UpdateUsersInformationContactService(_context, _mapper); }
         }
     }
 }

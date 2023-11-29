@@ -1,6 +1,7 @@
 ﻿using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
     {
         public GetUsersInformationService GetUsersInformationServiceService { get; }
         public UpdateUsersInformationAccountService UsersInformationAccountService { get; }
+        public GetUsersInformationContactService GetUsersInformationContactService { get; }
         public UpdateUsersInformationContactService UpdateUsersInformationContactService {  get; }
     }
 }

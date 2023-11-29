@@ -170,8 +170,8 @@
                                id="txtAddress1"
                                placeholder="3015"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Address1
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Address1
                                }>
                     </div>
                     <div class="input-group mb-3">
@@ -181,8 +181,8 @@
                                id="txtAddress2"
                                placeholder="Grand Ave"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Address2
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Address2
                                }>
                     </div>
                     <div class="input-group mb-3">
@@ -192,8 +192,8 @@
                                id="txtCity"
                                placeholder="Miami"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.City
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.City
                                }>
                     </div>
                     <div class="input-group mb-3">
@@ -203,8 +203,8 @@
                                id="txtState"
                                placeholder="Florida"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.State
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.State
                                }>
                     </div>
                     <div class="input-group mb-3">
@@ -214,8 +214,8 @@
                                id="txtPostalCode"
                                placeholder="33133"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.PostalCode
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.PostalCode
                                }>
                     </div>
                     <div class="input-group mb-3">
@@ -225,8 +225,8 @@
                                id="txtPhone"
                                placeholder="(305) 447-2273"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Phone
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Phone
                                }>
                     </div>
                     <div class="input-group mb-3">
@@ -236,8 +236,8 @@
                                id="txtRecoveryEmail"
                                placeholder="support@galaxypremiere.com"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.RecoveryEmail
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.RecoveryEmail
                                }>
                     </div>
                     <div class="input-group mb-3">
@@ -247,21 +247,21 @@
                                id="txtWebsite"
                                placeholder="www.galaxypremiere.com"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Website
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Website
                                }>
-                    </div>                    <div class="input-group mb-3">
+                    </div>                    
+                    <div class="input-group mb-3">
                         <span class="input-group-text">Facebook</span>
                         <input type="text"
                                class="form-control"
                                id="txtFacebook"
                                placeholder="@@galaxypremiere"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Facebook
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Facebook
                                }>
                     </div>
-
                     <div class="input-group mb-3">
                         <span class="input-group-text">Instagram</span>
                         <input type="text"
@@ -269,11 +269,10 @@
                                id="txtInstagram"
                                placeholder="@@galaxypremiere"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Instagram
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Instagram
                                }>
                     </div>
-
                     <div class="input-group mb-3">
                         <span class="input-group-text">Twitter</span>
                         <input type="text"
@@ -281,11 +280,10 @@
                                id="txtTwitter"
                                placeholder="@@galaxypremiere"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Twitter
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Twitter
                                }>
                     </div>
-
                     <div class="input-group mb-3">
                         <span class="input-group-text">Stage32</span>
                         <input type="text"
@@ -293,11 +291,10 @@
                                id="txtStage32"
                                placeholder="stage32.com/galaxypremiere"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Stage32
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Stage32
                                }>
                     </div>
-
                     <div class="input-group mb-3">
                         <span class="input-group-text">Youtube</span>
                         <input type="text"
@@ -305,11 +302,10 @@
                                id="txtYoutube"
                                placeholder="youtube.com/galaxypremiere"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Youtube
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Youtube
                                }>
                     </div>
-
                     <div class="input-group mb-3">
                         <span class="input-group-text">Linkden</span>
                         <input type="text"
@@ -317,11 +313,10 @@
                                id="txtLinkden"
                                placeholder="@@galaxypremiere"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Linkden
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Linkden
                                }>
                     </div>
-
                     <div class="input-group mb-3">
                         <span class="input-group-text">Vimeo</span>
                         <input type="text"
@@ -329,11 +324,10 @@
                                id="txtVimeo"
                                placeholder="vimeo.com/galaxypremiere"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Vimeo
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Vimeo
                                }>
                     </div>
-
                     <div class="input-group mb-3">
                         <span class="input-group-text">IMDb</span>
                         <input type="text"
@@ -341,11 +335,10 @@
                                id="txtIMDb"
                                placeholder="IMDb.com/galaxypremiere"
                                value=@{
-                               if(Model.getUsersInformationServiceDto != null)
-                                   @Model.getUsersInformationServiceDto.Imdb
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.Imdb
                                }>
                     </div>
-
 
                     <button type="button" onclick="UpdateInfoContact()" id="" class="btn btn-rounded btn-info">
                         <span class="btn-icon-left text-info">

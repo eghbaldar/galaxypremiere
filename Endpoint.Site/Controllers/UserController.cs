@@ -51,12 +51,13 @@ namespace Endpoint.Site.Controllers
             //// Get all user's information ...
             //// Get Countries List ...
             //// Get languages List ...
-            long userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);            
+            long userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return View(new ModelGetInformation
             {
                 getUsersInformationServiceDto = _userInformationFacade.GetUsersInformationServiceService.Execute(userId),
                 resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),
                 resultGetLanguagesServiceDto = _languagesFacade.GetLanguagesService.Execute(),
+                getUsersInformationContactServiceDto = _userInformationFacade.GetUsersInformationContactService.Execute(userId),
             });
         }
         [HttpPost]
@@ -72,7 +73,7 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
-                .UpdateUsersInformationContactService 
+                .UpdateUsersInformationContactService
                 .Execute(_mapper.Map<RequestUpdateUsersInformationContactServiceDto>(req)));
         }
     }
