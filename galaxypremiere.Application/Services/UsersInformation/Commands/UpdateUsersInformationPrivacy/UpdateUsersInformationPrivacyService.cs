@@ -15,14 +15,15 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {
-                var userPrivacy = _context
+                var userInfo = _context
                    .UsersInformation
                    .Where(u => u.UsersId == req.UsersId).FirstOrDefault();
-                if (userPrivacy == null) // Create for first time! (INSERT)
+                if (userInfo == null) // Create for first time! (INSERT)
                 {
-                    galaxypremiere.Domain.Entities.Users.UsersInformation usersPrivacy
+                    galaxypremiere.Domain.Entities.Users.UsersInformation userPrivacy
                         = new galaxypremiere.Domain.Entities.Users.UsersInformation();
-                    usersPrivacy.Privacy = req.Privacy;
+                    userPrivacy.UsersId = req.UsersId;
+                    userPrivacy.Privacy = req.Privacy;
                     _context.UsersInformation.Add(userPrivacy);
                     _context.SaveChanges();
 
@@ -34,7 +35,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                 }
                 else // The user already existed (UPDATE)
                 {
-                    userPrivacy.Privacy = req.Privacy;
+                    userInfo.Privacy = req.Privacy;
                     _context.SaveChanges();
                     return new ResultDto
                     {

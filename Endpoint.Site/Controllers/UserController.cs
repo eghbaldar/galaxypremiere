@@ -5,6 +5,7 @@ using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -83,6 +84,14 @@ namespace Endpoint.Site.Controllers
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationPrivacyService
+                .Execute(req));
+        }
+        [HttpPost]
+        public IActionResult MeUsername(RequestUpdateUsersInformationUsernameServiceDto req)
+        {
+            req.userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userInformationFacade
+                .UpdateUsersInformationUsernameService
                 .Execute(req));
         }
     }

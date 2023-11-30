@@ -365,15 +365,20 @@
                                 <div class="form-row align-items-center">
                                     <div class="col-auto">
                                         <label class="sr-only">Username</label>
+                                        <span class="pb-3">
+                                            <a>www.galaxypremiere.com/</a>
+                                        </span>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">@@</div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Username">
+                                            <input type="text"
+                                                   id="txtUsername"
+                                                   class="form-control" placeholder="Username">
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                                        <button type="button" onclick="UpdateInfoUsername();" class="btn btn-primary mb-2">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -390,7 +395,7 @@
             <h4 class="card-title">Password</h4>
         </div>
         <div class="card-body">
-            <div style="padding-bottom:15px;">
+            <div class="pb-15">                
                 <input type="checkbox" id="chkPassword" onchange="changeCheckbox(this)" />
                 <label>Change Password</label>
                 <span class="text-danger"></span>
@@ -513,35 +518,68 @@
 
                         <button type="button" id="btnPrivacy0" onclick="UpdateInfoPrivacy(this,'0');"
                                 class="
-                                @if (Model.getUsersInformationServiceDto.Privacy==0)
+                                @if (
+Model.getUsersInformationServiceDto != null &&
+Model.getUsersInformationServiceDto.Privacy==0)
                                 @("btn cur-p btn-primary")
                                 else
                                 @("btn cur-p btn-light")
+
+
+
+
+
+
+
+
+
                                 ">
                             Public Mode
                         </button>
 
                     </div>
                     <div class="button_block">
-                           <button type="button" id="btnPrivacy1"  onclick="UpdateInfoPrivacy(this,'1');"
+                        <button type="button" id="btnPrivacy1" onclick="UpdateInfoPrivacy(this,'1');"
                                 class="
-                                @if (Model.getUsersInformationServiceDto.Privacy==1)
+                                @if (
+Model.getUsersInformationServiceDto != null &&
+Model.getUsersInformationServiceDto.Privacy==1)
                                 @("btn cur-p btn-primary")
                                 else
                                 @("btn cur-p btn-light")
+
+
+
+
+
+
+
+
+
 ">
-                        Festival Mode
+                            Festival Mode
                         </button>
                     </div>
                     <div class="button_block">
                         <button type="button" id="btnPrivacy2" onclick="UpdateInfoPrivacy(this,'2');"
                                 class="
-                                @if (Model.getUsersInformationServiceDto.Privacy==2)
+                                @if (
+Model.getUsersInformationServiceDto != null &&
+Model.getUsersInformationServiceDto.Privacy==2)
                                 @("btn cur-p btn-primary")
                                 else
                                 @("btn cur-p btn-light")
+
+
+
+
+
+
+
+
+
 ">
-                        My Mode
+                            My Mode
                         </button>
                     </div>
                 </div>
@@ -647,7 +685,7 @@
                 }
             });
         }
-        function UpdateInfoPrivacy(e,privacy) {
+        function UpdateInfoPrivacy(e, privacy) {
 
             var postData = {
                 'Privacy': privacy
@@ -672,6 +710,39 @@
                 },
                 error: function (request, status, error) {
                     alert(request.responseText);
+                }
+            });
+        }
+        function UpdateInfoUsername() {
+            var username = $("#txtUsername").val();
+            var postData = {
+                'username': username,
+            };
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'MeUsername',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        Swal.fire(data.message);
+                    } else {
+                        var check = data.data.status;
+                        switch (check) {
+                            case 0:
+                                //duplicated!
+                                Swal.fire(data.message);
+                                break;
+                            case 2:
+                                //user did not find
+                                Swal.fire(data.message);
+                                break;
+                        }
+                    }
+                },
+                error: function (request, status, error) {
+                    alert('err: ' + request.responseText);
                 }
             });
         }
