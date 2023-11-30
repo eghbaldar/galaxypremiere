@@ -3,6 +3,7 @@ using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
 using System;
@@ -45,6 +46,12 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
         public UpdateUsersInformationContactService UpdateUsersInformationContactService
         {
             get { return _updateUsersInformationContactService = _updateUsersInformationContactService ?? new UpdateUsersInformationContactService(_context, _mapper); }
+        }
+        // Update User Information => Privacy
+        private UpdateUsersInformationPrivacyService _updateUsersInformationPrivacyService;
+        public UpdateUsersInformationPrivacyService UpdateUsersInformationPrivacyService
+        {
+            get { return _updateUsersInformationPrivacyService = _updateUsersInformationPrivacyService ?? new UpdateUsersInformationPrivacyService(_context); }
         }
     }
 }

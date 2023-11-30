@@ -11,6 +11,5 @@ namespace galaxypremiere.Common.Constants
         public const byte Public = 0;
         public const byte FestivalOnly = 1;
         public const byte MeOnly = 2;
-        public const byte Link = 3;
     }
 }
