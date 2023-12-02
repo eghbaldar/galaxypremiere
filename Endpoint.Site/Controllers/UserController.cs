@@ -6,6 +6,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -92,6 +93,13 @@ namespace Endpoint.Site.Controllers
             req.userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationUsernameService
+                .Execute(req));
+        }
+        [HttpPost]
+        public IActionResult MeUsernameRuntime(RequestGetCheckDuplicatedUsernameDto req)
+        {
+            return Json(_userInformationFacade
+                .GetCheckDuplicatedUsernameService
                 .Execute(req));
         }
     }

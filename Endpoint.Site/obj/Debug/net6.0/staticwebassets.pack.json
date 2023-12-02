@@ -2553,6 +2553,110 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome-webfont.woff2"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\all.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\all.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\all.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\brands.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\brands.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\brands.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\brands.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\fontawesome.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\fontawesome.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\fontawesome.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\fontawesome.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\regular.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\regular.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\regular.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\regular.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\solid.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\solid.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\solid.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\solid.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\svg-with-js.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\svg-with-js.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\svg-with-js.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\svg-with-js.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v4-font-face.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v4-font-face.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v4-font-face.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v4-font-face.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v4-shims.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v4-shims.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v4-shims.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v4-shims.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v5-font-face.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v5-font-face.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v5-font-face.min.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\css\\v5-font-face.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-v4compatibility.ttf",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-v4compatibility.ttf"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-v4compatibility.woff2",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\fontawesome6\\webfonts\\fa-v4compatibility.woff2"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\glyphicons-halflings-regular.eot",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\glyphicons-halflings-regular.eot"
     },

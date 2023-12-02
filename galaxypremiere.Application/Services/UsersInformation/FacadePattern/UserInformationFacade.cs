@@ -5,6 +5,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
 using System;
@@ -15,20 +16,22 @@ using System.Threading.Tasks;
 
 namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
 {
-    public class UserInformationFacade:IUserInformationFacade
+    public class UserInformationFacade : IUserInformationFacade
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        public UserInformationFacade(IDataBaseContext context,IMapper mapper)
-        {
-            _context= context;
-            _mapper= mapper;
+        public UserInformationFacade(
+            IDataBaseContext context,
+            IMapper mapper)
+        {   
+            _context = context;
+            _mapper = mapper;
         }
         // Get User Information => Account
         private GetUsersInformationService _getUsersInformationServiceService;
         public GetUsersInformationService GetUsersInformationServiceService
         {
-            get { return _getUsersInformationServiceService = _getUsersInformationServiceService ?? new GetUsersInformationService(_context,_mapper); }
+            get { return _getUsersInformationServiceService = _getUsersInformationServiceService ?? new GetUsersInformationService(_context, _mapper); }
         }
         // Update User Information => Account
         private UpdateUsersInformationAccountService _usersInformationAccountService;
@@ -59,6 +62,12 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
         public UpdateUsersInformationUsernameService UpdateUsersInformationUsernameService
         {
             get { return _updateUsersInformationUsernameService = _updateUsersInformationUsernameService ?? new UpdateUsersInformationUsernameService(_context); }
+        }
+        // Check Duplicated Username
+        private GetCheckDuplicatedUsernameService _getCheckDuplicatedUsernameService;
+        public GetCheckDuplicatedUsernameService GetCheckDuplicatedUsernameService
+        {
+            get { return _getCheckDuplicatedUsernameService = _getCheckDuplicatedUsernameService ?? new GetCheckDuplicatedUsernameService(_context); }
         }
     }
 }

@@ -8,6 +8,19 @@
     @*datapicker*@
     <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
     @*end of datapicker*@
+    <style>
+        .colorRed {
+            color: red;
+        }
+
+        .colorGreen {
+            color: green;
+        }
+
+        .colorGray {
+            color: gray;
+        }
+    </style>
 }
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
 
@@ -364,17 +377,38 @@
                             <form>
                                 <div class="form-row align-items-center">
                                     <div class="col-auto">
+
                                         <label class="sr-only">Username</label>
-                                        <span class="pb-3">
-                                            <a>www.galaxypremiere.com/</a>
-                                        </span>
+                                        @{
+                                            if (Model.getUsersInformationServiceDto != null)
+                                            {
+                                            <span class="pb-3" id="spanCurrentUsername">
+                                                    <a href="https://galaxypremiere.com/@Model.getUsersInformationServiceDto.Username" target="target">
+                                                    www.galaxypremiere.com/@Model.getUsersInformationServiceDto.Username</a>
+                                            </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="pb-3" id="spanCurrentUsername">
+                                                    www.galaxypremiere.com/
+                                                </span>
+                                            }
+                                        }                                        
+
+                                        <i id="iconCurrentUsername"></i>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">@@</div>
                                             </div>
                                             <input type="text"
+                                                   value="@{
+                                                   if(Model.getUsersInformationServiceDto!=null)
+                                                       @Model.getUsersInformationServiceDto.Username
+                                                   }"
                                                    id="txtUsername"
-                                                   class="form-control" placeholder="Username">
+                                                   onkeyup="ChangeRuntimeUsername();"
+                                                   class="form-control"
+                                                   placeholder="Username">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -395,7 +429,7 @@
             <h4 class="card-title">Password</h4>
         </div>
         <div class="card-body">
-            <div class="pb-15">                
+            <div class="pb-3">
                 <input type="checkbox" id="chkPassword" onchange="changeCheckbox(this)" />
                 <label>Change Password</label>
                 <span class="text-danger"></span>
@@ -533,6 +567,10 @@ Model.getUsersInformationServiceDto.Privacy==0)
 
 
 
+
+
+
+
                                 ">
                             Public Mode
                         </button>
@@ -556,6 +594,10 @@ Model.getUsersInformationServiceDto.Privacy==1)
 
 
 
+
+
+
+
 ">
                             Festival Mode
                         </button>
@@ -569,6 +611,10 @@ Model.getUsersInformationServiceDto.Privacy==2)
                                 @("btn cur-p btn-primary")
                                 else
                                 @("btn cur-p btn-light")
+
+
+
+
 
 
 
@@ -746,6 +792,46 @@ Model.getUsersInformationServiceDto.Privacy==2)
                 }
             });
         }
+        function ChangeRuntimeUsername(e) {
+
+            var input = $("#txtUsername").val();
+            $("#spanCurrentUsername").html("<a target='_blank' href='https://galaxypremiere.com/" + input + "'>www.galaxypremiere.com/" + input + "</a>");
+
+            var postData = {
+                'Username': input,
+            };
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'MeUsernameRuntime',
+                success: function (data) {
+                    if (!data) {
+                        $("#iconCurrentUsername").removeClass();
+                        $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
+                    } else {
+                        $("#iconCurrentUsername").removeClass();
+                        $("#iconCurrentUsername").addClass("fa-solid fa-circle-xmark colorRed");
+                    }
+                },
+                error: function (request, status, error) {
+                    alert('err: ' + request.responseText);
+                }
+            });
+        }
+        // set default value of iconCurrentUsername
+        $(document).ready(function () {
+            var input = $("#txtUsername").val();
+            if (input == '') {
+                $("#iconCurrentUsername").removeClass();
+                $("#iconCurrentUsername").addClass("fa-solid fa-hourglass colorGray");
+            } else {
+                $("#iconCurrentUsername").removeClass();
+                $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
+            }
+        });
+
     </script>
 
     @*Tabs*@
