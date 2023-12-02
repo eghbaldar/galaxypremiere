@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
 @section Styles{
+    @*King Password*@
+    <link href="~/lib/kingfuncs/password/password.css" rel="stylesheet" />
     @*datapicker*@
     <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
     @*end of datapicker*@
@@ -382,10 +384,11 @@
                                         @{
                                             if (Model.getUsersInformationServiceDto != null)
                                             {
-                                            <span class="pb-3" id="spanCurrentUsername">
+                                                <span class="pb-3" id="spanCurrentUsername">
                                                     <a href="https://galaxypremiere.com/@Model.getUsersInformationServiceDto.Username" target="target">
-                                                    www.galaxypremiere.com/@Model.getUsersInformationServiceDto.Username</a>
-                                            </span>
+                                                        www.galaxypremiere.com/@Model.getUsersInformationServiceDto.Username
+                                                    </a>
+                                                </span>
                                             }
                                             else
                                             {
@@ -393,7 +396,7 @@
                                                     www.galaxypremiere.com/
                                                 </span>
                                             }
-                                        }                                        
+                                        }
 
                                         <i id="iconCurrentUsername"></i>
                                         <div class="input-group mb-2">
@@ -403,7 +406,7 @@
                                             <input type="text"
                                                    value="@{
                                                    if(Model.getUsersInformationServiceDto!=null)
-                                                       @Model.getUsersInformationServiceDto.Username
+                                                           @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
                                                    onkeyup="ChangeRuntimeUsername();"
@@ -429,13 +432,14 @@
             <h4 class="card-title">Password</h4>
         </div>
         <div class="card-body">
+            @*############################## KING PASSWORD #############################*@
             <div class="pb-3">
-                <input type="checkbox" id="chkPassword" onchange="changeCheckbox(this)" />
+                <input type="checkbox" id="chkPassword" onchange="PasswordCheckbox(this)" />
                 <label>Change Password</label>
                 <span class="text-danger"></span>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                <span id="spanPassNotMatch" class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 <input type="password"
                        onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
                        id="txtPassword"
@@ -445,18 +449,15 @@
                     <div id="meter"></div>
                 </span>
                 <span id="spanGeneratePass"
-                      class="input-group-text" onclick="generatePass('#txtPassword','#txtRePassword')"
+                      class="input-group-text" onclick="generatePass('#spanInvalidRePassword','#txtPassword','#txtRePassword')"
                       style="pointer-events:none;">
                     <i class="fa fa-bolt"></i>
                 </span>
                 <span class="input-group-text">
                     <i id="spanPassVisibilty" onclick="showPassword('txtPassword','#spanPassVisibilty')" class="fa fa-eye-slash"></i>
                 </span>
-
                 <div id="val-password1-error" class="invalid-feedback animated fadeInUp" style="display: block;"></div>
             </div>
-
-
             <div id="spanInvalidRePassword" class="text-danger"></div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -472,6 +473,7 @@
                 <a href="#">I can't remember my password! (reset password)</a>
             </div>
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            @*############################## END of KING PASSWORD #############################*@
         </div>
 
     </div>
@@ -571,6 +573,7 @@ Model.getUsersInformationServiceDto.Privacy==0)
 
 
 
+
                                 ">
                             Public Mode
                         </button>
@@ -585,6 +588,7 @@ Model.getUsersInformationServiceDto.Privacy==1)
                                 @("btn cur-p btn-primary")
                                 else
                                 @("btn cur-p btn-light")
+
 
 
 
@@ -624,6 +628,7 @@ Model.getUsersInformationServiceDto.Privacy==2)
 
 
 
+
 ">
                             My Mode
                         </button>
@@ -635,6 +640,8 @@ Model.getUsersInformationServiceDto.Privacy==2)
 </div>
 
 @section Scripts{
+    @*King Password*@
+    <script src="~/lib/kingfuncs/password/password.js"></script>
     @*Datapicker*@
     <script src="~/lib/datapicker/datapicker.js"></script>
     <script>
@@ -831,6 +838,7 @@ Model.getUsersInformationServiceDto.Privacy==2)
                 $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
             }
         });
+
 
     </script>
 

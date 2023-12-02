@@ -46,13 +46,15 @@
     }
 }
 
-function generatePass(pass, rePass) {
+function generatePass(warningSpan,pass, rePass) {
+
+    $(warningSpan).slideUp();
 
     let passMadeUp = '';
     let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
         'a%b!cd_e+fg(hi/%jklm*n[%op]qrs/tu|vwxyz%01%23$456@@78%9@@#$';
 
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 25; i++) {
         let char = Math.floor(Math.random()
             * str.length + 1);
 
@@ -123,12 +125,14 @@ function showPassword(sender, object) {
 }
 
 function checkPassMatchRePass(originalPass, repeatedPass, warningSpan) {
+
     var Pass = $(originalPass);
     if (checkStrength(Pass.val())) {
         Pass.css("background-color", "#fff");
         var rePass = $(repeatedPass);
         if (Pass.val() != rePass.val()) {
-            $(warningSpan).text("Passwords don't match.");
+            $(warningSpan).slideDown();
+            $(warningSpan).text("Passwords do not match.");
             Pass.css("background-color", "#fcc");
             rePass.css("background-color", "#fcc");
         }
@@ -137,6 +141,7 @@ function checkPassMatchRePass(originalPass, repeatedPass, warningSpan) {
             Pass.css("background-color", "#fff");
             rePass.css("background-color", "#fff");
             $(warningSpan).text("");
+            $(warningSpan).slideUp();
         }
     }
     else {
@@ -151,4 +156,50 @@ function validationColorSet(pass, rePass) {
 function validationColorClear(pass, rePass) {
     $(pass).css("background-color", "#fff");
     $(rePass).css("background-color", "#fff");
+}
+function validationColorDisabled(pass, rePass) {
+    $(pass).css("background-color", "#E9ECEF");
+    $(rePass).css("background-color", "#E9ECEF");
+}
+
+function PasswordCheckbox(e) {
+    var check = $(e).is(":checked");
+    if (check) {
+        InitialKingPass('#spanGeneratePass', '#txtPassword', '#txtRePassword');
+    }
+    else {
+        ResetKingPassword('#spanGeneratePass', '#spanInvalidRePassword', '#txtPassword', '#txtRePassword');
+    }
+}
+
+function ResetKingPassword(spanGeneration, warningSpan, pass, rePass) {
+
+    $(warningSpan).slideUp();
+    $(spanGeneration).css("pointer-events", "none");
+    $("#spanPassVisibilty").css("pointer-events", "none");
+
+    $(pass).val('');
+    $(rePass).val('');
+    $(pass).attr('disabled', 'disabled');
+    $(rePass).attr('disabled', 'disabled');
+
+    var meter = document.getElementById("meter");
+    meter.style.backgroundColor = "#fff";
+
+    validationColorDisabled(pass, rePass);
+ 
+}
+
+function InitialKingPass(spanGeneration, pass, rePass) {
+
+    $(spanGeneration).css("pointer-events", "auto");
+    $(pass).removeAttr('disabled');
+    $(rePass).removeAttr('disabled');
+
+    validationColorClear(pass, rePass);
+
+    $("#spanPassVisibilty").css("cursor", "pointer");
+    $(spanGeneration).css("cursor", "pointer");
+    $("#spanPassNotMatch").css("cursor", "pointer");
+
 }
