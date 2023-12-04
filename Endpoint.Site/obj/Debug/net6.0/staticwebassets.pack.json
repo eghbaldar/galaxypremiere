@@ -2285,10 +2285,6 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\LoginTemplate\\vendor\\select2\\select2.min.js"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css.rar",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css.rar"
-    },
-    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\animate.css",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\animate.css"
     },

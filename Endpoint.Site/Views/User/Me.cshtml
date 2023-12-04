@@ -40,7 +40,7 @@
                         <input type="text"
                                class="form-control"
                                id="txtFirstname"
-                               placeholder="for example: John"
+                               placeholder="John"
                                value=@{
                                if(Model.getUsersInformationServiceDto != null)
                                    @Model.getUsersInformationServiceDto.Firstname
@@ -50,7 +50,7 @@
                         <input type="text"
                                class="form-control"
                                id="txtMiddlename"
-                               placeholder="forexample: Karan"
+                               placeholder="Karan"
                                value=@{
                                if(Model.getUsersInformationServiceDto != null)
                                    @Model.getUsersInformationServiceDto.MiddleName
@@ -60,7 +60,7 @@
                         <input type="text"
                                class="form-control"
                                id="txtSurname"
-                               placeholder="for example: Fox"
+                               placeholder="Fox"
                                value=@{
                                if(Model.getUsersInformationServiceDto != null)
                                    @Model.getUsersInformationServiceDto.Surname
@@ -138,7 +138,7 @@
                         <input type="text"
                                class="form-control"
                                id="txtBirthcity"
-                               placeholder="for example: New York"
+                               placeholder="New York"
                                value=@{
                                if(Model.getUsersInformationServiceDto != null)
                                    @Model.getUsersInformationServiceDto.BirthCity
@@ -150,17 +150,15 @@
                         <input type="text"
                                class="form-control"
                                id="txtCurrentCity"
-                               placeholder="for example: New York"
+                               placeholder="New York"
                                value=@{
                                if(Model.getUsersInformationServiceDto != null)
                                    @Model.getUsersInformationServiceDto.CurrentCity
                                }>
                     </div>
 
-                    <button type="button" onclick="UpdateInfoAccount()" id="btnAddUser" class="btn btn-rounded btn-info">
-                        <span class="btn-icon-left text-info">
-                            <i class="fa fa-plus color-info"></i>
-                        </span>Add
+                    <button type="button" onclick="UpdateInfoAccount()" id="btnAddUser" class="btn cur-p btn-primary">
+                        Update
                     </button>
                 </form>
             </div>
@@ -354,10 +352,8 @@
                                }>
                     </div>
 
-                    <button type="button" onclick="UpdateInfoContact()" id="" class="btn btn-rounded btn-info">
-                        <span class="btn-icon-left text-info">
-                            <i class="fa fa-plus color-info"></i>
-                        </span>UPDATE CONTACT
+                    <button type="button" onclick="UpdateInfoContact()" id="" class="btn cur-p btn-primary">
+                        UPDATE 
                     </button>
                 </form>
             </div>
@@ -400,13 +396,11 @@
 
                                         <i id="iconCurrentUsername"></i>
                                         <div class="input-group mb-2">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">@@</div>
-                                            </div>
+                                            <span class="input-group-text">@@</span>
                                             <input type="text"
                                                    value="@{
                                                    if(Model.getUsersInformationServiceDto!=null)
-                                                           @Model.getUsersInformationServiceDto.Username
+                                                                                   @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
                                                    onkeyup="ChangeRuntimeUsername();"
@@ -415,7 +409,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button type="button" onclick="UpdateInfoUsername();" class="btn btn-primary mb-2">Submit</button>
+                                        <button type="button" onclick="UpdateInfoUsername();" class="btn btn-primary mb-2">Update</button>
                                     </div>
                                 </div>
                             </form>
@@ -460,9 +454,7 @@
             </div>
             <div id="spanInvalidRePassword" class="text-danger"></div>
             <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Re-Password:</span>
-                </div>
+                <span class="input-group-text">re-Pass</span>
                 <input type="password"
                        id="txtRePassword"
                        onkeyup="checkPassMatchRePass('#txtPassword','#txtRePassword','#spanInvalidRePassword')"
@@ -472,7 +464,7 @@
             <div style="padding-bottom:15px;">
                 <a href="#">I can't remember my password! (reset password)</a>
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            <button type="button" onclick="UpdateInfoPassword();" class="btn btn-primary mb-2">Update</button>
             @*############################## END of KING PASSWORD #############################*@
         </div>
 
@@ -489,51 +481,116 @@
                     <div class="col-xl-3">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Public Mode</h5>
+                                <h5 class="card-title">Filmmaker Type</h5>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the additional content. This content is a little <br> bit longer. Some quick example text to build the bulk</p>
+                                <p class="card-text">
+                                    You are allowed to submit freely and unlimitedly your projects to the festivals.
+                                </p>
                             </div>
                             <div class="card-footer d-sm-flex justify-content-between">
-                                <div class="card-footer-link mb-4 mb-sm-0">
-                                    <p class="card-text text-dark d-inline">Last updated 3 mins ago</p>
-                                </div>
+                                <button id="btnAccountType0" type="button" onclick="UpdateInfoAccountType(this,'FILMMAKER');"
+                                        class="
+@if (Model.getUsersInformationServiceDto != null)
+	if(Model.getUsersInformationServiceDto.AccountType==0)
+		@("btn cur-p btn-primary")
+	else
+		@("btn cur-p btn-light")
+else
+{
+	@("btn cur-p btn-primary")
+}
 
-                                <a href="javascript:void()" class="btn btn-primary">Enable</a>
+">
+                                    @if (Model.getUsersInformationServiceDto != null)
+                                        if (Model.getUsersInformationServiceDto.AccountType == 0)
+                                            @("Enabled")
+                                        else
+                                            @("Enable")
+                                    else
+                                    {
+                                        @("Enabled")
+                                    }
+                                </button>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Festival Mode</h5>
+                                <h5 class="card-title">Distributor Type</h5>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the additional content. This content is a little <br> bit longer. Some quick example text to build the bulk</p>
+                                <p class="alert alert-info">
+                                    You are allowed to submit freely and unlimitedly your client's projects to the festivals.
+                                    <br />
+                                    After changing your account to DISTRIBUTOR TYPE, you will have to add 10 new projects at least.
+                                    <br />
+                                    After that, your account will be suspended temporarily until we assess your right to distribution.
+                                    <br />
+                                    <span class="alert alert-danger mt-3">
+                                        You will be given an admission discount as a distributor.
+                                    </span>
+                                </p>
                             </div>
                             <div class="card-footer d-sm-flex justify-content-between">
-                                <div class="card-footer-link mb-4 mb-sm-0">
-                                    <p class="card-text text-dark d-inline">Last updated 3 mins ago</p>
-                                </div>
+                                <button id="btnAccountType1" type="button" onclick="UpdateInfoAccountType(this,'DISTRIBUTION');"
+                                        class="
+                                @if (
+Model.getUsersInformationServiceDto != null &&
+Model.getUsersInformationServiceDto.AccountType==1)
+                                @("btn cur-p btn-primary")
+                                else
+                                @("btn cur-p btn-light")
 
-                                <a href="javascript:void()" class="btn btn-primary">Enable</a>
+
+
+">
+                                    @if (Model.getUsersInformationServiceDto != null)
+                                        if (Model.getUsersInformationServiceDto.AccountType == 1)
+                                            @("Enabled")
+                                        else
+                                            @("Enable")
+                                    else
+                                        @("Enable")
+
+
+                                </button>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">My Mode</h5>
+                                <h5 class="card-title">Festival Type</h5>
                             </div>
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text and below as a natural lead-in to the additional content. This content is a little <br> bit longer. Some quick example text to build the bulk</p>
                             </div>
                             <div class="card-footer d-sm-flex justify-content-between">
-                                <div class="card-footer-link mb-4 mb-sm-0">
-                                    <p class="card-text text-dark d-inline">Last updated 3 mins ago</p>
-                                </div>
+                                <button id="btnAccountType2" type="button" onclick="UpdateInfoAccountType(this,'FESTIVAL');"
+                                        class="
+                                @if (
+Model.getUsersInformationServiceDto != null &&
+Model.getUsersInformationServiceDto.AccountType==2)
+                                @("btn cur-p btn-primary")
+                                else
+                                @("btn cur-p btn-light")
 
-                                <a href="javascript:void()" class="btn btn-primary">Enable</a>
+
+
+">
+                                    @if (Model.getUsersInformationServiceDto != null)
+                                        if (Model.getUsersInformationServiceDto.AccountType == 2)
+                                            @("Enabled")
+                                        else
+                                            @("Enable")
+                                            else
+                                        @("Enable")
+
+
+
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -554,27 +611,15 @@
 
                         <button type="button" id="btnPrivacy0" onclick="UpdateInfoPrivacy(this,'0');"
                                 class="
-                                @if (
-Model.getUsersInformationServiceDto != null &&
-Model.getUsersInformationServiceDto.Privacy==0)
-                                @("btn cur-p btn-primary")
+                                @if (Model.getUsersInformationServiceDto != null)
+                                    if(Model.getUsersInformationServiceDto.Privacy==0)
+                                        @("btn cur-p btn-primary")
+                                    else
+                                        @("btn cur-p btn-light")
                                 else
-                                @("btn cur-p btn-light")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                ">
+                                {
+                                    @("btn cur-p btn-primary")
+                                }">
                             Public Mode
                         </button>
 
@@ -589,19 +634,6 @@ Model.getUsersInformationServiceDto.Privacy==1)
                                 else
                                 @("btn cur-p btn-light")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ">
                             Festival Mode
                         </button>
@@ -615,19 +647,6 @@ Model.getUsersInformationServiceDto.Privacy==2)
                                 @("btn cur-p btn-primary")
                                 else
                                 @("btn cur-p btn-light")
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ">
                             My Mode
@@ -739,7 +758,6 @@ Model.getUsersInformationServiceDto.Privacy==2)
             });
         }
         function UpdateInfoPrivacy(e, privacy) {
-
             var postData = {
                 'Privacy': privacy
             }
@@ -827,6 +845,71 @@ Model.getUsersInformationServiceDto.Privacy==2)
                 }
             });
         }
+        function UpdateInfoPassword() {
+
+            var password = $("#txtPassword").val();
+            var postData = {
+                'Password': password
+            }
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'MePassword',
+                success: function (data) {
+                    Swal.fire(data.message);
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+        }
+        function UpdateInfoAccountType(e, type) {
+
+            var typeCode;
+            switch (type) { //AccountTypeConstants
+                case 'FILMMAKER':
+                    typeCode = 0;
+                    break;
+                case 'DISTRIBUTION':
+                    typeCode = 1;
+                    break;
+                case 'FESTIVAL':
+                    typeCode = 2;
+                    break;
+            }
+            var postData = {
+                'AccountType': typeCode,
+            }
+
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'MeAccountType',
+                success: function (data) {
+
+                    // change styles of buttons
+                    $("#btnAccountType0").addClass('btn cur-p btn-light');
+                    $("#btnAccountType0").text('Enable');
+                    $("#btnAccountType1").addClass('btn cur-p btn-light');
+                    $("#btnAccountType1").text('Enable');
+                    $("#btnAccountType2").addClass('btn cur-p btn-light');
+                    $("#btnAccountType2").text('Enable');
+                    $(e).removeClass();
+                    $(e).addClass('btn cur-p btn-primary');
+                    $(e).text('Enabled');
+                    // end
+
+                    Swal.fire(data.message);
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+        }
         // set default value of iconCurrentUsername
         $(document).ready(function () {
             var input = $("#txtUsername").val();
@@ -838,8 +921,6 @@ Model.getUsersInformationServiceDto.Privacy==2)
                 $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
             }
         });
-
-
     </script>
 
     @*Tabs*@

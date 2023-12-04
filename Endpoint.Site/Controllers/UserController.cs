@@ -2,8 +2,10 @@
 using Endpoint.Site.Models.Users.GetInformation;
 using Endpoint.Site.Utilities;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationAccountType;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
@@ -100,6 +102,22 @@ namespace Endpoint.Site.Controllers
         {
             return Json(_userInformationFacade
                 .GetCheckDuplicatedUsernameService
+                .Execute(req));
+        }
+        [HttpPost]
+        public IActionResult MePassword(RequestUpdateUsersInformationPasswordDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userInformationFacade
+                .UpdateUsersInformationPasswordService
+                .Execute(req));
+        }
+        [HttpPost]
+        public IActionResult MeAccountType(RequestUpdateUsersInformationAccountTypeServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userInformationFacade
+                .UpdateUsersInformationAccountTypeService
                 .Execute(req));
         }
     }

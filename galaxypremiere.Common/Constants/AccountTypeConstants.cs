@@ -8,7 +8,7 @@ namespace galaxypremiere.Common.Constants
 {
     public abstract class AccountTypeConstants
     {
-        public const byte Individual = 0;
+        public const byte Filmmaker = 0;
         public const byte Distributor = 1;
         public const byte Festival = 2;
     }

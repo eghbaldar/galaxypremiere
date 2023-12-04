@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qwcO9h0ooGoy4NiG7PZmfqsX+sKI1pYAvHRLiN3m11Q=",
+  "Hash": "gqWFkhaAyRhIGM1LSmAtmThpCupBTyVWr5tft/oa92k=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -9195,23 +9195,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\modal\\modal.css"
-    },
-    {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css.rar",
-      "SourceId": "Endpoint.Site",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
-      "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/css.rar",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\css.rar"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\css\\animate.css",

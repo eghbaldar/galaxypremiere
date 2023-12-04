@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationAccountType;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
@@ -68,6 +70,18 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
         public GetCheckDuplicatedUsernameService GetCheckDuplicatedUsernameService
         {
             get { return _getCheckDuplicatedUsernameService = _getCheckDuplicatedUsernameService ?? new GetCheckDuplicatedUsernameService(_context); }
+        }
+        // Update User Information => Password
+        private UpdateUsersInformationPasswordService _updateUsersInformationPasswordService;
+        public UpdateUsersInformationPasswordService UpdateUsersInformationPasswordService
+        {
+            get { return _updateUsersInformationPasswordService = _updateUsersInformationPasswordService ?? new UpdateUsersInformationPasswordService(_context,_mapper); }
+        }
+        // Update User Information => Account Type
+        public UpdateUsersInformationAccountTypeService _updateUsersInformationAccountTypeService;
+        public UpdateUsersInformationAccountTypeService UpdateUsersInformationAccountTypeService
+        {
+            get { return _updateUsersInformationAccountTypeService = _updateUsersInformationAccountTypeService ?? new UpdateUsersInformationAccountTypeService(_context, _mapper); }
         }
     }
 }

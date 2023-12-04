@@ -1,5 +1,7 @@
-﻿using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
+﻿using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationAccountType;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
@@ -22,5 +24,7 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         public UpdateUsersInformationPrivacyService UpdateUsersInformationPrivacyService { get; }
         public UpdateUsersInformationUsernameService UpdateUsersInformationUsernameService { get; }
         public GetCheckDuplicatedUsernameService GetCheckDuplicatedUsernameService {  get; }
+        public UpdateUsersInformationPasswordService UpdateUsersInformationPasswordService { get; }
+        public UpdateUsersInformationAccountTypeService UpdateUsersInformationAccountTypeService { get; }
     }
 }
