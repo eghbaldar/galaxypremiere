@@ -15,7 +15,6 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
         }
         public ResultDto Execute(RequestUpdateUsersInformationAccountTypeServiceDto req)
         {
-
             var userType = _context
                     .UsersInformation
                     .Where(u => u.UsersId == req.UsersId).FirstOrDefault();

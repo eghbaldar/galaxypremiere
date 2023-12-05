@@ -4669,6 +4669,14 @@
       "PackagePath": "staticwebassets\\lib\\kingFuncs\\password\\password.js"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\remainingCharacters\\main.css",
+      "PackagePath": "staticwebassets\\lib\\kingFuncs\\remainingCharacters\\main.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\remainingCharacters\\main.js",
+      "PackagePath": "staticwebassets\\lib\\kingFuncs\\remainingCharacters\\main.js"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\modal\\modal.css",
       "PackagePath": "staticwebassets\\modal\\modal.css"
     },

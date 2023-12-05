@@ -3,6 +3,7 @@ using Endpoint.Site.Models.Users.GetInformation;
 using Endpoint.Site.Utilities;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationAccountType;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationBIO;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
@@ -118,6 +119,14 @@ namespace Endpoint.Site.Controllers
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationAccountTypeService
+                .Execute(req));
+        }
+        [HttpPost]
+        public IActionResult MeBIO(RequestUpdateUsersInformationBioServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userInformationFacade
+                .UpdateUsersInformationBioService
                 .Execute(req));
         }
     }

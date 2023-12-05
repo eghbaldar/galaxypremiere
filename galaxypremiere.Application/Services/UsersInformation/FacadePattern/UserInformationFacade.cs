@@ -2,6 +2,7 @@
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationAccountType;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationBIO;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
@@ -82,6 +83,12 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
         public UpdateUsersInformationAccountTypeService UpdateUsersInformationAccountTypeService
         {
             get { return _updateUsersInformationAccountTypeService = _updateUsersInformationAccountTypeService ?? new UpdateUsersInformationAccountTypeService(_context, _mapper); }
+        }
+        // Update User Information => BIO
+        private UpdateUsersInformationBioService _updateUsersInformationBioService;
+        public UpdateUsersInformationBioService UpdateUsersInformationBioService
+        {
+            get { return _updateUsersInformationBioService = _updateUsersInformationBioService ?? new UpdateUsersInformationBioService(_context, _mapper); }
         }
     }
 }

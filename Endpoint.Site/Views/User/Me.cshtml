@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
 @section Styles{
+    @*King Remaining Characters*@
+    <link href="~/lib/kingfuncs/remainingcharacters/main.css" rel="stylesheet" />
     @*King Password*@
     <link href="~/lib/kingfuncs/password/password.css" rel="stylesheet" />
     @*datapicker*@
@@ -22,6 +24,9 @@
         .colorGray {
             color: gray;
         }
+    </style>
+    <style>
+
     </style>
 }
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
@@ -353,7 +358,75 @@
                     </div>
 
                     <button type="button" onclick="UpdateInfoContact()" id="" class="btn cur-p btn-primary">
-                        UPDATE 
+                        UPDATE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="TabUserBIO" class="TabUserTabcontent">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">ACCOUNT</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="UpdateBIO" id="frmBIO" method="post">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Introduction</span>
+                        <div class="form-floating">
+                            <textarea maxlength="300"
+                                      row="5"
+                                      style="height:200px"
+                                      class="form-control"
+                                      onkeyup="updateCounter(this,'300');"
+                                      id="txtIntroduction"
+                                      value=@{
+                                      if(Model.getUsersInformationServiceDto != null)
+                                          @Model.getUsersInformationServiceDto.Introduction
+                                      }></textarea>
+
+                            <span class="form-label-counter" id="txtIntroductionCounter">0 / 300</span>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">BIO (Resume)</span>
+                        <div class="form-floating">
+                            <textarea maxlength="700"
+                                      row="5"
+                                      style="height:200px"
+                                      class="form-control"
+                                      onkeyup="updateCounter(this,'7000');"
+                                      id="txtBIO"
+                                      value=@{
+                                      if(Model.getUsersInformationServiceDto != null)
+                                          @Model.getUsersInformationServiceDto.BIO
+                                      }></textarea>
+
+                            <span class="form-label-counter" id="txtBIOCounter">0 / 7000</span>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Note</span>
+                        <div class="form-floating">
+                            <textarea maxlength="700"
+                                      row="5"
+                                      style="height:200px"
+                                      class="form-control"
+                                      onkeyup="updateCounter(this,'7000');"
+                                      id="txtNote"
+                                      value=@{
+                                      if(Model.getUsersInformationServiceDto != null)
+                                          @Model.getUsersInformationServiceDto.Note
+                                      }></textarea>
+
+                            <span class="form-label-counter" id="txtNoteCounter">0 / 7000</span>
+                        </div>
+                    </div>
+                    <button type="button" onclick="UpdateInfoBIO()" id="" class="btn cur-p btn-primary">
+                        UPDATE
                     </button>
                 </form>
             </div>
@@ -400,7 +473,7 @@
                                             <input type="text"
                                                    value="@{
                                                    if(Model.getUsersInformationServiceDto!=null)
-                                                                                   @Model.getUsersInformationServiceDto.Username
+                                                                                                           @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
                                                    onkeyup="ChangeRuntimeUsername();"
@@ -545,6 +618,12 @@ Model.getUsersInformationServiceDto.AccountType==1)
 
 
 
+
+
+
+
+
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 1)
@@ -553,6 +632,12 @@ Model.getUsersInformationServiceDto.AccountType==1)
                                             @("Enable")
                                     else
                                         @("Enable")
+
+
+
+
+
+
 
 
                                 </button>
@@ -579,14 +664,26 @@ Model.getUsersInformationServiceDto.AccountType==2)
 
 
 
+
+
+
+
+
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 2)
                                             @("Enabled")
                                         else
                                             @("Enable")
-                                            else
+                                    else
                                         @("Enable")
+
+
+
+
+
+
 
 
 
@@ -634,6 +731,12 @@ Model.getUsersInformationServiceDto.Privacy==1)
                                 else
                                 @("btn cur-p btn-light")
 
+
+
+
+
+
+
 ">
                             Festival Mode
                         </button>
@@ -648,6 +751,12 @@ Model.getUsersInformationServiceDto.Privacy==2)
                                 else
                                 @("btn cur-p btn-light")
 
+
+
+
+
+
+
 ">
                             My Mode
                         </button>
@@ -659,6 +768,8 @@ Model.getUsersInformationServiceDto.Privacy==2)
 </div>
 
 @section Scripts{
+    @*King Remaining Characters*@
+    <script src="~/lib/kingfuncs/remainingcharacters/main.js"></script>
     @*King Password*@
     <script src="~/lib/kingfuncs/password/password.js"></script>
     @*Datapicker*@
@@ -669,7 +780,6 @@ Model.getUsersInformationServiceDto.Privacy==2)
         });
     </script>
     @*End of Datapicker*@
-
     <script>
         function UpdateInfoAccount() {
             var firstname = $('#txtFirstname').val();
@@ -903,6 +1013,32 @@ Model.getUsersInformationServiceDto.Privacy==2)
                     $(e).text('Enabled');
                     // end
 
+                    Swal.fire(data.message);
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+        }
+        function UpdateInfoBIO() {
+
+            var intro = $("#txtIntroduction").val();
+            var bio = $("#txtBIO").val();
+            var note = $("#txtNote").val();
+
+            var postData = {
+                'Introduction': intro,
+                'BIO': bio,
+                'Note': note,
+            }
+
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'MeBIO',
+                success: function (data) {
                     Swal.fire(data.message);
                 },
                 error: function (request, status, error) {
