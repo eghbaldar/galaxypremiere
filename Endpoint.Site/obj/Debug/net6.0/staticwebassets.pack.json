@@ -4601,6 +4601,18 @@
       "PackagePath": "staticwebassets\\lib\\datapicker\\gijgo-material.woff"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\jquery-upload\\dropify.min.css",
+      "PackagePath": "staticwebassets\\lib\\jquery-upload\\dropify.min.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\jquery-upload\\dropify.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-upload\\dropify.min.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\jquery-upload\\form-fileupload.init.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-upload\\form-fileupload.init.js"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },

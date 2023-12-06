@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
 @section Styles{
+    @*Upload*@
+    <link href="~/lib/jquery-upload/dropify.min.css" rel="stylesheet" />
     @*King Remaining Characters*@
     <link href="~/lib/kingfuncs/remainingcharacters/main.css" rel="stylesheet" />
     @*King Password*@
@@ -434,6 +436,25 @@
     </div>
 </div>
 
+<div id="TabUserPhotos" class="TabUserTabcontent">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">ACCOUNT</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="UpdatePhotos" id="frmPhotos" method="post">
+                    <div>
+                        <div class="dropify-message"><span class="file-icon"></span> <p>کلیک کنید یا فایلی را به اینجا بکشید و رها کنید</p><p class="dropify-error">اوپس، چیزی اشتباه است.</p></div><div class="dropify-loader"></div><div class="dropify-errors-container"><ul></ul></div><input type="file" class="dropify" data-max-file-size="1M"><button type="button" class="dropify-clear">پاک کردن</button><div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p><p class="dropify-infos-message">برای جایگزینی کلیک کنید یا فایلی را به اینجا بکشید و رها کنید</p></div></div></div></div>
+                    <button type="button" onclick="UpdateInfoPhotos()" id="" class="btn cur-p btn-primary">
+                        UPDATE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="TabUserPrivacy" class="TabUserTabcontent">
     @*Username*@
     <div class="card">
@@ -473,7 +494,7 @@
                                             <input type="text"
                                                    value="@{
                                                    if(Model.getUsersInformationServiceDto!=null)
-                                                                                                           @Model.getUsersInformationServiceDto.Username
+                                                                                                                               @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
                                                    onkeyup="ChangeRuntimeUsername();"
@@ -624,6 +645,11 @@ Model.getUsersInformationServiceDto.AccountType==1)
 
 
 
+
+
+
+
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 1)
@@ -632,6 +658,11 @@ Model.getUsersInformationServiceDto.AccountType==1)
                                             @("Enable")
                                     else
                                         @("Enable")
+
+
+
+
+
 
 
 
@@ -670,6 +701,11 @@ Model.getUsersInformationServiceDto.AccountType==2)
 
 
 
+
+
+
+
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 2)
@@ -678,6 +714,11 @@ Model.getUsersInformationServiceDto.AccountType==2)
                                             @("Enable")
                                     else
                                         @("Enable")
+
+
+
+
+
 
 
 
@@ -737,6 +778,11 @@ Model.getUsersInformationServiceDto.Privacy==1)
 
 
 
+
+
+
+
+
 ">
                             Festival Mode
                         </button>
@@ -757,6 +803,11 @@ Model.getUsersInformationServiceDto.Privacy==2)
 
 
 
+
+
+
+
+
 ">
                             My Mode
                         </button>
@@ -768,6 +819,10 @@ Model.getUsersInformationServiceDto.Privacy==2)
 </div>
 
 @section Scripts{
+    @*Upload Js*@
+    <script src="~/lib/jquery-upload/dropify.min.js"></script>
+    <script src="~/lib/jquery-upload/form-fileupload.init.js"></script>
+    @*End*@
     @*King Remaining Characters*@
     <script src="~/lib/kingfuncs/remainingcharacters/main.js"></script>
     @*King Password*@
