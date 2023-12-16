@@ -5,6 +5,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationBIO;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeadshot;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
@@ -89,6 +90,12 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
         public UpdateUsersInformationBioService UpdateUsersInformationBioService
         {
             get { return _updateUsersInformationBioService = _updateUsersInformationBioService ?? new UpdateUsersInformationBioService(_context, _mapper); }
+        }
+        // Update User Information => Headshot
+        private UpdateUsersInformationHeadshotService _updateUsersInformationHeadshotService;
+        public UpdateUsersInformationHeadshotService UpdateUsersInformationHeadshotService
+        {
+            get { return _updateUsersInformationHeadshotService = _updateUsersInformationHeadshotService ?? new UpdateUsersInformationHeadshotService(_context, _mapper); }
         }
     }
 }

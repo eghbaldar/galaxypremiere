@@ -2767,6 +2767,7 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "Dapper": "2.1.15",
+          "Microsoft.AspNetCore.Http.Features": "2.2.0",
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.Extensions.Configuration": "6.0.0",
           "System.Data.SqlClient": "4.8.5",

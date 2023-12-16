@@ -2829,6 +2829,10 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383834222982511371694671470948.jpeg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\6383834222982511371694671470948.jpeg"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\Chart.bundle.js",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\js\\Chart.bundle.js"
     },

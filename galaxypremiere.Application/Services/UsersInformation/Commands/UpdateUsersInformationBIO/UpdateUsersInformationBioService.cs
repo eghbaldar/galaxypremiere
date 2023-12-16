@@ -31,7 +31,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                 return new ResultDto
                 {
                     IsSuccess = true,
-                    Message = "Information has just been update successfully.1"
+                    Message = "Information has just been updated successfully.1"
                 };
             }
             else // The user already existed (UPDATE)
@@ -45,7 +45,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                     return new ResultDto
                     {
                         IsSuccess = true,
-                        Message = "Information has just been update successfully.2"
+                        Message = "Information has just been updated successfully.2"
                     };
                 }
                 else
