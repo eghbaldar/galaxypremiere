@@ -6,7 +6,103 @@
 }
 @section Styles{
     @*Upload*@
-    <link href="~/lib/jquery-upload/dropify.min.css" rel="stylesheet" />
+    <style>
+        /*====================== Headshot*/
+        #dropzoneAvatar {
+            position: relative;
+            border: 5px dashed #000;
+            border-radius: 50%;
+            color: #000;
+            font: bold 14px arial;
+            height: 200px;
+            margin: 30px auto;
+            text-align: center;
+            width: 200px;
+            background-image: url('../sitetemplate/innerpages/images/layout_img/img-avatar.jpg');
+            background-size: cover;
+            background-repeat: repeat;
+        }
+        #dropzoneAvatar.hover {
+            border: 4px solid green;
+            color: green;
+        }
+        #dropzoneAvatar.dropped {
+            background: #222;
+            border: 5px solid #444;
+        }
+        #dropzoneAvatar div {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        #dropzoneAvatar img {
+            border-radius: 50%;
+            vertical-align: middle;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        #dropzoneAvatar [type="file"] {
+            cursor: pointer;
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        /*=================== Header*/
+        #dropzoneHeader {
+            position: relative;
+            border: 5px dashed #000;
+            border-radius: 15px;
+            color: #000;
+            font: bold 14px arial;
+            height: 300px;
+            margin: 30px auto;
+            text-align: center;
+            width: 100%;
+            background-image: url('../sitetemplate/innerpages/images/layout_img/img-avatar.jpg');
+            background-size: cover;
+            background-repeat: repeat;
+        }
+
+            #dropzoneHeader.hover {
+                border: 4px solid green;
+                color: green;
+            }
+
+            #dropzoneHeader.dropped {
+                background: #222;
+                border: 5px solid #444;
+            }
+
+            #dropzoneHeader div {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+
+            #dropzoneHeader img {
+                border-radius: 15px;
+                vertical-align: middle;
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            #dropzoneHeader [type="file"] {
+                cursor: pointer;
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+    </style>
     @*King Remaining Characters*@
     <link href="~/lib/kingfuncs/remainingcharacters/main.css" rel="stylesheet" />
     @*King Password*@
@@ -26,9 +122,6 @@
         .colorGray {
             color: gray;
         }
-    </style>
-    <style>
-
     </style>
 }
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
@@ -439,17 +532,50 @@
 <div id="TabUserPhotos" class="TabUserTabcontent">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">ACCOUNT</h4>
+            <h4 class="card-title">Headshot</h4>
         </div>
         <div class="card-body">
             <div class="basic-form">
-                <form asp-action="UpdatePhotos" id="frmPhotos" method="post">
-                    <div>
-                        <div class="dropify-message"><span class="file-icon"></span> <p>کلیک کنید یا فایلی را به اینجا بکشید و رها کنید</p><p class="dropify-error">اوپس، چیزی اشتباه است.</p></div><div class="dropify-loader"></div><div class="dropify-errors-container"><ul></ul></div><input type="file" class="dropify" data-max-file-size="1M"><button type="button" class="dropify-clear">پاک کردن</button><div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p><p class="dropify-infos-message">برای جایگزینی کلیک کنید یا فایلی را به اینجا بکشید و رها کنید</p></div></div></div></div>
-                    <button type="button" onclick="UpdateInfoPhotos()" id="" class="btn cur-p btn-primary">
-                        UPDATE
-                    </button>
-                </form>
+                @*===================*@
+                <div class="alert alert-info" role="alert">
+                    Upload your headshot (Avatar)
+                    <ul>
+                        <li>This photo will be shown on your profile and will be accessed in public.</li>
+                        <li>* Click on the preset photo and choose your photo.</li>
+                        <li>* Your file must be less than 2 MB</li>
+                        <li>* The acceptable exensions: JPG, PNG, BMP</li>
+                    </ul>
+                </div>
+                <div id="dropzoneAvatar">
+                    <div></div>
+                    <input type="file" />
+                </div>
+                @*===================*@
+            </div>
+        </div>
+        </div>
+    <br />
+    <div class="card">
+         <div class="card-header">
+            <h4 class="card-title">Header</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                @*===================*@
+                 <div class="alert alert-info" role="alert">
+                    Upload your profile header
+                    <ul>
+                        <li>This photo will be shown on your profile and will be accessed in public.</li>
+                        <li>* Click on the preset photo and choose your photo.</li>
+                        <li>* Your file must be less than 5 MB</li>
+                        <li>* The acceptable exensions: JPG, PNG, BMP</li>
+                    </ul>
+                </div>
+                 <div id="dropzoneHeader">
+                     <div></div>
+                    <input type="file" />
+                </div>
+                @*===================*@
             </div>
         </div>
     </div>
@@ -494,7 +620,7 @@
                                             <input type="text"
                                                    value="@{
                                                    if(Model.getUsersInformationServiceDto!=null)
-                                                                                                                               @Model.getUsersInformationServiceDto.Username
+                                                                                                                                               @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
                                                    onkeyup="ChangeRuntimeUsername();"
@@ -561,7 +687,6 @@
             <button type="button" onclick="UpdateInfoPassword();" class="btn btn-primary mb-2">Update</button>
             @*############################## END of KING PASSWORD #############################*@
         </div>
-
     </div>
     <br />
     @*Account Type = Filmmaker & Distributor*@
@@ -650,6 +775,10 @@ Model.getUsersInformationServiceDto.AccountType==1)
 
 
 
+
+
+
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 1)
@@ -658,6 +787,10 @@ Model.getUsersInformationServiceDto.AccountType==1)
                                             @("Enable")
                                     else
                                         @("Enable")
+
+
+
+
 
 
 
@@ -706,6 +839,10 @@ Model.getUsersInformationServiceDto.AccountType==2)
 
 
 
+
+
+
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 2)
@@ -714,6 +851,10 @@ Model.getUsersInformationServiceDto.AccountType==2)
                                             @("Enable")
                                     else
                                         @("Enable")
+
+
+
+
 
 
 
@@ -783,6 +924,10 @@ Model.getUsersInformationServiceDto.Privacy==1)
 
 
 
+
+
+
+
 ">
                             Festival Mode
                         </button>
@@ -808,6 +953,10 @@ Model.getUsersInformationServiceDto.Privacy==2)
 
 
 
+
+
+
+
 ">
                             My Mode
                         </button>
@@ -818,13 +967,9 @@ Model.getUsersInformationServiceDto.Privacy==2)
     </div>
 </div>
 
+
+
 @section Scripts{
-    @*Upload Js*@
-    <script src="~/lib/jquery-upload/dropify.min.js"></script>
-    <script src="~/lib/jquery-upload/form-fileupload.init.js"></script>
-    @*End*@
-    @*King Remaining Characters*@
-    <script src="~/lib/kingfuncs/remainingcharacters/main.js"></script>
     @*King Password*@
     <script src="~/lib/kingfuncs/password/password.js"></script>
     @*Datapicker*@
@@ -1113,7 +1258,6 @@ Model.getUsersInformationServiceDto.Privacy==2)
             }
         });
     </script>
-
     @*Tabs*@
     <script>
         function userAccountNavigation(evt, tabName) {
@@ -1140,4 +1284,70 @@ Model.getUsersInformationServiceDto.Privacy==2)
         document.getElementById("TabUserAccountDefaultOpen").click();
     </script>
     @*End of Tabs*@
+    @*Upload Js*@
+    <script>
+        var dropzoneavatar = $("#dropzoneAvatar");
+        var dropzoneheader = $("#dropzoneHeader");
+        var inputavatar = dropzoneavatar.find('input');
+        var inputheader = dropzoneheader.find('input');
+
+        dropzoneavatar.on({
+            dragenter: draginavatar,
+            dragleave: dragoutavatar
+        });
+        dropzoneheader.on({
+            dragenter: dragindropzoneheader,
+            dragleave: dragoutdropzoneheader
+        });
+
+        inputavatar.on('change', dropavatar);
+        inputheader.on('change', dropheader);
+
+        function draginavatar(e) { //function for drag into element, just turns the bix X white
+            $(dropzoneavatar).addClass('hover');
+        }
+        function dragindropzoneheader(e) { //function for drag into element, just turns the bix X white
+            $(dropzoneheader).addClass('hover');
+        }
+
+        function dragoutavatar(e) { //function for dragging out of element
+            $(dropzoneavatar).removeClass('hover');
+        }
+        function dragoutdropzoneheader(e) { //function for dragging out of element
+            $(dropzoneheader).removeClass('hover');
+        }
+
+        function dropavatar(e) {
+            var file = this.files[0];
+            $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
+            // upload file here
+            showfileavatar(file); // showing file for demonstration ...
+        }
+        function dropheader(e) {
+            var file = this.files[0];
+            $('#dropzoneHeader').removeClass('hover').addClass('dropped').find('img').remove();
+            // upload file here
+            showfileheader(file); // showing file for demonstration ...
+        }
+
+        function showfileavatar(file) {
+            var reader = new FileReader(file);
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                $('#dropzoneAvatar div').html($('<img />').attr('src', e.target.result).fadeIn());
+            }
+        }
+        function showfileheader(file) {
+            var reader = new FileReader(file);
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                $('#dropzoneHeader div').html($('<img />').attr('src', e.target.result).fadeIn());
+            }
+        }
+
+
+    </script>
+    @*End*@
+    @*King Remaining Characters*@
+    <script src="~/lib/kingfuncs/remainingcharacters/main.js"></script>
 }

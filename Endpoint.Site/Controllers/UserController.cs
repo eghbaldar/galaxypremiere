@@ -10,13 +10,19 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
+using galaxypremiere.Common;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using System.Runtime.Serialization.Json;
 using System.Security.Claims;
+using System.Xml.Linq;
 
 namespace Endpoint.Site.Controllers
 {
@@ -129,5 +135,6 @@ namespace Endpoint.Site.Controllers
                 .UpdateUsersInformationBioService
                 .Execute(req));
         }
+        //////////////////       
     }
 }

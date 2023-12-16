@@ -31,6 +31,7 @@
     <Folder Include="Data\" />
     <Folder Include="wwwroot\lib\bootstrap-datepicker-sandbox\css\" />
     <Folder Include="wwwroot\lib\bootstrap-datepicker-sandbox\js\" />
+    <Folder Include="wwwroot\lib\jquery-upload\" />
   </ItemGroup>
 
 </Project>
