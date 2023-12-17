@@ -1,41 +1,40 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Services.UploadSmallFiles;
-using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationBIO;
 using galaxypremiere.Common.DTOs;
 using Microsoft.AspNetCore.Http;
 
-namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeadshot
+namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeader
 {
-    public class UpdateUsersInformationHeadshotService : IUpdateUsersInformationHeadshotService
+    public class UpdateUsersInformationHeaderService: IUpdateUsersInformationHeaderService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        public UpdateUsersInformationHeadshotService(
+        public UpdateUsersInformationHeaderService(
             IDataBaseContext context,
             IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public ResultDto Execute(RequestUpdateUsersInformationHeadshotServiceDto req)
+        public ResultDto Execute(RequestUpdateUsersInformationHeaderServiceDto req)
         {
-           
-            var userHeadshot = _context
+
+            var userHeader = _context
                   .UsersInformation
                   .Where(u => u.UsersId == req.UsersId).FirstOrDefault();
-            if (userHeadshot == null) // Create for first time! (INSERT)
+            if (userHeader == null) // Create for first time! (INSERT)
             {
                 galaxypremiere.Domain.Entities.Users.UsersInformation usersInfo
                     = new galaxypremiere.Domain.Entities.Users.UsersInformation();
                 usersInfo = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersInformation>(req);
                 //========================= Upload Headshot
-                var file = CreateFilename(req.Photo);
+                var file = CreateFilename(req.Header);
                 switch (file.Success)
                 {
                     case true:
-                        usersInfo.Photo = file.Filename;
-                        break;                        
+                        usersInfo.Header = file.Filename;
+                        break;
                     case false:
                         return new ResultDto
                         {
@@ -50,7 +49,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                 return new ResultDto
                 {
                     IsSuccess = true,
-                    Message = "Headshot has just been updated successfully.1"
+                    Message = "Header has just been updated successfully.1"
                 };
             }
             else // The user already existed (UPDATE)
@@ -58,14 +57,14 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                 var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
                 if (user != null)
                 {
-                    var mappedDto = _mapper.Map<RequestUpdateUsersInformationHeadshotServiceDto>(req);
-                    _mapper.Map(mappedDto, userHeadshot);
+                    var mappedDto = _mapper.Map<RequestUpdateUsersInformationHeaderServiceDto>(req);
+                    _mapper.Map(mappedDto, userHeader);
                     //========================= Upload Headshot
-                    var file = CreateFilename(req.Photo);
+                    var file = CreateFilename(req.Header);
                     switch (file.Success)
                     {
                         case true:
-                            userHeadshot.Photo = file.Filename;
+                            userHeader.Header = file.Filename;
                             break;
                         case false:
                             return new ResultDto
@@ -79,7 +78,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                     return new ResultDto
                     {
                         IsSuccess = true,
-                        Message = "Headshot has just been updated successfully.2"
+                        Message = "Header has just been updated successfully.2"
                     };
                 }
                 else
@@ -99,9 +98,9 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
             var filename = uploadSmallFilesService.UploadFile(new RequestUploadSmallFilesServiceDto
             {
                 DirectoryNameLevelParent = "images",
-                DirectoryNameLevelChild = "user-headshot",
+                DirectoryNameLevelChild = "user-header",
                 Exension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
-                FileSize = "2097152", // => 2 Mb
+                FileSize = "5242880", // => 5 Mb
                 File = file,
             });
             return filename;

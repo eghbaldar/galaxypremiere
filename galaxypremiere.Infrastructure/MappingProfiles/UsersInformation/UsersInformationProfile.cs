@@ -3,6 +3,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationBIO;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeader;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeadshot;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
@@ -27,6 +28,7 @@ namespace galaxypremiere.Infrastructure.MappingProfiles.UsersInformation
             CreateMap<Domain.Entities.Users.UsersInformation, RequestUpdateUsersInformationAccountTypeServiceDto>().ReverseMap();
             CreateMap<Domain.Entities.Users.UsersInformation, RequestUpdateUsersInformationBioServiceDto>().ReverseMap();
             CreateMap<Domain.Entities.Users.UsersInformation, RequestUpdateUsersInformationHeadshotServiceDto>().ReverseMap();
+            CreateMap<Domain.Entities.Users.UsersInformation, RequestUpdateUsersInformationHeaderServiceDto>().ReverseMap();
 
             PasswordHasher passwordHasher = new PasswordHasher();          
             CreateMap<RequestUpdateUsersInformationPasswordDto,Domain.Entities.Users.Users>()                 

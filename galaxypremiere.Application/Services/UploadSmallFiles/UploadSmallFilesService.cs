@@ -21,24 +21,24 @@ namespace galaxypremiere.Application.Services.UploadSmallFiles
                     Filename = "",
                 };
             }
+            // check extension ....
+            FileInfo info = new FileInfo(req.File.FileName);
+            if (Array.IndexOf(req.Exension, info.Extension.ToLower()) < 0)
+            {
+                return new ResultUploadDto
+                {
+                    Success = false,
+                    Message = $"File extension (${Array.IndexOf(req.Exension, info.Extension.ToLower())}) is unacceptable",
+                    Filename = "",
+                };
+            }
             // check size ....
             if (req.File.Length > Convert.ToInt64(req.FileSize))
             {
                 return new ResultUploadDto
                 {
                     Success = false,
-                    Message = $"File must be less than{req.FileSize}",
-                    Filename = "",
-                };
-            }
-            // check extension ....
-            FileInfo info = new FileInfo(req.File.FileName);
-            if (Array.IndexOf(req.Exension,info.Extension.ToLower())<0)
-            {
-                return new ResultUploadDto
-                {
-                    Success = false,
-                    Message = Array.IndexOf(req.Exension, info.Extension.ToLower()).ToString(),//$"File extension is inacceptable",
+                    Message = $"File must be less than {int.Parse(req.FileSize)/ 1048576} Mb", // 1024*1024=1048576
                     Filename = "",
                 };
             }

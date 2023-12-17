@@ -6,6 +6,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationBIO;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeader;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeadshot;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
@@ -143,6 +144,15 @@ namespace Endpoint.Site.Controllers
             req.Photo = Request.Form.Files[0];
             return Json(_userInformationFacade
                 .UpdateUsersInformationHeadshotService
+                .Execute(req));
+        }
+        [HttpPost]
+        public IActionResult MeHeader(RequestUpdateUsersInformationHeaderServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            req.Header = Request.Form.Files[0];
+            return Json(_userInformationFacade
+                .UpdateUsersInformationHeaderService
                 .Execute(req));
         }
     }

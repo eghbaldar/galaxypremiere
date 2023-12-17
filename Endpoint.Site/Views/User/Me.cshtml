@@ -625,7 +625,7 @@
                                             <input type="text"
                                                    value="@{
                                                    if(Model.getUsersInformationServiceDto!=null)
-                                                                                                                                                   @Model.getUsersInformationServiceDto.Username
+                                                                                                                                                                       @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
                                                    onkeyup="ChangeRuntimeUsername();"
@@ -768,23 +768,6 @@ Model.getUsersInformationServiceDto.AccountType==1)
                                 @("btn cur-p btn-light")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 1)
@@ -793,18 +776,6 @@ Model.getUsersInformationServiceDto.AccountType==1)
                                             @("Enable")
                                     else
                                         @("Enable")
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -834,23 +805,6 @@ Model.getUsersInformationServiceDto.AccountType==2)
                                 @("btn cur-p btn-light")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 2)
@@ -859,22 +813,6 @@ Model.getUsersInformationServiceDto.AccountType==2)
                                             @("Enable")
                                     else
                                         @("Enable")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -923,21 +861,6 @@ Model.getUsersInformationServiceDto.Privacy==1)
                                 @("btn cur-p btn-light")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ">
                             Festival Mode
                         </button>
@@ -951,21 +874,6 @@ Model.getUsersInformationServiceDto.Privacy==2)
                                 @("btn cur-p btn-primary")
                                 else
                                 @("btn cur-p btn-light")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ">
@@ -1330,30 +1238,51 @@ Model.getUsersInformationServiceDto.Privacy==2)
 
         function dropavatar(e) {
             var file = this.files[0];
-            $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
-            // upload file here
-            var postData = new FormData();
-            postData.append("File", file);
-            $.ajax({
-                contentType: false,
-                processData: false,
-                type: 'POST',
-                data: postData,
-                url: 'MeHeadshot',
-                success: function (data) {
-                    Swal.fire(data.message);
-                },
-                error: function (req, res, err) {
-                    alert('req' + req.responseText + 'res:' + res + 'err:' + err);
-                }
-            });
-            showfileavatar(file); // showing file for demonstration ...
+            // the following functions uses (fileextensionsize.js)
+            if (checkSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152")) { // => 2 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadshotService.cs) and (UploadSmallFilesService.cs)                
+                // upload file here
+                var postData = new FormData();
+                postData.append("File", file);
+                $.ajax({
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    data: postData,
+                    url: 'MeHeadshot',
+                    success: function (data) {
+                        $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
+                        showfileavatar(file); // showing file for demonstration ...
+                        Swal.fire(data.message);
+                    },
+                    error: function (req, res, err) {
+                        alert('req' + req.responseText + 'res:' + res + 'err:' + err);
+                    }
+                });                
+            }
         }
         function dropheader(e) {
-            var file = this.files[0];
-            $('#dropzoneHeader').removeClass('hover').addClass('dropped').find('img').remove();
-            // upload file here
-            showfileheader(file); // showing file for demonstration ...
+            var file = this.files[0];            
+            // the following functions uses (fileextensionsize.js)
+            if (checkSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "5242880")) { // => 5 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadertService.cs) and (UploadSmallFilesService.cs)
+                // upload file here
+                var postData = new FormData();
+                postData.append("File", file);
+                $.ajax({
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    data: postData,
+                    url: 'MeHeader',
+                    success: function (data) {
+                        $('#dropzoneHeader').removeClass('hover').addClass('dropped').find('img').remove();
+                        showfileheader(file); // showing file for demonstration ...
+                        Swal.fire(data.message);
+                    },
+                    error: function (req, res, err) {
+                        alert('req' + req.responseText + 'res:' + res + 'err:' + err);
+                    }
+                });
+            }
         }
 
         function showfileavatar(file) {
@@ -1370,10 +1299,10 @@ Model.getUsersInformationServiceDto.Privacy==2)
                 $('#dropzoneHeader div').html($('<img />').attr('src', e.target.result).fadeIn());
             }
         }
-
-
     </script>
     @*End*@
+    @*King Check File Extension & Size*@
+    <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
     @*King Remaining Characters*@
     <script src="~/lib/kingfuncs/remainingcharacters/main.js"></script>
 }
