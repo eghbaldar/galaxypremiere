@@ -29,7 +29,7 @@
             }
 
             #dropzoneAvatar.dropped {
-                background:#F8F8F8;
+                background: #F8F8F8;
                 border: 4px solid #CCCCCC;
             }
 
@@ -46,7 +46,7 @@
                 vertical-align: middle;
                 max-width: 100%;
                 max-height: 100%;
-                width:100%;
+                width: 100%;
                 height: 100%;
             }
 
@@ -66,13 +66,26 @@
             border-radius: 15px;
             color: #000;
             font: bold 14px arial;
-            height: 300px;
-            margin: 30px auto;
             text-align: center;
-            width: 100%;
             background-image: url('../sitetemplate/innerpages/images/layout_img/img-avatar.jpg');
-            background-size: cover;
-            background-repeat: repeat;
+            background-size: contain;
+            background-position:center;
+            background-repeat: no-repeat !important;
+            height:300px;
+        }
+
+            #dropzoneHeader img.wide {
+                border-radius: 15px;
+                max-width: 100%;
+                max-height: 100%;
+                height: auto;
+        }
+
+            #dropzoneHeader img.tall {
+                border-radius: 15px;
+                max-height: 100%;
+                max-width: 100%;
+                width: auto;
         }
 
             #dropzoneHeader.hover {
@@ -81,7 +94,7 @@
             }
 
             #dropzoneHeader.dropped {
-                background:#F8F8F8;
+                background: #F8F8F8;
                 border: 1px solid #CCCCCC;
             }
 
@@ -93,11 +106,11 @@
                 left: 0;
             }
 
-            #dropzoneHeader img {
-                vertical-align: middle;
-                max-width: 100%;
-                max-height: 100%;
-            }
+/*            #dropzoneHeader img {
+            border-radius: 15px;
+            height: auto;
+            max-width: 100%;
+            }*/
 
             #dropzoneHeader [type="file"] {
                 cursor: pointer;
@@ -536,6 +549,40 @@
 </div>
 
 <div id="TabUserPhotos" class="TabUserTabcontent">
+    <style>
+        .loader {
+            display: table-cell;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+            opacity: .7;
+        }
+
+        @@-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">Headshot</h4>
@@ -552,7 +599,9 @@
                         <li>* The acceptable exensions: JPG, PNG, BMP</li>
                     </ul>
                 </div>
+
                 <div id="dropzoneAvatar" class="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Photo!=null? "dropped" : "")">
+
                     <div>
                         @{
                             if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Photo != null)
@@ -561,8 +610,10 @@
                             }
                         }
                     </div>
+                    <div id="HeadshotLoader" class="loader"></div>
                     <input type="file" />
                 </div>
+
                 @*===================*@
             </div>
         </div>
@@ -585,14 +636,15 @@
                     </ul>
                 </div>
                 <div id="dropzoneHeader" class="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null ? "dropped" : "")">
-                    <div>
+                   @* <div>
                         @{
                             if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null)
                             {
                                 <img src="~/SiteTemplate/innerpages/images/user-header/@Model.getUsersInformationServiceDto.Header" />
                             }
                         }
-                    </div>
+                    </div>*@
+                    <div id="HeaderLoader" class="loader"></div>
                     <input type="file" />
                 </div>
                 @*===================*@
@@ -640,7 +692,7 @@
                                             <input type="text"
                                                    value="@{
                                                    if(Model.getUsersInformationServiceDto!=null)
-                                                                                                                                                                                                           @Model.getUsersInformationServiceDto.Username
+                                                                                                                                                                                                               @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
                                                    onkeyup="ChangeRuntimeUsername();"
@@ -792,6 +844,7 @@ Model.getUsersInformationServiceDto.AccountType==1)
 
 
 
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 1)
@@ -800,6 +853,7 @@ Model.getUsersInformationServiceDto.AccountType==1)
                                             @("Enable")
                                     else
                                         @("Enable")
+
 
 
 
@@ -847,6 +901,7 @@ Model.getUsersInformationServiceDto.AccountType==2)
 
 
 
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 2)
@@ -855,6 +910,7 @@ Model.getUsersInformationServiceDto.AccountType==2)
                                             @("Enable")
                                     else
                                         @("Enable")
+
 
 
 
@@ -921,6 +977,7 @@ Model.getUsersInformationServiceDto.Privacy==1)
 
 
 
+
 ">
                             Festival Mode
                         </button>
@@ -934,6 +991,7 @@ Model.getUsersInformationServiceDto.Privacy==2)
                                 @("btn cur-p btn-primary")
                                 else
                                 @("btn cur-p btn-light")
+
 
 
 
@@ -1361,11 +1419,7 @@ Model.getUsersInformationServiceDto.Privacy==2)
             }
         }
         function showfileheader(file) {
-            var reader = new FileReader(file);
-            reader.readAsDataURL(file);
-            reader.onload = function (e) {
-                $('#dropzoneHeader div').html($('<img />').attr('src', e.target.result).fadeIn());
-            }
+            $("#dropzoneHeader").css("background", "url('" + URL.createObjectURL(file) + "') center/cover");
         }
     </script>
     @*End*@
@@ -1373,4 +1427,14 @@ Model.getUsersInformationServiceDto.Privacy==2)
     <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
     @*King Remaining Characters*@
     <script src="~/lib/kingfuncs/remainingcharacters/main.js"></script>
+    @{
+        if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null)
+        {
+            <script>
+            var header = @(Html.Raw(Json.Serialize(@Model.getUsersInformationServiceDto.Header)));
+            $("#dropzoneHeader").css("background", "url('" + "../../SiteTemplate/innerpages/images/user-header/" + header + "') center/cover");
+            </script>
+        }
+    }
 }
+
