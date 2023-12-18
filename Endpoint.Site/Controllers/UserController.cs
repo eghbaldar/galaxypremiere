@@ -148,7 +148,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeHeader(RequestUpdateUsersInformationHeaderServiceDto req)
-        {
+        {            
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.Header = Request.Form.Files[0];
             return Json(_userInformationFacade

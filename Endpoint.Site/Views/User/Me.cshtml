@@ -551,7 +551,7 @@
 <div id="TabUserPhotos" class="TabUserTabcontent">
     <style>
         .loader {
-            display: table-cell;
+            display: none;
             width: 100px;
             height: 100px;
             margin: auto;
@@ -599,9 +599,7 @@
                         <li>* The acceptable exensions: JPG, PNG, BMP</li>
                     </ul>
                 </div>
-
                 <div id="dropzoneAvatar" class="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Photo!=null? "dropped" : "")">
-
                     <div>
                         @{
                             if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Photo != null)
@@ -611,7 +609,7 @@
                         }
                     </div>
                     <div id="HeadshotLoader" class="loader"></div>
-                    <input type="file" />
+                    <input id="filedropzoneAvatar" type="file" />
                 </div>
 
                 @*===================*@
@@ -645,7 +643,7 @@
                         }
                     </div>*@
                     <div id="HeaderLoader" class="loader"></div>
-                    <input type="file" />
+                    <input id="filedropzoneHeader" type="file" />
                 </div>
                 @*===================*@
             </div>
@@ -1366,6 +1364,16 @@ Model.getUsersInformationServiceDto.Privacy==2)
             var file = this.files[0];
             // the following functions uses (fileextensionsize.js)
             if (checkSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152")) { // => 2 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadshotService.cs) and (UploadSmallFilesService.cs)
+                // ////////////////////////// Loaders
+                $("#HeadshotLoader").css("display","table-cell"); // circle loading on photo
+                $("#dropzoneAvatar *").attr("disabled", "disabled").off('click'); // disable clickable 
+                $("#dropzoneAvatar *").css({ // clear ...
+                    cursor: "wait",
+                    opacity:"0.6",                    
+                });
+                $("#filedropzoneAvatar").css("opacity","0");
+                pageWaitMe("progress"); // loading process starts
+                //////////////////////////////
                 // upload file here
                 var postData = new FormData();
                 postData.append("File", file);
@@ -1375,8 +1383,19 @@ Model.getUsersInformationServiceDto.Privacy==2)
                     type: 'POST',
                     data: postData,
                     url: 'MeHeadshot',
-                    success: function (data) {
+                    success: function (data) {                     
+                        //////////////////////////// Loaders
+                        $("#HeadshotLoader").css("display","none"); // circle loading on photo
+                         $("#dropzoneAvatar *").attr("disabled", false).off('click'); // enable clickable 
+                        $("#dropzoneAvatar *").css({ // clear ...
+                            opacity:"1",
+                            cursor: "pointer",
+                        });
+                        $("#filedropzoneAvatar").css("opacity","0");
+                          pageWaitMeRemove(); // loading process stops
+                        //////////////////////////////
                         $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
+                        $('#filedropzoneAvatar').val('');
                         showfileavatar(file); // showing file for demonstration ...
                         Swal.fire(data.message);
                     },
@@ -1386,10 +1405,21 @@ Model.getUsersInformationServiceDto.Privacy==2)
                 });
             }
         }
+        
         function dropheader(e) {
             var file = this.files[0];
             // the following functions uses (fileextensionsize.js)
             if (checkSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "5242880")) { // => 5 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadertService.cs) and (UploadSmallFilesService.cs)
+                 // ////////////////////////// Loaders
+                $("#HeaderLoader").css("display","table-cell"); // circle loading on photo
+                $("#dropzoneHeader *").attr("disabled", "disabled").off('click'); // disable clickable 
+                $("#dropzoneHeader *").css({ // clear ...
+                    cursor: "wait",
+                    opacity:"0.6",                    
+                });
+                $("#filedropzoneHeader").css("opacity","0");
+                pageWaitMe("progress"); // loading process starts
+                //////////////////////////////
                 // upload file here
                 var postData = new FormData();
                 postData.append("File", file);
@@ -1400,6 +1430,16 @@ Model.getUsersInformationServiceDto.Privacy==2)
                     data: postData,
                     url: 'MeHeader',
                     success: function (data) {
+                         //////////////////////////// Loaders
+                        $("#HeaderLoader").css("display","none"); // circle loading on photo
+                         $("#dropzoneHeader *").attr("disabled", false).off('click'); // enable clickable 
+                        $("#dropzoneHeader *").css({ // clear ...
+                            opacity:"1",
+                            cursor: "pointer",
+                        });
+                        $("#filedropzoneHeader").css("opacity","0");
+                          pageWaitMeRemove(); // loading process stops
+                        //////////////////////////////
                         $('#dropzoneHeader').removeClass('hover').addClass('dropped').find('img').remove();
                         showfileheader(file); // showing file for demonstration ...
                         Swal.fire(data.message);
@@ -1415,7 +1455,7 @@ Model.getUsersInformationServiceDto.Privacy==2)
             var reader = new FileReader(file);
             reader.readAsDataURL(file);
             reader.onload = function (e) {
-                $('#dropzoneAvatar div').html($('<img />').attr('src', e.target.result).fadeIn());
+                $('#dropzoneAvatar div:not(#HeadshotLoader)').html($('<img />').attr('src', e.target.result).fadeIn());
             }
         }
         function showfileheader(file) {
@@ -1427,6 +1467,7 @@ Model.getUsersInformationServiceDto.Privacy==2)
     <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
     @*King Remaining Characters*@
     <script src="~/lib/kingfuncs/remainingcharacters/main.js"></script>
+    @*Check GetUsersInformationServiceDto.Header Model*@
     @{
         if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null)
         {
