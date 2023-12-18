@@ -3748,6 +3748,26 @@ namespace galaxypremiere.Persistence.Migrations
                     b.ToTable("UsersLoginLog");
                 });
 
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPositions", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UsersPositions");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersActionsLog", b =>
                 {
                     b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")

@@ -40,6 +40,7 @@ namespace galaxypremiere.Persistence.Context
         public DbSet<Countries> Countries { get; set; } // Countries Table
         public DbSet<Languages> Languages { get; set; } // Languages Table
         public DbSet<UsersAddress> UsersAddress { get; set; } // Users' Address Table
+        public DbSet<UsersPositions> UsersPositions { get; set; } // Users' Position Table
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

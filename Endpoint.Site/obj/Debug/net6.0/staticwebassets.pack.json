@@ -2765,6 +2765,10 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\img-avatar.jpg"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\img-header.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\img-header.jpg"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\login_image.jpg",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\login_image.jpg"
     },
@@ -2827,22 +2831,6 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\6383850095724480251694671470948.jpeg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\6383850095724480251694671470948.jpeg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\6383850250876833241694671470948.jpeg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\6383850250876833241694671470948.jpeg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383850095327177911694671470948.jpeg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\6383850095327177911694671470948.jpeg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638385019709124470headshot.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\638385019709124470headshot.jpg"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\Chart.bundle.js",
@@ -4707,6 +4695,38 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\remainingCharacters\\main.js",
       "PackagePath": "staticwebassets\\lib\\kingFuncs\\remainingCharacters\\main.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\angle-down-solid.svg",
+      "PackagePath": "staticwebassets\\lib\\taggers\\assets\\svg\\angle-down-solid.svg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\angle-up-solid.svg",
+      "PackagePath": "staticwebassets\\lib\\taggers\\assets\\svg\\angle-up-solid.svg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\check-solid.svg",
+      "PackagePath": "staticwebassets\\lib\\taggers\\assets\\svg\\check-solid.svg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\times-solid.svg",
+      "PackagePath": "staticwebassets\\lib\\taggers\\assets\\svg\\times-solid.svg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\script.js",
+      "PackagePath": "staticwebassets\\lib\\taggers\\script.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\sellect.css",
+      "PackagePath": "staticwebassets\\lib\\taggers\\sellect.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\sellect.js",
+      "PackagePath": "staticwebassets\\lib\\taggers\\sellect.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\style.css",
+      "PackagePath": "staticwebassets\\lib\\taggers\\style.css"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\modal\\modal.css",

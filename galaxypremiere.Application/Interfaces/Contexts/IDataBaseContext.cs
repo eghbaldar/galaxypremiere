@@ -20,6 +20,7 @@ namespace galaxypremiere.Application.Interfaces.Contexts
         DbSet<Countries> Countries { get; set; } // Countries Table
         DbSet<Languages> Languages { get; set; } // Languages Table
         DbSet<UsersAddress> UsersAddress { get; set; } // Users' Address Address
+        DbSet<UsersPositions> UsersPositions { get; set; } // Users' Position Table
 
         //SaveChanges
         int SaveChanges(bool acceptAllChangesOnSuccess);

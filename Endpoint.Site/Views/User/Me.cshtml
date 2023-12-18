@@ -14,6 +14,8 @@
     @*datapicker*@
     <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
     @*end of datapicker*@
+    <link href="~/lib/taggers/style.css" rel="stylesheet" />
+    <link href="~/lib/taggers/sellect.css" rel="stylesheet" />
 }
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
 
@@ -160,7 +162,7 @@
 <div id="TabUserContact" class="TabUserTabcontent">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">ACCOUNT</h4>
+            <h4 class="card-title">CONTACT</h4>
         </div>
         <div class="card-body">
             <div class="basic-form">
@@ -355,11 +357,31 @@
 <div id="TabUserBIO" class="TabUserTabcontent">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">ACCOUNT</h4>
+            <h4 class="card-title">ABOUT ME</h4>
         </div>
         <div class="card-body">
             <div class="basic-form">
                 <form asp-action="UpdateBIO" id="frmBIO" method="post">
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Position (s) </span>
+                        <div class="form-floating">
+                            <div class="p-3">
+                    
+<input type="text" id="my-element">
+
+@*<div id="selected-list" class="demo-list selected-list"></div>*@
+@*<div id="unselected-list"  class="demo-list unselected-list"></div>*@
+
+
+                            </div>
+                            <div class="ps-3">
+                            <span>I WOULD LIKE TO SUGGEST A NEW POSITION TO GALAXYPREMEIRE SYSTEM</span>
+                            </DIV>
+                            
+                        </div>
+                    </div>
+
                     <div class="input-group mb-3">
                         <span class="input-group-text">Introduction</span>
                         <div class="form-floating">
@@ -367,7 +389,9 @@
                                       style="height:200px"
                                       class="form-control"
                                       onkeyup="updateCounter(this,'300');"
-                                      id="txtIntroduction">@{if (Model.getUsersInformationServiceDto != null)@Model.getUsersInformationServiceDto.Introduction}</textarea>
+                                      id="txtIntroduction">@{
+                                    if (Model.getUsersInformationServiceDto != null)@Model.getUsersInformationServiceDto.Introduction
+                                }</textarea>
 
                             <span class="form-label-counter" id="txtIntroductionCounter">0 / 300</span>
                         </div>
@@ -380,7 +404,9 @@
                                       style="height:200px"
                                       class="form-control"
                                       onkeyup="updateCounter(this,'7000');"
-                                      id="txtBIO">@{if (Model.getUsersInformationServiceDto != null)@Model.getUsersInformationServiceDto.BIO}</textarea>
+                                      id="txtBIO">@{
+                                    if (Model.getUsersInformationServiceDto != null)@Model.getUsersInformationServiceDto.BIO
+                                }</textarea>
 
                             <span class="form-label-counter" id="txtBIOCounter">0 / 7000</span>
                         </div>
@@ -393,7 +419,9 @@
                                       style="height:200px"
                                       class="form-control"
                                       onkeyup="updateCounter(this,'7000');"
-                                      id="txtNote">@{if (Model.getUsersInformationServiceDto != null)@Model.getUsersInformationServiceDto.Note}</textarea>
+                                      id="txtNote">@{
+                                    if (Model.getUsersInformationServiceDto != null)@Model.getUsersInformationServiceDto.Note
+                                }</textarea>
 
                             <span class="form-label-counter" id="txtNoteCounter">0 / 7000</span>
                         </div>
@@ -460,16 +488,8 @@
                     </ul>
                 </div>
                 <div id="dropzoneHeader" class="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null ? "dropped" : "")">
-                    @* <div>
-                    @{
-                    if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null)
-                    {
-                    <img src="~/SiteTemplate/innerpages/images/user-header/@Model.getUsersInformationServiceDto.Header" />
-                    }
-                    }
-                    </div>*@
                     <div id="HeaderLoader" class="loader"></div>
-                     <div id="HeaderChangePhoto" class="HoverChangePhoto">CHANGE</div>
+                    <div id="HeaderChangePhoto" class="HoverChangePhoto">CHANGE</div>
                     <input id="filedropzoneHeader" type="file" />
                 </div>
                 @*===================*@
@@ -517,7 +537,7 @@
                                             <input type="text"
                                                    value="@{
                                                    if(Model.getUsersInformationServiceDto!=null)
-                                                                                                                                                                                                                   @Model.getUsersInformationServiceDto.Username
+                                                                                                                                                                                                                       @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
                                                    onkeyup="ChangeRuntimeUsername();"
@@ -671,6 +691,7 @@ Model.getUsersInformationServiceDto.AccountType==1)
 
 
 
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 1)
@@ -679,6 +700,7 @@ Model.getUsersInformationServiceDto.AccountType==1)
                                             @("Enable")
                                     else
                                         @("Enable")
+
 
 
 
@@ -730,6 +752,7 @@ Model.getUsersInformationServiceDto.AccountType==2)
 
 
 
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 2)
@@ -738,6 +761,7 @@ Model.getUsersInformationServiceDto.AccountType==2)
                                             @("Enable")
                                     else
                                         @("Enable")
+
 
 
 
@@ -808,6 +832,7 @@ Model.getUsersInformationServiceDto.Privacy==1)
 
 
 
+
 ">
                             Festival Mode
                         </button>
@@ -834,11 +859,44 @@ Model.getUsersInformationServiceDto.Privacy==2)
 
 
 
+
 ">
                             My Mode
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="TabUserOther" class="TabUserTabcontent">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Other</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="UpdateBIO" id="frmBIO" method="post">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Introduction</span>
+                        <div class="form-floating">
+                            <textarea maxlength="300"
+                                      style="height:200px"
+                                      class="form-control"
+                                      onkeyup="updateCounter(this,'300');"
+                                      id="txtIntroduction">@{
+                                    if (Model.getUsersInformationServiceDto != null)
+                                        @Model.getUsersInformationServiceDto.Introduction
+                                }</textarea>
+
+                            <span class="form-label-counter" id="txtIntroductionCounter">0 / 300</span>
+                        </div>
+                    </div>
+                    <button type="button" onclick="UpdateInfoBIO()" id="" class="btn cur-p btn-primary">
+                        UPDATE
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -877,5 +935,9 @@ Model.getUsersInformationServiceDto.Privacy==2)
     }
     @*Executive Functions : Only for this page*@
     <script src="~/SiteTemplate/innerpages/pagecssjs/me/me.js"></script>
+    @*Tagger - TagPlug*@
+        <script src="~/lib/taggers/sellect.js"></script>
+    <script src="~/lib/taggers/script.js"></script>
+
 }
 
