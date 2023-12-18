@@ -14,13 +14,6 @@
         public string? BirthDay { get; set; } // 1989/02/09
         public string? BirthCity { get; set; }
         public string? CurrentCity { get; set; }
-
-
-
-
-
-
-
         public string? Position { get; set; } // Director, Producer, Actor, etc.
         public byte TimeZoneId { get; set; }
         public byte CurrencyId { get; set; }

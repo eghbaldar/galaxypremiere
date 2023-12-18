@@ -5,123 +5,8 @@
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
 @section Styles{
-    @*Upload*@
-    <style>
-        /*====================== Headshot*/
-        #dropzoneAvatar {
-            position: relative;
-            border: 5px dashed #000;
-            border-radius: 50%;
-            color: #000;
-            font: bold 14px arial;
-            height: 200px;
-            margin: 30px auto;
-            text-align: center;
-            width: 200px;
-            background-image: url('../sitetemplate/innerpages/images/layout_img/img-avatar.jpg');
-            background-size: cover;
-            background-repeat: repeat;
-        }
-
-            #dropzoneAvatar.hover {
-                border: 4px solid green;
-                color: green;
-            }
-
-            #dropzoneAvatar.dropped {
-                background: #F8F8F8;
-                border: 4px solid #CCCCCC;
-            }
-
-            #dropzoneAvatar div {
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-            }
-
-            #dropzoneAvatar img {
-                border-radius: 50%;
-                vertical-align: middle;
-                max-width: 100%;
-                max-height: 100%;
-                width: 100%;
-                height: 100%;
-            }
-
-            #dropzoneAvatar [type="file"] {
-                cursor: pointer;
-                position: absolute;
-                opacity: 0;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-            }
-        /*=================== Header*/
-        #dropzoneHeader {
-            position: relative;
-            border: 5px dashed #000;
-            border-radius: 15px;
-            color: #000;
-            font: bold 14px arial;
-            text-align: center;
-            background-image: url('../sitetemplate/innerpages/images/layout_img/img-avatar.jpg');
-            background-size: contain;
-            background-position:center;
-            background-repeat: no-repeat !important;
-            height:300px;
-        }
-
-            #dropzoneHeader img.wide {
-                border-radius: 15px;
-                max-width: 100%;
-                max-height: 100%;
-                height: auto;
-        }
-
-            #dropzoneHeader img.tall {
-                border-radius: 15px;
-                max-height: 100%;
-                max-width: 100%;
-                width: auto;
-        }
-
-            #dropzoneHeader.hover {
-                border: 4px solid green;
-                color: green;
-            }
-
-            #dropzoneHeader.dropped {
-                background: #F8F8F8;
-                border: 1px solid #CCCCCC;
-            }
-
-            #dropzoneHeader div {
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-            }
-
-/*            #dropzoneHeader img {
-            border-radius: 15px;
-            height: auto;
-            max-width: 100%;
-            }*/
-
-            #dropzoneHeader [type="file"] {
-                cursor: pointer;
-                position: absolute;
-                opacity: 0;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-            }
-    </style>
+    @*Only for this page*@
+    <link href="~/sitetemplate/innerpages/pagecssjs/me/me.css" rel="stylesheet" />
     @*King Remaining Characters*@
     <link href="~/lib/kingfuncs/remainingcharacters/main.css" rel="stylesheet" />
     @*King Password*@
@@ -129,19 +14,6 @@
     @*datapicker*@
     <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
     @*end of datapicker*@
-    <style>
-        .colorRed {
-            color: red;
-        }
-
-        .colorGreen {
-            color: green;
-        }
-
-        .colorGray {
-            color: gray;
-        }
-    </style>
 }
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
 
@@ -492,15 +364,10 @@
                         <span class="input-group-text">Introduction</span>
                         <div class="form-floating">
                             <textarea maxlength="300"
-                                      row="5"
                                       style="height:200px"
                                       class="form-control"
                                       onkeyup="updateCounter(this,'300');"
-                                      id="txtIntroduction"
-                                      value=@{
-                                      if(Model.getUsersInformationServiceDto != null)
-                                          @Model.getUsersInformationServiceDto.Introduction
-                                      }></textarea>
+                                      id="txtIntroduction">@{if (Model.getUsersInformationServiceDto != null)@Model.getUsersInformationServiceDto.Introduction}</textarea>
 
                             <span class="form-label-counter" id="txtIntroductionCounter">0 / 300</span>
                         </div>
@@ -513,11 +380,7 @@
                                       style="height:200px"
                                       class="form-control"
                                       onkeyup="updateCounter(this,'7000');"
-                                      id="txtBIO"
-                                      value=@{
-                                      if(Model.getUsersInformationServiceDto != null)
-                                          @Model.getUsersInformationServiceDto.BIO
-                                      }></textarea>
+                                      id="txtBIO">@{if (Model.getUsersInformationServiceDto != null)@Model.getUsersInformationServiceDto.BIO}</textarea>
 
                             <span class="form-label-counter" id="txtBIOCounter">0 / 7000</span>
                         </div>
@@ -530,11 +393,7 @@
                                       style="height:200px"
                                       class="form-control"
                                       onkeyup="updateCounter(this,'7000');"
-                                      id="txtNote"
-                                      value=@{
-                                      if(Model.getUsersInformationServiceDto != null)
-                                          @Model.getUsersInformationServiceDto.Note
-                                      }></textarea>
+                                      id="txtNote">@{if (Model.getUsersInformationServiceDto != null)@Model.getUsersInformationServiceDto.Note}</textarea>
 
                             <span class="form-label-counter" id="txtNoteCounter">0 / 7000</span>
                         </div>
@@ -549,40 +408,6 @@
 </div>
 
 <div id="TabUserPhotos" class="TabUserTabcontent">
-    <style>
-        .loader {
-            display: none;
-            width: 100px;
-            height: 100px;
-            margin: auto;
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid #3498db;
-            -webkit-animation: spin 2s linear infinite;
-            animation: spin 2s linear infinite;
-            opacity: .7;
-        }
-
-        @@-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-            }
-        }
-
-        @@keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">Headshot</h4>
@@ -594,7 +419,7 @@
                     Upload your headshot (Avatar)
                     <ul>
                         <li>This photo will be shown on your profile and will be accessed in public.</li>
-                        <li>* Click on the preset photo and choose your photo.</li>
+                        <li>* Click on the default photo to change or drag-and-drap your photo.</li>
                         <li>* Your file must be less than 2 MB</li>
                         <li>* The acceptable exensions: JPG, PNG, BMP</li>
                     </ul>
@@ -609,6 +434,7 @@
                         }
                     </div>
                     <div id="HeadshotLoader" class="loader"></div>
+                    <div id="HeadshotChangePhoto" class="HoverChangePhoto">CHANGE</div>
                     <input id="filedropzoneAvatar" type="file" />
                 </div>
 
@@ -628,21 +454,22 @@
                     Upload your profile header
                     <ul>
                         <li>This photo will be shown on your profile and will be accessed in public.</li>
-                        <li>* Click on the preset photo and choose your photo.</li>
+                        <li>* Click on the default photo to change or drag-and-drap your photo.</li>
                         <li>* Your file must be less than 5 MB</li>
                         <li>* The acceptable exensions: JPG, PNG, BMP</li>
                     </ul>
                 </div>
                 <div id="dropzoneHeader" class="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null ? "dropped" : "")">
-                   @* <div>
-                        @{
-                            if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null)
-                            {
-                                <img src="~/SiteTemplate/innerpages/images/user-header/@Model.getUsersInformationServiceDto.Header" />
-                            }
-                        }
+                    @* <div>
+                    @{
+                    if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null)
+                    {
+                    <img src="~/SiteTemplate/innerpages/images/user-header/@Model.getUsersInformationServiceDto.Header" />
+                    }
+                    }
                     </div>*@
                     <div id="HeaderLoader" class="loader"></div>
+                     <div id="HeaderChangePhoto" class="HoverChangePhoto">CHANGE</div>
                     <input id="filedropzoneHeader" type="file" />
                 </div>
                 @*===================*@
@@ -690,7 +517,7 @@
                                             <input type="text"
                                                    value="@{
                                                    if(Model.getUsersInformationServiceDto!=null)
-                                                                                                                                                                                                               @Model.getUsersInformationServiceDto.Username
+                                                                                                                                                                                                                   @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
                                                    onkeyup="ChangeRuntimeUsername();"
@@ -843,6 +670,7 @@ Model.getUsersInformationServiceDto.AccountType==1)
 
 
 
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 1)
@@ -851,6 +679,7 @@ Model.getUsersInformationServiceDto.AccountType==1)
                                             @("Enable")
                                     else
                                         @("Enable")
+
 
 
 
@@ -900,6 +729,7 @@ Model.getUsersInformationServiceDto.AccountType==2)
 
 
 
+
 ">
                                     @if (Model.getUsersInformationServiceDto != null)
                                         if (Model.getUsersInformationServiceDto.AccountType == 2)
@@ -908,6 +738,7 @@ Model.getUsersInformationServiceDto.AccountType==2)
                                             @("Enable")
                                     else
                                         @("Enable")
+
 
 
 
@@ -976,6 +807,7 @@ Model.getUsersInformationServiceDto.Privacy==1)
 
 
 
+
 ">
                             Festival Mode
                         </button>
@@ -989,6 +821,7 @@ Model.getUsersInformationServiceDto.Privacy==2)
                                 @("btn cur-p btn-primary")
                                 else
                                 @("btn cur-p btn-light")
+
 
 
 
@@ -1022,447 +855,6 @@ Model.getUsersInformationServiceDto.Privacy==2)
             uiLibrary: 'bootstrap5'
         });
     </script>
-    @*End of Datapicker*@
-    <script>
-        function UpdateInfoAccount() {
-            var firstname = $('#txtFirstname').val();
-            var middlename = $('#txtMiddlename').val();
-            var surname = $('#txtSurname').val();
-            var genderId = $('#selectGender').val();
-            var countryId = $('#selectCountry').val();
-            var languageId = $('#selectLanguage').val();
-            var birthday = $('#datepickerBirthday').val();
-            var birthcity = $('#txtBirthcity').val();
-            var currentCity = $('#txtCurrentCity').val();
-
-            var postData = {
-                'Firstname': firstname,
-                'MiddleName': middlename,
-                'Surname': surname,
-                'Gender': genderId,
-                'CountryId': countryId,
-                'LanguageId': languageId,
-                'BirthDay': birthday,
-                'BirthCity': birthcity,
-                'CurrentCity': currentCity,
-            }
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: 'POST',
-                data: postData,
-                url: 'MeAccount',
-                success: function (data) {
-                    Swal.fire(data.message);
-                },
-                error: function (request, status, error) {
-                    alert(request.responseText);
-                }
-            });
-        }
-        function UpdateInfoContact() {
-            var address1 = $('#txtAddress1').val();
-            var address2 = $('#txtAddress2').val();
-            var city = $('#txtCity').val();
-            var state = $('#txtState').val();
-            var postalCode = $('#txtPostalCode').val();
-            var phone = $('#txtPhone').val();
-            var recoveryEmail = $('#txtRecoveryEmail').val();
-            var website = $('#txtWebsite').val();
-            var facebook = $('#txtFacebook').val();
-            var instagram = $('#txtInstagram').val();
-            var twitter = $('#txtTwitter').val();
-            var stage32 = $('#txtStage32').val();
-            var youtube = $('#txtYoutube').val();
-            var linkden = $('#txtLinkden').val();
-            var vimeo = $('#txtVimeo').val();
-            var imdb = $('#txtIMDb').val();
-
-            var postData = {
-                'Address1': address1,
-                'Address2': address2,
-                'City': city,
-                'State': state,
-                'PostalCode': postalCode,
-                'Phone': phone,
-                'RecoveryEmail': recoveryEmail,
-                'Website': website,
-                'Facebook': facebook,
-                'Instagram': instagram,
-                'Twitter': twitter,
-                'Stage32': stage32,
-                'Youtube': youtube,
-                'Linkden': linkden,
-                'Vimeo': vimeo,
-                'Imdb': imdb,
-            }
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: 'POST',
-                data: postData,
-                url: 'MeContact',
-                success: function (data) {
-                    Swal.fire(data.message);
-                },
-                error: function (request, status, error) {
-                    alert(request.responseText);
-                }
-            });
-        }
-        function UpdateInfoPrivacy(e, privacy) {
-            var postData = {
-                'Privacy': privacy
-            }
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: 'POST',
-                data: postData,
-                url: 'MePrivacy',
-                success: function (data) {
-
-                    // change styles of buttons
-                    $("#btnPrivacy0").addClass('btn cur-p btn-light');
-                    $("#btnPrivacy1").addClass('btn cur-p btn-light');
-                    $("#btnPrivacy2").addClass('btn cur-p btn-light');
-                    $(e).removeClass();
-                    $(e).addClass('btn cur-p btn-primary');
-                    // end
-
-                    Swal.fire(data.message);
-                },
-                error: function (request, status, error) {
-                    alert(request.responseText);
-                }
-            });
-        }
-        function UpdateInfoUsername() {
-            var username = $("#txtUsername").val();
-            var postData = {
-                'username': username,
-            };
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: 'POST',
-                data: postData,
-                url: 'MeUsername',
-                success: function (data) {
-                    if (data.isSuccess) {
-                        Swal.fire(data.message);
-                    } else {
-                        var check = data.data.status;
-                        switch (check) {
-                            case 0:
-                                //duplicated!
-                                Swal.fire(data.message);
-                                break;
-                            case 2:
-                                //user did not find
-                                Swal.fire(data.message);
-                                break;
-                        }
-                    }
-                },
-                error: function (request, status, error) {
-                    alert('err: ' + request.responseText);
-                }
-            });
-        }
-        function ChangeRuntimeUsername(e) {
-
-            var input = $("#txtUsername").val();
-            $("#spanCurrentUsername").html("<a target='_blank' href='https://galaxypremiere.com/" + input + "'>www.galaxypremiere.com/" + input + "</a>");
-
-            var postData = {
-                'Username': input,
-            };
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: 'POST',
-                data: postData,
-                url: 'MeUsernameRuntime',
-                success: function (data) {
-                    if (!data) {
-                        $("#iconCurrentUsername").removeClass();
-                        $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
-                    } else {
-                        $("#iconCurrentUsername").removeClass();
-                        $("#iconCurrentUsername").addClass("fa-solid fa-circle-xmark colorRed");
-                    }
-                },
-                error: function (request, status, error) {
-                    alert('err: ' + request.responseText);
-                }
-            });
-        }
-        function UpdateInfoPassword() {
-
-            var password = $("#txtPassword").val();
-            var postData = {
-                'Password': password
-            }
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: 'POST',
-                data: postData,
-                url: 'MePassword',
-                success: function (data) {
-                    Swal.fire(data.message);
-                },
-                error: function (request, status, error) {
-                    alert(request.responseText);
-                }
-            });
-        }
-        function UpdateInfoAccountType(e, type) {
-
-            var typeCode;
-            switch (type) { //AccountTypeConstants
-                case 'FILMMAKER':
-                    typeCode = 0;
-                    break;
-                case 'DISTRIBUTION':
-                    typeCode = 1;
-                    break;
-                case 'FESTIVAL':
-                    typeCode = 2;
-                    break;
-            }
-            var postData = {
-                'AccountType': typeCode,
-            }
-
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: 'POST',
-                data: postData,
-                url: 'MeAccountType',
-                success: function (data) {
-
-                    // change styles of buttons
-                    $("#btnAccountType0").addClass('btn cur-p btn-light');
-                    $("#btnAccountType0").text('Enable');
-                    $("#btnAccountType1").addClass('btn cur-p btn-light');
-                    $("#btnAccountType1").text('Enable');
-                    $("#btnAccountType2").addClass('btn cur-p btn-light');
-                    $("#btnAccountType2").text('Enable');
-                    $(e).removeClass();
-                    $(e).addClass('btn cur-p btn-primary');
-                    $(e).text('Enabled');
-                    // end
-
-                    Swal.fire(data.message);
-                },
-                error: function (request, status, error) {
-                    alert(request.responseText);
-                }
-            });
-        }
-        function UpdateInfoBIO() {
-
-            var intro = $("#txtIntroduction").val();
-            var bio = $("#txtBIO").val();
-            var note = $("#txtNote").val();
-
-            var postData = {
-                'Introduction': intro,
-                'BIO': bio,
-                'Note': note,
-            }
-
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: 'POST',
-                data: postData,
-                url: 'MeBIO',
-                success: function (data) {
-                    Swal.fire(data.message);
-                },
-                error: function (request, status, error) {
-                    alert(request.responseText);
-                }
-            });
-        }
-        // set default value of iconCurrentUsername
-        $(document).ready(function () {
-            var input = $("#txtUsername").val();
-            if (input == '') {
-                $("#iconCurrentUsername").removeClass();
-                $("#iconCurrentUsername").addClass("fa-solid fa-hourglass colorGray");
-            } else {
-                $("#iconCurrentUsername").removeClass();
-                $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
-            }
-        });
-    </script>
-    @*Tabs*@
-    <script>
-        function userAccountNavigation(evt, tabName) {
-            // Declare all variables
-            var i, tabcontent, tablinks;
-
-            // Get all elements with class="tabcontent" and hide them
-            tabcontent = document.getElementsByClassName("TabUserTabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-
-            // Get all elements with class="tablinks" and remove the class "active"
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-
-            // Show the current tab, and add an "active" class to the button that opened the tab
-            document.getElementById(tabName).style.display = "block";
-            //alert(evt.currentTarget.className);
-            evt.currentTarget.className += " active";
-        }
-        document.getElementById("TabUserAccountDefaultOpen").click();
-    </script>
-    @*End of Tabs*@
-    @*Upload Js*@
-    <script>
-        var dropzoneavatar = $("#dropzoneAvatar");
-        var dropzoneheader = $("#dropzoneHeader");
-        var inputavatar = dropzoneavatar.find('input');
-        var inputheader = dropzoneheader.find('input');
-
-        dropzoneavatar.on({
-            dragenter: draginavatar,
-            dragleave: dragoutavatar
-        });
-        dropzoneheader.on({
-            dragenter: dragindropzoneheader,
-            dragleave: dragoutdropzoneheader
-        });
-
-        inputavatar.on('change', dropavatar);
-        inputheader.on('change', dropheader);
-
-        function draginavatar(e) { //function for drag into element, just turns the bix X white
-            $(dropzoneavatar).addClass('hover');
-        }
-        function dragindropzoneheader(e) { //function for drag into element, just turns the bix X white
-            $(dropzoneheader).addClass('hover');
-        }
-
-        function dragoutavatar(e) { //function for dragging out of element
-            $(dropzoneavatar).removeClass('hover');
-        }
-        function dragoutdropzoneheader(e) { //function for dragging out of element
-            $(dropzoneheader).removeClass('hover');
-        }
-
-        function dropavatar(e) {
-            var file = this.files[0];
-            // the following functions uses (fileextensionsize.js)
-            if (checkSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152")) { // => 2 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadshotService.cs) and (UploadSmallFilesService.cs)
-                // ////////////////////////// Loaders
-                $("#HeadshotLoader").css("display","table-cell"); // circle loading on photo
-                $("#dropzoneAvatar *").attr("disabled", "disabled").off('click'); // disable clickable 
-                $("#dropzoneAvatar *").css({ // clear ...
-                    cursor: "wait",
-                    opacity:"0.6",                    
-                });
-                $("#filedropzoneAvatar").css("opacity","0");
-                pageWaitMe("progress"); // loading process starts
-                //////////////////////////////
-                // upload file here
-                var postData = new FormData();
-                postData.append("File", file);
-                $.ajax({
-                    contentType: false,
-                    processData: false,
-                    type: 'POST',
-                    data: postData,
-                    url: 'MeHeadshot',
-                    success: function (data) {                     
-                        //////////////////////////// Loaders
-                        $("#HeadshotLoader").css("display","none"); // circle loading on photo
-                         $("#dropzoneAvatar *").attr("disabled", false).off('click'); // enable clickable 
-                        $("#dropzoneAvatar *").css({ // clear ...
-                            opacity:"1",
-                            cursor: "pointer",
-                        });
-                        $("#filedropzoneAvatar").css("opacity","0");
-                          pageWaitMeRemove(); // loading process stops
-                        //////////////////////////////
-                        $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
-                        $('#filedropzoneAvatar').val('');
-                        showfileavatar(file); // showing file for demonstration ...
-                        Swal.fire(data.message);
-                    },
-                    error: function (req, res, err) {
-                        alert('req' + req.responseText + 'res:' + res + 'err:' + err);
-                    }
-                });
-            }
-        }
-        
-        function dropheader(e) {
-            var file = this.files[0];
-            // the following functions uses (fileextensionsize.js)
-            if (checkSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "5242880")) { // => 5 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadertService.cs) and (UploadSmallFilesService.cs)
-                 // ////////////////////////// Loaders
-                $("#HeaderLoader").css("display","table-cell"); // circle loading on photo
-                $("#dropzoneHeader *").attr("disabled", "disabled").off('click'); // disable clickable 
-                $("#dropzoneHeader *").css({ // clear ...
-                    cursor: "wait",
-                    opacity:"0.6",                    
-                });
-                $("#filedropzoneHeader").css("opacity","0");
-                pageWaitMe("progress"); // loading process starts
-                //////////////////////////////
-                // upload file here
-                var postData = new FormData();
-                postData.append("File", file);
-                $.ajax({
-                    contentType: false,
-                    processData: false,
-                    type: 'POST',
-                    data: postData,
-                    url: 'MeHeader',
-                    success: function (data) {
-                         //////////////////////////// Loaders
-                        $("#HeaderLoader").css("display","none"); // circle loading on photo
-                         $("#dropzoneHeader *").attr("disabled", false).off('click'); // enable clickable 
-                        $("#dropzoneHeader *").css({ // clear ...
-                            opacity:"1",
-                            cursor: "pointer",
-                        });
-                        $("#filedropzoneHeader").css("opacity","0");
-                          pageWaitMeRemove(); // loading process stops
-                        //////////////////////////////
-                        $('#dropzoneHeader').removeClass('hover').addClass('dropped').find('img').remove();
-                        showfileheader(file); // showing file for demonstration ...
-                        Swal.fire(data.message);
-                    },
-                    error: function (req, res, err) {
-                        alert('req' + req.responseText + 'res:' + res + 'err:' + err);
-                    }
-                });
-            }
-        }
-
-        function showfileavatar(file) {
-            var reader = new FileReader(file);
-            reader.readAsDataURL(file);
-            reader.onload = function (e) {
-                $('#dropzoneAvatar div:not(#HeadshotLoader)').html($('<img />').attr('src', e.target.result).fadeIn());
-            }
-        }
-        function showfileheader(file) {
-            $("#dropzoneHeader").css("background", "url('" + URL.createObjectURL(file) + "') center/cover");
-        }
-    </script>
-    @*End*@
     @*King Check File Extension & Size*@
     <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
     @*King Remaining Characters*@
@@ -1472,10 +864,18 @@ Model.getUsersInformationServiceDto.Privacy==2)
         if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Header != null)
         {
             <script>
-            var header = @(Html.Raw(Json.Serialize(@Model.getUsersInformationServiceDto.Header)));
-            $("#dropzoneHeader").css("background", "url('" + "../../SiteTemplate/innerpages/images/user-header/" + header + "') center/cover");
+                var header = @(Html.Raw(Json.Serialize(@Model.getUsersInformationServiceDto.Header)));
+                $("#dropzoneHeader").css("background", "url('" + "../../SiteTemplate/innerpages/images/user-header/" + header + "') center/cover");
+            </script>
+        }
+        if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Photo != null)
+        {
+            <script>
+                $("#dropzoneAvatar").css("background-image", "none");
             </script>
         }
     }
+    @*Executive Functions : Only for this page*@
+    <script src="~/SiteTemplate/innerpages/pagecssjs/me/me.js"></script>
 }
 

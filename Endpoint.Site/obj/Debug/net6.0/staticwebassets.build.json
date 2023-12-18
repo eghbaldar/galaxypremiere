@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Q7MObxxi71dSH8i+Mtwlue8QbmY8YL21lijTV83KQ+k=",
+  "Hash": "ld3D3XY2FnY6WHi/aeNAsZPNMIdkyUP+IngYUrxZuwo=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -11560,12 +11560,12 @@
       "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383849496534831251694671470948.jpeg",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\6383850095724480251694671470948.jpeg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/6383849496534831251694671470948.jpeg",
+      "RelativePath": "SiteTemplate/innerpages/images/user-header/6383850095724480251694671470948.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11574,15 +11574,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383849496534831251694671470948.jpeg"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\6383850095724480251694671470948.jpeg"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638384950041781528img_avatar.png",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\6383850250876833241694671470948.jpeg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/638384950041781528img_avatar.png",
+      "RelativePath": "SiteTemplate/innerpages/images/user-header/6383850250876833241694671470948.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11591,15 +11591,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638384950041781528img_avatar.png"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\6383850250876833241694671470948.jpeg"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638384950142629166headshot.jpg",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383850095327177911694671470948.jpeg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/638384950142629166headshot.jpg",
+      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/6383850095327177911694671470948.jpeg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11608,15 +11608,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638384950142629166headshot.jpg"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383850095327177911694671470948.jpeg"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383849510565659921694671470948.jpeg",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638385019709124470headshot.jpg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/6383849510565659921694671470948.jpeg",
+      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/638385019709124470headshot.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11625,24 +11625,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383849510565659921694671470948.jpeg"
-    },
-    {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638384951253968872img_avatar.png",
-      "SourceId": "Endpoint.Site",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
-      "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/638384951253968872img_avatar.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638384951253968872img_avatar.png"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638385019709124470headshot.jpg"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\analyser.js",
@@ -18137,6 +18120,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\modules\\zingchart-zoom.min.js"
+    },
+    {
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.css",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "SiteTemplate/innerpages/pagecssjs/me/me.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.css"
+    },
+    {
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.js",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "SiteTemplate/innerpages/pagecssjs/me/me.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.js"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\plugins\\innerNavigation\\style.css",
