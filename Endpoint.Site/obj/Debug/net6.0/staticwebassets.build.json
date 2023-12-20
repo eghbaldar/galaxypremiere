@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "waZb03mFQLP4smhyrRKdDWEXoFvZNWsPOt5/Z0nAMZM=",
+  "Hash": "DSxoYh2YOmeuV5H8GIws52bQnzTXWH6irtSz6K91yko=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -9231,12 +9231,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\kingFuncs\\remainingCharacters\\main.js"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\angle-down-solid.svg",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\angle-down-solid.svg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "lib/taggers/assets/svg/angle-down-solid.svg",
+      "RelativePath": "lib/taggers/assets+/svg/angle-down-solid.svg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9245,15 +9245,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\taggers\\assets\\svg\\angle-down-solid.svg"
+      "OriginalItemSpec": "wwwroot\\lib\\taggers\\assets+\\svg\\angle-down-solid.svg"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\angle-up-solid.svg",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\angle-up-solid.svg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "lib/taggers/assets/svg/angle-up-solid.svg",
+      "RelativePath": "lib/taggers/assets+/svg/angle-up-solid.svg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9262,15 +9262,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\taggers\\assets\\svg\\angle-up-solid.svg"
+      "OriginalItemSpec": "wwwroot\\lib\\taggers\\assets+\\svg\\angle-up-solid.svg"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\check-solid.svg",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\check-solid.svg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "lib/taggers/assets/svg/check-solid.svg",
+      "RelativePath": "lib/taggers/assets+/svg/check-solid.svg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9279,15 +9279,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\taggers\\assets\\svg\\check-solid.svg"
+      "OriginalItemSpec": "wwwroot\\lib\\taggers\\assets+\\svg\\check-solid.svg"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\times-solid.svg",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\times-solid.svg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "lib/taggers/assets/svg/times-solid.svg",
+      "RelativePath": "lib/taggers/assets+/svg/times-solid.svg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9296,24 +9296,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\taggers\\assets\\svg\\times-solid.svg"
-    },
-    {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\script.js",
-      "SourceId": "Endpoint.Site",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
-      "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "lib/taggers/script.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\taggers\\script.js"
+      "OriginalItemSpec": "wwwroot\\lib\\taggers\\assets+\\svg\\times-solid.svg"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\sellect.css",
@@ -9348,23 +9331,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\taggers\\sellect.js"
-    },
-    {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\style.css",
-      "SourceId": "Endpoint.Site",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
-      "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "lib/taggers/style.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\taggers\\style.css"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\modal\\modal.css",

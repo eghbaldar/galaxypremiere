@@ -14,7 +14,7 @@
     @*datapicker*@
     <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
     @*end of datapicker*@
-    <link href="~/lib/taggers/style.css" rel="stylesheet" />
+    @*Tagger*@
     <link href="~/lib/taggers/sellect.css" rel="stylesheet" />
 }
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
@@ -365,13 +365,13 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Position (s) </span>
+                         <button onclick="asn()"  type="button">test</button>
                         <div class="form-floating">
                             <div class="p-3">
-                    
-<input type="text" id="my-element">
-
-@*<div id="selected-list" class="demo-list selected-list"></div>*@
-@*<div id="unselected-list"  class="demo-list unselected-list"></div>*@
+                   
+                            <input type="text" id="my-element">
+                            @*<div id="selected-list" class="demo-list selected-list"></div>*@
+                            @*<div id="unselected-list"  class="demo-list unselected-list"></div>*@
 
 
                             </div>
@@ -936,8 +936,6 @@ Model.getUsersInformationServiceDto.Privacy==2)
     @*Executive Functions : Only for this page*@
     <script src="~/SiteTemplate/innerpages/pagecssjs/me/me.js"></script>
     @*Tagger - TagPlug*@
-        <script src="~/lib/taggers/sellect.js"></script>
-    <script src="~/lib/taggers/script.js"></script>
-
+    <script src="~/lib/taggers/sellect.js"></script>
 }
 

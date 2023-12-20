@@ -2,6 +2,7 @@
 using Endpoint.Site.Models.Users.GetInformation;
 using Endpoint.Site.Utilities;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UserPosition.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationAccountType;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationBIO;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationContacat;
@@ -47,16 +48,19 @@ namespace Endpoint.Site.Controllers
         private readonly IUserInformationFacade _userInformationFacade;
         private readonly ICountiresFacade _countiresFacade;
         private readonly ILanguagesFacade _languagesFacade;
+        private readonly IUserPositionFacade _PositionFacade;
         private readonly IMapper _mapper;
         public UserController(
             IUserInformationFacade userInformationFacade,
             ICountiresFacade countiresFacade,
             ILanguagesFacade languagesFacade,
+            IUserPositionFacade positionFacade,
             IMapper mapper)
         {
             _userInformationFacade = userInformationFacade;
             _countiresFacade = countiresFacade;
             _languagesFacade = languagesFacade;
+            _PositionFacade = positionFacade;
             _mapper = mapper;
         }
         [HttpGet]
@@ -154,6 +158,12 @@ namespace Endpoint.Site.Controllers
             return Json(_userInformationFacade
                 .UpdateUsersInformationHeaderService
                 .Execute(req));
+        }
+        [HttpGet]
+        public IActionResult Positions()
+        {
+            var p = _PositionFacade.GetUsersPositionsService.Execute();
+            return Json(p);
         }
     }
 }

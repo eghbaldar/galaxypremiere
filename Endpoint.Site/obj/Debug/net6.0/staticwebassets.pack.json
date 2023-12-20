@@ -4697,24 +4697,20 @@
       "PackagePath": "staticwebassets\\lib\\kingFuncs\\remainingCharacters\\main.js"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\angle-down-solid.svg",
-      "PackagePath": "staticwebassets\\lib\\taggers\\assets\\svg\\angle-down-solid.svg"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\angle-down-solid.svg",
+      "PackagePath": "staticwebassets\\lib\\taggers\\assets+\\svg\\angle-down-solid.svg"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\angle-up-solid.svg",
-      "PackagePath": "staticwebassets\\lib\\taggers\\assets\\svg\\angle-up-solid.svg"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\angle-up-solid.svg",
+      "PackagePath": "staticwebassets\\lib\\taggers\\assets+\\svg\\angle-up-solid.svg"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\check-solid.svg",
-      "PackagePath": "staticwebassets\\lib\\taggers\\assets\\svg\\check-solid.svg"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\check-solid.svg",
+      "PackagePath": "staticwebassets\\lib\\taggers\\assets+\\svg\\check-solid.svg"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets\\svg\\times-solid.svg",
-      "PackagePath": "staticwebassets\\lib\\taggers\\assets\\svg\\times-solid.svg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\script.js",
-      "PackagePath": "staticwebassets\\lib\\taggers\\script.js"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\times-solid.svg",
+      "PackagePath": "staticwebassets\\lib\\taggers\\assets+\\svg\\times-solid.svg"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\sellect.css",
@@ -4723,10 +4719,6 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\sellect.js",
       "PackagePath": "staticwebassets\\lib\\taggers\\sellect.js"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\style.css",
-      "PackagePath": "staticwebassets\\lib\\taggers\\style.css"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\modal\\modal.css",
