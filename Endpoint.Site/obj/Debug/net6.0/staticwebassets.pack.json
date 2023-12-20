@@ -2833,6 +2833,10 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383867527332096091694671470948.jpeg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\6383867527332096091694671470948.jpeg"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\Chart.bundle.js",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\js\\Chart.bundle.js"
     },
@@ -4695,22 +4699,6 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\remainingCharacters\\main.js",
       "PackagePath": "staticwebassets\\lib\\kingFuncs\\remainingCharacters\\main.js"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\angle-down-solid.svg",
-      "PackagePath": "staticwebassets\\lib\\taggers\\assets+\\svg\\angle-down-solid.svg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\angle-up-solid.svg",
-      "PackagePath": "staticwebassets\\lib\\taggers\\assets+\\svg\\angle-up-solid.svg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\check-solid.svg",
-      "PackagePath": "staticwebassets\\lib\\taggers\\assets+\\svg\\check-solid.svg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\assets+\\svg\\times-solid.svg",
-      "PackagePath": "staticwebassets\\lib\\taggers\\assets+\\svg\\times-solid.svg"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\sellect.css",

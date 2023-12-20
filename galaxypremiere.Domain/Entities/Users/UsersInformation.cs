@@ -27,16 +27,12 @@ namespace galaxypremiere.Domain.Entities.Users
         public string? BirthCity { get; set; }/*=========*/
         public string? CurrentCity { get; set; }/*=========*/
 
-        /* Other */
-        public string? Position { get; set; } // Director, Producer, Actor, etc.        
-        public byte TimeZoneId{ get; set; }
-        public byte CurrencyId { get; set; }
-
         /*Photo*/
         public string? Photo{ get; set; } // avatar
         public string? Header { get; set; } // header phone (landscape)
 
         /*About Me*/
+        public string? Position { get; set; } // Director, Producer, Actor, etc. 
         public string? Introduction { get; set; } //max length: 300
         public string? BIO{ get; set; } //max length: 7000
         public string? Note { get; set; } // it's Trivia
@@ -47,5 +43,10 @@ namespace galaxypremiere.Domain.Entities.Users
         public string? Username { get; set; } // www.galaxypremiere.com/Username
         public byte AccountType { get; set; } // check [AccountTypeConstants.cs]
         public byte Privacy { get; set; } = 0; // check [PrivacyConstants.cs]
+
+        /* Other */
+        public byte TimeZoneId { get; set; }
+        public byte CurrencyId { get; set; }
+
     }
 }

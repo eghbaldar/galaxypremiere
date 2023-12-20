@@ -3763,6 +3763,12 @@ namespace galaxypremiere.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Suggestion")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("UsersPositions");

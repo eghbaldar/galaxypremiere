@@ -4,18 +4,11 @@
  * @author Lidia Freitas <lidiafreitas.me@gmail.com>
  * @author Alimohammad Eghbadar <info@eghbaldar.ir>
  */
-var destAr = [];
 var mySellect;
-
-
-//var destAr = ['asd', 'asdas'];
-
-
 
 (function () {
 
     this.sellect = function (selector, options) {
-        /*jslint newcap:true */
         return new _Sellect(selector, options);
     };
 
@@ -40,23 +33,14 @@ var mySellect;
         var self = this;
 
         if (self.options) {
-            self.options.originList.forEach(function (item) {
-
-                /////////////////////
+            self.options.originList.forEach(function (item) { /*changed!*/
                 var array = $.map(item, function (value) {
                     return [value];
                 });
-                //alert(array[1]);
-                ////////////////////
-
                 createListsHTML(self.originListHTML, array[0], array[1]);
             });
 
-            self.options.destinationList.forEach(function (item) {
-
-                //var array = $.map(item, function (value) {
-                //    return [value];
-                //});   
+            self.options.destinationList.forEach(function (item) { 
                 createListsHTML(self.destinationListHTML, item);
             });
 
@@ -75,8 +59,8 @@ var mySellect;
         listItem.classList.add('sellect-trigger', 'sellect-item');
         listIcon.classList.add('fa', 'fa-times', 'sellect-close-icon');
 
-        listItem.innerHTML = item;////////////////////////////////
-        listItem.value = key;////////////////////////////////
+        listItem.innerHTML = item;
+        listItem.value = key; /*changed!*/
         listItem.appendChild(listIcon);
         list.appendChild(listItem);
     }
@@ -86,39 +70,30 @@ var mySellect;
 
         if (self.options) {
             self.originListHTML.addEventListener('click', function () {
-                //when a item from the original list will be clicked
+                //when an item from the original list will be clicked
                 if (event.target.tagName === 'DIV') return false;
-
                 //alert(event.target.innerText); // value
                 //alert(event.target.value); // key
-
                 swapItemDOM.call(self, event.target, self.destinationListHTML);
             }, false);
 
             self.destinationListHTML.addEventListener('click', function () {
-                //when a item from the destination list will be clicked
+                //when an item from the destination list will be clicked
                 if (event.target.tagName === 'DIV') return false;
-
-
-                //destAr.push(event.target.innerText); //************* */
                 //alert(event.target.innerText); // value
                 //alert(event.target.value); // key
-
-
                 swapItemDOM.call(self, event.target, self.originListHTML);
             }, false);
 
             self.container.addEventListener('click', function () {
                 // when the list are going to be opened (click)
-                taggerInit();
                 openOriginList.call(self);
-            }, false); /**/
+            }, false);
 
             self.arrow.addEventListener('click', function () {
                 // when the list are going to be opened
-                taggerInit();
                 toggleOriginList.call(self);
-            }, false); /**/
+            }, false);
 
             self.options.element.addEventListener('keyup', function () {
                 var key = event.keyCode || event.charCode;
@@ -161,7 +136,7 @@ var mySellect;
                 closeOriginList.call(self);
             }, false);
         }
-    } /**/
+    }
 
     function swapItemDOM(trigger, list) {
         var self = this;
@@ -370,15 +345,12 @@ var mySellect;
     _Sellect.prototype.init = function () {
         var self = this;
 
-        if (self.options) {
+        if (self.options) { /*changed!*/
             self.options.destinationList.forEach(function (itemOuter) {
                 self.options.originList = self.options.originList.filter(function (itemInner) {
-                    /////////////////////
                     var array = $.map(itemInner, function (value) {
                         return [value];
                     });
-                    //alert(array[1]);
-                    ////////////////////
                     return array[0] !== itemOuter;
                 });
             });
@@ -398,9 +370,7 @@ var mySellect;
         var self = this;
         self.options.destinationList = [];
         for (var i = 0; i < self.destinationListHTML.childNodes.length; i++) {
-            //alert(self.destinationListHTML.childNodes[i].textContent);
             self.options.destinationList.push(self.destinationListHTML.childNodes[i].textContent);
-            //destAr.push(self.destinationListHTML.childNodes[i].textContent);
         }
 
         return self.options.destinationList;
@@ -471,17 +441,14 @@ function taggerInit() {
                 for (var i in arr) {
                     if (arr.hasOwnProperty(i)) {
                         var elm = arr[i];
-
-                        var a = ['Value', 'Key'];
+                        var elements = ['Value', 'Key'];
                         var obj = {};
-                        obj[a[0]] = elm['position'];
-                        obj[a[1]] = i;
-
+                        obj[elements[0]] = elm['position'];
+                        obj[elements[1]] = elm['id'];
                         lst.push(obj);
-                        //Object.assign(lst, { ID: i });
                     }
                 }
-                clientList = [''];
+                clientList = [];
             },
             async: false, // make ajax request synchronous
             error: function (req, res, err) {
@@ -499,46 +466,13 @@ function taggerInit() {
     }
 }
 
-function asn() {
-    //alert(destAr);
-    //sellect-destination-list
+function getSelectedItems() {
 
-    var textvalues = [];
+    var itemsValues = [];
     $(".sellect-destination-list>span").each(function () {
-        textvalues.push($(this).val())
+        itemsValues.push($(this).val())
     });
-
-
-    alert(textvalues);
+    return itemsValues;
 }
 
-// demo code to return lists
-function updateDemoLists(event, item) {
-    //var selectedList = document.getElementById('selected-list');
-    //var unselectedList = document.getElementById('unselected-list');
-    //var selectedArr;
-    //var unselectedArr;
-
-    //while (selectedList.firstChild) {
-    //    selectedList.removeChild(selectedList.firstChild);
-    //}
-
-    //while (unselectedList.firstChild) {
-    //    unselectedList.removeChild(unselectedList.firstChild);
-    //}
-
-    //selectedArr = mySellect.getSelected();
-    //unselectedArr = mySellect.getUnselected();
-
-    //selectedArr.forEach(function (item, index, arr) {
-    //    var span = document.createElement('span');
-    //    span.innerText = item;
-    //    selectedList.appendChild(span);
-    //});
-
-    //unselectedArr.forEach(function (item, index, arr) {
-    //    var span = document.createElement('span');
-    //    span.innerText = item;
-    //    //unselectedList.appendChild(span);
-    //});
-}
+function updateDemoLists(event, item) {}

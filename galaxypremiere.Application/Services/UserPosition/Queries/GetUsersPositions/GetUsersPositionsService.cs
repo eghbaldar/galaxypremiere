@@ -16,6 +16,7 @@ namespace galaxypremiere.Application.Services.UserPosition.Queries.GetUsersPosit
                 .Select(x => new GetUsersPositionsServiceDto
                 {
                     Position = x.Position,
+                    Id=x.Id,
                 })
                 .ToList();
             return new ResultsersPositionsServiceDto

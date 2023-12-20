@@ -243,11 +243,13 @@ function UpdateInfoBIO() {
     var intro = $("#txtIntroduction").val();
     var bio = $("#txtBIO").val();
     var note = $("#txtNote").val();
+    var position = getSelectedItems().toString(); // toString() is converting array to string, unless you will be able to get the first item of array
 
     var postData = {
         'Introduction': intro,
         'BIO': bio,
         'Note': note,
+        'Position': position,
     }
 
     $.ajax({

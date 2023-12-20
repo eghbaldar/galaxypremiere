@@ -1,36 +1,35 @@
-.sellect-element{
+.sellect-element {
     border: none;
     height: 18px;
     background: none;
 }
 
-
 .sellect-container{
     border: 1px solid #ccc;
-    padding: 5px 5px 0 5px;
+    padding: 15px;
     border-radius: 3px;
-    margin-top: 5px;
     position: relative;
 }
 
 .sellect-destination-list{
-    display: inline-block;
+    display: inline-block;    
 }
 
-.sellect-destination-list .sellect-item{
-    margin: 0 5px 5px 0;
-    background-color: #e5e5e5;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 2px;
-    padding: 0 5px 2px;
-    display: inline-block;
-}
+    .sellect-destination-list .sellect-item {
+        margin:5px;
+        background-color: #e5e5e5;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        border-radius: 2px;
+        padding: 0 5px 2px;
+        display: inline-block;
+    }
 .sellect-destination-list .sellect-item .sellect-close-icon{
     margin-left: 5px;
 }
 
 .sellect-origin-list{
+    margin-top:5px;
     overflow: auto;
     max-height: 0;
     opacity: 0;
