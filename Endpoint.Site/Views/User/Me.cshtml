@@ -14,8 +14,8 @@
     @*datapicker*@
     <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
     @*end of datapicker*@
-    @*Tagger*@
-    <link href="~/lib/taggers/sellect.css" rel="stylesheet" />
+    @*King Tagger*@
+    <link href="~/lib/kingFuncs/taggers/sellect.css" rel="stylesheet" />
 }
 @await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
 
@@ -365,10 +365,19 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Position (s) </span>
-                         <button onclick="getSelectedItems()"  type="button">test</button>
                         <div class="form-floating">
                             <div class="p-3">
-                            <input type="text" id="my-element">
+
+                            <input type="text"
+                                
+                                id="kingTaggerPositions"
+                                data-Iaction="../User/Positions"
+                                data-elementValueTitle="position"
+                                data-elementKeyTitle="id"
+                                data-items=@if (Model.getUsersInformationServiceDto!= null)
+                                    @Model.getUsersInformationServiceDto.Position 
+                            >
+
                             </div>
                             <div class="ps-3">
                             <span>I WOULD LIKE TO SUGGEST A NEW POSITION TO GALAXYPREMEIRE SYSTEM</span>
@@ -930,7 +939,7 @@ Model.getUsersInformationServiceDto.Privacy==2)
     }
     @*Executive Functions : Only for this page*@
     <script src="~/SiteTemplate/innerpages/pagecssjs/me/me.js"></script>
-    @*Tagger - TagPlug*@
-    <script src="~/lib/taggers/sellect.js"></script>
+    @*King Tagger*@
+    <script src="~/lib/kingFuncs/taggers/sellect.js"></script>
 }
 

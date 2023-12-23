@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "anZplJ59+Nd+DB8t1G3sx8uuyEJsDFcAPLtXxiLfsUQ=",
+  "Hash": "ztjHBIo51lBAa8Fy2Rg37m/lZi9LRMGvAmNN0so+TLQ=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -9231,12 +9231,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\kingFuncs\\remainingCharacters\\main.js"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\sellect.css",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\taggers\\sellect.css",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "lib/taggers/sellect.css",
+      "RelativePath": "lib/kingFuncs/taggers/sellect.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9245,15 +9245,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\taggers\\sellect.css"
+      "OriginalItemSpec": "wwwroot\\lib\\kingFuncs\\taggers\\sellect.css"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\taggers\\sellect.js",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\taggers\\sellect.js",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "lib/taggers/sellect.js",
+      "RelativePath": "lib/kingFuncs/taggers/sellect.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9262,7 +9262,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\taggers\\sellect.js"
+      "OriginalItemSpec": "wwwroot\\lib\\kingFuncs\\taggers\\sellect.js"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\modal\\modal.css",

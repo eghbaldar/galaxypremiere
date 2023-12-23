@@ -17,10 +17,10 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
         public GetUsersInformationServiceDto Execute(long userId)
         {
             var user = _context.Users.Where(u => u.Id == userId).FirstOrDefault();
-            var userInfo = _context.UsersInformation.Where(ui => ui.UsersId == userId).FirstOrDefault();
-            if (user != null && userInfo != null)
+            var userInfo = _context.UsersInformation.Where(ui => ui.UsersId == userId).ToList();
+            if (user != null && userInfo.Any())
             {
-                var userInfoSelected = _context.UsersInformation
+                var userInfoSelected = userInfo
                      .Where(ui => ui.UsersId == userId)
                      .Select(ui => _imapper.Map<GetUsersInformationServiceDto>(ui))
                      .First();

@@ -40,8 +40,11 @@ var mySellect;
                 createListsHTML(self.originListHTML, array[0], array[1]);
             });
 
-            self.options.destinationList.forEach(function (item) { 
-                createListsHTML(self.destinationListHTML, item);
+            self.options.destinationList.forEach(function (item) { /*changed!*/
+                var array = $.map(item, function (value) {
+                    return [value];
+                });
+                createListsHTML(self.destinationListHTML, array[0], array[1]);
             });
 
             self.options.element.parentNode.insertBefore(self.container, self.options.element);
@@ -60,7 +63,7 @@ var mySellect;
         listIcon.classList.add('fa', 'fa-times', 'sellect-close-icon');
 
         listItem.innerHTML = item;
-        listItem.value = key; /*changed!*/
+        listItem.value = key; /*eghbaldar*/
         listItem.appendChild(listIcon);
         list.appendChild(listItem);
     }
@@ -77,7 +80,13 @@ var mySellect;
                 swapItemDOM.call(self, event.target, self.destinationListHTML);
             }, false);
 
-            self.destinationListHTML.addEventListener('click', function () {
+            self.destinationListHTML.addEventListener('keypress', function (e) {/*eghbaldar*/
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                }
+            });
+
+            self.destinationListHTML.addEventListener('click', function () {                
                 //when an item from the destination list will be clicked
                 if (event.target.tagName === 'DIV') return false;
                 //alert(event.target.innerText); // value
@@ -85,7 +94,13 @@ var mySellect;
                 swapItemDOM.call(self, event.target, self.originListHTML);
             }, false);
 
-            self.container.addEventListener('click', function () {
+            self.container.addEventListener('keypress', function (e) {/*eghbaldar*/
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                }
+            });
+
+            self.container.addEventListener('click', function () {                
                 // when the list are going to be opened (click)
                 openOriginList.call(self);
             }, false);
@@ -95,11 +110,11 @@ var mySellect;
                 toggleOriginList.call(self);
             }, false);
 
-            self.options.element.addEventListener('keyup', function () {
+            self.options.element.addEventListener('keyup', function () { /*change*/
                 var key = event.keyCode || event.charCode;
-
                 switch (key) {
                     case 40:
+                       
                         if (self.originListHTML.childNodes.length > 0) {
                             selectionDown.call(self);
                             scrollTop.call(self);
@@ -111,10 +126,6 @@ var mySellect;
                             selectionUp.call(self);
                             scrollBottom.call(self);
                         }
-                        break;
-
-                    case 13:
-                        selectItemOriginList.call(self);
                         break;
 
                     default:
@@ -351,7 +362,10 @@ var mySellect;
                     var array = $.map(itemInner, function (value) {
                         return [value];
                     });
-                    return array[0] !== itemOuter;
+                    var arrayDes = $.map(itemOuter, function (value) {
+                        return [value];
+                    });
+                    return array[0] !== arrayDes[0]; /*Avoid duplicating items in two lists*/
                 });
             });
 
@@ -421,13 +435,14 @@ var mySellect;
 var lst = [];
 var clientList;
 
-function taggerInit() {
+function taggerInit() {/*eghbaldar*/
+    
     if (lst == null) {
         $.ajax({
             contentType: 'application/x-www-form-urlencoded',
             dataType: 'json',
             type: 'GET',
-            url: '../User/Positions',
+            url: $("#kingTaggerPositions").attr("data-Iaction"),
             success: function (data) {
 
                 var array = $.map(data, function (value) {
@@ -437,18 +452,34 @@ function taggerInit() {
                     return [key];
                 }); //this method is going to fetch the memeber of [resultsersPositionsServiceDto]
 
-                lst = [];
+                lst = []; // the origianl list
+                lstClient = []; // the distination list // the items that are selected by clients in the past and were stored in the database!
+
+                var clientsItems = $("#kingTaggerPositions").attr("data-items").split(',');
+
                 for (var i in arr) {
                     if (arr.hasOwnProperty(i)) {
                         var elm = arr[i];
                         var elements = ['Value', 'Key'];
                         var obj = {};
-                        obj[elements[0]] = elm['position'];
-                        obj[elements[1]] = elm['id'];
+                        obj[elements[0]] = elm[$("#kingTaggerPositions").attr("data-elementValueTitle")];
+                        obj[elements[1]] = elm[$("#kingTaggerPositions").attr("data-elementKeyTitle")];
                         lst.push(obj);
+                        //get data from database and set them into "data-items" attribute 
+                        if (clientsItems != null) {
+                            for (var j in clientsItems) {
+                                if (obj[elements[1]] == clientsItems[j]) {
+                                    var elements2 = ['Value', 'Key'];
+                                    var obj2 = {};
+                                    obj2[elements2[0]] = obj[elements[0]];
+                                    obj2[elements2[1]] = obj[elements[1]];
+                                    lstClient.push(obj2);
+                                }
+                            }
+                        }
                     }
                 }
-                clientList = [];
+                clientList = lstClient;
             },
             async: false, // make ajax request synchronous
             error: function (req, res, err) {
@@ -456,7 +487,7 @@ function taggerInit() {
             }
         });
 
-        mySellect = sellect("#my-element", {
+        mySellect = sellect("#kingTaggerPositions", {
             originList: lst,
             destinationList: clientList,
             onInsert: updateDemoLists,
@@ -466,7 +497,7 @@ function taggerInit() {
     }
 }
 
-function getSelectedItems() {
+function getSelectedItems() {/*eghbaldar*/
 
     var itemsValues = [];
     $(".sellect-destination-list>span").each(function () {
@@ -475,4 +506,4 @@ function getSelectedItems() {
     return itemsValues;
 }
 
-function updateDemoLists(event, item) {}
+function updateDemoLists(event, item) { }
