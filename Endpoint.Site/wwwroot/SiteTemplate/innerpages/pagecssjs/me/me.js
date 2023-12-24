@@ -1,5 +1,4 @@
-﻿
-function UpdateInfoAccount() {
+﻿function UpdateInfoAccount() {
     var firstname = $('#txtFirstname').val();
     var middlename = $('#txtMiddlename').val();
     var surname = $('#txtSurname').val();
@@ -320,9 +319,9 @@ inputheader.on('change', dropheader);
 
 // show or hide [CHANGE] label while hovering
 $(dropzoneavatar).hover(
-    function () {       
+    function () {
         $("#HeadshotChangePhoto").css("display", "inline");
-        dropzoneavatar.css("opacity","0.5")
+        dropzoneavatar.css("opacity", "0.5")
     }, function () {
         $(this).find("#HeadshotChangePhoto").css("display", "none");
         dropzoneavatar.css("opacity", "1")
@@ -383,7 +382,7 @@ function dropavatar(e) {
                     opacity: "1",
                     cursor: "pointer",
                 });
-                $("#filedropzoneAvatar").css("opacity", "0");                
+                $("#filedropzoneAvatar").css("opacity", "0");
                 pageWaitMeRemove(); // loading process stops
                 //////////////////////////////
                 $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
@@ -453,4 +452,34 @@ function showfileavatar(file) {
 }
 function showfileheader(file) {
     $("#dropzoneHeader").css("background", "url('" + URL.createObjectURL(file) + "') center/cover");
+}
+function openDialougePostPosition() {
+    Swal.fire({
+        title: "Enter your suggested position title:",
+        input: "text",
+        inputAttributes: {
+            autocapitalize: "off"
+        },
+        showCancelButton: true,
+        confirmButtonText: "Suggest",
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var postData = { 'Position': result.value };
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'PostPositions',
+                success: function (data) {
+                    Swal.fire(data.message);
+                },
+                error: function (res, req, err) {
+                    alert('res: ' + res + ' req: ' + req + ' err: ' + err);
+                }
+            });
+        }
+    });
 }
