@@ -2,6 +2,7 @@
 using Endpoint.Site.Models.Users.GetInformation;
 using Endpoint.Site.Utilities;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UserPosition.Commands.PostUsersPositionSuggestion;
 using galaxypremiere.Application.Services.UserPosition.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationAccountType;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationBIO;
@@ -152,7 +153,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeHeader(RequestUpdateUsersInformationHeaderServiceDto req)
-        {            
+        {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.Header = Request.Form.Files[0];
             return Json(_userInformationFacade
@@ -162,8 +163,13 @@ namespace Endpoint.Site.Controllers
         [HttpGet]
         public IActionResult Positions()
         {
-            var p = _PositionFacade.GetUsersPositionsService.Execute();
-            return Json(p);
+            return Json(_PositionFacade.GetUsersPositionsService.Execute());
+        }
+        [HttpPost]
+        public IActionResult PostPositions(RequestPostUsersPositionSuggestionServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_PositionFacade.PostUsersPositionSuggestionService.Execute(req));
         }
     }
 }

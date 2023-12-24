@@ -10,6 +10,15 @@
 .colorGray {
     color: gray;
 }
+/* other */
+.clickOnSuggestion{
+    font-size:10px;
+    color:gray;
+}
+    .clickOnSuggestion:hover {
+        cursor: pointer;
+        text-decoration: underline dashed !important;
+    }
 /* Loader for headshot and header */
 .loader {
     display: none;

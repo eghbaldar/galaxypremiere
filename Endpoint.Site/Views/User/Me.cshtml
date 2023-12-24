@@ -378,8 +378,8 @@
                             >
 
                             </div>
-                            <div class="ps-3">
-                            <span>I WOULD LIKE TO SUGGEST A NEW POSITION TO GALAXYPREMEIRE SYSTEM</span>
+                            <div class="ps-3 clickOnSuggestion">
+                            <a  class="text-secondary" onclick="openDialougePostPosition();">I WOULD LIKE TO SUGGEST A NEW POSITION TO GALAXYPREMEIRE SYSTEM</a>
                             </DIV>
                             
                         </div>
@@ -940,5 +940,37 @@ Model.getUsersInformationServiceDto.Privacy==2)
     <script src="~/SiteTemplate/innerpages/pagecssjs/me/me.js"></script>
     @*King Tagger*@
     <script src="~/lib/kingFuncs/taggers/sellect.js"></script>
+    <script>
+    function openDialougePostPosition(){
+        Swal.fire({
+            title: "Enter your suggested position title:",
+            input: "text",
+            inputAttributes: {
+            autocapitalize: "off"
+            },
+            showCancelButton: true,
+            confirmButtonText: "Suggest",
+            showLoaderOnConfirm: true,
+            allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var postData = { 'Position': result.value};
+                    $.ajax({
+                        contentType:'application/x-www-form-urlencoded',
+                        dataType:'json',
+                        type:'POST',
+                        data:postData,
+                        url:'PostPositions',
+                        success:function(data){
+                            Swal.fire(data.message);
+                        },
+                        error:function(res, req, err){
+                            alert('res: '+res + ' req: '+req + ' err: ' +   err);
+                        }
+                    });
+                }
+            });
+    }
+</script>
 }
 

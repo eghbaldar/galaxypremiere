@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Application.Services.UserPosition.Queries.GetUsersPositions;
+﻿using galaxypremiere.Application.Services.UserPosition.Commands.PostUsersPositionSuggestion;
+using galaxypremiere.Application.Services.UserPosition.Queries.GetUsersPositions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
     public interface IUserPositionFacade
     {
         public GetUsersPositionsService GetUsersPositionsService { get; }
+        public PostUsersPositionSuggestionService PostUsersPositionSuggestionService { get; }
     }
 }

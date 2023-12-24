@@ -13,6 +13,7 @@ namespace galaxypremiere.Application.Services.UserPosition.Queries.GetUsersPosit
         {
             var PositionsList = _context.UsersPositions
                 .OrderByDescending(x => x.Position)
+                .Where(x=>x.Suggestion==0)
                 .Select(x => new GetUsersPositionsServiceDto
                 {
                     Position = x.Position,
