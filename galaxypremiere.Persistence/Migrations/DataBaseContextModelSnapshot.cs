@@ -3763,8 +3763,8 @@ namespace galaxypremiere.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Suggestion")
-                        .HasColumnType("bit");
+                    b.Property<byte>("Suggestion")
+                        .HasColumnType("tinyint");
 
                     b.Property<int>("UsersId")
                         .HasColumnType("int");
