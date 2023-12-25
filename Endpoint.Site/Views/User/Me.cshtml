@@ -65,7 +65,7 @@
                             <option selected>Choose...</option>
                             <option value="1" selected="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Gender == 1)">Male</option>
                             <option value="2" selected="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Gender == 2)">Female</option>
-                            <option value="3" selected="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Gender == 4)">Other</option>
+                            <option value="3" selected="@(Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Gender == 3)">Other</option>
                         </select>
                     </div>
 
@@ -882,7 +882,11 @@ Model.getUsersInformationServiceDto.Privacy==2)
                 <form asp-action="UpdateBIO" id="frmBIO" method="post">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Time Zone</span>
-                           <select class="form-select" >
+<select
+data-seletedItem=@{
+    if(Model.getUsersInformationServiceDto != null) @(Model.getUsersInformationServiceDto.TimeZoneId)
+}
+class="form-select" id="select_timezone">
 <option value="1">(GMT) Casablanca [Morocco Standard Time]</option>
 <option value="2">(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London [GMT Standard Time]</option>
 <option value="3">(GMT) Monrovia, Reykjavik [Greenwich Standard Time]</option>
@@ -976,51 +980,55 @@ Model.getUsersInformationServiceDto.Privacy==2)
 
                      <div class="input-group mb-3">
                         <span class="input-group-text">Currency</span>
-                        <select class="form-select" id="user_currency">
-                    <option selected="selected" value="USD">United States dollar - $</option>
-<option value="AUD">Australian dollar - $</option>
-<option value="BRL">Brazilian real - R$</option>
-<option value="BGN">Bulgarian lev - лв</option>
-<option value="CAD">Canadian dollar - $</option>
-<option value="CLP">Chilean peso - $</option>
-<option value="CNY">Chinese yuan - ￥</option>
-<option value="COP">Colombian peso - $</option>
-<option value="CRC">Costa Rican colón - ₡</option>
-<option value="CZK">Czech koruna - Kč</option>
-<option value="DKK">Danish krone - kr</option>
-<option value="EUR">Euro - €</option>
-<option value="HKD">Hong Kong dollar - $</option>
-<option value="HUF">Hungarian forint - Ft</option>
-<option value="INR">Indian rupee - ₹</option>
-<option value="ILS">Israeli new shekel - ₪</option>
-<option value="JPY">Japanese yen - ¥</option>
-<option value="KZT">Kazakhstani tenge - ₸</option>
-<option value="MYR">Malaysian ringgit - RM</option>
-<option value="MXN">Mexican peso - $</option>
-<option value="MAD">Moroccan dirham - MAD</option>
-<option value="TWD">New Taiwan dollar - $</option>
-<option value="NZD">New Zealand dollar - $</option>
-<option value="NOK">Norwegian krone - kr</option>
-<option value="PEN">Peruvian sol - S/</option>
-<option value="PHP">Philippine peso - ₱</option>
-<option value="PLN">Polish złoty - zł</option>
-<option value="GBP">Pound sterling - £</option>
-<option value="RON">Romanian leu - lei</option>
-<option value="RUB">Russian ruble - ₽</option>
-<option value="SAR">Saudi riyal - SR</option>
-<option value="SGD">Singapore dollar - $</option>
-<option value="ZAR">South African rand - R</option>
-<option value="KRW">South Korean won - ₩</option>
-<option value="SEK">Swedish krona - kr</option>
-<option value="CHF">Swiss franc - CHF</option>
-<option value="THB">Thai baht - ฿</option>
-<option value="TRY">Turkish lira - ₺</option>
-<option value="AED">United Arab Emirates dirham - AED</option>
-<option selected="selected" value="USD">United States dollar - $</option>
-<option value="UYU">Uruguayan peso - $U</option></select>
+                        <select class="form-select" id="select_currency"
+                        data-seletedItem=@{
+    if(Model.getUsersInformationServiceDto != null) @(Model.getUsersInformationServiceDto.CurrencyId)
+}
+                        >
+<option selected="selected" value="1">USD $ - United States dollar</option>
+<option value="2">CAD $ - Canadian dollar</option>
+<option value="3">EUR € - Euro</option>
+<option value="4">AUD $ - Australian dollar</option>
+<option value="5">BRL R$ - Brazilian real</option>
+<option value="6">BGN лв - Bulgarian lev</option>
+<option value="7">CLP $ - Chilean peso</option>
+<option value="8">CNY ￥- Chinese yuan</option>
+<option value="9">COP $ - Colombian peso</option>
+<option value="10">CRC ₡ - Costa Rican colón</option>
+<option value="11">CZK Kč - Czech koruna</option>
+<option value="12">DKK kr - Danish krone</option>
+<option value="13">HKD $ - Hong Kong dollar</option>
+<option value="14">HUF Ft - Hungarian forint</option>
+<option value="15">INR ₹ - Indian rupee</option>
+<option value="16">ILS ₪ - Israeli new shekel</option>
+<option value="17">JPY ¥ - Japanese yen</option>
+<option value="18">KZT ₸ - Kazakhstani tenge</option>
+<option value="19">MYR RM - Malaysian ringgit</option>
+<option value="20">MXN $ - Mexican peso</option>
+<option value="21">MAD MAD - Moroccan dirham</option>
+<option value="22">TWD $ - New Taiwan dollar</option>
+<option value="23">NZD $ - New Zealand dollar</option>
+<option value="24">NOK kr - Norwegian krone</option>
+<option value="25">PEN S/ - Peruvian sol</option>
+<option value="26">PHP ₱ - Philippine peso</option>
+<option value="27">PLN zł - Polish złoty</option>
+<option value="28">GBP £ - Pound sterling</option>
+<option value="29">RON lei - Romanian leu</option>
+<option value="30">RUB ₽ - Russian ruble</option>
+<option value="31">SAR SR - Saudi riyal</option>
+<option value="32">SGD $ - Singapore dollar</option>
+<option value="33">ZAR R - South African rand</option>
+<option value="34">KRW ₩ - South Korean won</option>
+<option value="35">SEK kr - Swedish krona</option>
+<option value="36">CHF CHF - Swiss franc</option>
+<option value="37">THB ฿ - Thai baht</option>
+<option value="38">TRY ₺ - Turkish lira</option>
+<option value="39">AED AED - United Arab Emirates dirham</option>
+<option value="40">UYU $U - Uruguayan peso</option>
+</select>
                     </div>
 
-                    <button type="button" onclick="UpdateInfoBIO()" id="" class="btn cur-p btn-primary">
+                    <button type="button" onclick="UpdateOther()" id="" class="btn cur-p btn-primary">
                         UPDATE
                     </button>
                 </form>

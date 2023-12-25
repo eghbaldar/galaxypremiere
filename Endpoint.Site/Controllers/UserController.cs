@@ -10,6 +10,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeader;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeadshot;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationOther;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
@@ -166,10 +167,16 @@ namespace Endpoint.Site.Controllers
             return Json(_PositionFacade.GetUsersPositionsService.Execute());
         }
         [HttpPost]
-        public IActionResult PostPositions(RequestPostUsersPositionSuggestionServiceDto req)
+        public IActionResult MePositions(RequestPostUsersPositionSuggestionServiceDto req)
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_PositionFacade.PostUsersPositionSuggestionService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult MeOther(RequestUpdateUsersInformationOtherServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userInformationFacade.UpdateUsersInformationOtherService.Execute(req));
         }
     }
 }

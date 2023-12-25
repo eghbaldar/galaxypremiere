@@ -472,7 +472,7 @@ function openDialougePostPosition() {
                 dataType: 'json',
                 type: 'POST',
                 data: postData,
-                url: 'PostPositions',
+                url: 'MePositions',
                 success: function (data) {
                     Swal.fire(data.message);
                 },
@@ -480,6 +480,34 @@ function openDialougePostPosition() {
                     alert('res: ' + res + ' req: ' + req + ' err: ' + err);
                 }
             });
+        }
+    });
+}
+$(document).ready(function () {
+    var timezone = $('#select_timezone').attr("data-seletedItem");
+    var currency = $('#select_currency').attr("data-seletedItem");
+    $('#select_timezone').val(timezone);
+    $('#select_currency').val(currency);
+});
+function UpdateOther() {
+
+    var timezone = $("#select_timezone").val();
+    var currency = $("#select_currency").val();
+    var postData = {
+        'TimeZoneId': timezone,
+        'CurrencyId': currency
+    }
+    $.ajax({
+        contentType: 'application/x-www-form-urlencoded',
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        url: 'MeOther',
+        success: function (data) {
+            Swal.fire(data.message);
+        },
+        error: function (request, status, error) {
+            alert(request.responseText);
         }
     });
 }
