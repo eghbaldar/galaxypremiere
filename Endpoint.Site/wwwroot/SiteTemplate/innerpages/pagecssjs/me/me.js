@@ -1,4 +1,8 @@
 ﻿function UpdateInfoAccount() {
+
+    pageWaitMe("progress"); // loading process starts
+    btnWaitMe_Start('btnUpdateAccount'); // Loading Button Start
+
     var firstname = $('#txtFirstname').val();
     var middlename = $('#txtMiddlename').val();
     var surname = $('#txtSurname').val();
@@ -27,14 +31,44 @@
         data: postData,
         url: 'MeAccount',
         success: function (data) {
-            Swal.fire(data.message);
+            if (data.isSuccess) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Information has been saved",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                btnWaitMe_Stop('btnUpdateAccount'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
+            else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Something went wrong, please try it again or later!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                btnWaitMe_Stop('btnUpdateAccount'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
         },
         error: function (request, status, error) {
-            alert(request.responseText);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Something went wrong, please try it again or later!",
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }
 function UpdateInfoContact() {
+    pageWaitMe("progress"); // loading process starts
+    btnWaitMe_Start('btnUpdateContact'); // Loading Button Start
+
     var address1 = $('#txtAddress1').val();
     var address2 = $('#txtAddress2').val();
     var city = $('#txtCity').val();
@@ -77,14 +111,48 @@ function UpdateInfoContact() {
         data: postData,
         url: 'MeContact',
         success: function (data) {
-            Swal.fire(data.message);
+            if (data.isSuccess) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Information has been saved",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
+            else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Something went wrong, please try it again or later!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
         },
-        error: function (request, status, error) {
-            alert(request.responseText);
+        error: function (req, status, err) {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Something went wrong, please try it again or later!",
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }
 function UpdateInfoPrivacy(e, privacy) {
+
+    pageWaitMe("progress"); // loading process starts
+    btnWaitMe_Start('btnPrivacy0'); // Loading Button Start
+    btnWaitMe_Start('btnPrivacy1'); // Loading Button Start
+    btnWaitMe_Start('btnPrivacy2'); // Loading Button Start
+
+
     var postData = {
         'Privacy': privacy
     }
@@ -96,22 +164,54 @@ function UpdateInfoPrivacy(e, privacy) {
         url: 'MePrivacy',
         success: function (data) {
 
-            // change styles of buttons
-            $("#btnPrivacy0").addClass('btn cur-p btn-light');
-            $("#btnPrivacy1").addClass('btn cur-p btn-light');
-            $("#btnPrivacy2").addClass('btn cur-p btn-light');
-            $(e).removeClass();
-            $(e).addClass('btn cur-p btn-primary');
-            // end
-
-            Swal.fire(data.message);
+            if (data.isSuccess) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Information has been saved",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                // change styles of buttons
+                $("#btnPrivacy0").addClass('btn cur-p btn-light');
+                $("#btnPrivacy1").addClass('btn cur-p btn-light');
+                $("#btnPrivacy2").addClass('btn cur-p btn-light');
+                $(e).removeClass();
+                $(e).addClass('btn cur-p btn-primary');
+                // end
+                btnWaitMe_Stop('btnPrivacy0'); // Loading Button Stops
+                btnWaitMe_Stop('btnPrivacy1'); // Loading Button Stops
+                btnWaitMe_Stop('btnPrivacy2'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
+            else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Something went wrong, please try it again or later!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                btnWaitMe_Stop('btnPrivacy0'); // Loading Button Stops
+                btnWaitMe_Stop('btnPrivacy1'); // Loading Button Stops
+                btnWaitMe_Stop('btnPrivacy2'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
         },
         error: function (request, status, error) {
-            alert(request.responseText);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Something went wrong, please try it again or later!",
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }
 function UpdateInfoUsername() {
+    pageWaitMe("progress"); // loading process starts
+    btnWaitMe_Start('btnUpdateUsername'); // Loading Button Start
     var username = $("#txtUsername").val();
     var postData = {
         'username': username,
@@ -124,23 +224,54 @@ function UpdateInfoUsername() {
         url: 'MeUsername',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire(data.message);
-            } else {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Information has been saved",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
+            else {
                 var check = data.data.status;
                 switch (check) {
                     case 0:
                         //duplicated!
-                        Swal.fire(data.message);
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
                         break;
                     case 2:
                         //user did not find
-                        Swal.fire(data.message);
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
                         break;
                 }
             }
         },
         error: function (request, status, error) {
-            alert('err: ' + request.responseText);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Something went wrong, please try it again or later!",
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }
@@ -168,13 +299,23 @@ function ChangeRuntimeUsername(e) {
             }
         },
         error: function (request, status, error) {
-            alert('err: ' + request.responseText);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Something went wrong, please try it again or later!",
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }
 function UpdateInfoPassword() {
 
     var password = $("#txtPassword").val();
+    if (password == null || password.toString().trim() == '') return false;
+    pageWaitMe("progress"); // loading process starts
+    btnWaitMe_Start('btnUpdatePassword'); // Loading Button Start
+
     var postData = {
         'Password': password
     }
@@ -185,14 +326,47 @@ function UpdateInfoPassword() {
         data: postData,
         url: 'MePassword',
         success: function (data) {
-            Swal.fire(data.message);
+            if (data.isSuccess) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Information has been saved",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                btnWaitMe_Stop('btnUpdatePassword'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
+            else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Something went wrong, please try it again or later!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
         },
         error: function (request, status, error) {
-            alert(request.responseText);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Something went wrong, please try it again or later!",
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }
 function UpdateInfoAccountType(e, type) {
+
+    
+    pageWaitMe("progress"); // loading process starts
+    btnWaitMe_Start('btnAccountType0'); // Loading Button Start
+    btnWaitMe_Start('btnAccountType1'); // Loading Button Start
+    btnWaitMe_Start('btnAccountType2'); // Loading Button Start
 
     var typeCode;
     switch (type) { //AccountTypeConstants
@@ -218,19 +392,43 @@ function UpdateInfoAccountType(e, type) {
         url: 'MeAccountType',
         success: function (data) {
 
-            // change styles of buttons
-            $("#btnAccountType0").addClass('btn cur-p btn-light');
-            $("#btnAccountType0").text('Enable');
-            $("#btnAccountType1").addClass('btn cur-p btn-light');
-            $("#btnAccountType1").text('Enable');
-            $("#btnAccountType2").addClass('btn cur-p btn-light');
-            $("#btnAccountType2").text('Enable');
-            $(e).removeClass();
-            $(e).addClass('btn cur-p btn-primary');
-            $(e).text('Enabled');
-            // end
+            if (data.isSuccess) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Information has been saved",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
 
-            Swal.fire(data.message);
+                // change styles of buttons
+                $("#btnAccountType0").addClass('btn cur-p btn-light');
+                $("#btnAccountType0").text('Enable');
+                $("#btnAccountType1").addClass('btn cur-p btn-light');
+                $("#btnAccountType1").text('Enable');
+                $("#btnAccountType2").addClass('btn cur-p btn-light');
+                $("#btnAccountType2").text('Enable');
+                $(e).removeClass();
+                $(e).addClass('btn cur-p btn-primary');
+                $(e).text('Enabled');
+                // end
+
+                btnWaitMe_Stop('btnAccountType0'); // Loading Button Stops
+                btnWaitMe_Stop('btnAccountType1'); // Loading Button Stops
+                btnWaitMe_Stop('btnAccountType2'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
+            else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Something went wrong, please try it again or later!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                btnWaitMe_Stop(controlId); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
         },
         error: function (request, status, error) {
             alert(request.responseText);
@@ -238,6 +436,9 @@ function UpdateInfoAccountType(e, type) {
     });
 }
 function UpdateInfoBIO() {
+
+    pageWaitMe("progress"); // loading process starts
+    btnWaitMe_Start('btnUpdateBIO'); // Loading Button Start
 
     var intro = $("#txtIntroduction").val();
     var bio = $("#txtBIO").val();
@@ -258,24 +459,40 @@ function UpdateInfoBIO() {
         data: postData,
         url: 'MeBIO',
         success: function (data) {
-            Swal.fire(data.message);
+            if (data.isSuccess) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Information has been saved",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                btnWaitMe_Stop('btnUpdateBIO'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
+            else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Something went wrong, please try it again or later!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                btnWaitMe_Stop('btnUpdateBIO'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
         },
         error: function (request, status, error) {
-            alert(request.responseText);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Something went wrong, please try it again or later!",
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }
-// set default value of iconCurrentUsername
-$(document).ready(function () {
-    var input = $("#txtUsername").val();
-    if (input == '') {
-        $("#iconCurrentUsername").removeClass();
-        $("#iconCurrentUsername").addClass("fa-solid fa-hourglass colorGray");
-    } else {
-        $("#iconCurrentUsername").removeClass();
-        $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
-    }
-});
 /*@* Tabs *@*/
 function userAccountNavigation(evt, tabName) {
     // Declare all variables
@@ -304,7 +521,6 @@ var dropzoneavatar = $("#dropzoneAvatar");
 var dropzoneheader = $("#dropzoneHeader");
 var inputavatar = dropzoneavatar.find('input');
 var inputheader = dropzoneheader.find('input');
-
 dropzoneavatar.on({
     dragenter: draginavatar,
     dragleave: dragoutavatar
@@ -313,10 +529,8 @@ dropzoneheader.on({
     dragenter: dragindropzoneheader,
     dragleave: dragoutdropzoneheader
 });
-
 inputavatar.on('change', dropavatar);
 inputheader.on('change', dropheader);
-
 // show or hide [CHANGE] label while hovering
 $(dropzoneavatar).hover(
     function () {
@@ -336,21 +550,18 @@ $(dropzoneheader).hover(
         dropzoneheader.css("opacity", "1")
     }
 );
-
 function draginavatar(e) { //function for drag into element, just turns the bix X white
     $(dropzoneavatar).addClass('hover');
 }
 function dragindropzoneheader(e) { //function for drag into element, just turns the bix X white
     $(dropzoneheader).addClass('hover');
 }
-
 function dragoutavatar(e) { //function for dragging out of element
     $(dropzoneavatar).removeClass('hover');
 }
 function dragoutdropzoneheader(e) { //function for dragging out of element
     $(dropzoneheader).removeClass('hover');
 }
-
 function dropavatar(e) {
     var file = this.files[0];
     // the following functions uses (fileextensionsize.js)
@@ -389,7 +600,26 @@ function dropavatar(e) {
                 $('#filedropzoneAvatar').val('');
                 $("#dropzoneAvatar").css("background-image", "none");
                 showfileavatar(file); // showing file for demonstration ...
-                Swal.fire(data.message);
+                if (data.isSuccess) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Information has been saved",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    pageWaitMeRemove(); // loading process stops
+                }
+                else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Something went wrong, please try it again or later!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    pageWaitMeRemove(); // loading process stops
+                }
             },
             error: function (req, res, err) {
                 alert('req' + req.responseText + 'res:' + res + 'err:' + err);
@@ -397,7 +627,6 @@ function dropavatar(e) {
         });
     }
 }
-
 function dropheader(e) {
     var file = this.files[0];
     // the following functions uses (fileextensionsize.js)
@@ -434,7 +663,28 @@ function dropheader(e) {
                 //////////////////////////////
                 $('#dropzoneHeader').removeClass('hover').addClass('dropped').find('img').remove();
                 showfileheader(file); // showing file for demonstration ...
-                Swal.fire(data.message);
+                if (data.isSuccess) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Information has been saved",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
+                    pageWaitMeRemove(); // loading process stops
+                }
+                else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Something went wrong, please try it again or later!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
+                    pageWaitMeRemove(); // loading process stops
+                }
             },
             error: function (req, res, err) {
                 alert('req' + req.responseText + 'res:' + res + 'err:' + err);
@@ -442,7 +692,6 @@ function dropheader(e) {
         });
     }
 }
-
 function showfileavatar(file) {
     var reader = new FileReader(file);
     reader.readAsDataURL(file);
@@ -453,6 +702,7 @@ function showfileavatar(file) {
 function showfileheader(file) {
     $("#dropzoneHeader").css("background", "url('" + URL.createObjectURL(file) + "') center/cover");
 }
+// End of Upload Js
 function openDialougePostPosition() {
     Swal.fire({
         title: "Enter your suggested position title:",
@@ -466,6 +716,7 @@ function openDialougePostPosition() {
         allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
         if (result.isConfirmed) {
+            pageWaitMe("progress"); // loading process starts
             var postData = { 'Position': result.value };
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
@@ -474,23 +725,60 @@ function openDialougePostPosition() {
                 data: postData,
                 url: 'MePositions',
                 success: function (data) {
-                    Swal.fire(data.message);
+                    if (data.isSuccess) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                        pageWaitMeRemove(); // loading process stops
+                    }
+                    else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
+                    }
                 },
                 error: function (res, req, err) {
-                    alert('res: ' + res + ' req: ' + req + ' err: ' + err);
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Something went wrong, please try it again or later!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
                 }
             });
         }
     });
 }
 $(document).ready(function () {
+    // set stored value of timezone & currency
     var timezone = $('#select_timezone').attr("data-seletedItem");
     var currency = $('#select_currency').attr("data-seletedItem");
     $('#select_timezone').val(timezone);
     $('#select_currency').val(currency);
+    // set default value of iconCurrentUsername
+    var input = $("#txtUsername").val();
+    if (input == '') {
+        $("#iconCurrentUsername").removeClass();
+        $("#iconCurrentUsername").addClass("fa-solid fa-hourglass colorGray");
+    } else {
+        $("#iconCurrentUsername").removeClass();
+        $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
+    }
 });
 function UpdateOther() {
-
+    pageWaitMe("progress"); // loading process starts
+    btnWaitMe_Start('btnUpdateOther'); // Loading Button Start    
     var timezone = $("#select_timezone").val();
     var currency = $("#select_currency").val();
     var postData = {
@@ -504,10 +792,37 @@ function UpdateOther() {
         data: postData,
         url: 'MeOther',
         success: function (data) {
-            Swal.fire(data.message);
+            if (data.isSuccess) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Information has been saved",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                btnWaitMe_Stop('btnUpdateOther'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
+            else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Something went wrong, please try it again or later!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                btnWaitMe_Stop('btnUpdateOther'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
         },
         error: function (request, status, error) {
-            alert(request.responseText);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Something went wrong, please try it again or later!",
+                showConfirmButton: false,
+                timer: 3000
+            });
         }
     });
 }

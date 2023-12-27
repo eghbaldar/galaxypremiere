@@ -34,7 +34,7 @@ namespace galaxypremiere.Application.Services.UserPosition.Commands.PostUsersPos
                 _context.SaveChanges();
                 return new ResultDto
                 {
-                    IsSuccess = false,
+                    IsSuccess = true,
                     Message = "Your suggestion is sent. Thank you for your contribution."
                 };
             }

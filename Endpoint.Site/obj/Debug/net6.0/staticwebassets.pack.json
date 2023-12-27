@@ -2833,8 +2833,16 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\638392679547549847header.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\638392679547549847header.jpg"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\6383867527332096091694671470948.jpeg",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\6383867527332096091694671470948.jpeg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638392679407252591headshot.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\638392679407252591headshot.jpg"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\Chart.bundle.js",

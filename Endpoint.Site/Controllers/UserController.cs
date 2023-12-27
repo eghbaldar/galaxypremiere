@@ -82,7 +82,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeAccount(RequestUpdateUsersInformationAccountDto req)
-        {
+        {            
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UsersInformationAccountService
@@ -90,7 +90,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeContact(RequestUpdateUsersInformationContactServiceDto req)
-        {
+        {            
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationContactService
@@ -98,7 +98,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MePrivacy(RequestUpdateUsersInformationPrivcayServiceDto req)
-        {
+        {            
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationPrivacyService
@@ -106,7 +106,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeUsername(RequestUpdateUsersInformationUsernameServiceDto req)
-        {
+        {            
             req.userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationUsernameService
@@ -121,7 +121,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MePassword(RequestUpdateUsersInformationPasswordDto req)
-        {
+        {            
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationPasswordService
@@ -129,7 +129,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeAccountType(RequestUpdateUsersInformationAccountTypeServiceDto req)
-        {
+        {            
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationAccountTypeService
@@ -137,7 +137,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeBIO(RequestUpdateUsersInformationBioServiceDto req)
-        {
+        {            
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationBioService

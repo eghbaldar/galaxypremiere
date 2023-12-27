@@ -17,6 +17,14 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
         }
         public ResultDto Execute(RequestUpdateUsersInformationPasswordDto req)
         {
+            if (req.Password == null || req.Password.Trim().Length == 0)
+            {
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "Enter your strong password please.",
+                };
+            }
             var user = _context
                 .Users
                 .Where(u => u.Id == req.UsersId)
