@@ -39,7 +39,7 @@ namespace galaxypremiere.Domain.Entities.Users
 
         /*Privacy*/
         [MinLength(3, ErrorMessage = "The characters of Username must be more than 3 characters.")]
-        [MaxLength(30, ErrorMessage = "The characters of Username must not be more than 30 characters.")]
+        [MaxLength(50, ErrorMessage = "The characters of Username must not be more than 50 characters.")]
         public string? Username { get; set; } // www.galaxypremiere.com/Username
         public byte AccountType { get; set; } // check [AccountTypeConstants.cs]
         public byte Privacy { get; set; } = 0; // check [PrivacyConstants.cs]

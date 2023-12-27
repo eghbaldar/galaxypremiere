@@ -538,17 +538,22 @@
                                             <span class="input-group-text">@@</span>
                                             <input type="text"
                                                    value="@{
-                                                   if(Model.getUsersInformationServiceDto!=null)
-                                                                                                                                                                                                                       @Model.getUsersInformationServiceDto.Username
+                                                   if(Model.getUsersInformationServiceDto!=null)  
+                                                        @Model.getUsersInformationServiceDto.Username
+                                                   }"
+                                                   data-firstValue="@{
+                                                   if(Model.getUsersInformationServiceDto!=null)  
+                                                        @Model.getUsersInformationServiceDto.Username
                                                    }"
                                                    id="txtUsername"
+                                                   maxlength="50"
                                                    onkeyup="ChangeRuntimeUsername();"
                                                    class="form-control"
                                                    placeholder="Username">
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button type="button" onclick="UpdateInfoUsername();" id="btnUpdateUsername" class="btn btn-primary mb-2">Update</button>
+                                        <button type="button" onclick="UpdateInfoUsername();" id="btnUpdateUsername" class="btn btn-light mb-2">Update</button>
                                     </div>
                                 </div>
                             </form>

@@ -1,5 +1,6 @@
 ﻿using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.DTOs;
+using System.Text.RegularExpressions;
 
 namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername
 {
@@ -14,14 +15,13 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
         {
             _context = context;
         }
-        public ResultDto<StatusUpdateUsersInformationUsernameServiceDto>
-            Execute(RequestUpdateUsersInformationUsernameServiceDto req)
+        public ResultDto<StatusUpdateUsersInformationUsernameServiceDto> Execute(RequestUpdateUsersInformationUsernameServiceDto req)
         {
             var user = _context.Users.Where(u => u.Id == req.userId).FirstOrDefault();
             if (user != null)
             {
                 // check duplicated username
-                if (CheckDuplicatedUsername(req.username))
+                if (CheckUsername(req.username))
                 {
                     return new ResultDto<StatusUpdateUsersInformationUsernameServiceDto>
                     {
@@ -84,8 +84,20 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                 };
             }
         }
-        private bool CheckDuplicatedUsername(string username)
+        private bool CheckUsername(string username)
         {
+            // check empty and nullable
+            if (username == null || username.Trim() == "") return true;
+            // check number of characters
+            if (username.Length > 50) return true;
+            // check the first character
+            if ("qwertyuiopasdfghjklzxcvbnm".IndexOf(username.Substring(0, 1)) == -1) return true;            
+            // check space
+            if (username.IndexOf(' ') != -1) return true;
+            //Invalid character(s) found.
+            var match = Regex.Match(username, "^[a-zA-Z0-9 ]*$", RegexOptions.IgnoreCase);
+            if(!match.Success) { return true; }
+            // check duplicated username
             var check = _context
                   .UsersInformation
                   .Where(u => u.Username == username)

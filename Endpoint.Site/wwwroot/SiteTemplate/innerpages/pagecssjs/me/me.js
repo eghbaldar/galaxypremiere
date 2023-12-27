@@ -210,9 +210,25 @@ function UpdateInfoPrivacy(e, privacy) {
     });
 }
 function UpdateInfoUsername() {
+
+    var username = $("#txtUsername").val().trim();
+    if (!CheckValidUsername(username)) return false;
+    /// why is not the following part placed in CheckValidUsername function?
+    /// because if a client enters less than 5 characters, the system is keeping to notify error to him!
+    if (username.toString().length < 5) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "The username lenght must be more than 5 characters.",
+            showConfirmButton: false,
+            timer: 3000
+        });
+        return false;
+    }
+
     pageWaitMe("progress"); // loading process starts
     btnWaitMe_Start('btnUpdateUsername'); // Loading Button Start
-    var username = $("#txtUsername").val();
+
     var postData = {
         'username': username,
     };
@@ -277,12 +293,15 @@ function UpdateInfoUsername() {
 }
 function ChangeRuntimeUsername(e) {
 
-    var input = $("#txtUsername").val();
+    var input = $("#txtUsername").val();    
+    if (!CheckValidUsername(input)) {
+        $("#iconCurrentUsername").removeClass();
+        $("#iconCurrentUsername").addClass("fa-solid fa-circle-xmark colorRed");
+        return false;
+    }
     $("#spanCurrentUsername").html("<a target='_blank' href='https://galaxypremiere.com/" + input + "'>www.galaxypremiere.com/" + input + "</a>");
 
-    var postData = {
-        'Username': input,
-    };
+    var postData = { 'Username': input, };
     $.ajax({
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
@@ -308,6 +327,73 @@ function ChangeRuntimeUsername(e) {
             });
         }
     });
+}
+function CheckValidUsername(username) {
+    // All the following code are simulated as C# in 
+    var firstValueUsername = $("#txtUsername").attr("data-firstValue");
+
+    if (firstValueUsername != $("#txtUsername").val())
+        UsernameStatus(true);
+    else {
+        UsernameStatus(false);
+        return false;
+    }
+
+    if (username == null || username.toString().trim() == '') {
+        UsernameStatus(false);
+        return false;
+    }
+
+    if (username.toString().trim().indexOf(' ') != -1) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "A blank found.",
+            showConfirmButton: false,
+            timer: 3000
+        });
+        UsernameStatus(false);
+        return false;
+    }
+
+    if ('qwertyuiopasdfghjklzxcvbnm'.indexOf(username.trim().substring(0, 1).toLowerCase().toString()) == -1) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "The username must be starting with an alphabet character.",
+            showConfirmButton: false,
+            timer: 3000
+        });
+        UsernameStatus(false);
+        return false;
+    }
+    
+    var characterExceptAlphabets = /[^\w\s]/gi;
+    if (characterExceptAlphabets.test(username)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Invalid character(s) found. Only the alphabet and number would be Okay.",
+            showConfirmButton: false,
+            timer: 3000
+        });
+        UsernameStatus(false);
+        return false;
+    }
+
+    UsernameStatus(true);
+    return true;
+}
+function UsernameStatus(flag) {
+    if (flag) {
+        $("#btnUpdateUsername").removeClass();
+        $("#btnUpdateUsername").addClass("btn btn-primary mb-2");
+        $("#btnUpdateUsername").attr('disabled', false);
+    } else {
+        $("#btnUpdateUsername").removeClass();
+        $("#btnUpdateUsername").addClass("btn btn-light mb-2");
+        $("#btnUpdateUsername").attr('disabled', 'disabled');
+    }
 }
 function UpdateInfoPassword() {
 
@@ -362,7 +448,7 @@ function UpdateInfoPassword() {
 }
 function UpdateInfoAccountType(e, type) {
 
-    
+
     pageWaitMe("progress"); // loading process starts
     btnWaitMe_Start('btnAccountType0'); // Loading Button Start
     btnWaitMe_Start('btnAccountType1'); // Loading Button Start
@@ -774,6 +860,7 @@ $(document).ready(function () {
     } else {
         $("#iconCurrentUsername").removeClass();
         $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
+        $("#btnUpdateUsername").attr('disabled', 'disabled');
     }
 });
 function UpdateOther() {
