@@ -14,7 +14,6 @@
 
     .headerNavigation .drop_menu {
         position: absolute;
-        z-index: 2;
         padding: 0;
         margin: 0;
         list-style-type: none;
