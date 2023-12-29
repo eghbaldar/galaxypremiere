@@ -291,7 +291,7 @@ function UpdateInfoUsername() {
         }
     });
 }
-function ChangeRuntimeUsername(e) {
+function ChangeRuntimeUsername(e){
 
     var input = $("#txtUsername").val();    
     if (!CheckValidUsername(input)) {
@@ -329,17 +329,19 @@ function ChangeRuntimeUsername(e) {
     });
 }
 function CheckValidUsername(username) {
+
     // All the following code are simulated as C# in 
     var firstValueUsername = $("#txtUsername").attr("data-firstValue");
+
+    if (username == null || username.toString().trim() == '') {
+        UsernameStatus(false);
+        $("#spanCurrentUsername").html("<a target='_blank' href='https://galaxypremiere.com/'>www.galaxypremiere.com/</a>");
+        return false;
+    }
 
     if (firstValueUsername != $("#txtUsername").val())
         UsernameStatus(true);
     else {
-        UsernameStatus(false);
-        return false;
-    }
-
-    if (username == null || username.toString().trim() == '') {
         UsernameStatus(false);
         return false;
     }
@@ -862,6 +864,94 @@ $(document).ready(function () {
         $("#iconCurrentUsername").addClass("fa-solid fa-check-double colorGreen");
         $("#btnUpdateUsername").attr('disabled', 'disabled');
     }
+    // Triggers
+    //--------------- Account Section
+    $('body').on('keypress', '#txtFirstname', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateAccount").trigger("click");
+    })
+    $('body').on('keypress', '#txtMiddlename', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateAccount").trigger("click");
+    })
+    $('body').on('keypress', '#txtSurname', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateAccount").trigger("click");
+    })
+    $('body').on('keypress', '#txtBirthcity', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateAccount").trigger("click");
+    })
+    $('body').on('keypress', '#txtCurrentCity', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateAccount").trigger("click");
+    })
+    //--------------- Contact Section
+    $('body').on('keypress', '#txtAddress1', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtAddress2', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtCity', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtState', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtPostalCode', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtPhone', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtRecoveryEmail', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtWebsite', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtFacebook', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtInstagram', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtTwitter', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtStage32', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtYoutube', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtLinkden', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtVimeo', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    $('body').on('keypress', '#txtIMDb', function (evn) {
+        if (evn.keyCode == 13)
+            $("#btnUpdateContact").trigger("click");
+    })
+    // End Triggers
 });
 function UpdateOther() {
     pageWaitMe("progress"); // loading process starts

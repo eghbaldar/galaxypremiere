@@ -887,11 +887,10 @@ Model.getUsersInformationServiceDto.Privacy==2)
                 <form asp-action="UpdateBIO" id="frmBIO" method="post">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Time Zone</span>
-<select
+                        <select class="form-select" id="select_timezone"
 data-seletedItem=@{
     if(Model.getUsersInformationServiceDto != null) @(Model.getUsersInformationServiceDto.TimeZoneId)
-}
-class="form-select" id="select_timezone">
+}>
 <option value="1">(GMT) Casablanca [Morocco Standard Time]</option>
 <option value="2">(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London [GMT Standard Time]</option>
 <option value="3">(GMT) Monrovia, Reykjavik [Greenwich Standard Time]</option>
