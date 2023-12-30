@@ -62,11 +62,11 @@
                     background: #f1f1f1;
                 }
 /******************************************** TAB *************************/
-.TabUserTabcontent {
+.TabcontentClass {
     display: none;
 }
 
-.TabUserTabcontent {
+.TabcontentClass {
     animation: fadeEffect 0.5s;
 }
 

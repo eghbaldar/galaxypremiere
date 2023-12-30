@@ -16,9 +16,9 @@
     @*King Tagger*@
     <link href="~/lib/kingFuncs/taggers/sellect.css" rel="stylesheet" />
 }
-@await Component.InvokeAsync("UserAccountNavigation") <i class="mdi mdi-chevron-down"></i>
+@await Component.InvokeAsync("UserAccountNavigation")
 
-<div id="TabUserAccount" class="TabUserTabcontent">
+<div id="TabUserAccount" class="TabcontentClass active">
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">ACCOUNT</h4>
@@ -157,7 +157,7 @@
     </div>
 </div>
 
-<div id="TabUserContact" class="TabUserTabcontent">
+<div id="TabUserContact" class="TabcontentClass">
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">CONTACT</h4>
@@ -352,7 +352,7 @@
     </div>
 </div>
 
-<div id="TabUserBIO" class="TabUserTabcontent">
+<div id="TabUserBIO" class="TabcontentClass">
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">ABOUT ME</h4>
@@ -437,7 +437,7 @@
     </div>
 </div>
 
-<div id="TabUserPhotos" class="TabUserTabcontent">
+<div id="TabUserPhotos" class="TabcontentClass">
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">HEADSHOT</h4>
@@ -500,7 +500,7 @@
     </div>
 </div>
 
-<div id="TabUserPrivacy" class="TabUserTabcontent">
+<div id="TabUserPrivacy" class="TabcontentClass">
     @*Username*@
     <div class="card">
         <div class="card-header">
@@ -877,7 +877,7 @@ Model.getUsersInformationServiceDto.Privacy==2)
     </div>
 </div>
 
-<div id="TabUserOther" class="TabUserTabcontent">
+<div id="TabUserOther" class="TabcontentClass">
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">OTHER</h4>
@@ -1074,6 +1074,8 @@ data-seletedItem=@{
     }
     @*Executive Functions : Only for this page*@
     <script src="~/SiteTemplate/innerpages/pagecssjs/me/me.js"></script>
+    @* Tabs *@
+    <script src="~/sitetemplate/innerpages/plugins/tabNavigation/tab.js"></script>
     @*King Tagger*@
     <script src="~/lib/kingFuncs/taggers/sellect.js"></script>
 

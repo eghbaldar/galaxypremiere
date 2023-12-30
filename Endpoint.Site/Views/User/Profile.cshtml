@@ -1,0 +1,129 @@
+﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
+@{
+    Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
+}
+@section Styles{
+    @*Only for this page*@
+
+    @*datapicker*@
+    <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
+}
+@await Component.InvokeAsync("UserProfileNavigation")
+
+<div id="TabUserEducation" class="TabcontentClass active">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Eduction</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="Create" id="frmAddUser" method="post">
+                    <button type="button" onclick="UpdateInfoAccount()" id="btnUpdateAccount" class="btn cur-p btn-primary">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TabUserFavoriteMovie" class="TabcontentClass">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Favorite Movies</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="Create" id="frmAddUser" method="post">
+                    <button type="button" onclick="UpdateInfoAccount()" id="btnUpdateAccount" class="btn cur-p btn-primary">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TabUserCompany" class="TabcontentClass">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Company</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="Create" id="frmAddUser" method="post">
+                    <button type="button" onclick="UpdateInfoAccount()" id="btnUpdateAccount" class="btn cur-p btn-primary">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TabUserNews" class="TabcontentClass">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">News</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="Create" id="frmAddUser" method="post">
+                    <button type="button" onclick="UpdateInfoAccount()" id="btnUpdateAccount" class="btn cur-p btn-primary">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TabUserPhotos" class="TabcontentClass">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Photos</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="Create" id="frmAddUser" method="post">
+                    <button type="button" onclick="UpdateInfoAccount()" id="btnUpdateAccount" class="btn cur-p btn-primary">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TabUserAttachments" class="TabcontentClass">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Attachments</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="Create" id="frmAddUser" method="post">
+                    <button type="button" onclick="UpdateInfoAccount()" id="btnUpdateAccount" class="btn cur-p btn-primary">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TabUserLinks" class="TabcontentClass">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Links</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form asp-action="Create" id="frmAddUser" method="post">
+                    <button type="button" onclick="UpdateInfoAccount()" id="btnUpdateAccount" class="btn cur-p btn-primary">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @* Tabs *@
+    <script src="~/sitetemplate/innerpages/plugins/tabNavigation/tab.js"></script>
+}

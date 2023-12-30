@@ -2833,6 +2833,14 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\638394520366076124header.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\638394520366076124header.jpg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638394520276378750headshot.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\638394520276378750headshot.jpg"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\Chart.bundle.js",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\js\\Chart.bundle.js"
     },
@@ -3957,8 +3965,12 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.js"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\plugins\\innerNavigation\\style.css",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\plugins\\innerNavigation\\style.css"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\plugins\\tabNavigation\\tab.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\plugins\\tabNavigation\\tab.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\plugins\\tabNavigation\\tab.js",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\plugins\\tabNavigation\\tab.js"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\mainpage\\assets\\css\\style.css",

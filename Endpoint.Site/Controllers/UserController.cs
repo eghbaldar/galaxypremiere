@@ -178,5 +178,10 @@ namespace Endpoint.Site.Controllers
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade.UpdateUsersInformationOtherService.Execute(req));
         }
+        [HttpGet]
+        public IActionResult Profile()
+        {
+            return View();
+        }
     }
 }

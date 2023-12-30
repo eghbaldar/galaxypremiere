@@ -17,17 +17,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{1A7DB0E7-9705-41E1-9615-F6BC34D3E172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "galaxypremiere.Common", "galaxypremiere.Common\galaxypremiere.Common.csproj", "{6FC631E4-70FB-407B-BC6B-7F6A6C974C61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "galaxypremiere.Common", "galaxypremiere.Common\galaxypremiere.Common.csproj", "{6FC631E4-70FB-407B-BC6B-7F6A6C974C61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "galaxypremiere.Application", "galaxypremiere.Application\galaxypremiere.Application.csproj", "{EA37A73D-1DEB-4F88-B247-CC249CC4B8D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "galaxypremiere.Application", "galaxypremiere.Application\galaxypremiere.Application.csproj", "{EA37A73D-1DEB-4F88-B247-CC249CC4B8D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "galaxypremiere.Domain", "galaxypremiere.Domain\galaxypremiere.Domain.csproj", "{4B1C8155-D7D1-4222-B89C-E92BCB9DD579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "galaxypremiere.Domain", "galaxypremiere.Domain\galaxypremiere.Domain.csproj", "{4B1C8155-D7D1-4222-B89C-E92BCB9DD579}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "galaxypremiere.Infrastructure", "galaxypremiere.Infrastructure\galaxypremiere.Infrastructure.csproj", "{D488CBD7-BA69-42AF-ADA0-139C453DF0FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "galaxypremiere.Infrastructure", "galaxypremiere.Infrastructure\galaxypremiere.Infrastructure.csproj", "{D488CBD7-BA69-42AF-ADA0-139C453DF0FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "galaxypremiere.Persistence", "galaxypremiere.Persistence\galaxypremiere.Persistence.csproj", "{5C4CE768-F894-4CAD-AFC9-9F845EA24C61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "galaxypremiere.Persistence", "galaxypremiere.Persistence\galaxypremiere.Persistence.csproj", "{5C4CE768-F894-4CAD-AFC9-9F845EA24C61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endpoint.Site", "Endpoint.Site\Endpoint.Site.csproj", "{E461F689-7BFC-4012-864A-B07D95B8CD98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endpoint.Site", "Endpoint.Site\Endpoint.Site.csproj", "{E461F689-7BFC-4012-864A-B07D95B8CD98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
