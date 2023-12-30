@@ -21,6 +21,7 @@ namespace galaxypremiere.Application.Interfaces.Contexts
         DbSet<Languages> Languages { get; set; } // Languages Table
         DbSet<UsersAddress> UsersAddress { get; set; } // Users' Address Address
         DbSet<UsersPositions> UsersPositions { get; set; } // Users' Position Table
+        DbSet<UsersEducation> UsersEducation { get; set; } // User's Educations
 
         //SaveChanges
         int SaveChanges(bool acceptAllChangesOnSuccess);

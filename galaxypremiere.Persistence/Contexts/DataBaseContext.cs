@@ -41,6 +41,7 @@ namespace galaxypremiere.Persistence.Context
         public DbSet<Languages> Languages { get; set; } // Languages Table
         public DbSet<UsersAddress> UsersAddress { get; set; } // Users' Address Table
         public DbSet<UsersPositions> UsersPositions { get; set; } // Users' Position Table
+        public DbSet<UsersEducation> UsersEducation { get; set; } // User's Educations
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
