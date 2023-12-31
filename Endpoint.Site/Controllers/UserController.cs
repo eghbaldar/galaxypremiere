@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Endpoint.Site.Models.Users.GetInformation;
+using Endpoint.Site.Models.Users.GetProfile;
 using Endpoint.Site.Utilities;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UserPosition.Commands.PostUsersPositionSuggestion;
@@ -17,6 +18,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Common;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Infrastructure.Filters;
@@ -186,7 +188,18 @@ namespace Endpoint.Site.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-            return View();
+            var userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+
+            ModelGetProfile modelGetProfile = new ModelGetProfile
+            {
+                ResultGetUserProfileEducationsServiceDto =
+                _userProfileFacade.GetUserProfileEducationsService
+                .Execute(new RequestGetUserProfileEducationsServiceDto
+                {
+                    UsersId = userId
+                }).Data,
+            };
+            return View(modelGetProfile);
         }      
         [HttpPost]
         public IActionResult ProfileEducation(RequestPostUserProfileEducationServiceDto req)

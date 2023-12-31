@@ -1,4 +1,6 @@
 ﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
+@using Endpoint.Site.Models.Users.GetProfile
+@model ModelGetProfile
 @{
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
@@ -45,61 +47,69 @@
                 <form asp-action="Create" id="frmAddUser" method="post">
 
                     <div class="form_field_outer">
-                        <div class="row form_field_outer_row" id="educational_form_1">
-
-                            <fieldset>
-                                <legend>Educational Case [1]</legend>
-
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Name</span>
-                                    <input type="text"
+                        @for (byte i = 0; i <= Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto.Count - 1; i++)
+                        {
+                            <div class="row form_field_outer_row" id="educational_form_@i">
+                                <fieldset>
+                                    <legend>Educational Case [@((int)@i + (int)1)]</legend>
+                                    <input type="hidden"
+                                       id="txtId_@i"
+                                       value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Id" />
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Name</span>
+                                        <input type="text"
                                            class="form-control"
-                                           id="txtSchoolName_1"
+                                           id="txtSchoolName_@i"
+                                           value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
                                            placeholder="School, Instituion, College, University Name">
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Field of Study</span>
-                                    <input type="text"
-                                           class="form-control"
-                                           id="txtField_1"
-                                           placeholder="Directing, Software engineering, ...">
-                                </div>
-
-                                <div style="display:flex;">
-                                    <div>
-                                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                               for="inputGroupSelect01">From</label>
                                     </div>
-                                    <div>
-                                        <input readonly
+
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Field of Study</span>
+                                        <input type="text"
+                                           class="form-control"
+                                           id="txtField_@i"
+                                           value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Field"
+                                           placeholder="Directing, Software engineering, ...">
+                                    </div>
+
+                                    <div style="display:flex;">
+                                        <div>
+                                            <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                               for="inputGroupSelect01">From</label>
+                                        </div>
+                                        <div>
+                                            <input readonly
                                                placeholder="Starting date of Eduction"
                                                style="border-radius:0px;border-left:0;" width="300"
-                                               id="datepickerFrom_1">
+                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].From"
+                                               id="datepickerFrom_@i">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div style="display:flex;">
-                                    <div>
-                                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                    <div style="display:flex;">
+                                        <div>
+                                            <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
                                                for="inputGroupSelect01">To</label>
-                                    </div>
-                                    <div>
-                                        <input readonly
+                                        </div>
+                                        <div>
+                                            <input readonly
                                                placeholder="Ending date of Eduction"
                                                style="border-radius:0px;border-left:0;" width="300"
-                                               id="datepickerTo_1">
+                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].To"
+                                               id="datepickerTo_@i">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group col-md-2 add_del_btn_outer">
-                                    <button class="btn_round remove_node_btn_frm_field" disabled>
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </div>
-                            </fieldset>
+                                    <div class="form-group col-md-2 add_del_btn_outer">
+                                        <button class="btn_round remove_node_btn_frm_field" disabled>
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </fieldset>
 
-                        </div>
+                            </div>
+                        }
                     </div>
 
                     <button type="button" class="btn btn-outline-lite py-0 add_new_frm_field_btn">
@@ -217,19 +227,23 @@
     <script src="~/sitetemplate/innerpages/plugins/tabNavigation/tab.js"></script>
     @*Datapicker*@
     <script src="~/lib/datapicker/datapicker.js"></script>
-    <script>
-        $('#datepickerFrom_1').datepicker({
-            uiLibrary: 'bootstrap5'
-        });
-        $('#datepickerTo_1').datepicker({
-            uiLibrary: 'bootstrap5'
-        });
-    </script>
+    @for (byte i = 0; i <= Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto.Count - 1; i++)
+    {
+        <script>
+            $('#datepickerFrom_@i').datepicker({
+                uiLibrary: 'bootstrap5'
+            });
+            $('#datepickerTo_@i').datepicker({
+                uiLibrary: 'bootstrap5'
+            });
+        </script>
+    }
     @* Functions *@
 
     <script>
         function GetProfileEducationElements() {
 
+            var Id;
             var schoolName;
             var fieldlName;
             var dateFrom;
@@ -242,6 +256,9 @@
                 var value = $(this).prop("value");
                 var id = $(this).prop("id");
 
+                if (type == "hidden") {
+                    if (id.indexOf("txtId") == 0) Id = value;
+                }
                 if (type == "text") {
                     if (id.indexOf("txtSchoolName") == 0) schoolName = value;
                     if (id.indexOf("txtField") == 0) fieldlName = value;
@@ -249,7 +266,7 @@
                     if (id.indexOf("datepickerTo") == 0) dateTo = value;
                 }
                 if (type == "submit") {
-                    postData.push(schoolName + "|" + fieldlName + "|" + dateFrom + "|" + dateTo + "|")
+                    postData.push(Id + "|" + schoolName + "|" + fieldlName + "|" + dateFrom + "|" + dateTo + "|")
                 }
             });
             UpdateProfileEducation(postData);
@@ -311,63 +328,67 @@
 
                 $(".form_field_outer").append(`
 
-                                                                       <div class="row form_field_outer_row" id="educational_form_`+ index.toString() + `">
+                                                                                                       <div class="row form_field_outer_row" id="educational_form_`+ index.toString() + `">
 
-                                                                        <fieldset>
-                                                                            <legend>Educational Case [`+ index.toString() + `]</legend>
+                                                                                                        <fieldset>
+                                                                                                            <legend>Educational Case [`+ index.toString() + `]</legend>
 
-                                                                            <div class="input-group mb-3">
-                                                                                <span class="input-group-text">Name</span>
-                                                                                <input type="text"
-                                                                                        class="form-control"
-                                                                                                id="txtSchoolName_`+ index.toString() + `"
-                                                                                        placeholder="School, Instituion, College, University Name">
-                                                                            </div>
+                                                                                                                    <input type="hidden"
+                                                                id="txtId_`+ index.toString() + `"
+                                                        />
 
-                                                                            <div class="input-group mb-3">
-                                                                                <span class="input-group-text">Field of Study</span>
-                                                                                <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="txtField_`+ index.toString() + `"
-                                                                                        placeholder="Directing, Software engineering, ...">
-                                                                            </div>
+                                                                                                            <div class="input-group mb-3">
+                                                                                                                <span class="input-group-text">Name</span>
+                                                                                                                <input type="text"
+                                                                                                                        class="form-control"
+                                                                                                                                id="txtSchoolName_`+ index.toString() + `"
+                                                                                                                        placeholder="School, Instituion, College, University Name">
+                                                                                                            </div>
 
-                                                                                                                <div style="display:flex;">
-                                                                                <div>
-                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                            for="inputGroupSelect01">From</label>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <input readonly
-                                                                                            placeholder="Starting date of Eduction"
-                                                                                            style="border-radius:0px;border-left:0;" width="300"
-                                                                                                    id="datepickerFrom_`+ index.toString() + `">
-                                                                                </div>
-                                                                            </div>
+                                                                                                            <div class="input-group mb-3">
+                                                                                                                <span class="input-group-text">Field of Study</span>
+                                                                                                                <input type="text"
+                                                                                                                        class="form-control"
+                                                                                                                        id="txtField_`+ index.toString() + `"
+                                                                                                                        placeholder="Directing, Software engineering, ...">
+                                                                                                            </div>
 
-                                                                            <div style="display:flex;">
-                                                                                <div>
-                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                            for="inputGroupSelect01">To</label>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <input readonly
-                                                                                            placeholder="Ending date of Eduction"
-                                                                                            style="border-radius:0px;border-left:0;" width="300"
-                                                                                                    id="datepickerTo_`+ index.toString() + `">
-                                                                                </div>
-                                                                            </div>
+                                                                                                                                                <div style="display:flex;">
+                                                                                                                <div>
+                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                                                                            for="inputGroupSelect01">From</label>
+                                                                                                                </div>
+                                                                                                                <div>
+                                                                                                                    <input readonly
+                                                                                                                            placeholder="Starting date of Eduction"
+                                                                                                                            style="border-radius:0px;border-left:0;" width="300"
+                                                                                                                                    id="datepickerFrom_`+ index.toString() + `">
+                                                                                                                </div>
+                                                                                                            </div>
 
-                                                                            <div class="form-group col-md-2 add_del_btn_outer">
-                                                                                <button class="btn_round remove_node_btn_frm_field" disabled>
-                                                                                    <i class="fas fa-trash-alt"></i>
-                                                                                </button>
-                                                                            </div>
-                                                                        </fieldset>
+                                                                                                            <div style="display:flex;">
+                                                                                                                <div>
+                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                                                                            for="inputGroupSelect01">To</label>
+                                                                                                                </div>
+                                                                                                                <div>
+                                                                                                                    <input readonly
+                                                                                                                            placeholder="Ending date of Eduction"
+                                                                                                                            style="border-radius:0px;border-left:0;" width="300"
+                                                                                                                                    id="datepickerTo_`+ index.toString() + `">
+                                                                                                                </div>
+                                                                                                            </div>
 
-                                                                    </div>
+                                                                                                            <div class="form-group col-md-2 add_del_btn_outer">
+                                                                                                                <button class="btn_round remove_node_btn_frm_field" disabled>
+                                                                                                                    <i class="fas fa-trash-alt"></i>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                        </fieldset>
 
-                                                                      `);
+                                                                                                    </div>
+
+                                                                                                      `);
 
                 $('#datepickerFrom_' + index.toString()).datepicker({
                     uiLibrary: 'bootstrap5'
