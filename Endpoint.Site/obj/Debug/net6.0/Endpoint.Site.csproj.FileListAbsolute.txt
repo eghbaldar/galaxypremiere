@@ -253,6 +253,7 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\galaxypremiere.Persistence.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\galaxypremiere.Common.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\galaxypremiere.Domain.pdb
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.MvcApplicationPartsAssemblyInfo.cs
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\staticwebassets\msbuild.Endpoint.Site.Microsoft.AspNetCore.StaticWebAssets.props
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\staticwebassets\msbuild.build.Endpoint.Site.props
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Endpoint.Site.props
@@ -269,4 +270,3 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.genruntimeconfig.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\ref\Endpoint.Site.dll
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.MvcApplicationPartsAssemblyInfo.cs

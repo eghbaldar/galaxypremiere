@@ -26,6 +26,7 @@
     <Folder Include="Services\Roles\Commands\" />
     <Folder Include="Services\UserActionsLog\Queries\" />
     <Folder Include="Services\UsersInformation\Queries\GetUsersInformationPositions\" />
+    <Folder Include="Services\UsersProfile\Queries\" />
   </ItemGroup>
 
 </Project>

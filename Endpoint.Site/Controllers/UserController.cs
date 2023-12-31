@@ -15,6 +15,8 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
+using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
 using galaxypremiere.Common;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Infrastructure.Filters;
@@ -51,18 +53,21 @@ namespace Endpoint.Site.Controllers
         private readonly ICountiresFacade _countiresFacade;
         private readonly ILanguagesFacade _languagesFacade;
         private readonly IUserPositionFacade _PositionFacade;
+        private readonly IUserProfileFacade _userProfileFacade;
         private readonly IMapper _mapper;
         public UserController(
             IUserInformationFacade userInformationFacade,
             ICountiresFacade countiresFacade,
             ILanguagesFacade languagesFacade,
             IUserPositionFacade positionFacade,
+            IUserProfileFacade userProfileFacade,
             IMapper mapper)
         {
             _userInformationFacade = userInformationFacade;
             _countiresFacade = countiresFacade;
             _languagesFacade = languagesFacade;
             _PositionFacade = positionFacade;
+            _userProfileFacade= userProfileFacade;
             _mapper = mapper;
         }
         [HttpGet]
@@ -182,6 +187,12 @@ namespace Endpoint.Site.Controllers
         public IActionResult Profile()
         {
             return View();
+        }      
+        [HttpPost]
+        public IActionResult ProfileEducation(RequestPostUserProfileEducationServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.PostUserProfileEducationService.Execute(req));
         }
     }
 }

@@ -8,12 +8,14 @@ using galaxypremiere.Application.Services.UserLoginLog.FacadePattern;
 using galaxypremiere.Application.Services.UserPosition.FacadePattern;
 using galaxypremiere.Application.Services.Users.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.FacadePattern;
+using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Domain.Entities.Users;
 using galaxypremiere.Infrastructure.MappingProfiles.Users;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersInformation;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersLoginLog;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersPositions;
+using galaxypremiere.Infrastructure.MappingProfiles.UsersProfile;
 using galaxypremiere.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.CodeAnalysis;
@@ -38,6 +40,7 @@ builder.Services.AddScoped<IUserInformationFacade, UserInformationFacade>();
 builder.Services.AddScoped<ICountiresFacade, CountriesFacade>();
 builder.Services.AddScoped<ILanguagesFacade, LanguagesFacade>();
 builder.Services.AddScoped<IUserPositionFacade, UsersPositionFacade>();
+builder.Services.AddScoped<IUserProfileFacade, UserProfileFacade>();
 
 // SqlServer
 var ConStr = builder.Configuration.GetConnectionString("LocalServer");
@@ -48,6 +51,7 @@ builder.Services.AddAutoMapper(typeof(UsersMappingProfile));
 builder.Services.AddAutoMapper(typeof(UserLoginLogMappingProfile));
 builder.Services.AddAutoMapper(typeof(UsersInformationProfile));
 builder.Services.AddAutoMapper(typeof(UserPositionsMappingProfile));
+builder.Services.AddAutoMapper(typeof(UserProfileMappingProfile));
 
 // ASN // Add Authentication & Auhortization
 builder.Services.AddAuthentication(option =>
