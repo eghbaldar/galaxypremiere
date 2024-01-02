@@ -54,6 +54,8 @@ namespace galaxypremiere.Persistence.Context
             modelBuilder.ApplyConfiguration(new CountriesConfigurations()); 
             //---- Languages
             modelBuilder.ApplyConfiguration(new LanguagesConfigurations());
+            //---- Profile Educations
+            modelBuilder.ApplyConfiguration(new UsersProfileConfigurations());
             //< End
         }
         public override int SaveChanges()
@@ -89,57 +91,57 @@ namespace galaxypremiere.Persistence.Context
             }
             return base.SaveChanges();
         }
-        private void RecordModifiedProperties(EntityEntry entry)
-        {
+        //private void RecordModifiedProperties(EntityEntry entry)
+        //{
 
-            foreach (var property in entry.Entity.GetType().GetTypeInfo().DeclaredProperties)
-            {
-                bool CheckCollection = property.PropertyType.IsCollection();
-                if (!CheckCollection)
-                {
-                    try
-                    {
-                        var originalValue = entry.Property(property.Name).OriginalValue;
-                        var currentValue = entry.Property(property.Name).CurrentValue;
+        //    foreach (var property in entry.Entity.GetType().GetTypeInfo().DeclaredProperties)
+        //    {
+        //        bool CheckCollection = property.PropertyType.IsCollection();
+        //        if (!CheckCollection)
+        //        {
+        //            try
+        //            {
+        //                var originalValue = entry.Property(property.Name).OriginalValue;
+        //                var currentValue = entry.Property(property.Name).CurrentValue;
 
-                        //https://stackoverflow.com/questions/37548766/dbcontext-override-savechanges-not-firing
-                        //https://stackoverflow.com/questions/32597498/show-original-values-entity-framework-7
-                        //https://stackoverflow.com/questions/12699892/many-to-many-relationship-detecting-changes
-                        //https://stackoverflow.com/questions/21025778/entity-framework-6-getobjectstateentries-expected-modified-entities-have-state
+        //                //https://stackoverflow.com/questions/37548766/dbcontext-override-savechanges-not-firing
+        //                //https://stackoverflow.com/questions/32597498/show-original-values-entity-framework-7
+        //                //https://stackoverflow.com/questions/12699892/many-to-many-relationship-detecting-changes
+        //                //https://stackoverflow.com/questions/21025778/entity-framework-6-getobjectstateentries-expected-modified-entities-have-state
 
-                        if (originalValue.ToString() != currentValue.ToString()) //only will be changed when a thing changes!
-                        {
-                            UsersActionsLog postUserActionLogService = new UsersActionsLog()
-                            {
-                                Entity = entry.Entity.GetType().Name, //entityName 
-                                Action = entry.State.ToString(),
-                                NewValue = currentValue.ToString(),
-                                OldValue = originalValue.ToString(),
-                                PrimaryKeyValue = "0",
-                                PropertyName = property.Name,
-                                Successful = true,
-                                //UserId = 1,
-                            };
-                            UsersActionsLog.Add(postUserActionLogService);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        UsersActionsLog postUserActionLogService = new UsersActionsLog()
-                        {
-                            Entity = entry.Entity.GetType().Name, //entityName 
-                            Action = entry.State.ToString(),
-                            NewValue = "",
-                            OldValue = "",
-                            PrimaryKeyValue = "0",
-                            PropertyName = property.Name,
-                            Successful = false,
-                            //UserId = 0,
-                        };
-                        UsersActionsLog.Add(postUserActionLogService);
-                    }
-                }
-            }
-        }
+        //                if (originalValue.ToString() != currentValue.ToString()) //only will be changed when a thing changes!
+        //                {
+        //                    UsersActionsLog postUserActionLogService = new UsersActionsLog()
+        //                    {
+        //                        Entity = entry.Entity.GetType().Name, //entityName 
+        //                        Action = entry.State.ToString(),
+        //                        NewValue = currentValue.ToString(),
+        //                        OldValue = originalValue.ToString(),
+        //                        PrimaryKeyValue = "0",
+        //                        PropertyName = property.Name,
+        //                        Successful = true,
+        //                        //UserId = 1,
+        //                    };
+        //                    UsersActionsLog.Add(postUserActionLogService);
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                UsersActionsLog postUserActionLogService = new UsersActionsLog()
+        //                {
+        //                    Entity = entry.Entity.GetType().Name, //entityName 
+        //                    Action = entry.State.ToString(),
+        //                    NewValue = "",
+        //                    OldValue = "",
+        //                    PrimaryKeyValue = "0",
+        //                    PropertyName = property.Name,
+        //                    Successful = false,
+        //                    //UserId = 0,
+        //                };
+        //                UsersActionsLog.Add(postUserActionLogService);
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

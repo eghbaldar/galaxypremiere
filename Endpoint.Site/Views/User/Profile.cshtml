@@ -32,6 +32,32 @@
             background-color: white;
             color: #808080;
         }
+
+        .add_new_frm_field_btn {
+            padding: 15px !important;
+            border: 2px dotted gray;
+            background-color: white;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .add_icon {
+            color: black;
+        }
+
+        .btn_round {
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            border: 0px !important;
+            background-color: #f2f2f2;
+        }
+
+        .fa-trash-alt {
+            padding: 10px;
+            color: #808080;
+        }
     </style>
 >
 }
@@ -102,23 +128,29 @@
                                     </div>
 
                                     <div class="form-group col-md-2 add_del_btn_outer">
-                                        <button class="btn_round remove_node_btn_frm_field" disabled>
+                                        <button class="btn_round remove_node_btn_frm_field"
+                                            id="btn_remove_node_btn_frm_field_@i"
+                                            onclick="DeleteProfileEducation(this,'@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Id')">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </div>
+
                                 </fieldset>
 
                             </div>
                         }
                     </div>
 
-                    <button type="button" class="btn btn-outline-lite py-0 add_new_frm_field_btn">
-                        <i class="fas fa-plus add_icon"></i> Add New field row
-                    </button>
-
-                    <button type="button" onclick="GetProfileEducationElements()" id="btnUpdateProfileEducations" class="btn cur-p btn-primary">
-                        Update
-                    </button>
+                    <div class="input-group mt-3">
+                        <button type="button" class="add_new_frm_field_btn">
+                            <i class="fas fa-plus add_icon"></i> Add New Educational Case
+                        </button>
+                        <br />
+                        <button type="button" onclick="GetProfileEducationElements()"
+                                id="btnUpdateProfileEducations" class="btn cur-p btn-primary" disabled>
+                            Update
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -238,6 +270,14 @@
             });
         </script>
     }
+    @if (Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto.Count > 0)
+    {
+        <script>
+            $(document).ready(function () {
+                $("#btnUpdateProfileEducations").prop("disabled", false);
+            });
+        </script>
+    }
     @* Functions *@
 
     <script>
@@ -260,6 +300,10 @@
                     if (id.indexOf("txtId") == 0) Id = value;
                 }
                 if (type == "text") {
+                    if (value.trim() == '')
+                        $("#" + id).css("border-bottom", "2px dashed #ff8585");
+                    else
+                        $("#" + id).css("border-bottom", "1px solid #dee2e6");
                     if (id.indexOf("txtSchoolName") == 0) schoolName = value;
                     if (id.indexOf("txtField") == 0) fieldlName = value;
                     if (id.indexOf("datepickerFrom") == 0) dateFrom = value;
@@ -269,9 +313,9 @@
                     postData.push(Id + "|" + schoolName + "|" + fieldlName + "|" + dateFrom + "|" + dateTo + "|")
                 }
             });
-            UpdateProfileEducation(postData);
+            PostProfileEducation(postData);
         }
-        function UpdateProfileEducation(data) {
+        function PostProfileEducation(data) {
             pageWaitMe("progress"); // loading process starts
             btnWaitMe_Start('btnUpdateProfileEducations'); // Loading Button Start
             var postData = { 'info': data, }
@@ -280,7 +324,7 @@
                 dataType: 'json',
                 type: 'POST',
                 data: postData,
-                url: 'ProfileEducation',
+                url: 'ProfileEducationPost',
                 success: function (data) {
                     if (data.isSuccess) {
                         Swal.fire({
@@ -316,110 +360,147 @@
                 }
             });
         }
+        function DeleteProfileEducation(e, Id) {
+            pageWaitMe("progress"); // loading process starts
+            //btnWaitMe_Start(e.id); // Loading Button Start
+            var postData = { 'Id': Id, }
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'ProfileEducationDelete',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Information has been saved",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        btnWaitMe_Stop(e.id); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
+                    }
+                    else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        btnWaitMe_Stop(e.id); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
+                    }
+                },
+                error: function (req, status, err) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Something went wrong, please try it again or later!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            });
+        }
     </script>
 
     @*Add Runtime Controls*@
     <script type="text/javascript">
-
+        function generateGuid() {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        }
         $(document).ready(function () {
             $("body").on("click", ".add_new_frm_field_btn", function () {
-                console.log("clicked");
-                var index = $(".form_field_outer").find(".form_field_outer_row").length + 1;
-
+                $("#btnUpdateProfileEducations").prop("disabled", false);
+                //var index = $(".form_field_outer").find(".form_field_outer_row").length + 1;
+                var guid = generateGuid();
                 $(".form_field_outer").append(`
 
-                                                                                                       <div class="row form_field_outer_row" id="educational_form_`+ index.toString() + `">
+                                <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
 
-                                                                                                        <fieldset>
-                                                                                                            <legend>Educational Case [`+ index.toString() + `]</legend>
+                        <fieldset>
+                                    <legend>Educational Case</legend>
 
-                                                                                                                    <input type="hidden"
-                                                                id="txtId_`+ index.toString() + `"
-                                                        />
+                                    <input type="hidden"
+                            id="txtId_`+ guid.toString() + `"
+                    />
 
-                                                                                                            <div class="input-group mb-3">
-                                                                                                                <span class="input-group-text">Name</span>
-                                                                                                                <input type="text"
-                                                                                                                        class="form-control"
-                                                                                                                                id="txtSchoolName_`+ index.toString() + `"
-                                                                                                                        placeholder="School, Instituion, College, University Name">
-                                                                                                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Name</span>
+                                <input type="text"
+                                        class="form-control"
+                                                id="txtSchoolName_`+ guid.toString() + `"
+                                        placeholder="School, Instituion, College, University Name">
+                            </div>
 
-                                                                                                            <div class="input-group mb-3">
-                                                                                                                <span class="input-group-text">Field of Study</span>
-                                                                                                                <input type="text"
-                                                                                                                        class="form-control"
-                                                                                                                        id="txtField_`+ index.toString() + `"
-                                                                                                                        placeholder="Directing, Software engineering, ...">
-                                                                                                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Field of Study</span>
+                                <input type="text"
+                                        class="form-control"
+                                                id="txtField_`+ guid.toString() + `"
+                                        placeholder="Directing, Software engineering, ...">
+                            </div>
 
-                                                                                                                                                <div style="display:flex;">
-                                                                                                                <div>
-                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                                                            for="inputGroupSelect01">From</label>
-                                                                                                                </div>
-                                                                                                                <div>
-                                                                                                                    <input readonly
-                                                                                                                            placeholder="Starting date of Eduction"
-                                                                                                                            style="border-radius:0px;border-left:0;" width="300"
-                                                                                                                                    id="datepickerFrom_`+ index.toString() + `">
-                                                                                                                </div>
-                                                                                                            </div>
+                                                                <div style="display:flex;">
+                                <div>
+                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                            for="inputGroupSelect01">From</label>
+                                </div>
+                                <div>
+                                    <input readonly
+                                            placeholder="Starting date of Eduction"
+                                            style="border-radius:0px;border-left:0;" width="300"
+                                                    id="datepickerFrom_`+ guid.toString() + `">
+                                </div>
+                            </div>
 
-                                                                                                            <div style="display:flex;">
-                                                                                                                <div>
-                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                                                            for="inputGroupSelect01">To</label>
-                                                                                                                </div>
-                                                                                                                <div>
-                                                                                                                    <input readonly
-                                                                                                                            placeholder="Ending date of Eduction"
-                                                                                                                            style="border-radius:0px;border-left:0;" width="300"
-                                                                                                                                    id="datepickerTo_`+ index.toString() + `">
-                                                                                                                </div>
-                                                                                                            </div>
+                            <div style="display:flex;">
+                                <div>
+                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                            for="inputGroupSelect01">To</label>
+                                </div>
+                                <div>
+                                    <input readonly
+                                            placeholder="Ending date of Eduction"
+                                            style="border-radius:0px;border-left:0;" width="300"
+                                                            id="datepickerTo_`+ guid.toString() + `">
+                                </div>
+                            </div>
 
-                                                                                                            <div class="form-group col-md-2 add_del_btn_outer">
-                                                                                                                <button class="btn_round remove_node_btn_frm_field" disabled>
-                                                                                                                    <i class="fas fa-trash-alt"></i>
-                                                                                                                </button>
-                                                                                                            </div>
-                                                                                                        </fieldset>
+                            <div class="form-group col-md-2 add_del_btn_outer">
+                                <button class="btn_round remove_node_btn_frm_field"
+                                                         id="btn_remove_node_btn_frm_field_`+ guid.toString() + `"
+                                >
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </fieldset>
 
-                                                                                                    </div>
+                    </div>
 
-                                                                                                      `);
+                                                                    `);
 
-                $('#datepickerFrom_' + index.toString()).datepicker({
+                $('#datepickerFrom_' + guid.toString()).datepicker({
                     uiLibrary: 'bootstrap5'
                 });
-                $('#datepickerTo_' + index.toString()).datepicker({
+                $('#datepickerTo_' + guid.toString()).datepicker({
                     uiLibrary: 'bootstrap5'
                 });
 
-                $(".form_field_outer").find(".remove_node_btn_frm_field:not(:first)").prop("disabled", false);
-                $(".form_field_outer").find(".remove_node_btn_frm_field").first().prop("disabled", true);
+                //$(".form_field_outer").find(".remove_node_btn_frm_field:not(:first)").prop("disabled", false);
+                //$(".form_field_outer").find(".remove_node_btn_frm_field").first().prop("disabled", true);
             });
         });
-
-        ///======Clone method
+        //===== delete the form fieed row
         $(document).ready(function () {
-            $("body").on("click", ".add_node_btn_frm_field", function (e) {
-                var index = $(e.target).closest(".form_field_outer").find(".form_field_outer_row").length + 1;
-                var cloned_el = $(e.target).closest(".form_field_outer_row").clone(true);
-                $(e.target).closest(".form_field_outer").last().append(cloned_el).find(".remove_node_btn_frm_field:not(:first)").prop("disabled", false);
-                $(e.target).closest(".form_field_outer").find(".remove_node_btn_frm_field").first().prop("disabled", true);
-                //change id
-                $(e.target).closest(".form_field_outer").find(".form_field_outer_row").last().find("input[type='text']").attr("id", "mobileb_no_" + index);
-                $(e.target).closest(".form_field_outer").find(".form_field_outer_row").last().find("select").attr("id", "no_type_" + index);
-            });
-        });
-
-        $(document).ready(function () {
-            //===== delete the form fieed row
             $("body").on("click", ".remove_node_btn_frm_field", function () {
+                btnWaitMe_Start(this.id); // Loading Button Start
                 $(this).closest(".form_field_outer_row").remove();
-                console.log("success");
+                var index = $(".form_field_outer").find(".form_field_outer_row").length;
+                if (index == 0) $("#btnUpdateProfileEducations").prop("disabled", true);
             });
         });
 

@@ -15,5 +15,6 @@ namespace galaxypremiere.Domain.Entities.Users
         public string Field { get; set; } // Computer Engineering, Cinema,....
         public DateTime From { get; set; } // starting date of education
         public DateTime To { get; set; } // ending date of education
+        public DateTime? DeleteDate { get; set; } = null; // if there is any, it means this record is deleted!
     }
 }

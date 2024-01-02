@@ -23,6 +23,15 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                 .Where(e => e.UsersId == req.UsersId)
                 .ToList();
 
+                if (req.info == null)
+                {
+                    return new ResultDto
+                    {
+                        IsSuccess = false,
+                        Message = "Something went wrong."
+                    };
+                }
+
                 if ((req.info.Length + profile.Count) < 11 || !profile.Any())
                 {
                     foreach (var anyInfo in req.info)
@@ -31,16 +40,34 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
 
                         var info = anyInfo.ToString().Split("|");
 
+                        // add cases that were not added to the list before!
                         if (!profile.Where(p => p.Id.ToString() == info[0].ToString()).Any())
                         {
-                            usersEducation.UsersId = req.UsersId;
-                            usersEducation.Name = info[1].ToString();
-                            usersEducation.Field = info[2].ToString();
-                            usersEducation.From = Convert.ToDateTime(info[3]);
-                            usersEducation.To = Convert.ToDateTime(info[4]);
+                            if (!String.IsNullOrEmpty(info[1].ToString().Trim())
+                                &&
+                               !String.IsNullOrEmpty(info[2].ToString().Trim())
+                                &&
+                               !String.IsNullOrEmpty(info[3].ToString().Trim())
+                                &&
+                               !String.IsNullOrEmpty(info[4].ToString().Trim()))
+                            {
+                                usersEducation.UsersId = req.UsersId;
+                                usersEducation.Name = info[1].ToString();
+                                usersEducation.Field = info[2].ToString();
+                                usersEducation.From = Convert.ToDateTime(info[3]);
+                                usersEducation.To = Convert.ToDateTime(info[4]);
 
-                            _context.UsersEducation.Add(usersEducation);
-                            _context.SaveChanges();
+                                _context.UsersEducation.Add(usersEducation);
+                                _context.SaveChanges();
+                            }
+                            else
+                            {
+                                return new ResultDto
+                                {
+                                    IsSuccess = false,
+                                    Message = "All fields must be filled."
+                                };
+                            }
                         }
                     }
 

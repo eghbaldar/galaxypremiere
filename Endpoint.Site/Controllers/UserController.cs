@@ -16,6 +16,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
@@ -202,10 +203,16 @@ namespace Endpoint.Site.Controllers
             return View(modelGetProfile);
         }      
         [HttpPost]
-        public IActionResult ProfileEducation(RequestPostUserProfileEducationServiceDto req)
+        public IActionResult ProfileEducationPost(RequestPostUserProfileEducationServiceDto req)
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.PostUserProfileEducationService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult ProfileEducationDelete(RequestDeleteUserProfileEducationServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.DeleteUserProfileEducationService.Execute(req));
         }
     }
 }

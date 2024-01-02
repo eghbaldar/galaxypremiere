@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using System;
@@ -31,6 +32,12 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         public GetUserProfileEducationsService GetUserProfileEducationsService
         {
             get { return _getUserProfileEducationsService = _getUserProfileEducationsService ?? new GetUserProfileEducationsService(_context, _mapper); }
+        }
+        // Delete User Profile Educations
+        private DeleteUserProfileEducationService _deleteUserProfileEducationService;
+        public DeleteUserProfileEducationService DeleteUserProfileEducationService
+        {
+            get { return _deleteUserProfileEducationService = _deleteUserProfileEducationService ?? new DeleteUserProfileEducationService(_context); }
         }
     }
 }

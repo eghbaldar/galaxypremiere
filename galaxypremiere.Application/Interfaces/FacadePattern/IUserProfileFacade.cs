@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
+﻿using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
     {
         PostUserProfileEducationService PostUserProfileEducationService { get; }
         GetUserProfileEducationsService GetUserProfileEducationsService { get; }
+        DeleteUserProfileEducationService DeleteUserProfileEducationService { get; }
     }
 }
