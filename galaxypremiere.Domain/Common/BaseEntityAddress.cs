@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace galaxypremiere.Domain.Common
 {
-    public abstract class BaseEntityAddress
+    public abstract class BaseEntityAddress:BaseEntityGuid
     {
         public string? Address1{ get; set; } //line1
         public string? Address2{ get; set; } //lien2

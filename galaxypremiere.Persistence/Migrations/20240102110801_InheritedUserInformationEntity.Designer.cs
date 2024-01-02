@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using galaxypremiere.Persistence.Context;
 
@@ -11,9 +12,10 @@ using galaxypremiere.Persistence.Context;
 namespace galaxypremiere.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240102110801_InheritedUserInformationEntity")]
+    partial class InheritedUserInformationEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3576,17 +3578,11 @@ namespace galaxypremiere.Persistence.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Facebook")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Imdb")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Instagram")
                         .HasColumnType("nvarchar(max)");
@@ -3611,9 +3607,6 @@ namespace galaxypremiere.Persistence.Migrations
 
                     b.Property<string>("Twitter")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<long>("UsersId")
                         .HasColumnType("bigint");

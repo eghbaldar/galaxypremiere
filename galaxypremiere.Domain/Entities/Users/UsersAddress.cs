@@ -11,8 +11,6 @@ namespace galaxypremiere.Domain.Entities.Users
 {
     public class UsersAddress:BaseEntityAddress
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
         public long UsersId { get; set; }
         public virtual Users Users { get; set; }
     }
