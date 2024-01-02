@@ -7,5 +7,6 @@
         public string Field { get; set; } // Computer Engineering, Cinema,....
         public DateTime From { get; set; } // starting date of education
         public DateTime To { get; set; } // ending date of education
+        public DateTime InsertDate { get; set; }
     }
 }

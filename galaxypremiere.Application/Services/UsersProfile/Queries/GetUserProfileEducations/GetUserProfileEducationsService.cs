@@ -30,7 +30,8 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
                         Field = e.Field,
                         From = e.From,
                         To = e.To,
-                    }).ToList();
+                        InsertDate = e.InsertDate,
+                    }).OrderByDescending(e => e.InsertDate).ToList();
                     return new ResultDto<ResultGetUserProfileEducationsServiceDto>()
                     {
                         Data = new ResultGetUserProfileEducationsServiceDto
