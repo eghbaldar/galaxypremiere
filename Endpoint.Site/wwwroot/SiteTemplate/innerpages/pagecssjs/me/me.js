@@ -581,7 +581,6 @@ function UpdateInfoBIO() {
         }
     });
 }
-document.getElementById("TabUserAccountDefaultOpen").click();
 /*@* Upload Js *@*/
 var dropzoneavatar = $("#dropzoneAvatar");
 var dropzoneheader = $("#dropzoneHeader");
@@ -843,92 +842,92 @@ $(document).ready(function () {
         $("#btnUpdateUsername").attr('disabled', 'disabled');
     }
     // Triggers
-    //--------------- Account Section
+    //--------------- Account Section    
     $('body').on('keypress', '#txtFirstname', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateAccount").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtMiddlename', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateAccount").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtSurname', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateAccount").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtBirthcity', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateAccount").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtCurrentCity', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateAccount").trigger("click");
-    })
+    });
     //--------------- Contact Section
     $('body').on('keypress', '#txtAddress1', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtAddress2', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtCity', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtState', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtPostalCode', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtPhone', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtRecoveryEmail', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtWebsite', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtFacebook', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtInstagram', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtTwitter', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtStage32', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtYoutube', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtLinkden', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtVimeo', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     $('body').on('keypress', '#txtIMDb', function (evn) {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
-    })
+    });
     // End Triggers
 });
 function UpdateOther() {
