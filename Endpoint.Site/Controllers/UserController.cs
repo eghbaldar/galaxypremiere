@@ -32,9 +32,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Runtime.Serialization.Json;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace Endpoint.Site.Controllers
@@ -232,6 +234,20 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.DeleteUserProfileFavoriteMoviesService.Execute(req));
+        }        
+        [HttpGet]
+        public IActionResult GetMetaInfo(string link)
+        {
+
+            HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(link);
+            myRequest.Method = "GET";
+            WebResponse myResponse = myRequest.GetResponse();
+            StreamReader sr = new StreamReader(myResponse.GetResponseStream(), System.Text.Encoding.UTF8);
+            string result = sr.ReadToEnd();
+            sr.Close();
+            myResponse.Close();
+
+            return Json(result);
         }
     }
 }
