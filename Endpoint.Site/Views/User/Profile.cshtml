@@ -10,6 +10,12 @@
     @*datapicker*@
     <link href="~/lib/datapicker/datepicker.min.css" rel="stylesheet" />
     <style>
+        .btn-skype {
+            background: #00aff0;
+            border-color: #00aff0;
+            color: #fff;
+        }
+
         fieldset {
             border: 1px dashed #E0E0E0 !important;
             padding: 0 1.4em 1.4em 1.4em !important;
@@ -33,7 +39,7 @@
             color: #808080;
         }
 
-        .add_new_frm_field_btn {
+        .add_new_frm_field_btn, .add_new_frm_field_favorite_movie_btn {
             padding: 15px !important;
             border: 2px dotted gray;
             background-color: white;
@@ -69,8 +75,7 @@
         </div>
         <div class="card-body">
             <div class="basic-form">
-                <form asp-action="Create" id="frmAddUser" method="post">
-
+                <form asp-action="Create" id="frmEducationalCases" method="post">
                     <div class="form_field_outer">
                         @for (byte i = 0; i <= Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto.Count - 1; i++)
                         {
@@ -127,7 +132,7 @@
                                     </div>
 
                                     <div class="form-group col-md-2 add_del_btn_outer">
-                                        <button class="btn_round remove_node_btn_frm_field"
+                                        <button type="button" class="btn_round remove_node_btn_frm_field"
                                             id="btn_remove_node_btn_frm_field_@i"
                                             onclick="DeleteProfileEducation(this,'@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Id')">
                                             <i class="fas fa-trash-alt"></i>
@@ -139,14 +144,13 @@
                             </div>
                         }
                     </div>
-
                     <div class="input-group mt-3">
                         <button type="button" class="add_new_frm_field_btn">
                             <i class="fas fa-plus add_icon"></i> Add New Educational Case
                         </button>
                         <br />
                         <button type="button" onclick="GetProfileEducationElements()"
-                                id="btnUpdateProfileEducations" class="btn cur-p btn-primary" disabled>
+                             id="btnUpdateProfileEducations" class="btn cur-p btn-primary" disabled>
                             Update
                         </button>
                     </div>
@@ -163,15 +167,57 @@
         </div>
         <div class="card-body">
             <div class="basic-form">
-                <form asp-action="Create" id="frmAddUser" method="post">
-                    <button type="button" onclick="UpdateInfoAccount()" id="btnUpdateAccount" class="btn cur-p btn-primary">
-                        Update
-                    </button>
+                <form asp-action="Create" id="frmFavoriteMovies" method="post">
+                    <div class="form_field_outer_favoriteMovie">
+                        @for (byte i = 0; i <= Model.ResultGetUserProfileFavoriteMoviesServiceDto.getUserProfileFavoriteMoviesServiceDto.Count - 1; i++)
+                        {
+                            <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_@i">
+                                <fieldset>
+                                    <legend>Favorite Movie</legend>
+                                    <input type="hidden"
+                                       id="txtFavoriteMovieId_@i"
+                                       value="@Model.ResultGetUserProfileFavoriteMoviesServiceDto.getUserProfileFavoriteMoviesServiceDto[i].Id" />
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">IMDb Movie Link</span>
+                                        <input type="text"
+                                           class="form-control"
+                                           id="txtMovieLink_@i"
+                                           value="@Model.ResultGetUserProfileFavoriteMoviesServiceDto.getUserProfileFavoriteMoviesServiceDto[i].ImdbLink"
+                                           placeholder="https://www.imdb.com/title/tt0068646/">
+                                        <button type="button" class="btn cur-p btn-primary">
+                                            CHECK THE LINK <span class="btn-icon-right">
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="form-group col-md-2 add_del_btn_outer">
+                                        <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
+                                            id="btn_remove_node_btn_frm_field_FavoriteMovie_@i">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+
+                                </fieldset>
+
+                            </div>
+                        }
+                    </div>
+                    <div class="input-group mt-3">
+                        <button type="button" class="add_new_frm_field_favorite_movie_btn">
+                            <i class="fas fa-plus add_icon"></i> Add New Favorite Movie
+                        </button>
+                        <br />
+                        <button type="button" onclick="GetProfileFavoriteMoviesElements()"
+                                id="btnUpdateProfileFavoriteMovies" class="btn cur-p btn-primary" disabled>
+                            Update
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <div id="TabUserCompany" class="TabcontentClass">
     <div class="card">
         <div class="card-header">
@@ -280,6 +326,7 @@
     @* Functions *@
 
     <script>
+        // Educations
         function GetProfileEducationElements() {
 
             var Id;
@@ -308,7 +355,8 @@
                     if (id.indexOf("datepickerFrom") == 0) dateFrom = value;
                     if (id.indexOf("datepickerTo") == 0) dateTo = value;
                 }
-                if (type == "submit") {
+
+                if (type == "button" && id.indexOf("btn_remove_node_btn_frm_field") == 0) {
                     postData.push(Id + "|" + schoolName + "|" + fieldlName + "|" + dateFrom + "|" + dateTo + "|")
                 }
             });
@@ -404,6 +452,80 @@
                 }
             });
         }
+        // Favorite Movies
+        function GetProfileFavoriteMoviesElements() {
+
+            var Id;
+            var IMDbLink;
+            var postData = [];
+
+            var inputValues = $('.form_field_outer_favoriteMovie :input').map(function () {
+
+                var type = $(this).prop("type");
+                var value = $(this).prop("value");
+                var id = $(this).prop("id");
+
+                if (type == "hidden") {
+                    if (id.indexOf("txtFavoriteMovieId") == 0) Id = value;
+                }
+                if (type == "text") {
+                    if (value.trim() == '')
+                        $("#" + id).css("border-bottom", "2px dashed #ff8585");
+                    else
+                        $("#" + id).css("border-bottom", "1px solid #dee2e6");
+                    if (id.indexOf("txtMovieLink") == 0) IMDbLink = value;
+                }
+                if (type == "button" && id.indexOf("btn_remove_node_btn_frm_field_FavoriteMovie") == 0) {
+                    postData.push(Id + "|" + IMDbLink);
+                }
+            });
+            PostProfileFavoriteMovies(postData);
+        }
+        function PostProfileFavoriteMovies(data) {
+            pageWaitMe("progress"); // loading process starts
+            btnWaitMe_Start('btnUpdateProfileFavoriteMovies'); // Loading Button Start
+            var postData = { 'info': data, }
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'ProfileFavoriteMovies',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Information has been saved",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
+                    }
+                    else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
+                    }
+                },
+                error: function (req, status, err) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Something went wrong, please try it again or later!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            });
+        }
     </script>
 
     @*Add Runtime Controls*@
@@ -412,97 +534,164 @@
             return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         }
         $(document).ready(function () {
-            $("body").on("click", ".add_new_frm_field_btn", function () {
-                $("#btnUpdateProfileEducations").prop("disabled", false);
-                //var index = $(".form_field_outer").find(".form_field_outer_row").length + 1;
-                var guid = generateGuid();
-                $(".form_field_outer").append(`
-
-                                <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
-
-                        <fieldset>
-                                    <legend>Educational Case</legend>
-
-                                    <input type="hidden"
-                            id="txtId_`+ guid.toString() + `"
-                    />
-
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">Name</span>
-                                <input type="text"
-                                        class="form-control"
-                                                id="txtSchoolName_`+ guid.toString() + `"
-                                        placeholder="School, Instituion, College, University Name">
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">Field of Study</span>
-                                <input type="text"
-                                        class="form-control"
-                                                id="txtField_`+ guid.toString() + `"
-                                        placeholder="Directing, Software engineering, ...">
-                            </div>
-
-                                                                <div style="display:flex;">
-                                <div>
-                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                            for="inputGroupSelect01">From</label>
-                                </div>
-                                <div>
-                                    <input readonly
-                                            placeholder="Starting date of Eduction"
-                                            style="border-radius:0px;border-left:0;" width="300"
-                                                    id="datepickerFrom_`+ guid.toString() + `">
-                                </div>
-                            </div>
-
-                            <div style="display:flex;">
-                                <div>
-                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                            for="inputGroupSelect01">To</label>
-                                </div>
-                                <div>
-                                    <input readonly
-                                            placeholder="Ending date of Eduction"
-                                            style="border-radius:0px;border-left:0;" width="300"
-                                                            id="datepickerTo_`+ guid.toString() + `">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-2 add_del_btn_outer">
-                                <button class="btn_round remove_node_btn_frm_field"
-                                                         id="btn_remove_node_btn_frm_field_`+ guid.toString() + `"
-                                >
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </fieldset>
-
-                    </div>
-
-                                                                    `);
-
-                $('#datepickerFrom_' + guid.toString()).datepicker({
-                    uiLibrary: 'bootstrap5'
-                });
-                $('#datepickerTo_' + guid.toString()).datepicker({
-                    uiLibrary: 'bootstrap5'
-                });
-
-                //$(".form_field_outer").find(".remove_node_btn_frm_field:not(:first)").prop("disabled", false);
-                //$(".form_field_outer").find(".remove_node_btn_frm_field").first().prop("disabled", true);
+            $("body").on("click", ".add_new_frm_field_btn,.add_new_frm_field_favorite_movie_btn", function () {
+                var className = this.className;
+                switch (className) {
+                    case "add_new_frm_field_btn":
+                        fireNewEductionalPart();
+                        break;
+                    case "add_new_frm_field_favorite_movie_btn":
+                        fireNewFavoriteMoviePart();
+                        break;
+                }
             });
         });
+        function fireNewEductionalPart() {
+            $("#btnUpdateProfileEducations").prop("disabled", false);
+            //var index = $(".form_field_outer").find(".form_field_outer_row").length + 1;
+            var guid = generateGuid();
+            $(".form_field_outer").append(`
+
+                                                                <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
+
+                                                        <fieldset>
+                                                                    <legend>Educational Case</legend>
+
+                                                                    <input type="hidden"
+                                                            id="txtId_`+ guid.toString() + `"
+                                                                    value="`+ guid.toString() + `"
+                                                    />
+
+                                                            <div class="input-group mb-3">
+                                                                <span class="input-group-text">Name</span>
+                                                                <input type="text"
+                                                                        class="form-control"
+                                                                                id="txtSchoolName_`+ guid.toString() + `"
+                                                                        placeholder="School, Instituion, College, University Name">
+                                                            </div>
+
+                                                            <div class="input-group mb-3">
+                                                                <span class="input-group-text">Field of Study</span>
+                                                                <input type="text"
+                                                                        class="form-control"
+                                                                                id="txtField_`+ guid.toString() + `"
+                                                                        placeholder="Directing, Software engineering, ...">
+                                                            </div>
+
+                                                                                                <div style="display:flex;">
+                                                                <div>
+                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                            for="inputGroupSelect01">From</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input readonly
+                                                                            placeholder="Starting date of Eduction"
+                                                                            style="border-radius:0px;border-left:0;" width="300"
+                                                                                    id="datepickerFrom_`+ guid.toString() + `">
+                                                                </div>
+                                                            </div>
+
+                                                            <div style="display:flex;">
+                                                                <div>
+                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                            for="inputGroupSelect01">To</label>
+                                                                </div>
+                                                                <div>
+                                                                    <input readonly
+                                                                            placeholder="Ending date of Eduction"
+                                                                            style="border-radius:0px;border-left:0;" width="300"
+                                                                                            id="datepickerTo_`+ guid.toString() + `">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-md-2 add_del_btn_outer">
+                                                                <button type="button" class="btn_round remove_node_btn_frm_field"
+                                                                                         id="btn_remove_node_btn_frm_field_`+ guid.toString() + `"
+                                                                >
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </div>
+                                                        </fieldset>
+
+                                                    </div>
+
+                                                                                                    `);
+
+            $('#datepickerFrom_' + guid.toString()).datepicker({
+                uiLibrary: 'bootstrap5'
+            });
+            $('#datepickerTo_' + guid.toString()).datepicker({
+                uiLibrary: 'bootstrap5'
+            });
+        }
+        function fireNewFavoriteMoviePart() {
+            $("#btnUpdateProfileFavoriteMovies").prop("disabled", false);
+            var guid = generateGuid();
+            $(".form_field_outer_favoriteMovie").append(`
+
+                        <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_`+ guid.toString() + `">
+
+                                    <fieldset>
+                                                        <legend>Favorite Movie</legend>
+
+                                                        <input type="hidden"
+                                                                id="txtFavoriteMovieId_`+ guid.toString() + `"
+                                                                        value=`+ guid.toString() + `
+                                        />
+
+
+                                            <div class="input-group mb-3">
+                                            <span class="input-group-text">IMDb Movie Link</span>
+                                            <input type="text"
+                                                class="form-control"
+                                                        id="txtMovieLink_`+ guid.toString() + `"
+                                                placeholder="https://www.imdb.com/title/tt0068646/">
+                                            <button type="button" class="btn cur-p btn-primary">
+                                                CHECK THE LINK <span class="btn-icon-right">
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                            </button>
+                                            </div>
+                                                    
+                                        <div class="form-group col-md-2 add_del_btn_outer">
+                                            <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
+                                                        id="btn_remove_node_btn_frm_field_FavoriteMovie_`+ guid.toString() + `"
+                                                \>
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+
+                                    </fieldset>
+
+                                </div>
+
+        `);
+        }
         //===== delete the form fieed row
         $(document).ready(function () {
-            $("body").on("click", ".remove_node_btn_frm_field", function () {
-                btnWaitMe_Start(this.id); // Loading Button Start
-                $(this).closest(".form_field_outer_row").remove();
-                var index = $(".form_field_outer").find(".form_field_outer_row").length;
-                if (index == 0) $("#btnUpdateProfileEducations").prop("disabled", true);
+            $("body").on("click", ".remove_node_btn_frm_field,.remove_node_btn_frm_field_FavoriteMovie", function () {
+                var className = this.className;
+                switch (className) {
+                    case "btn_round remove_node_btn_frm_field":
+                        fireDeleteEductionalPart(this);
+                        break;
+                    case "btn_round remove_node_btn_frm_field_FavoriteMovie":
+                        fireDeleteFavoriteMoviePart(this);
+                        break;
+                }
             });
         });
-
+        function fireDeleteEductionalPart(e) {
+            btnWaitMe_Start(e.id); // Loading Button Start
+            $(e).closest(".form_field_outer_row").remove();
+            var index = $(".form_field_outer").find(".form_field_outer_row").length;
+            if (index == 0) $("#btnUpdateProfileEducations").prop("disabled", true);
+        }
+        function fireDeleteFavoriteMoviePart(e) {
+            btnWaitMe_Start(e.id); // Loading Button Start
+            $(e).closest(".form_field_outer_row_favoriteMovie").remove();
+            var index = $(".form_field_outer_favoriteMovie").find(".form_field_outer_row_favoriteMovie").length;
+            if (index == 0) $("#btnUpdateProfileEducations").prop("disabled", true);
+        }
     </script>
 
 }

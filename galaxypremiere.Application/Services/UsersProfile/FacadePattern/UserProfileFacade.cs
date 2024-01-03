@@ -3,7 +3,9 @@ using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         private PostUserProfileEducationService _postUserProfileEducationService;
         public PostUserProfileEducationService PostUserProfileEducationService
         {
-            get { return _postUserProfileEducationService = _postUserProfileEducationService ?? new PostUserProfileEducationService(_context, _mapper); }
+            get { return _postUserProfileEducationService = _postUserProfileEducationService ?? new PostUserProfileEducationService(_context); }
         }
         // Get User Profile Educations
         private GetUserProfileEducationsService _getUserProfileEducationsService;
@@ -39,5 +41,18 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         {
             get { return _deleteUserProfileEducationService = _deleteUserProfileEducationService ?? new DeleteUserProfileEducationService(_context); }
         }
+        // Post User Profile Favorite Movies
+        private PostUserProfileFavoriteMoviesService _postUserProfileFavoriteMoviesService;
+        public PostUserProfileFavoriteMoviesService PostUserProfileFavoriteMoviesService
+        {
+            get { return _postUserProfileFavoriteMoviesService = _postUserProfileFavoriteMoviesService ?? new PostUserProfileFavoriteMoviesService(_context); }
+        }
+        // Get User Profile Favorite Movies
+        private GetUserProfileFavoriteMoviesService _getUserProfileFavoriteMoviesService;
+        public GetUserProfileFavoriteMoviesService GetUserProfileFavoriteMoviesService
+        {
+            get { return _getUserProfileFavoriteMoviesService = _getUserProfileFavoriteMoviesService ?? new GetUserProfileFavoriteMoviesService(_context,_mapper); }
+        }
+
     }
 }

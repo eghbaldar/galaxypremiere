@@ -1,24 +1,22 @@
-﻿using AutoMapper;
-using galaxypremiere.Application.Interfaces.Contexts;
+﻿using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
 
-namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation
+namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies
 {
-    public class PostUserProfileEducationService : IPostUserProfileEducationService
+    public class PostUserProfileFavoriteMoviesService: IPostUserProfileFavoriteMoviesService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _imapper;
-        public PostUserProfileEducationService(IDataBaseContext context)
+        public PostUserProfileFavoriteMoviesService(IDataBaseContext context)
         {
             _context = context;
         }
-        public ResultDto Execute(RequestPostUserProfileEducationServiceDto req)
+        public ResultDto Execute(RequestPostUserProfileFavoriteMoviesServiceDto req)
         {
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {
-                var profile = _context.UsersEducation
+                var profile = _context.UsersFavoriteMovies
                 .Where(e => e.UsersId == req.UsersId)
                 .ToList();
 
@@ -35,28 +33,19 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                 {
                     foreach (var anyInfo in req.info)
                     {
-                        UsersEducation usersEducation = new UsersEducation();
+                        UsersFavoriteMovies usersFavoriteMovies = new UsersFavoriteMovies();
 
                         var info = anyInfo.ToString().Split("|");
 
                         // add cases that were not added to the list before!
                         if (!profile.Where(p => p.Id.ToString() == info[0].ToString()).Any())
                         {
-                            if (!String.IsNullOrEmpty(info[1].ToString().Trim())
-                                &&
-                               !String.IsNullOrEmpty(info[2].ToString().Trim())
-                                &&
-                               !String.IsNullOrEmpty(info[3].ToString().Trim())
-                                &&
-                               !String.IsNullOrEmpty(info[4].ToString().Trim()))
+                            if (!String.IsNullOrEmpty(info[1].ToString().Trim()))
                             {
-                                usersEducation.UsersId = req.UsersId;
-                                usersEducation.Name = info[1].ToString();
-                                usersEducation.Field = info[2].ToString();
-                                usersEducation.From = Convert.ToDateTime(info[3]);
-                                usersEducation.To = Convert.ToDateTime(info[4]);
+                                usersFavoriteMovies.UsersId = req.UsersId;
+                                usersFavoriteMovies.ImdbLink = info[1].ToString();
 
-                                _context.UsersEducation.Add(usersEducation);
+                                _context.UsersFavoriteMovies.Add(usersFavoriteMovies);
                                 _context.SaveChanges();
                             }
                             else

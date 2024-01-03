@@ -22,6 +22,7 @@ namespace galaxypremiere.Application.Interfaces.Contexts
         DbSet<UsersAddress> UsersAddress { get; set; } // Users' Address Address
         DbSet<UsersPositions> UsersPositions { get; set; } // Users' Position Table
         DbSet<UsersEducation> UsersEducation { get; set; } // User's Educations
+        DbSet<UsersFavoriteMovies> UsersFavoriteMovies { get; set; } // User's Favorite Movies
 
         //SaveChanges
         int SaveChanges(bool acceptAllChangesOnSuccess);

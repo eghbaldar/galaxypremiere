@@ -42,6 +42,7 @@ namespace galaxypremiere.Persistence.Context
         public DbSet<UsersAddress> UsersAddress { get; set; } // Users' Address Table
         public DbSet<UsersPositions> UsersPositions { get; set; } // Users' Position Table
         public DbSet<UsersEducation> UsersEducation { get; set; } // User's Educations
+        public DbSet<UsersFavoriteMovies> UsersFavoriteMovies { get; set; } // User's Educations
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

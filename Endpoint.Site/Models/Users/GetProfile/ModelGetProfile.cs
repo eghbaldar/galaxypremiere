@@ -1,9 +1,11 @@
 ﻿using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
 
 namespace Endpoint.Site.Models.Users.GetProfile
 {
     public class ModelGetProfile
     {
         public ResultGetUserProfileEducationsServiceDto ResultGetUserProfileEducationsServiceDto { get; set; }
+        public ResultGetUserProfileFavoriteMoviesServiceDto ResultGetUserProfileFavoriteMoviesServiceDto { get; set; }
     }
 }

@@ -18,8 +18,10 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
 using galaxypremiere.Common;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Infrastructure.Filters;
@@ -193,9 +195,13 @@ namespace Endpoint.Site.Controllers
 
             ModelGetProfile modelGetProfile = new ModelGetProfile
             {
-                ResultGetUserProfileEducationsServiceDto =
-                _userProfileFacade.GetUserProfileEducationsService
+                ResultGetUserProfileEducationsServiceDto =_userProfileFacade.GetUserProfileEducationsService
                 .Execute(new RequestGetUserProfileEducationsServiceDto
+                {
+                    UsersId = userId
+                }).Data,
+                ResultGetUserProfileFavoriteMoviesServiceDto=_userProfileFacade.GetUserProfileFavoriteMoviesService
+                .Execute(new RequestGetUserProfileFavoriteMoviesServiceDto
                 {
                     UsersId = userId
                 }).Data,
@@ -213,6 +219,12 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.DeleteUserProfileEducationService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult ProfileFavoriteMovies(RequestPostUserProfileFavoriteMoviesServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.PostUserProfileFavoriteMoviesService.Execute(req));
         }
     }
 }
