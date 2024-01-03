@@ -4,7 +4,7 @@ using galaxypremiere.Domain.Entities.Users;
 
 namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies
 {
-    public class PostUserProfileFavoriteMoviesService: IPostUserProfileFavoriteMoviesService
+    public class PostUserProfileFavoriteMoviesService : IPostUserProfileFavoriteMoviesService
     {
         private readonly IDataBaseContext _context;
         public PostUserProfileFavoriteMoviesService(IDataBaseContext context)
@@ -56,6 +56,11 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                                     Message = "All fields must be filled."
                                 };
                             }
+                        }
+                        else
+                        {
+                            profile.Where(p => p.Id.ToString() == info[0].ToString()).FirstOrDefault().ImdbLink = info[1].ToString();
+                            _context.SaveChanges();
                         }
                     }
 

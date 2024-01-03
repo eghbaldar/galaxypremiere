@@ -181,12 +181,13 @@
                                         <span class="input-group-text">IMDb Movie Link</span>
                                         <input type="text"
                                            class="form-control"
+                                           onkeyup="checkRuntimeValidationUrl(this)"
                                            id="txtMovieLink_@i"
                                            value="@Model.ResultGetUserProfileFavoriteMoviesServiceDto.getUserProfileFavoriteMoviesServiceDto[i].ImdbLink"
                                            placeholder="https://www.imdb.com/title/tt0068646/">
                                         <button type="button"
                                             id="btnCheckTheLink_@i"
-                                            onclick="CheckTheLink(this,'@Model.ResultGetUserProfileFavoriteMoviesServiceDto.getUserProfileFavoriteMoviesServiceDto[i].ImdbLink',true)"
+                                            onclick="CheckTheLink(this,'txtMovieLink_@i')"
                                             class="btn cur-p btn-primary">
                                             CHECK THE LINK
                                             <span class="btn-icon-right"></span>
@@ -471,6 +472,7 @@
             var Id;
             var IMDbLink;
             var postData = [];
+            var success = true;
 
             var inputValues = $('.form_field_outer_favoriteMovie :input').map(function () {
 
@@ -482,17 +484,26 @@
                     if (id.indexOf("txtFavoriteMovieId") == 0) Id = value;
                 }
                 if (type == "text") {
-                    if (value.trim() == '')
-                        $("#" + id).css("border-bottom", "2px dashed #ff8585");
+                    if (value.trim() == '') {
+                        $("#" + id).css("border-bottom", "1px solid #FF8585");
+                        success = false;
+                    }
                     else
                         $("#" + id).css("border-bottom", "1px solid #dee2e6");
-                    if (id.indexOf("txtMovieLink") == 0) IMDbLink = value;
+
+                    //CHECL THE VALIDATION OF LINK
+                    if (id.indexOf("txtMovieLink") == 0)
+                        if (isValidURL(value, "https://www.imdb.com/"))
+                            IMDbLink = value;
+                        else
+                            success = false;
+
                 }
                 if (type == "button" && id.indexOf("btn_remove_node_btn_frm_field_FavoriteMovie") == 0) {
                     postData.push(Id + "|" + IMDbLink);
                 }
             });
-            PostProfileFavoriteMovies(postData);
+            if (success) PostProfileFavoriteMovies(postData);
         }
         function PostProfileFavoriteMovies(data) {
             pageWaitMe("progress"); // loading process starts
@@ -583,16 +594,29 @@
                 }
             });
         }
-        function CheckTheLink(e,link, flag) {
+        function checkRuntimeValidationUrl(e) {
+            if (isValidURL($(e).val(), "https://www.imdb.com/")) {
+                $("#" + e.id).css("border-bottom", "1px solid #dee2e6");
+                return true;
+            } else {
+                pageWaitMeRemove(); // loading process stops
+                $("#" + e.id).css("border-bottom", "1px solid #FF8585");
+                return false;
+            }
+        }
+        function CheckTheLink(e, link) {
 
             pageWaitMe("progress"); // loading process starts
             btnWaitMe_Start(e.id); // Loading Button Start
             var postData = { 'info': link, }
-            if (!flag) {
-                // true: the value is getting from database
-                // false: the link is getting from input directly and it has not been stored yet.
-                link = $('#' + link).val();
+            link = $('#' + link).val();
+            //CHECL THE VALIDATION OF LINK
+            if (!isValidURL(link, "https://www.imdb.com/")) {
+                btnWaitMe_Stop(e.id); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+                return;
             }
+
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
                 dataType: 'json',
@@ -600,7 +624,7 @@
                 type: 'GET',
                 url: 'GetMetaInfo',
                 success: function (data) {
-                    //alert(e.id);
+
                     var doc = new DOMParser().parseFromString(data, 'text/html');
 
                     var meta_img = doc.querySelector('meta[property="og:image"]');
@@ -622,17 +646,31 @@
                     pageWaitMeRemove(); // loading process stops
                 },
                 error: function (req, status, err) {
-                      Swal.fire({
+                    Swal.fire({
                         position: "center",
                         icon: "error",
                         title: "Something went wrong, please try it again or later!",
                         showConfirmButton: false,
                         timer: 3000
                     });
+                    btnWaitMe_Stop(e.id); // Loading Button Stops
+                    pageWaitMeRemove(); // loading process stops
                 }
             });
 
         }
+        function isValidURL(link, domain) {
+            var res = link.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@@:%_\+.~#?&//=]*)/g);
+            if (res != null) {
+                var length = domain.length;
+                var hostname = link.substring(0, length);
+                if (hostname == domain)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        };
     </script>
 
     @*Add Runtime Controls*@
@@ -659,70 +697,70 @@
             var guid = generateGuid();
             $(".form_field_outer").append(`
 
-                                                                                                                                <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
+                                                                                                                                                                                                        <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
 
-                                                                                                                        <fieldset>
-                                                                                                                                    <legend>Educational Case</legend>
+                                                                                                                                                                                                <fieldset>
+                                                                                                                                                                                                            <legend>Educational Case</legend>
 
-                                                                                                                                    <input type="hidden"
-                                                                                                                            id="txtId_`+ guid.toString() + `"
-                                                                                                                                    value="`+ guid.toString() + `"
-                                                                                                                    />
+                                                                                                                                                                                                            <input type="hidden"
+                                                                                                                                                                                                    id="txtId_`+ guid.toString() + `"
+                                                                                                                                                                                                            value="`+ guid.toString() + `"
+                                                                                                                                                                                            />
 
-                                                                                                                            <div class="input-group mb-3">
-                                                                                                                                <span class="input-group-text">Name</span>
-                                                                                                                                <input type="text"
-                                                                                                                                        class="form-control"
-                                                                                                                                                id="txtSchoolName_`+ guid.toString() + `"
-                                                                                                                                        placeholder="School, Instituion, College, University Name">
-                                                                                                                            </div>
+                                                                                                                                                                                                    <div class="input-group mb-3">
+                                                                                                                                                                                                        <span class="input-group-text">Name</span>
+                                                                                                                                                                                                        <input type="text"
+                                                                                                                                                                                                                class="form-control"
+                                                                                                                                                                                                                        id="txtSchoolName_`+ guid.toString() + `"
+                                                                                                                                                                                                                placeholder="School, Instituion, College, University Name">
+                                                                                                                                                                                                    </div>
 
-                                                                                                                            <div class="input-group mb-3">
-                                                                                                                                <span class="input-group-text">Field of Study</span>
-                                                                                                                                <input type="text"
-                                                                                                                                        class="form-control"
-                                                                                                                                                id="txtField_`+ guid.toString() + `"
-                                                                                                                                        placeholder="Directing, Software engineering, ...">
-                                                                                                                            </div>
+                                                                                                                                                                                                    <div class="input-group mb-3">
+                                                                                                                                                                                                        <span class="input-group-text">Field of Study</span>
+                                                                                                                                                                                                        <input type="text"
+                                                                                                                                                                                                                class="form-control"
+                                                                                                                                                                                                                        id="txtField_`+ guid.toString() + `"
+                                                                                                                                                                                                                placeholder="Directing, Software engineering, ...">
+                                                                                                                                                                                                    </div>
 
-                                                                                                                                                                <div style="display:flex;">
-                                                                                                                                <div>
-                                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                                                                            for="inputGroupSelect01">From</label>
-                                                                                                                                </div>
-                                                                                                                                <div>
-                                                                                                                                    <input readonly
-                                                                                                                                            placeholder="Starting date of Eduction"
-                                                                                                                                            style="border-radius:0px;border-left:0;" width="300"
-                                                                                                                                                    id="datepickerFrom_`+ guid.toString() + `">
-                                                                                                                                </div>
-                                                                                                                            </div>
+                                                                                                                                                                                                                                        <div style="display:flex;">
+                                                                                                                                                                                                        <div>
+                                                                                                                                                                                                            <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                                                                                                                                                                    for="inputGroupSelect01">From</label>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        <div>
+                                                                                                                                                                                                            <input readonly
+                                                                                                                                                                                                                    placeholder="Starting date of Eduction"
+                                                                                                                                                                                                                    style="border-radius:0px;border-left:0;" width="300"
+                                                                                                                                                                                                                            id="datepickerFrom_`+ guid.toString() + `">
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
 
-                                                                                                                            <div style="display:flex;">
-                                                                                                                                <div>
-                                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                                                                            for="inputGroupSelect01">To</label>
-                                                                                                                                </div>
-                                                                                                                                <div>
-                                                                                                                                    <input readonly
-                                                                                                                                            placeholder="Ending date of Eduction"
-                                                                                                                                            style="border-radius:0px;border-left:0;" width="300"
-                                                                                                                                                            id="datepickerTo_`+ guid.toString() + `">
-                                                                                                                                </div>
-                                                                                                                            </div>
+                                                                                                                                                                                                    <div style="display:flex;">
+                                                                                                                                                                                                        <div>
+                                                                                                                                                                                                            <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                                                                                                                                                                    for="inputGroupSelect01">To</label>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        <div>
+                                                                                                                                                                                                            <input readonly
+                                                                                                                                                                                                                    placeholder="Ending date of Eduction"
+                                                                                                                                                                                                                    style="border-radius:0px;border-left:0;" width="300"
+                                                                                                                                                                                                                                    id="datepickerTo_`+ guid.toString() + `">
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
 
-                                                                                                                            <div class="form-group col-md-2 add_del_btn_outer">
-                                                                                                                                <button type="button" class="btn_round remove_node_btn_frm_field"
-                                                                                                                                                         id="btn_remove_node_btn_frm_field_`+ guid.toString() + `"
-                                                                                                                                >
-                                                                                                                                    <i class="fas fa-trash-alt"></i>
-                                                                                                                                </button>
-                                                                                                                            </div>
-                                                                                                                        </fieldset>
+                                                                                                                                                                                                    <div class="form-group col-md-2 add_del_btn_outer">
+                                                                                                                                                                                                        <button type="button" class="btn_round remove_node_btn_frm_field"
+                                                                                                                                                                                                                                 id="btn_remove_node_btn_frm_field_`+ guid.toString() + `"
+                                                                                                                                                                                                        >
+                                                                                                                                                                                                            <i class="fas fa-trash-alt"></i>
+                                                                                                                                                                                                        </button>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                </fieldset>
 
-                                                                                                                    </div>
+                                                                                                                                                                                            </div>
 
-                                                                                                                                                                    `);
+                                                                                                                                                                                                                                            `);
 
             $('#datepickerFrom_' + guid.toString()).datepicker({
                 uiLibrary: 'bootstrap5'
@@ -736,45 +774,46 @@
             var guid = generateGuid();
             $(".form_field_outer_favoriteMovie").append(`
 
-        <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_`+ guid.toString() + `">
+                                                                                <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_`+ guid.toString() + `">
 
-                    <fieldset>
-                                        <legend>Favorite Movie</legend>
+                                                                                            <fieldset>
+                                                                                                                <legend>Favorite Movie</legend>
 
-                                        <input type="hidden"
-                                                id="txtFavoriteMovieId_`+ guid.toString() + `"
-                                                        value=`+ guid.toString() + `
-                        />
+                                                                                                                <input type="hidden"
+                                                                                                                        id="txtFavoriteMovieId_`+ guid.toString() + `"
+                                                                                                                                value=`+ guid.toString() + `
+                                                                                                />
 
 
-                            <div class="input-group mb-3">
-                            <span class="input-group-text">IMDb Movie Link</span>
-                            <input type="text"
-                                class="form-control"
-                                        id="txtMovieLink_`+ guid.toString() + `"
-                                placeholder="https://www.imdb.com/title/tt0068646/">
-                            <button type="button"
-                                               onclick="CheckTheLink(this,'txtMovieLink_`+ guid.toString() + `',false);"
-                                               id="btnCheckTheLink_`+ guid.toString() + `"
-                            class="btn cur-p btn-primary">
-                                CHECK THE LINK <span class="btn-icon-right">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                            </div>
+                                                                                                    <div class="input-group mb-3">
+                                                                                                    <span class="input-group-text">IMDb Movie Link</span>
+                                                                                                    <input type="text"
+                                                                                                    onkeyup="checkRuntimeValidationUrl(this)"
+                                                                                                        class="form-control"
+                                                                                                                id="txtMovieLink_`+ guid.toString() + `"
+                                                                                                        placeholder="https://www.imdb.com/title/tt0068646/">
+                                                                                                    <button type="button"
+                                                                                                                       onclick="CheckTheLink(this,'txtMovieLink_`+ guid.toString() + `');"
+                                                                                                                       id="btnCheckTheLink_`+ guid.toString() + `"
+                                                                                                    class="btn cur-p btn-primary">
+                                                                                                        CHECK THE LINK <span class="btn-icon-right">
+                                                                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                                                                    </button>
+                                                                                                    </div>
 
-                        <div class="form-group col-md-2 add_del_btn_outer">
-                            <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
-                                        id="btn_remove_node_btn_frm_field_FavoriteMovie_`+ guid.toString() + `"
-                                \>
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
+                                                                                                <div class="form-group col-md-2 add_del_btn_outer">
+                                                                                                    <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
+                                                                                                                id="btn_remove_node_btn_frm_field_FavoriteMovie_`+ guid.toString() + `"
+                                                                                                        \>
+                                                                                                        <i class="fas fa-trash-alt"></i>
+                                                                                                    </button>
+                                                                                                </div>
 
-                    </fieldset>
+                                                                                            </fieldset>
 
-                </div>
+                                                                                        </div>
 
-            `);
+                                                                                    `);
         }
         //===== delete the form fieed row
         $(document).ready(function () {
