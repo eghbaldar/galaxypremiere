@@ -17,6 +17,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
@@ -225,6 +226,12 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.PostUserProfileFavoriteMoviesService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult ProfileFavoriteMovieDelete(RequestDeleteUserProfileFavoriteMoviesServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.DeleteUserProfileFavoriteMoviesService.Execute(req));
         }
     }
 }

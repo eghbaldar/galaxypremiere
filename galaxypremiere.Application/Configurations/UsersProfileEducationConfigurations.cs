@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace galaxypremiere.Application.Configurations
 {
-    public class UsersProfileConfigurations : IEntityTypeConfiguration<UsersEducation>
+    public class UsersProfileEducationConfigurations : IEntityTypeConfiguration<UsersEducation>
     {
         public void Configure(EntityTypeBuilder<UsersEducation> builder)
         {

@@ -56,7 +56,9 @@ namespace galaxypremiere.Persistence.Context
             //---- Languages
             modelBuilder.ApplyConfiguration(new LanguagesConfigurations());
             //---- Profile Educations
-            modelBuilder.ApplyConfiguration(new UsersProfileConfigurations());
+            modelBuilder.ApplyConfiguration(new UsersProfileEducationConfigurations());
+            //---- Profile Favorite Movies
+            modelBuilder.ApplyConfiguration(new UsersProfileFavoriteMoviesConfigurations());
             //< End
         }
         public override int SaveChanges()

@@ -2,6 +2,7 @@
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
@@ -52,6 +53,12 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         public GetUserProfileFavoriteMoviesService GetUserProfileFavoriteMoviesService
         {
             get { return _getUserProfileFavoriteMoviesService = _getUserProfileFavoriteMoviesService ?? new GetUserProfileFavoriteMoviesService(_context,_mapper); }
+        }
+        // Delete User Profile Favorite Movies
+        private DeleteUserProfileFavoriteMoviesService _deleteUserProfileFavoriteMoviesService;
+        public DeleteUserProfileFavoriteMoviesService DeleteUserProfileFavoriteMoviesService
+        {
+            get { return _deleteUserProfileFavoriteMoviesService = _deleteUserProfileFavoriteMoviesService ?? new DeleteUserProfileFavoriteMoviesService(_context); }
         }
 
     }
