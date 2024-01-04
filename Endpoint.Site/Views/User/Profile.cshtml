@@ -649,6 +649,17 @@
             var postData = { 'info': link, }
             link = $('#' + link).val();
             //CHECL THE VALIDATION OF LINK
+            var SeparateID = e.id.split('_');
+            if($("#txtMovieLink_" +SeparateID[1]).val()==null || $("#txtMovieLink_" +SeparateID[1]).val()==''){
+                 btnWaitMe_Stop(e.id); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+                $("#txtMovieLink_" +SeparateID[1]).css("border-bottom", "2px dashed #ff8585");
+                return;
+            }
+            //if (value.trim() == '') {
+            //    $("#" + id).css("border-bottom", "2px dashed #ff8585");
+            //    success = false;
+            //}
             if (!isValidURL(link, "https://www.imdb.com/")) {
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
