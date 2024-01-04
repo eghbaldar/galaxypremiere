@@ -62,6 +62,7 @@ namespace Endpoint.Site.Controllers
         private readonly ILanguagesFacade _languagesFacade;
         private readonly IUserPositionFacade _PositionFacade;
         private readonly IUserProfileFacade _userProfileFacade;
+        private readonly IMetagsFacade _metagsFacade;
         private readonly IMapper _mapper;
         public UserController(
             IUserInformationFacade userInformationFacade,
@@ -69,13 +70,15 @@ namespace Endpoint.Site.Controllers
             ILanguagesFacade languagesFacade,
             IUserPositionFacade positionFacade,
             IUserProfileFacade userProfileFacade,
-            IMapper mapper)
+            IMetagsFacade metagsFacade,
+        IMapper mapper)
         {
             _userInformationFacade = userInformationFacade;
             _countiresFacade = countiresFacade;
             _languagesFacade = languagesFacade;
             _PositionFacade = positionFacade;
-            _userProfileFacade= userProfileFacade;
+            _userProfileFacade = userProfileFacade;
+            _metagsFacade = metagsFacade;
             _mapper = mapper;
         }
         [HttpGet]
@@ -95,7 +98,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeAccount(RequestUpdateUsersInformationAccountDto req)
-        {            
+        {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UsersInformationAccountService
@@ -103,7 +106,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeContact(RequestUpdateUsersInformationContactServiceDto req)
-        {            
+        {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationContactService
@@ -111,7 +114,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MePrivacy(RequestUpdateUsersInformationPrivcayServiceDto req)
-        {            
+        {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationPrivacyService
@@ -119,7 +122,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeUsername(RequestUpdateUsersInformationUsernameServiceDto req)
-        {            
+        {
             req.userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationUsernameService
@@ -134,7 +137,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MePassword(RequestUpdateUsersInformationPasswordDto req)
-        {            
+        {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationPasswordService
@@ -142,7 +145,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeAccountType(RequestUpdateUsersInformationAccountTypeServiceDto req)
-        {            
+        {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationAccountTypeService
@@ -150,7 +153,7 @@ namespace Endpoint.Site.Controllers
         }
         [HttpPost]
         public IActionResult MeBIO(RequestUpdateUsersInformationBioServiceDto req)
-        {            
+        {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade
                 .UpdateUsersInformationBioService
@@ -198,19 +201,19 @@ namespace Endpoint.Site.Controllers
 
             ModelGetProfile modelGetProfile = new ModelGetProfile
             {
-                ResultGetUserProfileEducationsServiceDto =_userProfileFacade.GetUserProfileEducationsService
+                ResultGetUserProfileEducationsServiceDto = _userProfileFacade.GetUserProfileEducationsService
                 .Execute(new RequestGetUserProfileEducationsServiceDto
                 {
                     UsersId = userId
                 }).Data,
-                ResultGetUserProfileFavoriteMoviesServiceDto=_userProfileFacade.GetUserProfileFavoriteMoviesService
+                ResultGetUserProfileFavoriteMoviesServiceDto = _userProfileFacade.GetUserProfileFavoriteMoviesService
                 .Execute(new RequestGetUserProfileFavoriteMoviesServiceDto
                 {
                     UsersId = userId
                 }).Data,
             };
             return View(modelGetProfile);
-        }      
+        }
         [HttpPost]
         public IActionResult ProfileEducationPost(RequestPostUserProfileEducationServiceDto req)
         {
@@ -234,20 +237,11 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.DeleteUserProfileFavoriteMoviesService.Execute(req));
-        }        
+        }
         [HttpGet]
         public IActionResult GetMetaInfo(string link)
         {
-
-            HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(link);
-            myRequest.Method = "GET";
-            WebResponse myResponse = myRequest.GetResponse();
-            StreamReader sr = new StreamReader(myResponse.GetResponseStream(), System.Text.Encoding.UTF8);
-            string result = sr.ReadToEnd();
-            sr.Close();
-            myResponse.Close();
-
-            return Json(result);
+            return Json(_metagsFacade.GetMetagsInfoByLinkService.Execute(link, "https://www.imdb.com/"));
         }
     }
 }

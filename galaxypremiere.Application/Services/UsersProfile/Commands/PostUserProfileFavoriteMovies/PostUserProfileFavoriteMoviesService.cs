@@ -1,13 +1,17 @@
 ﻿using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Application.Services.Metags.Queries.GetMetagsInfoByLink;
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies
 {
     public class PostUserProfileFavoriteMoviesService : IPostUserProfileFavoriteMoviesService
     {
         private readonly IDataBaseContext _context;
-        public PostUserProfileFavoriteMoviesService(IDataBaseContext context)
+        public PostUserProfileFavoriteMoviesService(
+            IDataBaseContext context)
         {
             _context = context;
         }
@@ -31,22 +35,36 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
 
                 if ((req.info.Length + profile.Count) < 11 || !profile.Any())
                 {
+                    Dictionary<string, string> resultHiddenId_and_Value = new Dictionary<string, string>();
                     foreach (var anyInfo in req.info)
                     {
                         UsersFavoriteMovies usersFavoriteMovies = new UsersFavoriteMovies();
 
                         var info = anyInfo.ToString().Split("|");
 
-                        // add cases that were not added to the list before!
+                        // add a case that was not added to the list before!
                         if (!profile.Where(p => p.Id.ToString() == info[0].ToString()).Any())
                         {
                             if (!String.IsNullOrEmpty(info[1].ToString().Trim()))
                             {
                                 usersFavoriteMovies.UsersId = req.UsersId;
+
+                                // check validation of link
+                                ResultDto resultDto = CheckLink(info[1].ToString());
+                                if (!resultDto.IsSuccess)
+                                {
+                                    return new ResultDto
+                                    {
+                                        IsSuccess = false,
+                                        Message = resultDto.Message,
+                                    };
+                                }
                                 usersFavoriteMovies.ImdbLink = info[1].ToString();
 
                                 _context.UsersFavoriteMovies.Add(usersFavoriteMovies);
                                 _context.SaveChanges();
+
+                                resultHiddenId_and_Value.Add(info[2].ToString(), usersFavoriteMovies.Id.ToString());
                             }
                             else
                             {
@@ -59,15 +77,23 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                         }
                         else
                         {
+                            ResultDto resultDto = CheckLink(info[1].ToString());
+                            if (!resultDto.IsSuccess)
+                            {
+                                return new ResultDto
+                                {
+                                    IsSuccess = false,
+                                    Message = resultDto.Message,
+                                };
+                            }
                             profile.Where(p => p.Id.ToString() == info[0].ToString()).FirstOrDefault().ImdbLink = info[1].ToString();
                             _context.SaveChanges();
                         }
                     }
-
                     return new ResultDto
                     {
                         IsSuccess = true,
-                        Message = "The new user's educational cases has just been updated."
+                        Message = string.Join(Environment.NewLine, resultHiddenId_and_Value),
                     };
                 }
                 else
@@ -75,7 +101,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                     return new ResultDto
                     {
                         IsSuccess = false,
-                        Message = "Only 10 educational cases are allowed."
+                        Message = "Only 10 favorite movie are allowed."
                     };
                 }
             }
@@ -87,6 +113,12 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                     Message = "The user does not exist."
                 };
             }
+        }
+        private ResultDto CheckLink(string link)
+        {
+            // check validation of link
+            GetMetagsInfoByLinkService _getMetagsInfoByLinkService = new GetMetagsInfoByLinkService();
+            return _getMetagsInfoByLinkService.Execute(link, "https://www.imdb.com/");
         }
     }
 }

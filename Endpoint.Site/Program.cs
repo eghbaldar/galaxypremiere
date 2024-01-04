@@ -2,6 +2,7 @@ using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.Countries.FacadePattern;
 using galaxypremiere.Application.Services.Languages.FacadePattern;
+using galaxypremiere.Application.Services.Metags.FacadePattern;
 using galaxypremiere.Application.Services.Roles.FacadePattern;
 using galaxypremiere.Application.Services.UserActionsLog.FacadePattern;
 using galaxypremiere.Application.Services.UserLoginLog.FacadePattern;
@@ -41,6 +42,7 @@ builder.Services.AddScoped<ICountiresFacade, CountriesFacade>();
 builder.Services.AddScoped<ILanguagesFacade, LanguagesFacade>();
 builder.Services.AddScoped<IUserPositionFacade, UsersPositionFacade>();
 builder.Services.AddScoped<IUserProfileFacade, UserProfileFacade>();
+builder.Services.AddScoped<IMetagsFacade, MetagsFacade>();
 
 // SqlServer
 var ConStr = builder.Configuration.GetConnectionString("LocalServer");

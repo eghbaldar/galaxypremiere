@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.Metags.Queries.GetMetagsInfoByLink;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
@@ -15,14 +16,14 @@ using System.Threading.Tasks;
 
 namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
 {
-    public class UserProfileFacade:IUserProfileFacade
+    public class UserProfileFacade : IUserProfileFacade
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
         public UserProfileFacade(IDataBaseContext context, IMapper mapper)
         {
-            _context= context;
-            _mapper= mapper;
+            _context = context;
+            _mapper = mapper;
         }
         // Post User Profile Education
         private PostUserProfileEducationService _postUserProfileEducationService;
@@ -52,7 +53,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         private GetUserProfileFavoriteMoviesService _getUserProfileFavoriteMoviesService;
         public GetUserProfileFavoriteMoviesService GetUserProfileFavoriteMoviesService
         {
-            get { return _getUserProfileFavoriteMoviesService = _getUserProfileFavoriteMoviesService ?? new GetUserProfileFavoriteMoviesService(_context,_mapper); }
+            get { return _getUserProfileFavoriteMoviesService = _getUserProfileFavoriteMoviesService ?? new GetUserProfileFavoriteMoviesService(_context, _mapper); }
         }
         // Delete User Profile Favorite Movies
         private DeleteUserProfileFavoriteMoviesService _deleteUserProfileFavoriteMoviesService;
