@@ -2,6 +2,8 @@
 using galaxypremiere.Application.Services.Metags.Queries.GetMetagsInfoByLink;
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,13 +12,13 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
     public class PostUserProfileFavoriteMoviesService : IPostUserProfileFavoriteMoviesService
     {
         private readonly IDataBaseContext _context;
-        public PostUserProfileFavoriteMoviesService(
-            IDataBaseContext context)
+        public PostUserProfileFavoriteMoviesService(IDataBaseContext context)
         {
             _context = context;
         }
         public ResultDto Execute(RequestPostUserProfileFavoriteMoviesServiceDto req)
         {
+
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {
@@ -42,52 +44,52 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
 
                         var info = anyInfo.ToString().Split("|");
 
+                        // check the acceptable of input as a guid
+                        Guid guidOutput;
+                        bool isValid = Guid.TryParse(info[0].ToString(), out guidOutput);
+                        // end checking ...
+
+
                         // add a case that was not added to the list before!
-                        if (!profile.Where(p => p.Id.ToString() == info[0].ToString()).Any())
+                        if (!isValid)
                         {
                             if (!String.IsNullOrEmpty(info[1].ToString().Trim()))
                             {
                                 usersFavoriteMovies.UsersId = req.UsersId;
-
                                 // check validation of link
                                 ResultDto resultDto = CheckLink(info[1].ToString());
-                                if (!resultDto.IsSuccess)
+                                if (resultDto.IsSuccess)
                                 {
-                                    return new ResultDto
-                                    {
-                                        IsSuccess = false,
-                                        Message = resultDto.Message,
-                                    };
+                                    usersFavoriteMovies.ImdbLink = info[1].ToString();
+                                    _context.UsersFavoriteMovies.Add(usersFavoriteMovies);
+                                    resultHiddenId_and_Value.Add(info[2].ToString(), usersFavoriteMovies.Id.ToString()); // key=> Hidden-Control-Name    value=> Stored-ID
+                                    _context.SaveChanges();
                                 }
-                                usersFavoriteMovies.ImdbLink = info[1].ToString();
-
-                                _context.UsersFavoriteMovies.Add(usersFavoriteMovies);
+                                else
+                                {
+                                    resultHiddenId_and_Value.Add(info[0].ToString(), "false"); // key=> Hidden-Control-Name    value=> Sto
+                                }
+                            }
+                        }
+                        else //update
+                        {
+                            var favoriteMovies = profile.Where(p => p.Id == Guid.Parse(info[0].ToString())).ToList();
+                            ResultDto resultDto = CheckLink(info[1].ToString());
+                            if (resultDto.IsSuccess)
+                            {
+                                favoriteMovies.First().ImdbLink = info[1].ToString();
                                 _context.SaveChanges();
-
-                                resultHiddenId_and_Value.Add(info[2].ToString(), usersFavoriteMovies.Id.ToString());
+                                //return new ResultDto
+                                //{
+                                //    IsSuccess = false,
+                                //    Message = resultDto.Message,
+                                //};
                             }
                             else
                             {
-                                return new ResultDto
-                                {
-                                    IsSuccess = false,
-                                    Message = "All fields must be filled."
-                                };
-                            }
-                        }
-                        else
-                        {
-                            ResultDto resultDto = CheckLink(info[1].ToString());
-                            if (!resultDto.IsSuccess)
-                            {
-                                return new ResultDto
-                                {
-                                    IsSuccess = false,
-                                    Message = resultDto.Message,
-                                };
-                            }
-                            profile.Where(p => p.Id.ToString() == info[0].ToString()).FirstOrDefault().ImdbLink = info[1].ToString();
-                            _context.SaveChanges();
+                                string[] hiddenId = info[2].ToString().Split("_");
+                                resultHiddenId_and_Value.Add(hiddenId[1], "false"); // key=> Hidden-Control-Name    value=> Sto
+                            }                            
                         }
                     }
                     return new ResultDto
@@ -113,6 +115,11 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                     Message = "The user does not exist."
                 };
             }
+            return new ResultDto
+            {
+                IsSuccess = false,
+                Message = "",
+            };
         }
         private ResultDto CheckLink(string link)
         {
