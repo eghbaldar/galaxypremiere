@@ -18,7 +18,6 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
         }
         public ResultDto Execute(RequestPostUserProfileFavoriteMoviesServiceDto req)
         {
-
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {
@@ -34,8 +33,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                         Message = "Something went wrong."
                     };
                 }
-
-                if ((req.info.Length + profile.Count) < 11 || !profile.Any())
+                if ((req.info.Length) <= 10)
                 {
                     Dictionary<string, string> resultHiddenId_and_Value = new Dictionary<string, string>();
                     foreach (var anyInfo in req.info)
@@ -48,7 +46,6 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                         Guid guidOutput;
                         bool isValid = Guid.TryParse(info[0].ToString(), out guidOutput);
                         // end checking ...
-
 
                         // add a case that was not added to the list before!
                         if (!isValid)
@@ -67,7 +64,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                                 }
                                 else
                                 {
-                                    resultHiddenId_and_Value.Add(info[0].ToString(), "false"); // key=> Hidden-Control-Name    value=> Sto
+                                    resultHiddenId_and_Value.Add(info[0].ToString(), "false"); // key=> Hidden-Control-Name    value=> false
                                 }
                             }
                         }
@@ -79,11 +76,6 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                             {
                                 favoriteMovies.First().ImdbLink = info[1].ToString();
                                 _context.SaveChanges();
-                                //return new ResultDto
-                                //{
-                                //    IsSuccess = false,
-                                //    Message = resultDto.Message,
-                                //};
                             }
                             else
                             {
@@ -115,11 +107,6 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                     Message = "The user does not exist."
                 };
             }
-            return new ResultDto
-            {
-                IsSuccess = false,
-                Message = "",
-            };
         }
         private ResultDto CheckLink(string link)
         {

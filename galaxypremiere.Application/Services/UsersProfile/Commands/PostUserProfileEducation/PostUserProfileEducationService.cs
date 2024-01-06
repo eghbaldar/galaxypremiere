@@ -30,25 +30,30 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                         Message = "Something went wrong."
                     };
                 }
-
-                if ((req.info.Length + profile.Count) < 11 || !profile.Any())
+                if ((req.info.Length) <= 10)
                 {
+                    Dictionary<string, string> resultHiddenId_and_Value = new Dictionary<string, string>();
                     foreach (var anyInfo in req.info)
                     {
                         UsersEducation usersEducation = new UsersEducation();
 
                         var info = anyInfo.ToString().Split("|");
 
+                        // check the acceptable of input as a guid
+                        Guid guidOutput;
+                        bool isValid = Guid.TryParse(info[0].ToString(), out guidOutput);
+                        // end checking ...
+
                         // add cases that were not added to the list before!
-                        if (!profile.Where(p => p.Id.ToString() == info[0].ToString()).Any())
+                        if (!isValid)
                         {
                             if (!String.IsNullOrEmpty(info[1].ToString().Trim())
-                                &&
-                               !String.IsNullOrEmpty(info[2].ToString().Trim())
-                                &&
-                               !String.IsNullOrEmpty(info[3].ToString().Trim())
-                                &&
-                               !String.IsNullOrEmpty(info[4].ToString().Trim()))
+                                                           &&
+                                                          !String.IsNullOrEmpty(info[2].ToString().Trim())
+                                                           &&
+                                                          !String.IsNullOrEmpty(info[3].ToString().Trim())
+                                                           &&
+                                                          !String.IsNullOrEmpty(info[4].ToString().Trim()))
                             {
                                 usersEducation.UsersId = req.UsersId;
                                 usersEducation.Name = info[1].ToString();
@@ -57,23 +62,25 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                                 usersEducation.To = Convert.ToDateTime(info[4]);
 
                                 _context.UsersEducation.Add(usersEducation);
+                                resultHiddenId_and_Value.Add(info[5].ToString(), usersEducation.Id.ToString()); // key=> Hidden-Control-Name    value=> Stored-ID
                                 _context.SaveChanges();
                             }
-                            else
-                            {
-                                return new ResultDto
-                                {
-                                    IsSuccess = false,
-                                    Message = "All fields must be filled."
-                                };
-                            }
+                        }
+                        else //update
+                        {
+                            var educationalCase = profile.Where(p => p.Id == Guid.Parse(info[0].ToString())).ToList();
+                            educationalCase.First().Name = info[1].ToString();
+                            educationalCase.First().Field = info[2].ToString();
+                            educationalCase.First().From = Convert.ToDateTime(info[3]);
+                            educationalCase.First().To = Convert.ToDateTime(info[4]);
+                            _context.SaveChanges();
                         }
                     }
 
                     return new ResultDto
                     {
                         IsSuccess = true,
-                        Message = "The new user's educational cases has just been updated."
+                        Message = string.Join(Environment.NewLine, resultHiddenId_and_Value),
                     };
                 }
                 else

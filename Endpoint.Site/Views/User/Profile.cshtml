@@ -83,7 +83,7 @@
                                 <fieldset>
                                     <legend>Educational Case</legend>
                                     <input type="hidden"
-                                       id="txtId_@i"
+                                       id="hiddenEducationalCase_@i"
                                        value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Id" />
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">Name</span>
@@ -133,7 +133,7 @@
 
                                     <div class="form-group col-md-2 add_del_btn_outer">
                                         <button type="button" class="btn_round remove_node_btn_frm_field"
-                                            id="btn_remove_node_btn_frm_field_@i"
+                                            id="btnRemoveNodeBtnFrmField_@i"
                                             onclick="DeleteProfileEducation(this,'@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Id')">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
@@ -344,7 +344,11 @@
         // Educations
         function GetProfileEducationElements() {
 
+            pageWaitMe("progress"); // loading process starts
+            btnWaitMe_Start('btnUpdateProfileEducations'); // Loading Button Start
+
             var Id;
+            var hiddenId;
             var schoolName;
             var fieldlName;
             var dateFrom;
@@ -359,7 +363,8 @@
                 var id = $(this).prop("id");
 
                 if (type == "hidden") {
-                    if (id.indexOf("txtId") == 0) Id = value;
+                    if (id.indexOf("hiddenEducationalCase") == 0) Id = value;
+                    hiddenId = id;
                 }
                 if (type == "text") {
                     if (value.trim() == '') {
@@ -374,15 +379,29 @@
                     if (id.indexOf("datepickerTo") == 0) dateTo = value;
                 }
 
-                if (type == "button" && id.indexOf("btn_remove_node_btn_frm_field") == 0) {
-                    postData.push(Id + "|" + schoolName + "|" + fieldlName + "|" + dateFrom + "|" + dateTo + "|")
+                if (type == "button" && id.indexOf("btnRemoveNodeBtnFrmField") == 0) {
+                    postData.push(Id + "|" + schoolName + "|" + fieldlName + "|" + dateFrom + "|" + dateTo + "|" + hiddenId);
                 }
             });
-            if (success) PostProfileEducation(postData);
+
+            if (success) {
+                Swal.fire({
+                    title: 'Please Wait !',
+                    html: 'Given your number of cases, it may take a long time!',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    }
+                });
+                PostProfileEducation(postData)
+            }
+            else {
+                btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
         }
         function PostProfileEducation(data) {
-            pageWaitMe("progress"); // loading process starts
-            btnWaitMe_Start('btnUpdateProfileEducations'); // Loading Button Start
             var postData = { 'info': data, }
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
@@ -392,6 +411,17 @@
                 url: 'ProfileEducationPost',
                 success: function (data) {
                     if (data.isSuccess) {
+                        //////////////////////////// set VALUE of hidden controls with new value from database (value = ID of new record after inserting)
+                        // the new ID is stored in "data.message"
+                        var flag = true;
+                        var arr = data.message.split(/\r?\n/);
+                        for (let i = 0; i < arr.length; i++) {
+                            if (arr[i].length != 0) {
+                                var arr2 = arr[i].replace('[', '').replace(']', '').split(',');
+                                $('#' + arr2[0]).val(arr2[1]);
+                            }
+                        }
+                        ////////////////////////////
                         Swal.fire({
                             position: "center",
                             icon: "success",
@@ -426,9 +456,24 @@
             });
         }
         function DeleteProfileEducation(e, Id) {
+            /////////////////////////////////////////////////////////////////
+            // find ID of hiddenControl based on ID of DeleteControl
+            var SplitedId = e.id.split('_');
+            var ID_FOR_DELETE;
+            var inputValues = $('.form_field_outer :input').map(function () {
+                var type = $(this).prop("type");
+                var value = $(this).prop("value");
+                var id = $(this).prop("id").split('_');
+                if (type == "hidden") {
+                    if (id[1] == SplitedId[1]) {                        
+                        ID_FOR_DELETE = $("#hiddenEducationalCase_" + id[1]).val();
+                    }
+                }
+            });
+            //////////////////////////////////////////////////////////////////
             pageWaitMe("progress"); // loading process starts
             //btnWaitMe_Start(e.id); // Loading Button Start
-            var postData = { 'Id': Id, }
+            var postData = { 'Id': ID_FOR_DELETE, }
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
                 dataType: 'json',
@@ -448,13 +493,6 @@
                         pageWaitMeRemove(); // loading process stops
                     }
                     else {
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: data.message,
-                            showConfirmButton: false,
-                            timer: 3000
-                        });
                         btnWaitMe_Stop(e.id); // Loading Button Stops
                         pageWaitMeRemove(); // loading process stops
                     }
@@ -533,8 +571,6 @@
             }
         }
         function PostProfileFavoriteMovies(data) {
-
-
             var postData = { 'info': data, }
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
@@ -643,13 +679,6 @@
                         pageWaitMeRemove(); // loading process stops
                     }
                     else {
-                        //Swal.fire({
-                        //    position: "center",
-                        //    icon: "error",
-                        //    title: data.message,
-                        //    showConfirmButton: false,
-                        //    timer: 3000
-                        //});
                         btnWaitMe_Stop(e.id); // Loading Button Stops
                         pageWaitMeRemove(); // loading process stops
                     }
@@ -788,73 +817,87 @@
             });
         });
         function fireNewEductionalPart() {
+            // After adding the first form, the update button will be enabled.
             $("#btnUpdateProfileEducations").prop("disabled", false);
-            //var index = $(".form_field_outer").find(".form_field_outer_row").length + 1;
-            var guid = generateGuid();
+            // how many new forms a client can add? the answer is: at most 10 forms
+            var index = $(".form_field_outer").find(".form_field_outer_row").length + 1;
+            if (index>10){
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Only 10 educational cases are allowed.",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                return;
+            }
+            // end
+            var guid = generateGuid();// generate a random string as the name of the controls
             $(".form_field_outer").append(`
 
-                                                                                                                <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
+                    <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
 
-                                                                                                        <fieldset>
-                                                                                                                    <legend>Educational Case</legend>
+            <fieldset>
+                        <legend>Educational Case</legend>
 
-                                                                                                                    <input type="hidden"
-                                                                                                            id="txtId_`+ guid.toString() + `"
-                                                                                                                    value="`+ guid.toString() + `"
-                                                                                                    />
+                        <input type="hidden"
+                        id="hiddenEducationalCase_`+ guid.toString() + `"
+                        value="`+ guid.toString() + `"
+        />
 
-                                                                                                            <div class="input-group mb-3">
-                                                                                                                <span class="input-group-text">Name</span>
-                                                                                                                <input type="text"
-                                                                                                                        class="form-control"
-                                                                                                                                id="txtSchoolName_`+ guid.toString() + `"
-                                                                                                                        placeholder="School, Instituion, College, University Name">
-                                                                                                            </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Name</span>
+                    <input type="text"
+                            class="form-control"
+                                    id="txtSchoolName_`+ guid.toString() + `"
+                            placeholder="School, Instituion, College, University Name">
+                </div>
 
-                                                                                                            <div class="input-group mb-3">
-                                                                                                                <span class="input-group-text">Field of Study</span>
-                                                                                                                <input type="text"
-                                                                                                                        class="form-control"
-                                                                                                                                id="txtField_`+ guid.toString() + `"
-                                                                                                                        placeholder="Directing, Software engineering, ...">
-                                                                                                            </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Field of Study</span>
+                    <input type="text"
+                            class="form-control"
+                                    id="txtField_`+ guid.toString() + `"
+                            placeholder="Directing, Software engineering, ...">
+                </div>
 
-                                                                                                                                                <div style="display:flex;">
-                                                                                                                <div>
-                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                                                            for="inputGroupSelect01">From</label>
-                                                                                                                </div>
-                                                                                                                <div>
-                                                                                                                    <input readonly
-                                                                                                                            placeholder="Starting date of Eduction"
-                                                                                                                            style="border-radius:0px;border-left:0;" width="300"
-                                                                                                                                    id="datepickerFrom_`+ guid.toString() + `">
-                                                                                                                </div>
-                                                                                                            </div>
+                                                    <div style="display:flex;">
+                    <div>
+                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                for="inputGroupSelect01">From</label>
+                    </div>
+                    <div>
+                        <input readonly
+                                placeholder="Starting date of Eduction"
+                                style="border-radius:0px;border-left:0;" width="300"
+                                        id="datepickerFrom_`+ guid.toString() + `">
+                    </div>
+                </div>
 
-                                                                                                            <div style="display:flex;">
-                                                                                                                <div>
-                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                                                            for="inputGroupSelect01">To</label>
-                                                                                                                </div>
-                                                                                                                <div>
-                                                                                                                    <input readonly
-                                                                                                                            placeholder="Ending date of Eduction"
-                                                                                                                            style="border-radius:0px;border-left:0;" width="300"
-                                                                                                                                            id="datepickerTo_`+ guid.toString() + `">
-                                                                                                                </div>
-                                                                                                            </div>
+                <div style="display:flex;">
+                    <div>
+                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                for="inputGroupSelect01">To</label>
+                    </div>
+                    <div>
+                        <input readonly
+                                placeholder="Ending date of Eduction"
+                                style="border-radius:0px;border-left:0;" width="300"
+                                                id="datepickerTo_`+ guid.toString() + `">
+                    </div>
+                </div>
 
-                                                                                                            <div class="form-group col-md-2 add_del_btn_outer">
-                                                                                                                <button type="button" class="btn_round remove_node_btn_frm_field"
-                                                                                                                                            id="btn_remove_node_btn_frm_field_`+ guid.toString() + `"
-                                                                                                                >
-                                                                                                                    <i class="fas fa-trash-alt"></i>
-                                                                                                                </button>
-                                                                                                            </div>
-                                                                                                        </fieldset>
+                <div class="form-group col-md-2 add_del_btn_outer">
+                    <button type="button" class="btn_round remove_node_btn_frm_field"
+                                id="btnRemoveNodeBtnFrmField_`+ guid.toString() + `"
+                      onclick="DeleteProfileEducation(this,'`+ guid.toString() + `')"
+                    >
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </fieldset>
 
-                                                                                                    </div>
+        </div>
 
                                                                                                                                                     `);
 
@@ -866,52 +909,65 @@
             });
         }
         function fireNewFavoriteMoviePart() {
+            // After adding the first form, the update button will be enabled.
             $("#btnUpdateProfileFavoriteMovies").prop("disabled", false);
-            var guid = generateGuid();
+            //how many new forms a client can add? the answer is: at most 10 forms
+            var index = $(".form_field_outer_favoriteMovie").find(".form_field_outer_row_favoriteMovie").length + 1;
+            if (index>10){
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Only 10 favorite movie are allowed.",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                return;
+            }
+            var guid = generateGuid();// generate a random string as the name of the controls
             $(".form_field_outer_favoriteMovie").append(`
 
-                                                                                                    <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_`+ guid.toString() + `">
+        <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_`+ guid.toString() + `">
 
-                                                                                                            <fieldset>
-                                                                                                                                <legend>Favorite Movie</legend>
+                <fieldset>
+                    <legend>Favorite Movie</legend>
 
-                                                                                                                                <input type="hidden"
-                                                                                                                                        id="hiddenFavoriteMovie_`+ guid.toString() + `"
-                                                                                                                                                value=`+ guid.toString() + `
-                                                                                                                />
+                    <input type="hidden"
+                            id="hiddenFavoriteMovie_`+ guid.toString() + `"
+                                    value=`+ guid.toString() + `
+    />
 
 
-                                                                                                                    <div class="input-group mb-3">
-                                                                                                                    <span class="input-group-text">IMDb Movie Link</span>
-                                                                                                                    <input type="text"
-                                                                                                                     onkeypress="if(event.keyCode === 13)event.preventDefault();"
-                                                                                                                    onkeyup="checkRuntimeValidationUrl(this)"
-                                                                                                                        class="form-control"
-                                                                                                                                id="txtMovieLink_`+ guid.toString() + `"
-                                                                                                                        placeholder="https://www.imdb.com/title/tt0068646/">
-                                                                                                                    <button type="button"
-                                                                                                                                        onclick="CheckTheLink(this,'txtMovieLink_`+ guid.toString() + `');"
-                                                                                                                                        id="btnCheckTheLink_`+ guid.toString() + `"
-                                                                                                                    class="btn cur-p btn-primary">
-                                                                                                                        CHECK THE LINK <span class="btn-icon-right">
-                                                                                                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                                                                                                    </button>
-                                                                                                                    </div>
+                        <div class="input-group mb-3">
+                        <span class="input-group-text">IMDb Movie Link</span>
+                        <input type="text"
+                            onkeypress="if(event.keyCode === 13)event.preventDefault();"
+                        onkeyup="checkRuntimeValidationUrl(this)"
+                            class="form-control"
+                                    id="txtMovieLink_`+ guid.toString() + `"
+                            placeholder="https://www.imdb.com/title/tt0068646/">
+                        <button type="button"
+                                            onclick="CheckTheLink(this,'txtMovieLink_`+ guid.toString() + `');"
+                                            id="btnCheckTheLink_`+ guid.toString() + `"
+                        class="btn cur-p btn-primary">
+                            CHECK THE LINK <span class="btn-icon-right">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        </div>
 
-                                                                                                                <div class="form-group col-md-2 add_del_btn_outer">
-                                                                                                                    <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
-                                                                                                                    onclick="DeleteProfileFavoriteMovies(this,'`+ guid.toString() + `')"
-                                                                                                                                id="btnRemoveNodeBtnFrmFieldFavoriteMovie_`+ guid.toString() + `"
-                                                                                                                        \>
-                                                                                                                        <i class="fas fa-trash-alt"></i>
-                                                                                                                    </button>
-                                                                                                                </div>
+                    <div class="form-group col-md-2 add_del_btn_outer">
+                        <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
+                        onclick="DeleteProfileFavoriteMovies(this,'`+ guid.toString() + `')"
+                                    id="btnRemoveNodeBtnFrmFieldFavoriteMovie_`+ guid.toString() + `"
+                            \>
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
 
-                                                                                                            </fieldset>
+                </fieldset>
 
-                                                                                                        </div>
+            </div>
 
-                                                                                                    `);
+        `);
         }
         //===== delete the form fieed row
         $(document).ready(function () {
