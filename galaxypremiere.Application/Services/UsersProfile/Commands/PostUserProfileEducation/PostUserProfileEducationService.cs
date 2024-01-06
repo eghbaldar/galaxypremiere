@@ -18,9 +18,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {
-                var profile = _context.UsersEducation
-                .Where(e => e.UsersId == req.UsersId)
-                .ToList();
+                var profile = _context.UsersEducation.Where(e => e.UsersId == req.UsersId).ToList();
 
                 if (req.info == null)
                 {
@@ -36,10 +34,11 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                     foreach (var anyInfo in req.info)
                     {
                         UsersEducation usersEducation = new UsersEducation();
-
                         var info = anyInfo.ToString().Split("|");
-
-                        // check the acceptable of input as a guid
+                        // check the acceptable input as a guid
+                        // the following code will be checking the GUID ID according to the original its format:00000000-0000-0000-0000-000000000000
+                        // why must we check the format of the GUID ID?
+                        // if the structure of the ID matches with GUID format, it means the record is added newly by a new form unless the record has already been added and needs to be updated
                         Guid guidOutput;
                         bool isValid = Guid.TryParse(info[0].ToString(), out guidOutput);
                         // end checking ...

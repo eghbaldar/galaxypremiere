@@ -324,6 +324,7 @@
     }
     @if (Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto.Count > 0)
     {
+        // if there is any record, enable the button
         <script>
             $(document).ready(function () {
                 $("#btnUpdateProfileEducations").prop("disabled", false);
@@ -332,6 +333,7 @@
     }
     @if (Model.ResultGetUserProfileFavoriteMoviesServiceDto.getUserProfileFavoriteMoviesServiceDto.Count > 0)
     {
+        // if there is any record, enable the button
         <script>
             $(document).ready(function () {
                 $("#btnUpdateProfileFavoriteMovies").prop("disabled", false);
@@ -411,8 +413,10 @@
                 url: 'ProfileEducationPost',
                 success: function (data) {
                     if (data.isSuccess) {
-                        //////////////////////////// set VALUE of hidden controls with new value from database (value = ID of new record after inserting)
+                        // set VALUE of HIDDEN CONTROLS with new value from database (value = ID of new record after inserting)
                         // the new ID is stored in "data.message"
+                        // why must we set the new value for HIDDEN CONTROL?
+                        // because otherwise in the way of adding dynamic form, the system can not recognize the record ID to delete it.
                         var flag = true;
                         var arr = data.message.split(/\r?\n/);
                         for (let i = 0; i < arr.length; i++) {
@@ -421,7 +425,7 @@
                                 $('#' + arr2[0]).val(arr2[1]);
                             }
                         }
-                        ////////////////////////////
+                        // setting process is done!
                         Swal.fire({
                             position: "center",
                             icon: "success",
@@ -456,7 +460,7 @@
             });
         }
         function DeleteProfileEducation(e, Id) {
-            /////////////////////////////////////////////////////////////////
+            pageWaitMe("progress"); // loading process starts
             // find ID of hiddenControl based on ID of DeleteControl
             var SplitedId = e.id.split('_');
             var ID_FOR_DELETE;
@@ -470,9 +474,7 @@
                     }
                 }
             });
-            //////////////////////////////////////////////////////////////////
-            pageWaitMe("progress"); // loading process starts
-            //btnWaitMe_Start(e.id); // Loading Button Start
+
             var postData = { 'Id': ID_FOR_DELETE, }
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
@@ -580,8 +582,10 @@
                 url: 'ProfileFavoriteMovies',
                 success: function (data) {
                     if (data.isSuccess) {
-                        //////////////////////////// set VALUE of hidden controls with new value from database (value = ID of new record after inserting)
+                        // set VALUE of HIDDEN CONTROLS with new value from database (value = ID of new record after inserting)
                         // the new ID is stored in "data.message"
+                        // why must we set the new value for HIDDEN CONTROL?
+                        // because otherwise in the way of adding dynamic form, the system can not recognize the record ID to delete it.
                         var flag = true;
                         var arr = data.message.split(/\r?\n/);
                         for (let i = 0; i < arr.length; i++) {
@@ -596,7 +600,7 @@
                                 }
                             }
                         }
-                        ////////////////////////////
+                        // setting process is done!
                         if (flag) {
                             Swal.fire({
                                 position: "center",
@@ -643,7 +647,7 @@
 
         }
         function DeleteProfileFavoriteMovies(e, Id) {
-            /////////////////////////////////////////////////////////////////
+            pageWaitMe("progress"); // loading process starts
             // find ID of hiddenControl based on ID of DeleteControl
             var SplitedId = e.id.split('_');
             var ID_FOR_DELETE;
@@ -657,8 +661,7 @@
                     }
                 }
             });
-            //////////////////////////////////////////////////////////////////
-            pageWaitMe("progress"); // loading process starts
+          
             var postData = { 'Id': ID_FOR_DELETE, }
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
