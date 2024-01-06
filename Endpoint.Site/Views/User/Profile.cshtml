@@ -370,11 +370,11 @@
                 }
                 if (type == "text") {
                     if (value.trim() == '') {
-                        $("#" + id).css("border-bottom", "2px dashed #ff8585");
+                        KingWarningStyle("#" + id, 0);
                         success = false;
                     }
                     else
-                        $("#" + id).css("border-bottom", "1px solid #dee2e6");
+                        KingWarningStyleOff("#" + id, 0);
                     if (id.indexOf("txtSchoolName") == 0) schoolName = value;
                     if (id.indexOf("txtField") == 0) fieldlName = value;
                     if (id.indexOf("datepickerFrom") == 0) dateFrom = value;
@@ -469,7 +469,7 @@
                 var value = $(this).prop("value");
                 var id = $(this).prop("id").split('_');
                 if (type == "hidden") {
-                    if (id[1] == SplitedId[1]) {                        
+                    if (id[1] == SplitedId[1]) {
                         ID_FOR_DELETE = $("#hiddenEducationalCase_" + id[1]).val();
                     }
                 }
@@ -534,19 +534,19 @@
                 }
                 if (type == "text") {
                     if (value.trim() == '') {
-                        $("#" + id).css("border-bottom", "2px dashed #ff8585");
+                        KingWarningStyle("#" + id, 0);
                         success = false;
                     }
                     else
-                        $("#" + id).css("border-bottom", "1px solid #dee2e6");
+                        KingWarningStyleOff("#" + id, 0);
 
                     //CHECL THE VALIDATION OF LINK
                     if (id.indexOf("txtMovieLink") == 0)
-                        if (isValidURL(value, "https://www.imdb.com/")) {
+                        if (KingIsUrlValid(value, "https://www.imdb.com/")) {
                             IMDbLink = value;
                         }
                         else {
-                            $("#" + id).css("border-bottom", "2px dashed #ff8585");
+                            KingWarningStyle("#" + id, 0);
                             success = false;
                         }
 
@@ -595,7 +595,7 @@
                                     $('#' + arr2[0]).val(arr2[1]);
                                 }
                                 else {
-                                    $('#txtMovieLink_' + arr2[0].trim()).css("border-bottom", "2px dashed #ff8585");
+                                    KingWarningStyle('#txtMovieLink_' + arr2[0].trim(), 0);
                                     flag = false;
                                 }
                             }
@@ -661,7 +661,7 @@
                     }
                 }
             });
-          
+
             var postData = { 'Id': ID_FOR_DELETE, }
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
@@ -698,12 +698,12 @@
             });
         }
         function checkRuntimeValidationUrl(e) {
-            if (isValidURL($(e).val(), "https://www.imdb.com/")) {
-                $("#" + e.id).css("border-bottom", "1px solid #dee2e6");
+            if (KingIsUrlValid($(e).val(), "https://www.imdb.com/")) {
+                KingWarningStyleOff("#" + e.id, 0);
                 return true;
             } else {
                 pageWaitMeRemove(); // loading process stops
-                $("#" + e.id).css("border-bottom", "2px dashed #ff8585");
+                KingWarningStyle("#" + e.id, 0);
                 return false;
             }
         }
@@ -718,10 +718,11 @@
             if ($("#txtMovieLink_" + SeparateID[1]).val() == null || $("#txtMovieLink_" + SeparateID[1]).val() == '') {
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
-                $("#txtMovieLink_" + SeparateID[1]).css("border-bottom", "2px dashed #ff8585");
+                KingWarningStyle("#txtMovieLink_" + SeparateID[1], 0);
                 return;
             }
-            if (!isValidURL(link, "https://www.imdb.com/")) {
+            if (!KingIsUrlValid(link, "https://www.imdb.com/")) { // if the link does not match with the exact hostname=> "https://www.imdb.com/"
+                KingWarningStyle("#txtMovieLink_" + SeparateID[1], 0);
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
                 return;
@@ -752,7 +753,7 @@
                             focusConfirm: false,
                             confirmButtonText: '<i class="fa fa-thumbs-up"></i>' + 'Yes, Thats Correct!'
                         });
-
+                        KingWarningStyleOff("#txtMovieLink_" + SeparateID[1], 0);
                         btnWaitMe_Stop(e.id); // Loading Button Stops
                         pageWaitMeRemove(); // loading process stops
 
@@ -765,6 +766,7 @@
                             showConfirmButton: false,
                             timer: 3000
                         });
+                        KingWarningStyle("#txtMovieLink_" + SeparateID[1], 0);
                         btnWaitMe_Stop(e.id); // Loading Button Stops
                         pageWaitMeRemove(); // loading process stops
 
@@ -786,19 +788,7 @@
                 }
             });
 
-        }
-        function isValidURL(link, domain) {
-            var res = link.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@@:%_\+.~#?&//=]*)/g);
-            if (res != null) {
-                var length = domain.length;
-                var hostname = link.substring(0, length);
-                if (hostname == domain)
-                    return true;
-                else
-                    return false;
-            }
-            return false;
-        };
+        }      
     </script>
 
     @*Add Runtime Controls*@
@@ -824,7 +814,7 @@
             $("#btnUpdateProfileEducations").prop("disabled", false);
             // how many new forms a client can add? the answer is: at most 10 forms
             var index = $(".form_field_outer").find(".form_field_outer_row").length + 1;
-            if (index>10){
+            if (index > 10) {
                 Swal.fire({
                     position: "center",
                     icon: "error",
@@ -838,71 +828,71 @@
             var guid = generateGuid();// generate a random string as the name of the controls
             $(".form_field_outer").append(`
 
-                    <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
+                            <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
 
-            <fieldset>
-                        <legend>Educational Case</legend>
+                    <fieldset>
+                                <legend>Educational Case</legend>
 
-                        <input type="hidden"
-                        id="hiddenEducationalCase_`+ guid.toString() + `"
-                        value="`+ guid.toString() + `"
-        />
+                                <input type="hidden"
+                                id="hiddenEducationalCase_`+ guid.toString() + `"
+                                value="`+ guid.toString() + `"
+                />
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Name</span>
-                    <input type="text"
-                            class="form-control"
-                                    id="txtSchoolName_`+ guid.toString() + `"
-                            placeholder="School, Instituion, College, University Name">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Name</span>
+                            <input type="text"
+                                    class="form-control"
+                                            id="txtSchoolName_`+ guid.toString() + `"
+                                    placeholder="School, Instituion, College, University Name">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Field of Study</span>
+                            <input type="text"
+                                    class="form-control"
+                                            id="txtField_`+ guid.toString() + `"
+                                    placeholder="Directing, Software engineering, ...">
+                        </div>
+
+                                                            <div style="display:flex;">
+                            <div>
+                                <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                        for="inputGroupSelect01">From</label>
+                            </div>
+                            <div>
+                                <input readonly
+                                        placeholder="Starting date of Eduction"
+                                        style="border-radius:0px;border-left:0;" width="300"
+                                                id="datepickerFrom_`+ guid.toString() + `">
+                            </div>
+                        </div>
+
+                        <div style="display:flex;">
+                            <div>
+                                <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                        for="inputGroupSelect01">To</label>
+                            </div>
+                            <div>
+                                <input readonly
+                                        placeholder="Ending date of Eduction"
+                                        style="border-radius:0px;border-left:0;" width="300"
+                                                        id="datepickerTo_`+ guid.toString() + `">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2 add_del_btn_outer">
+                            <button type="button" class="btn_round remove_node_btn_frm_field"
+                                        id="btnRemoveNodeBtnFrmField_`+ guid.toString() + `"
+                              onclick="DeleteProfileEducation(this,'`+ guid.toString() + `')"
+                            >
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </fieldset>
+
                 </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Field of Study</span>
-                    <input type="text"
-                            class="form-control"
-                                    id="txtField_`+ guid.toString() + `"
-                            placeholder="Directing, Software engineering, ...">
-                </div>
-
-                                                    <div style="display:flex;">
-                    <div>
-                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                for="inputGroupSelect01">From</label>
-                    </div>
-                    <div>
-                        <input readonly
-                                placeholder="Starting date of Eduction"
-                                style="border-radius:0px;border-left:0;" width="300"
-                                        id="datepickerFrom_`+ guid.toString() + `">
-                    </div>
-                </div>
-
-                <div style="display:flex;">
-                    <div>
-                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                for="inputGroupSelect01">To</label>
-                    </div>
-                    <div>
-                        <input readonly
-                                placeholder="Ending date of Eduction"
-                                style="border-radius:0px;border-left:0;" width="300"
-                                                id="datepickerTo_`+ guid.toString() + `">
-                    </div>
-                </div>
-
-                <div class="form-group col-md-2 add_del_btn_outer">
-                    <button type="button" class="btn_round remove_node_btn_frm_field"
-                                id="btnRemoveNodeBtnFrmField_`+ guid.toString() + `"
-                      onclick="DeleteProfileEducation(this,'`+ guid.toString() + `')"
-                    >
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </div>
-            </fieldset>
-
-        </div>
-
-                                                                                                                                                    `);
+                                                                                                                                                            `);
 
             $('#datepickerFrom_' + guid.toString()).datepicker({
                 uiLibrary: 'bootstrap5'
@@ -916,7 +906,7 @@
             $("#btnUpdateProfileFavoriteMovies").prop("disabled", false);
             //how many new forms a client can add? the answer is: at most 10 forms
             var index = $(".form_field_outer_favoriteMovie").find(".form_field_outer_row_favoriteMovie").length + 1;
-            if (index>10){
+            if (index > 10) {
                 Swal.fire({
                     position: "center",
                     icon: "error",
@@ -929,48 +919,48 @@
             var guid = generateGuid();// generate a random string as the name of the controls
             $(".form_field_outer_favoriteMovie").append(`
 
-        <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_`+ guid.toString() + `">
+                <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_`+ guid.toString() + `">
 
-                <fieldset>
-                    <legend>Favorite Movie</legend>
+                        <fieldset>
+                            <legend>Favorite Movie</legend>
 
-                    <input type="hidden"
-                            id="hiddenFavoriteMovie_`+ guid.toString() + `"
-                                    value=`+ guid.toString() + `
-    />
+                            <input type="hidden"
+                                    id="hiddenFavoriteMovie_`+ guid.toString() + `"
+                                            value=`+ guid.toString() + `
+            />
 
 
-                        <div class="input-group mb-3">
-                        <span class="input-group-text">IMDb Movie Link</span>
-                        <input type="text"
-                            onkeypress="if(event.keyCode === 13)event.preventDefault();"
-                        onkeyup="checkRuntimeValidationUrl(this)"
-                            class="form-control"
-                                    id="txtMovieLink_`+ guid.toString() + `"
-                            placeholder="https://www.imdb.com/title/tt0068646/">
-                        <button type="button"
-                                            onclick="CheckTheLink(this,'txtMovieLink_`+ guid.toString() + `');"
-                                            id="btnCheckTheLink_`+ guid.toString() + `"
-                        class="btn cur-p btn-primary">
-                            CHECK THE LINK <span class="btn-icon-right">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                        </div>
+                                <div class="input-group mb-3">
+                                <span class="input-group-text">IMDb Movie Link</span>
+                                <input type="text"
+                                    onkeypress="if(event.keyCode === 13)event.preventDefault();"
+                                onkeyup="checkRuntimeValidationUrl(this)"
+                                    class="form-control"
+                                            id="txtMovieLink_`+ guid.toString() + `"
+                                    placeholder="https://www.imdb.com/title/tt0068646/">
+                                <button type="button"
+                                                    onclick="CheckTheLink(this,'txtMovieLink_`+ guid.toString() + `');"
+                                                    id="btnCheckTheLink_`+ guid.toString() + `"
+                                class="btn cur-p btn-primary">
+                                    CHECK THE LINK <span class="btn-icon-right">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                </div>
 
-                    <div class="form-group col-md-2 add_del_btn_outer">
-                        <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
-                        onclick="DeleteProfileFavoriteMovies(this,'`+ guid.toString() + `')"
-                                    id="btnRemoveNodeBtnFrmFieldFavoriteMovie_`+ guid.toString() + `"
-                            \>
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                            <div class="form-group col-md-2 add_del_btn_outer">
+                                <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
+                                onclick="DeleteProfileFavoriteMovies(this,'`+ guid.toString() + `')"
+                                            id="btnRemoveNodeBtnFrmFieldFavoriteMovie_`+ guid.toString() + `"
+                                    \>
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+
+                        </fieldset>
+
                     </div>
 
-                </fieldset>
-
-            </div>
-
-        `);
+                `);
         }
         //===== delete the form fieed row
         $(document).ready(function () {
