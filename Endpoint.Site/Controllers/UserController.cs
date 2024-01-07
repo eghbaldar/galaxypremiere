@@ -211,6 +211,7 @@ namespace Endpoint.Site.Controllers
                 {
                     UsersId = userId
                 }).Data,
+                resultGetCountriesServiceDto= _countiresFacade.GetCountriesService.Execute()
             };
             return View(modelGetProfile);
         }
