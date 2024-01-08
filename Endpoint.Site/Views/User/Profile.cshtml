@@ -236,233 +236,236 @@
             <div class="basic-form">
                 <form asp-action="Create" id="frmCompanies" method="post">
                     <div class="form_field_outer_companies">
-                        @for (byte i = 0; i <= Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto.Count - 1; i++)
-                        {
-                            <div class="row form_field_outer_companies_row" id="company_form_@i">
-                                <fieldset>
-                                    <legend>Company</legend>
-                                    <input type="hidden"
+                            @for (byte i = 0; i <= Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto.Count - 1; i++)
+                            {
+                                <div class="row form_field_outer_companies_row" id="company_form_@i">
+                                    <fieldset>
+                                        <legend>Company</legend>
+                                        <input type="hidden"
                                        id="hiddenCompany_@i"
-                                       value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Id" />
+                                       value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Id" />
 
-                                    <div class="input-group mb-3">
-                                        <label class="input-group-text" for="inputGroupSelect01">Country</label>
-                                        <select class="form-select"
-                                            id="selectCountry">
-                                            <option selected>Choose...</option>
-                                            @{
-                                                if (Model.resultGetCountriesServiceDto != null)
-                                                {
-                                                    foreach (var country in Model.resultGetCountriesServiceDto.getCountriesServiceDto)
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="inputGroupSelect01">Country</label>
+                                            <select class="form-select" id="selectCountry">
+                                                <option selected>Choose...</option>
+                                                @{
+                                                    if (Model.resultGetCountriesServiceDto != null)
                                                     {
-                                                        <option value="@country.Id">
-                                                            @country.Name
-                                                        </option>
+                                                        foreach (var country in Model.resultGetCountriesServiceDto.getCountriesServiceDto)
+                                                        {
+                                                            <option
+                                                            selected="@(Model.ResultGetUserProfileCompaniesServiceDto != null && country.Id == Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].CountryId)"
+                                                            value="@country.Id">
+                                                                @country.Name
+                                                            </option>
 
+                                                        }
                                                     }
                                                 }
-                                            }
-                                        </select>
-                                    </div>
+                                            </select>
+                                        </div>
 
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text">Company Name</span>
-                                        <input type="text"
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Company Name</span>
+                                            <input type="text"
                                            class="form-control"
-                                           id="txtCompanylName_@i"
-                                           value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                           id="txtCompanyName_@i"
+                                           value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Name"
                                            placeholder="Microsoft, Amazon, Google, ...">
-                                        <span class="input-group-text">Position</span>
-                                        <input type="text"
+                                            <span class="input-group-text">Position</span>
+                                            <input type="text"
                                            class="form-control"
                                            id="txtCompanyPosition_@i"
-                                           value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Field"
+                                           value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Position"
                                            placeholder="CEO, Editor, Poster Designer, ....">
-                                    </div>
-
-
-                                    <div style="display:flex;">
-                                        <div>
-                                            <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                               for="inputGroupSelect01">From</label>
                                         </div>
-                                        <div>
-                                            <input readonly
+
+                                        <div style="display:flex;">
+                                            <div>
+                                                <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                               for="inputGroupSelect01">From</label>
+                                            </div>
+                                            <div>
+                                                <input readonly
                                                placeholder="Starting date of Eduction"
                                                style="border-radius:0px;border-left:0;" width="300"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].From"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].From"
                                                id="datepickerCompanyFrom_@i">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div style="display:flex;">
-                                        <div>
-                                            <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                        <div style="display:flex;">
+                                            <div>
+                                                <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
                                                for="inputGroupSelect01">To</label>
-                                        </div>
-                                        <div>
-                                            <input readonly
+                                            </div>
+                                            <div>
+                                                <input readonly
                                                placeholder="Ending date of Eduction"
                                                style="border-radius:0px;border-left:0;" width="300"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].To"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].To"
                                                id="datepickerCompanyTo_@i">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <a href="#" onclick="$('#loginModal').modal();">
-                                            [Click to set more information]
-                                        </a>
-                                    </div>
 
-                                    <div class="form-group col-md-2 add_del_btn_outer">
-                                        <button type="button" class="btn_round remove_node_btn_frm_field_company"
-                                            id="btnRemoveNodeBtnFrmField_@i"
-                                            onclick="DeleteProfileCompany(this,'@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Id')">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </div>
-
-                                </fieldset>
-
-                            </div>
-
-                            @*MODAL*@
-                            <div class="modal fade" id="loginModal" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h2>MORE INFORMATION</h2>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <div>
+                                            <a href="#" onclick="$('#loginModal_@i').modal();">
+                                                [Click to set more information]
+                                            </a>
                                         </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Address Line 1</span>
-                                            <input type="text"
+
+
+
+                                @*MODAL*@
+                                <div class="modal fade" id="loginModal_@i" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2>MORE INFORMATION</h2>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Address Line 1</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyAddress1_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Address1"
                                                placeholder="3015">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Address Line 2</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Address Line 2</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyAddress2_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Field"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Address2"
                                                placeholder="Grand Ave">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">City</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">City</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyCity_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].City"
                                                placeholder="Miami">
-                                            <span class="input-group-text">State</span>
-                                            <input type="text"
+                                                <span class="input-group-text">State</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyState_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].State"
                                                placeholder="Florida">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">PostCode</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">PostCode</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyPostCode_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].PostalCode"
                                                placeholder="33133">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Phone</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Phone</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyPhone_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Phone"
                                                placeholder="(305) 447-2273">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Email</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Email</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyEmail_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].RecoveryEmail"
                                                placeholder="support@galaxypremiere.com">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Website</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Website</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyWebsite_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Website"
                                                placeholder="www.galaxypremiere.com">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Facebook ID</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Facebook ID</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyFacebook_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Facebook"
                                                placeholder="@@galaxypremiere">
-                                            <span class="input-group-text">Instagram ID</span>
-                                            <input type="text"
+                                                <span class="input-group-text">Instagram ID</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyInstagram_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Instagram"
                                                placeholder="@@galaxypremiere">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Twitter ID</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Twitter ID</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyTwitter_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Twitter"
                                                placeholder="@@galaxypremiere">
-                                            <span class="input-group-text">Stage32 ID</span>
-                                            <input type="text"
+                                                <span class="input-group-text">Stage32 ID</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyStage32_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Stage32"
                                                placeholder="stage32.com/galaxypremiere">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Youtube</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Youtube</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyYoutube_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Youtube"
                                                placeholder="youtube.com/galaxypremiere">
-                                            <span class="input-group-text">Name</span>
-                                            <input type="text"
+                                                <span class="input-group-text">Name</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyLinkden_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Linkden"
                                                placeholder="@@galaxypremiere">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">Vimeo</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">Vimeo</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyVimeo_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Vimeo"
                                                placeholder="vimeo.com/galaxypremiere">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text">IMDb</span>
-                                            <input type="text"
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text">IMDb</span>
+                                                <input type="text"
                                                class="form-control"
                                                id="txtCompanyIMDb_@i"
-                                               value="@Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto[i].Name"
+                                               value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Imdb"
                                                placeholder="IMDb.com/galaxypremiere">
-                                        </div>
-                                        <button type="button" onclick="GetProfileCompanyElements()"
+                                            </div>
+                                            <button type="button" onclick="GetProfileCompanyElements()"
                                             id="btnUpdateProfileCompany" class="btn cur-p btn-primary" disabled>
-                                            Done
-                                        </button>
+                                                Done
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
+
+                                        <div class="form-group col-md-2 add_del_btn_outer">
+                                            <button type="button" class="btn_round remove_node_btn_frm_field_company"
+                                            id="btnRemoveNodeBtnFrmFieldCompany_@i"
+                                            onclick="DeleteProfileCompany(this,'@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Id')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+
+                                    </fieldset>
+
+                                </div>
+                            }
                     </div>
                     <div class="input-group mt-3">
                         <button type="button" class="add_new_frm_field_companies_btn">
@@ -561,16 +564,19 @@
             });
         </script>
     }
-    @for (byte i = 0; i <= Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto.Count - 1; i++)
+    @if (Model.ResultGetUserProfileCompaniesServiceDto != null)
     {
-        <script>
-            $('#datepickerCompanyFrom_@i').datepicker({
-                uiLibrary: 'bootstrap5'
-            });
-            $('#datepickerCompanyTo_@i').datepicker({
-                uiLibrary: 'bootstrap5'
-            });
-        </script>
+        @for (byte i = 0; i <= Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto.Count - 1; i++)
+        {
+            <script>
+                $('#datepickerCompanyFrom_@i').datepicker({
+                    uiLibrary: 'bootstrap5'
+                });
+                $('#datepickerCompanyTo_@i').datepicker({
+                    uiLibrary: 'bootstrap5'
+                });
+            </script>
+        }
     }
     @*Enabling Update Buttons*@
     @if (Model.ResultGetUserProfileEducationsServiceDto.getUserProfileEducationsServiceDto.Count > 0)
@@ -588,6 +594,15 @@
         <script>
             $(document).ready(function () {
                 $("#btnUpdateProfileFavoriteMovies").prop("disabled", false);
+            });
+        </script>
+    }
+    @if (Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto.Count > 0)
+    {
+        // if there is any record, enable the button
+        <script>
+            $(document).ready(function () {
+                $("#btnUpdateProfileCompanies").prop("disabled", false);
             });
         </script>
     }
@@ -1041,7 +1056,203 @@
 
         }
         // Companies
-        function DeleteProfileEducation(e, Id) {
+        function GetProfileCompanyElements() {
+
+            //pageWaitMe("progress"); // loading process starts
+            //btnWaitMe_Start('btnUpdateProfileCompanies'); // Loading Button Start
+
+            var Id;
+            var hiddenId;
+
+            var countryId;
+            var Name;
+            var Position;
+            var dateFrom;
+            var dateTo;
+            var Address1;
+            var Address2;
+            var City;
+            var State;
+            var PostalCode;
+            var Phone;
+            var RecoveryEmail;
+            var Website;
+            var Facebook;
+            var Instagram;
+            var Twitter;
+            var Stage32;
+            var Youtube;
+            var Linkden;
+            var Vimeo;
+            var Imdb;
+
+            var postData = [];
+            var successCompanyName = true;
+            var successCompanyPosition = true;
+            var successCompanyFrom = true;
+            var successCompanyTo = true;
+
+            var inputValues = $('.form_field_outer_companies :input').map(function () {
+                var type = $(this).prop("type");
+                var value = $(this).prop("value");
+                var id = $(this).prop("id");
+
+                if (type == "hidden") {
+                    if (id.indexOf("hiddenCompany") == 0) {
+                        Id = value;
+                        hiddenId = id;
+                    }
+                }
+                if (type == "select-one") {
+                    if (value == 'Choose...') {
+                        KingWarningStyle("#" + id, 0);
+                        success = false;
+                    }
+                    else {
+                        KingWarningStyleOff("#" + id, 0);
+                        countryId = value;
+                        success = true;
+                    }
+                }
+                if (type == "text") {
+
+                    if ((id.indexOf("txtCompanyName") == 0)) {
+                        if (value.trim() == '') {
+                            KingWarningStyle("#" + id, 0);
+                            successCompanyName = false;
+                        } else {
+                            Name = value;
+                            KingWarningStyleOff("#" + id, 0);
+                            successCompanyName = true;
+                        }
+                    }
+                    if ((id.indexOf("txtCompanyPosition") == 0)) {
+                        if (value.trim() == '') {
+                            KingWarningStyle("#" + id, 0);
+                            successCompanyPosition = false;
+                        } else {
+                            Position = value;
+                            KingWarningStyleOff("#" + id, 0);
+                            successCompanyPosition = true;
+                        }
+                    }
+                    if ((id.indexOf("datepickerCompanyFrom") == 0)) {
+                        if (value.trim() == '') {
+                            KingWarningStyle("#" + id, 0);
+                            successCompanyFrom = false;
+                        } else {
+                            dateFrom = value;
+                            KingWarningStyleOff("#" + id, 0);
+                            successCompanyFrom = true;
+                        }
+                    }
+                    if ((id.indexOf("datepickerCompanyTo") == 0)) {
+                        if (value.trim() == '') {
+                            KingWarningStyle("#" + id, 0);
+                            successCompanyTo = false;
+                        } else {
+                            dateTo = value;
+                            KingWarningStyleOff("#" + id, 0);
+                            successCompanyTo = true;
+                        }
+                    }
+
+                    if (id.indexOf("txtCompanyAddress1") == 0) Address1 = value;
+                    if (id.indexOf("txtCompanyAddress2") == 0) Address2 = value;
+                    if (id.indexOf("txtCompanyCity") == 0) City = value;
+                    if (id.indexOf("txtCompanyState") == 0) State = value;
+                    if (id.indexOf("txtCompanyPostCode") == 0) PostalCode = value;
+                    if (id.indexOf("txtCompanyPhone") == 0) Phone = value;
+                    if (id.indexOf("txtCompanyEmail") == 0) RecoveryEmail = value;
+                    if (id.indexOf("txtCompanyWebsite") == 0) Website = value;
+                    if (id.indexOf("txtCompanyFacebook") == 0) Facebook = value;
+                    if (id.indexOf("txtCompanyInstagram") == 0) Instagram = value;
+                    if (id.indexOf("txtCompanyTwitter") == 0) Twitter = value;
+                    if (id.indexOf("txtCompanyStage32") == 0) Stage32 = value;
+                    if (id.indexOf("txtCompanyYoutube") == 0) Youtube = value;
+                    if (id.indexOf("txtCompanyLinkden") == 0) Linkden = value;
+                    if (id.indexOf("txtCompanyVimeo") == 0) Vimeo = value;
+                    if (id.indexOf("txtCompanyIMDb") == 0) Imdb = value;
+                }
+                if (type == "button" && id.indexOf("btnRemoveNodeBtnFrmFieldCompany") == 0) {
+                    postData.push(Id + "|" + countryId + "|" + Name + "|" + Position + "|" + dateFrom + "|" + dateTo + "|" + Address1 + "|" + Address2 + "|" + City + "|" + State + "|" + PostalCode + "|" + Phone + "|" + RecoveryEmail + "|" + Website + "|" + Facebook + "|" + Instagram + "|" + Twitter + "|" + Stage32 + "|" + Youtube + "|" + Linkden + "|" + Vimeo + "|" + Imdb + "|" + hiddenId);
+                }
+            });
+
+            if (successCompanyName && successCompanyPosition && successCompanyFrom && successCompanyTo) {
+                Swal.fire({
+                    title: 'Please Wait !',
+                    html: 'Given your number of cases, it may take a long time!',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    }
+                });
+                PostProfileCompany(postData)
+            }
+            else {
+                btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
+                pageWaitMeRemove(); // loading process stops
+            }
+        }
+        function PostProfileCompany(data) {
+            var postData = { 'info': data, }
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'ProfileCompanyPost',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        // set VALUE of HIDDEN CONTROLS with new value from database (value = ID of new record after inserting)
+                        // the new ID is stored in "data.message"
+                        // why must we set the new value for HIDDEN CONTROL?
+                        // because otherwise in the way of adding dynamic form, the system can not recognize the record ID to delete it.
+                        var flag = true;
+                        var arr = data.message.split(/\r?\n/);
+                        for (let i = 0; i < arr.length; i++) {
+                            if (arr[i].length != 0) {
+                                var arr2 = arr[i].replace('[', '').replace(']', '').split(',');
+                                $('#' + arr2[0]).val(arr2[1]);
+                            }
+                        }
+                        // setting process is done!
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Information has been saved",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
+                    }
+                    else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
+                    }
+                },
+                error: function (req, status, err) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Something went wrong, please try it again or later!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            });
+        }
+        function DeleteProfileCompany(e, Id) {
             //pageWaitMe("progress"); // loading process starts
             // find ID of hiddenControl based on ID of DeleteControl
             var SplitedId = e.id.split('_');
@@ -1092,7 +1303,12 @@
             //    }
             //});
         }
-
+        // close all companies MODAL by hitting escape key
+        $(document).keydown(function (event) {
+            if (event.keyCode == 27) {
+                $('.modal').modal('hide');
+            }
+        });
     </script>
 
     @*Add Runtime Controls*@
@@ -1100,7 +1316,7 @@
         function generateGuid() {
             return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         }
-//===== add the form fieed row
+        //===== add the form fieed row
         $(document).ready(function () {
             $("body").on("click", ".add_new_frm_field_btn,.add_new_frm_field_favorite_movie_btn,.add_new_frm_field_companies_btn", function () {
                 var className = this.className;
@@ -1136,71 +1352,71 @@
             var guid = generateGuid();// generate a random string as the name of the controls
             $(".form_field_outer").append(`
 
-                                                            <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
+                                                                                                                                    <div class="row form_field_outer_row" id="educational_form_`+ guid.toString() + `">
 
-                                                    <fieldset>
-                                                                <legend>Educational Case</legend>
+                                                                                                                            <fieldset>
+                                                                                                                                        <legend>Educational Case</legend>
 
-                                                                <input type="hidden"
-                                                                id="hiddenEducationalCase_`+ guid.toString() + `"
-                                                                value="`+ guid.toString() + `"
-                                                />
+                                                                                                                                        <input type="hidden"
+                                                                                                                                        id="hiddenEducationalCase_`+ guid.toString() + `"
+                                                                                                                                        value="`+ guid.toString() + `"
+                                                                                                                        />
 
-                                                        <div class="input-group mb-3">
-                                                            <span class="input-group-text">Name</span>
-                                                            <input type="text"
-                                                                    class="form-control"
-                                                                            id="txtSchoolName_`+ guid.toString() + `"
-                                                                    placeholder="School, Instituion, College, University Name">
-                                                        </div>
+                                                                                                                                <div class="input-group mb-3">
+                                                                                                                                    <span class="input-group-text">Name</span>
+                                                                                                                                    <input type="text"
+                                                                                                                                            class="form-control"
+                                                                                                                                                    id="txtSchoolName_`+ guid.toString() + `"
+                                                                                                                                            placeholder="School, Instituion, College, University Name">
+                                                                                                                                </div>
 
-                                                        <div class="input-group mb-3">
-                                                            <span class="input-group-text">Field of Study</span>
-                                                            <input type="text"
-                                                                    class="form-control"
-                                                                            id="txtField_`+ guid.toString() + `"
-                                                                    placeholder="Directing, Software engineering, ...">
-                                                        </div>
+                                                                                                                                <div class="input-group mb-3">
+                                                                                                                                    <span class="input-group-text">Field of Study</span>
+                                                                                                                                    <input type="text"
+                                                                                                                                            class="form-control"
+                                                                                                                                                    id="txtField_`+ guid.toString() + `"
+                                                                                                                                            placeholder="Directing, Software engineering, ...">
+                                                                                                                                </div>
 
-                                                                                            <div style="display:flex;">
-                                                            <div>
-                                                                <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                        for="inputGroupSelect01">From</label>
-                                                            </div>
-                                                            <div>
-                                                                <input readonly
-                                                                        placeholder="Starting date of Eduction"
-                                                                        style="border-radius:0px;border-left:0;" width="300"
-                                                                                id="datepickerFrom_`+ guid.toString() + `">
-                                                            </div>
-                                                        </div>
+                                                                                                                                                                    <div style="display:flex;">
+                                                                                                                                    <div>
+                                                                                                                                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                                                                                                for="inputGroupSelect01">From</label>
+                                                                                                                                    </div>
+                                                                                                                                    <div>
+                                                                                                                                        <input readonly
+                                                                                                                                                placeholder="Starting date of Eduction"
+                                                                                                                                                style="border-radius:0px;border-left:0;" width="300"
+                                                                                                                                                        id="datepickerFrom_`+ guid.toString() + `">
+                                                                                                                                    </div>
+                                                                                                                                </div>
 
-                                                        <div style="display:flex;">
-                                                            <div>
-                                                                <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                        for="inputGroupSelect01">To</label>
-                                                            </div>
-                                                            <div>
-                                                                <input readonly
-                                                                        placeholder="Ending date of Eduction"
-                                                                        style="border-radius:0px;border-left:0;" width="300"
-                                                                                        id="datepickerTo_`+ guid.toString() + `">
-                                                            </div>
-                                                        </div>
+                                                                                                                                <div style="display:flex;">
+                                                                                                                                    <div>
+                                                                                                                                        <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                                                                                                for="inputGroupSelect01">To</label>
+                                                                                                                                    </div>
+                                                                                                                                    <div>
+                                                                                                                                        <input readonly
+                                                                                                                                                placeholder="Ending date of Eduction"
+                                                                                                                                                style="border-radius:0px;border-left:0;" width="300"
+                                                                                                                                                                id="datepickerTo_`+ guid.toString() + `">
+                                                                                                                                    </div>
+                                                                                                                                </div>
 
-                                                        <div class="form-group col-md-2 add_del_btn_outer">
-                                                            <button type="button" class="btn_round remove_node_btn_frm_field"
-                                                                        id="btnRemoveNodeBtnFrmField_`+ guid.toString() + `"
-                                                              onclick="DeleteProfileEducation(this,'`+ guid.toString() + `')"
-                                                            >
-                                                                <i class="fas fa-trash-alt"></i>
-                                                            </button>
-                                                        </div>
-                                                    </fieldset>
+                                                                                                                                <div class="form-group col-md-2 add_del_btn_outer">
+                                                                                                                                    <button type="button" class="btn_round remove_node_btn_frm_field"
+                                                                                                                                                id="btnRemoveNodeBtnFrmField_`+ guid.toString() + `"
+                                                                                                                                      onclick="DeleteProfileEducation(this,'`+ guid.toString() + `')"
+                                                                                                                                    >
+                                                                                                                                        <i class="fas fa-trash-alt"></i>
+                                                                                                                                    </button>
+                                                                                                                                </div>
+                                                                                                                            </fieldset>
 
-                                                </div>
+                                                                                                                        </div>
 
-                                                                                                                                                                                            `);
+                                                                                                                                                                                                                                                                    `);
 
             $('#datepickerFrom_' + guid.toString()).datepicker({
                 uiLibrary: 'bootstrap5'
@@ -1227,48 +1443,48 @@
             var guid = generateGuid();// generate a random string as the name of the controls
             $(".form_field_outer_favoriteMovie").append(`
 
-                                                <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_`+ guid.toString() + `">
+                                                                                                                        <div class="row form_field_outer_row_favoriteMovie" id="favoriteMovie_form_`+ guid.toString() + `">
 
-                                                        <fieldset>
-                                                            <legend>Favorite Movie</legend>
+                                                                                                                                <fieldset>
+                                                                                                                                    <legend>Favorite Movie</legend>
 
-                                                            <input type="hidden"
-                                                                    id="hiddenFavoriteMovie_`+ guid.toString() + `"
-                                                                            value=`+ guid.toString() + `
-                                            />
+                                                                                                                                    <input type="hidden"
+                                                                                                                                            id="hiddenFavoriteMovie_`+ guid.toString() + `"
+                                                                                                                                                    value=`+ guid.toString() + `
+                                                                                                                    />
 
 
-                                                                <div class="input-group mb-3">
-                                                                <span class="input-group-text">IMDb Movie Link</span>
-                                                                <input type="text"
-                                                                    onkeypress="if(event.keyCode === 13)event.preventDefault();"
-                                                                onkeyup="checkRuntimeValidationUrl(this)"
-                                                                    class="form-control"
-                                                                            id="txtMovieLink_`+ guid.toString() + `"
-                                                                    placeholder="https://www.imdb.com/title/tt0068646/">
-                                                                <button type="button"
-                                                                                    onclick="CheckTheLink(this,'txtMovieLink_`+ guid.toString() + `');"
-                                                                                    id="btnCheckTheLink_`+ guid.toString() + `"
-                                                                class="btn cur-p btn-primary">
-                                                                    CHECK THE LINK <span class="btn-icon-right">
-                                                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                                                </button>
-                                                                </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                        <span class="input-group-text">IMDb Movie Link</span>
+                                                                                                                                        <input type="text"
+                                                                                                                                            onkeypress="if(event.keyCode === 13)event.preventDefault();"
+                                                                                                                                        onkeyup="checkRuntimeValidationUrl(this)"
+                                                                                                                                            class="form-control"
+                                                                                                                                                    id="txtMovieLink_`+ guid.toString() + `"
+                                                                                                                                            placeholder="https://www.imdb.com/title/tt0068646/">
+                                                                                                                                        <button type="button"
+                                                                                                                                                            onclick="CheckTheLink(this,'txtMovieLink_`+ guid.toString() + `');"
+                                                                                                                                                            id="btnCheckTheLink_`+ guid.toString() + `"
+                                                                                                                                        class="btn cur-p btn-primary">
+                                                                                                                                            CHECK THE LINK <span class="btn-icon-right">
+                                                                                                                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                                                                                                        </button>
+                                                                                                                                        </div>
 
-                                                            <div class="form-group col-md-2 add_del_btn_outer">
-                                                                <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
-                                                                onclick="DeleteProfileFavoriteMovies(this,'`+ guid.toString() + `')"
-                                                                            id="btnRemoveNodeBtnFrmFieldFavoriteMovie_`+ guid.toString() + `"
-                                                                    \>
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </div>
+                                                                                                                                    <div class="form-group col-md-2 add_del_btn_outer">
+                                                                                                                                        <button type="button" class="btn_round remove_node_btn_frm_field_FavoriteMovie"
+                                                                                                                                        onclick="DeleteProfileFavoriteMovies(this,'`+ guid.toString() + `')"
+                                                                                                                                                    id="btnRemoveNodeBtnFrmFieldFavoriteMovie_`+ guid.toString() + `"
+                                                                                                                                            \>
+                                                                                                                                            <i class="fas fa-trash-alt"></i>
+                                                                                                                                        </button>
+                                                                                                                                    </div>
 
-                                                        </fieldset>
+                                                                                                                                </fieldset>
 
-                                                    </div>
+                                                                                                                            </div>
 
-                                                `);
+                                                                                                                        `);
         }
         function fireNewCompaniesPart() {
             // After adding the first form, the update button will be enabled.
@@ -1288,215 +1504,219 @@
             var guid = generateGuid();// generate a random string as the name of the controls
             $(".form_field_outer_companies").append(`
 
-                            <div class="row form_field_outer_companies_row" id="company_form_`+ guid.toString() + `">
+                                                                                                    <div class="row form_field_outer_companies_row" id="company_form_`+ guid.toString() + `">
 
-                                                <fieldset>
-                                                            <legend>Company</legend>
-                                                            <input type="hidden"
-                                                                       id="hiddenCompany_`+ guid.toString() + `"/>
+                                                                                                                        <fieldset>
+                                                                                                                                    <legend>Company</legend>
+                                                                                                                                    <input type="hidden"
+                                                                                                                                            value=`+ guid.toString() + `
+                                                                                                                                               id="hiddenCompany_`+ guid.toString() + `"/>
 
-                                            <div class="input-group mb-3">
-                                                <label class="input-group-text" for="inputGroupSelect01">Country</label>
-                                                <select class="form-select"
-                                                        id="selectCountry">
-                                                    <option selected>Choose...</option>
+                                                                                                                    <div class="input-group mb-3">
+                                                                                                                        <label class="input-group-text" for="inputGroupSelect01">Country</label>
+                                                                                                                        <select class="form-select"
+                                                                                                                                id="selectCountry">
+                                                                                                                            <option selected>Choose...</option>
         @{
             if (Model.resultGetCountriesServiceDto != null)
             {
                 foreach (var country in Model.resultGetCountriesServiceDto.getCountriesServiceDto)
                 {
-                                                                                                    <option value="@country.Id">
+                                                                                                <option value="@country.Id">
                         @country.Name
-                                                                                                    </option>
-
+                                                                                                </option>
                 }
             }
         }
-                                                </select>
-                                            </div>
+                                                                                                                        </select>
+                                                                                                                    </div>
 
-                                                            <div class="input-group mb-3">
-                                                                        <span class="input-group-text">Company Name</span>
-                                                                <input type="text"
-                                                                   class="form-control"
-                                                                   id="txtCompanylName_`+ guid.toString() + `"
-                                                                   placeholder="Microsoft, Amazon, Google, ...">
-                                                                <span class="input-group-text">Position</span>
-                                                                <input type="text"
-                                                                   class="form-control"
-                                                                   id="txtCompanyPosition_`+ guid.toString() + `"
-                                                                   placeholder="CEO, Editor, Poster Designer, ....">
-                                                            </div>
+                                                                                                                                    <div class="input-group mb-3">
+                                                                                                                                                <span class="input-group-text">Company Name</span>
+                                                                                                                                        <input type="text"
+                                                                                                                                           class="form-control"
+                                                                                                                                                   id="txtCompanyName_`+ guid.toString() + `"
+                                                                                                                                           placeholder="Microsoft, Amazon, Google, ...">
+                                                                                                                                        <span class="input-group-text">Position</span>
+                                                                                                                                        <input type="text"
+                                                                                                                                           class="form-control"
+                                                                                                                                           id="txtCompanyPosition_`+ guid.toString() + `"
+                                                                                                                                           placeholder="CEO, Editor, Poster Designer, ....">
+                                                                                                                                    </div>
 
 
-                                                            <div style="display:flex;">
-                                                                <div>
-                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                       for="inputGroupSelect01">From</label>
-                                                                </div>
-                                                                <div>
-                                                                    <input readonly
-                                                                       placeholder="Starting date of Eduction"
-                                                                       style="border-radius:0px;border-left:0;" width="300"
-                                                                       id="datepickerCompanyFrom_`+ guid.toString() + `">
-                                                                </div>
-                                                            </div>
+                                                                                                                                    <div style="display:flex;">
+                                                                                                                                        <div>
+                                                                                                                                            <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                                                                                               for="inputGroupSelect01">From</label>
+                                                                                                                                        </div>
+                                                                                                                                        <div>
+                                                                                                                                            <input readonly
+                                                                                                                                               placeholder="Starting date of Eduction"
+                                                                                                                                               style="border-radius:0px;border-left:0;" width="300"
+                                                                                                                                               id="datepickerCompanyFrom_`+ guid.toString() + `">
+                                                                                                                                        </div>
+                                                                                                                                    </div>
 
-                                                            <div style="display:flex;">
-                                                                <div>
-                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                       for="inputGroupSelect01">To</label>
-                                                                </div>
-                                                                <div>
-                                                                    <input readonly
-                                                                       placeholder="Ending date of Eduction"
-                                                                       style="border-radius:0px;border-left:0;" width="300"
-                                                                       id="datepickerCompanyTo_`+ guid.toString() + `">
-                                                                </div>
-                                                            </div>
-                                                            <div>
-                                                                <a href="#"  onclick="$('#loginModal').modal();">
-                                                                    [Click to set more information]
-                                                                </a>
-                                                            </div>
+                                                                                                                                    <div style="display:flex;">
+                                                                                                                                        <div>
+                                                                                                                                            <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
+                                                                                                                                               for="inputGroupSelect01">To</label>
+                                                                                                                                        </div>
+                                                                                                                                        <div>
+                                                                                                                                            <input readonly
+                                                                                                                                               placeholder="Ending date of Eduction"
+                                                                                                                                               style="border-radius:0px;border-left:0;" width="300"
+                                                                                                                                               id="datepickerCompanyTo_`+ guid.toString() + `">
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div>
+                                                                                                                                                <a href="#"  onclick="$('#loginModal_`+ guid.toString() + `').modal();">
+                                                                                                                                            [Click to set more information]
+                                                                                                                                        </a>
+                                                                                                                                    </div>
 
-                                                            <div class="form-group col-md-2 add_del_btn_outer">
-                                                                <button type="button" class="btn_round remove_node_btn_frm_field"
-                                                                    id="btnRemoveNodeBtnFrmField_`+ guid.toString() + `"
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </div>
-                                                                    <div class="form-group col-md-2 add_del_btn_outer">
-                                                                <button type="button" class="btn_round remove_node_btn_frm_field_company"
-                                                                            id="btnRemoveNodeBtnFrmField_`+ guid.toString() + `"
-                                                                    onclick="DeleteProfileCompany(this,'')">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </div>
-                                                        </fieldset>
+
+                                                                                                                                            
         @*MODAL*@
-                                                    <div class="modal fade" id="loginModal" role="dialog">
-                                                        <div class="modal-dialog">
-                                                            <!-- Modal content-->
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h2>MORE INFORMATION</h2>
-                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">Address Line 1</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyAddress1_`+ guid.toString() + `"
-                                                                       placeholder="3015">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">Address Line 2</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyAddress2_`+ guid.toString() + `"
-                                                                       placeholder="Grand Ave">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">City</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyCity_`+ guid.toString() + `"
-                                                                       placeholder="Miami">
-                                                                    <span class="input-group-text">State</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyState_`+ guid.toString() + `"
-                                                                       placeholder="Florida">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">PostCode</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyPostCode_`+ guid.toString() + `"
-                                                                       placeholder="33133">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">Phone</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyPhone_`+ guid.toString() + `"
-                                                                       placeholder="(305) 447-2273">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">Email</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyEmail_`+ guid.toString() + `"
-                                                                       placeholder="support@galaxypremiere.com">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">Website</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyWebsite_`+ guid.toString() + `"
-                                                                       placeholder="www.galaxypremiere.com">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">Facebook ID</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyFacebook_`+ guid.toString() + `"
-                                                                       placeholder="@@galaxypremiere">
-                                                                        <span class="input-group-text">Instagram ID</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyInstagram_`+ guid.toString() + `"
-                                                                       placeholder="@@galaxypremiere">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">Twitter ID</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyTwitter_`+ guid.toString() + `"
-                                                                       placeholder="@@galaxypremiere">
-                                                                    <span class="input-group-text">Stage32 ID</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyStage32_`+ guid.toString() + `"
-                                                                       placeholder="stage32.com/galaxypremiere">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">Youtube</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyYoutube_`+ guid.toString() + `"
-                                                                       placeholder="youtube.com/galaxypremiere">
-                                                                    <span class="input-group-text">Name</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyLinkden_`+ guid.toString() + `"
-                                                                       placeholder="@@galaxypremiere">
-                                                                </div>
-                                                                  <div class="input-group mb-3">
-                                                                    <span class="input-group-text">Vimeo</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyVimeo_`+ guid.toString() + `"
-                                                                       placeholder="vimeo.com/galaxypremiere">
-                                                                </div>
-                                                                  <div class="input-group mb-3">
-                                                                    <span class="input-group-text">IMDb</span>
-                                                                    <input type="text"
-                                                                       class="form-control"
-                                                                       id="txtCompanyIMDb_`+ guid.toString() + `"
-                                                                       placeholder="IMDb.com/galaxypremiere">
-                                                                </div>
-                                                                <button type="button"
-                                                                    id="btnUpdateProfileCompany" class="btn cur-p btn-primary" disabled>
-                                                                    Done
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                    </div>
+                                                                                                                            <div class="modal fade" id="loginModal_`+ guid.toString() + `" role="dialog">
+                                                                                                                                <div class="modal-dialog">
+                                                                                                                                    <!-- Modal content-->
+                                                                                                                                    <div class="modal-content">
+                                                                                                                                        <div class="modal-header">
+                                                                                                                                            <h2>MORE INFORMATION</h2>
+                                                                                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">Address Line 1</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyAddress1_`+ guid.toString() + `"
+                                                                                                                                               placeholder="3015">
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">Address Line 2</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyAddress2_`+ guid.toString() + `"
+                                                                                                                                               placeholder="Grand Ave">
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">City</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyCity_`+ guid.toString() + `"
+                                                                                                                                               placeholder="Miami">
+                                                                                                                                            <span class="input-group-text">State</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyState_`+ guid.toString() + `"
+                                                                                                                                               placeholder="Florida">
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">PostCode</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyPostCode_`+ guid.toString() + `"
+                                                                                                                                               placeholder="33133">
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">Phone</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyPhone_`+ guid.toString() + `"
+                                                                                                                                               placeholder="(305) 447-2273">
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">Email</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyEmail_`+ guid.toString() + `"
+                                                                                                                                               placeholder="support@galaxypremiere.com">
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">Website</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyWebsite_`+ guid.toString() + `"
+                                                                                                                                               placeholder="www.galaxypremiere.com">
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">Facebook ID</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyFacebook_`+ guid.toString() + `"
+                                                                                                                                               placeholder="@@galaxypremiere">
+                                                                                                                                                <span class="input-group-text">Instagram ID</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyInstagram_`+ guid.toString() + `"
+                                                                                                                                               placeholder="@@galaxypremiere">
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">Twitter ID</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyTwitter_`+ guid.toString() + `"
+                                                                                                                                               placeholder="@@galaxypremiere">
+                                                                                                                                            <span class="input-group-text">Stage32 ID</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyStage32_`+ guid.toString() + `"
+                                                                                                                                               placeholder="stage32.com/galaxypremiere">
+                                                                                                                                        </div>
+                                                                                                                                        <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">Youtube</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyYoutube_`+ guid.toString() + `"
+                                                                                                                                               placeholder="youtube.com/galaxypremiere">
+                                                                                                                                            <span class="input-group-text">Name</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyLinkden_`+ guid.toString() + `"
+                                                                                                                                               placeholder="@@galaxypremiere">
+                                                                                                                                        </div>
+                                                                                                                                          <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">Vimeo</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyVimeo_`+ guid.toString() + `"
+                                                                                                                                               placeholder="vimeo.com/galaxypremiere">
+                                                                                                                                        </div>
+                                                                                                                                          <div class="input-group mb-3">
+                                                                                                                                            <span class="input-group-text">IMDb</span>
+                                                                                                                                            <input type="text"
+                                                                                                                                               class="form-control"
+                                                                                                                                               id="txtCompanyIMDb_`+ guid.toString() + `"
+                                                                                                                                               placeholder="IMDb.com/galaxypremiere">
+                                                                                                                                        </div>
+                                                                                                                                        <button type="button"
+                                                                                                                                            id="btnUpdateProfileCompany" class="btn cur-p btn-primary" disabled>
+                                                                                                                                            Done
+                                                                                                                                        </button>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
 
-                            `);
+                                                                                                                                    <div class="form-group col-md-2 add_del_btn_outer">
+                                                                                                                                                        <button type="button" class="btn_round remove_node_btn_frm_field_company"
+                                                                                                                                                                    id="btnRemoveNodeBtnFrmFieldCompany_`+ guid.toString() + `"
+                                                                                                                                                    onclick="DeleteProfileCompany(this,'')">
+                                                                                                                                                    <i class="fas fa-trash-alt"></i>
+                                                                                                                                                </button>
+                                                                                                                                            </div>
+                                                                                                                                        </fieldset>
+                                                                                                            </div>
+
+
+                                                                                                    `);
+            $('#datepickerCompanyFrom_' + guid.toString()).datepicker({
+                uiLibrary: 'bootstrap5'
+            });
+            $('#datepickerCompanyTo_' + guid.toString()).datepicker({
+                uiLibrary: 'bootstrap5'
+            });
         }
         //===== delete the form fieed row
         $(document).ready(function () {

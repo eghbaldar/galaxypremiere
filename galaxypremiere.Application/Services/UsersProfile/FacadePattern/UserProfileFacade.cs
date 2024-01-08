@@ -4,8 +4,10 @@ using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.Metags.Queries.GetMetagsInfoByLink;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
 using System;
@@ -60,6 +62,18 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         public DeleteUserProfileFavoriteMoviesService DeleteUserProfileFavoriteMoviesService
         {
             get { return _deleteUserProfileFavoriteMoviesService = _deleteUserProfileFavoriteMoviesService ?? new DeleteUserProfileFavoriteMoviesService(_context); }
+        }
+        // Post User Profile Companies
+        private PostUserProfileCompaniesService _postUserProfileCompaniesService;
+        public PostUserProfileCompaniesService PostUserProfileCompaniesService
+        {
+            get { return _postUserProfileCompaniesService = _postUserProfileCompaniesService ?? new PostUserProfileCompaniesService(_context); }
+        }
+        // Get User Profile Companies
+        private GetUserProfileCompaniesService _getUserProfileCompaniesService;
+        public GetUserProfileCompaniesService GetUserProfileCompaniesService
+        {
+            get { return _getUserProfileCompaniesService = _getUserProfileCompaniesService ?? new GetUserProfileCompaniesService(_context); }
         }
 
     }

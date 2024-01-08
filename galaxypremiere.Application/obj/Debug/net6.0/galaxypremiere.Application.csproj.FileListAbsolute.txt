@@ -1,8 +1,3 @@
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.csproj.AssemblyReference.cache
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.GeneratedMSBuildEditorConfig.editorconfig
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.AssemblyInfoInputs.cache
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.AssemblyInfo.cs
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.csproj.CoreCompileInputs.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\bin\Debug\net6.0\galaxypremiere.Application.deps.json
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\bin\Debug\net6.0\galaxypremiere.Application.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\bin\Debug\net6.0\galaxypremiere.Application.pdb
@@ -10,6 +5,11 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\bin\Debug\net6.0\galaxypremiere.Domain.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\bin\Debug\net6.0\galaxypremiere.Common.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\bin\Debug\net6.0\galaxypremiere.Domain.pdb
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.csproj.AssemblyReference.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.AssemblyInfoInputs.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.AssemblyInfo.cs
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.csproj.CoreCompileInputs.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.csproj.CopyComplete
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\galaxypremiere.Application.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Application\obj\Debug\net6.0\refint\galaxypremiere.Application.dll

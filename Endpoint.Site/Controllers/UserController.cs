@@ -18,9 +18,11 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
 using galaxypremiere.Common;
@@ -211,7 +213,12 @@ namespace Endpoint.Site.Controllers
                 {
                     UsersId = userId
                 }).Data,
-                resultGetCountriesServiceDto= _countiresFacade.GetCountriesService.Execute()
+                ResultGetUserProfileCompaniesServiceDto = _userProfileFacade.GetUserProfileCompaniesService
+                .Execute(new RequestGetUserProfileCompaniesDto
+                {
+                    UsersId = userId
+                }).Data,
+                resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),                
             };
             return View(modelGetProfile);
         }
@@ -243,6 +250,12 @@ namespace Endpoint.Site.Controllers
         public IActionResult GetMetaInfo(string link)
         {
             return Json(_metagsFacade.GetMetagsInfoByLinkService.Execute(link, "https://www.imdb.com/"));
+        }
+        [HttpPost]
+        public IActionResult ProfileCompanyPost(RequestPostUserProfileCompaniesServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.PostUserProfileCompaniesService.Execute(req));
         }
     }
 }
