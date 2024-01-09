@@ -2,6 +2,7 @@
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.Metags.Queries.GetMetagsInfoByLink;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies;
@@ -75,6 +76,11 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         {
             get { return _getUserProfileCompaniesService = _getUserProfileCompaniesService ?? new GetUserProfileCompaniesService(_context); }
         }
-
+        // Delete User Profle Companies
+        private DeleteUserProfileCompanies _deleteUserProfileCompanies;
+        public DeleteUserProfileCompanies DeleteUserProfileCompanies
+        {
+            get { return _deleteUserProfileCompanies = _deleteUserProfileCompanies ?? new DeleteUserProfileCompanies(_context); }
+        }
     }
 }

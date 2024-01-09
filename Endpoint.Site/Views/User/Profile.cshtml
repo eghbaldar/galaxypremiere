@@ -446,8 +446,8 @@
                                                value="@Model.ResultGetUserProfileCompaniesServiceDto.getUserProfileCompaniesDto[i].Imdb"
                                                placeholder="IMDb.com/galaxypremiere">
                                             </div>
-                                            <button type="button" onclick="GetProfileCompanyElements()"
-                                            id="btnUpdateProfileCompany" class="btn cur-p btn-primary" disabled>
+                                            <button type="button"
+                                             data-dismiss="modal" class="btn cur-p btn-primary">
                                                 Done
                                             </button>
                                         </div>
@@ -1058,8 +1058,8 @@
         // Companies
         function GetProfileCompanyElements() {
 
-            //pageWaitMe("progress"); // loading process starts
-            //btnWaitMe_Start('btnUpdateProfileCompanies'); // Loading Button Start
+            pageWaitMe("progress"); // loading process starts
+            btnWaitMe_Start('btnUpdateProfileCompanies'); // Loading Button Start
 
             var Id;
             var hiddenId;
@@ -1192,7 +1192,7 @@
                 PostProfileCompany(postData)
             }
             else {
-                btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
+                btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         }
@@ -1226,7 +1226,7 @@
                             showConfirmButton: false,
                             timer: 1000
                         });
-                        btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
+                        btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
                         pageWaitMeRemove(); // loading process stops
                     }
                     else {
@@ -1237,7 +1237,7 @@
                             showConfirmButton: false,
                             timer: 3000
                         });
-                        btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
+                        btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
                         pageWaitMeRemove(); // loading process stops
                     }
                 },
@@ -1253,8 +1253,8 @@
             });
         }
         function DeleteProfileCompany(e, Id) {
-            //pageWaitMe("progress"); // loading process starts
-            // find ID of hiddenControl based on ID of DeleteControl
+            pageWaitMe("progress"); // loading process starts
+            //find ID of hiddenControl based on ID of DeleteControl
             var SplitedId = e.id.split('_');
             var ID_FOR_DELETE;
             var inputValues = $('.form_field_outer_companies :input').map(function () {
@@ -1263,45 +1263,47 @@
                 var id = $(this).prop("id").split('_');
                 if (type == "hidden") {
                     if (id[1] == SplitedId[1]) {
-                        ID_FOR_DELETE = $("#hiddenCompany" + id[1]).val();
+                        ID_FOR_DELETE = $("#hiddenCompany_" + id[1]).val();
                     }
                 }
+                //alert(id + ' = ' + value);
             });
-
-            //var postData = { 'Id': ID_FOR_DELETE, }
-            //$.ajax({
-            //    contentType: 'application/x-www-form-urlencoded',
-            //    dataType: 'json',
-            //    type: 'POST',
-            //    data: postData,
-            //    url: 'ProfileEducationDelete',
-            //    success: function (data) {
-            //        if (data.isSuccess) {
-            //            Swal.fire({
-            //                position: "center",
-            //                icon: "success",
-            //                title: "Information has been saved",
-            //                showConfirmButton: false,
-            //                timer: 1000
-            //            });
-            //            btnWaitMe_Stop(e.id); // Loading Button Stops
-            //            pageWaitMeRemove(); // loading process stops
-            //        }
-            //        else {
-            //            btnWaitMe_Stop(e.id); // Loading Button Stops
-            //            pageWaitMeRemove(); // loading process stops
-            //        }
-            //    },
-            //    error: function (req, status, err) {
-            //        Swal.fire({
-            //            position: "center",
-            //            icon: "error",
-            //            title: "Something went wrong, please try it again or later!",
-            //            showConfirmButton: false,
-            //            timer: 3000
-            //        });
-            //    }
-            //});
+            //alert(SplitedId[0] + ' = ' + SplitedId[1]);
+            //alert(e.id);//btnRemoveNodeBtnFrmFieldCompany_0
+            var postData = { 'Id': ID_FOR_DELETE, }
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
+                url: 'ProfileCompanyDelete',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Information has been saved",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        btnWaitMe_Stop(e.id); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
+                    }
+                    else {
+                        btnWaitMe_Stop(e.id); // Loading Button Stops
+                        pageWaitMeRemove(); // loading process stops
+                    }
+                },
+                error: function (req, status, err) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Something went wrong, please try it again or later!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            });
         }
         // close all companies MODAL by hitting escape key
         $(document).keydown(function (event) {
@@ -1691,10 +1693,10 @@
                                                                                                                                                id="txtCompanyIMDb_`+ guid.toString() + `"
                                                                                                                                                placeholder="IMDb.com/galaxypremiere">
                                                                                                                                         </div>
-                                                                                                                                        <button type="button"
-                                                                                                                                            id="btnUpdateProfileCompany" class="btn cur-p btn-primary" disabled>
-                                                                                                                                            Done
-                                                                                                                                        </button>
+                                                                                                                                                                                            <button type="button"
+                                                     data-dismiss="modal" class="btn cur-p btn-primary">
+                                                        Done
+                                                    </button>
                                                                                                                                     </div>
                                                                                                                                 </div>
                                                                                                                             </div>
@@ -1702,7 +1704,7 @@
                                                                                                                                     <div class="form-group col-md-2 add_del_btn_outer">
                                                                                                                                                         <button type="button" class="btn_round remove_node_btn_frm_field_company"
                                                                                                                                                                     id="btnRemoveNodeBtnFrmFieldCompany_`+ guid.toString() + `"
-                                                                                                                                                    onclick="DeleteProfileCompany(this,'')">
+                                                                                                                                                            onclick="DeleteProfileCompany(this,'`+ guid.toString() + `')">
                                                                                                                                                     <i class="fas fa-trash-alt"></i>
                                                                                                                                                 </button>
                                                                                                                                             </div>

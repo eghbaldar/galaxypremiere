@@ -60,6 +60,8 @@ namespace galaxypremiere.Persistence.Context
             modelBuilder.ApplyConfiguration(new UsersProfileEducationConfigurations());
             //---- Profile Favorite Movies
             modelBuilder.ApplyConfiguration(new UsersProfileFavoriteMoviesConfigurations());
+            //---- Profile Companies
+            modelBuilder.ApplyConfiguration(new UsersProfileCompaniesConfigurations());
             //< End
         }
         public override int SaveChanges()

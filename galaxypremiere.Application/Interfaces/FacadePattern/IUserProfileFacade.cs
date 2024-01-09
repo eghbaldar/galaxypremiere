@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
+﻿using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileCompanies;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
@@ -24,5 +25,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         DeleteUserProfileFavoriteMoviesService DeleteUserProfileFavoriteMoviesService { get; }
         PostUserProfileCompaniesService PostUserProfileCompaniesService { get; }
         GetUserProfileCompaniesService GetUserProfileCompaniesService { get; }
+        DeleteUserProfileCompanies DeleteUserProfileCompanies { get; }
     }
 }
