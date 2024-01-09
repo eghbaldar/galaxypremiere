@@ -4,7 +4,7 @@ using galaxypremiere.Domain.Entities.Users;
 
 namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies
 {
-    public class PostUserProfileCompaniesService: IPostUserProfileCompaniesService
+    public class PostUserProfileCompaniesService : IPostUserProfileCompaniesService
     {
         private readonly IDataBaseContext _context;
         public PostUserProfileCompaniesService(IDataBaseContext context)
@@ -50,7 +50,9 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                                 &&
                                 !String.IsNullOrEmpty(info[3].ToString().Trim()) // DateTime From
                                 &&
-                                !String.IsNullOrEmpty(info[4].ToString().Trim())) // DateTime To
+                                !String.IsNullOrEmpty(info[4].ToString().Trim()) // DateTime To
+                                &&
+                                int.Parse(info[1].ToString()) != 0) // Country Id
                             {
                                 usersCompany.UsersId = req.UsersId;
                                 //info[0].ToString()=>Hidden ID
@@ -58,7 +60,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                                 usersCompany.Name = info[2].ToString();
                                 usersCompany.Position = info[3].ToString();
                                 usersCompany.From = Convert.ToDateTime(info[4].ToString());
-                                usersCompany.To = Convert.ToDateTime(info[5].ToString());                                
+                                usersCompany.To = Convert.ToDateTime(info[5].ToString());
                                 usersCompany.Address1 = info[6].ToString();
                                 usersCompany.Address2 = info[7].ToString();
                                 usersCompany.City = info[8].ToString();
@@ -89,7 +91,9 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                                 &&
                                 !String.IsNullOrEmpty(info[3].ToString().Trim()) // DateTime From
                                 &&
-                                !String.IsNullOrEmpty(info[4].ToString().Trim())) // DateTime To
+                                !String.IsNullOrEmpty(info[4].ToString().Trim()) // DateTime To
+                                &&
+                                int.Parse(info[1].ToString()) != 0) // Country Id
                             {
                                 var company = profile.Where(p => p.Id == Guid.Parse(info[0].ToString())).First();
                                 company.UsersId = req.UsersId;
@@ -116,7 +120,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                                 company.Vimeo = info[20].ToString();
                                 company.Imdb = info[21].ToString();
 
-                               string[] hiddenId = info[22].ToString().Split("_");
+                                string[] hiddenId = info[22].ToString().Split("_");
                                 // if the link has a problem (couldn't have been able to fetch data) we have to return a static value ("false") and then check this value on the client side to show an appropriate message to the client
                                 resultHiddenId_and_Value.Add(hiddenId[1], "false");
                                 //resultHiddenId_and_Value.Add(info[22].ToString(), usersCompany.Id.ToString()); // key=> Hidden-Control-Name    value=> Stored-ID

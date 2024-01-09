@@ -3,7 +3,7 @@ using galaxypremiere.Common.DTOs;
 
 namespace galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileCompanies
 {
-    public class DeleteUserProfileCompanies: IDeleteUserProfileCompaniesService
+    public class DeleteUserProfileCompanies : IDeleteUserProfileCompaniesService
     {
         private readonly IDataBaseContext _context;
         public DeleteUserProfileCompanies(IDataBaseContext context)
@@ -15,7 +15,8 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserPr
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {
-                var profile = _context.UsersCompanies.Where(ue => ue.Id == req.Id).FirstOrDefault();
+                var profile = _context.UsersCompanies
+                    .Where(ue => ue.Id == req.Id && ue.UsersId == req.UsersId).FirstOrDefault();
                 if (profile != null)
                 {
                     _context.UsersCompanies.Remove(profile); // attention: the deletion not be happened because of changeover of DataBaseContext.cs

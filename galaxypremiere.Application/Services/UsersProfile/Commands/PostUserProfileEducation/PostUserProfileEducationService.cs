@@ -47,12 +47,12 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
                         if (!isValid)
                         {
                             if (!String.IsNullOrEmpty(info[1].ToString().Trim())
-                                                           &&
-                                                          !String.IsNullOrEmpty(info[2].ToString().Trim())
-                                                           &&
-                                                          !String.IsNullOrEmpty(info[3].ToString().Trim())
-                                                           &&
-                                                          !String.IsNullOrEmpty(info[4].ToString().Trim()))
+                                &&
+                                !String.IsNullOrEmpty(info[2].ToString().Trim())
+                                &&
+                                !String.IsNullOrEmpty(info[3].ToString().Trim())
+                                &&
+                                !String.IsNullOrEmpty(info[4].ToString().Trim()))
                             {
                                 usersEducation.UsersId = req.UsersId;
                                 usersEducation.Name = info[1].ToString();
