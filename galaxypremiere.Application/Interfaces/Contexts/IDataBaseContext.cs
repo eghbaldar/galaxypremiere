@@ -11,6 +11,7 @@ namespace galaxypremiere.Application.Interfaces.Contexts
 {
     public interface IDataBaseContext
     {
+        // USER'S ENTITIES ======================================================
         DbSet<Users> Users { get; set; } // Users Table
         DbSet<Roles> Roles { get; set; } // Roles Table
         DbSet<UsersInRoles> UsersInRoles { get; set; } // UsersInRoles Table
@@ -24,6 +25,8 @@ namespace galaxypremiere.Application.Interfaces.Contexts
         DbSet<UsersEducation> UsersEducation { get; set; } // User's Educations
         DbSet<UsersFavoriteMovies> UsersFavoriteMovies { get; set; } // User's Favorite Movies
         DbSet<UsersCompanies> UsersCompanies { get; set; } // User's Companies
+        DbSet<UsersNews> UsersNews { get; set; } // Users' News
+        // END OF USER'S ENTITIES ======================================================
 
         //SaveChanges
         int SaveChanges(bool acceptAllChangesOnSuccess);

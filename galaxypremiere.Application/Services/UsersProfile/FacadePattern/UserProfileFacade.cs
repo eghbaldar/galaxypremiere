@@ -5,12 +5,15 @@ using galaxypremiere.Application.Services.Metags.Queries.GetMetagsInfoByLink;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileNews;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileNews;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileNews;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +84,24 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         public DeleteUserProfileCompanies DeleteUserProfileCompanies
         {
             get { return _deleteUserProfileCompanies = _deleteUserProfileCompanies ?? new DeleteUserProfileCompanies(_context); }
+        }
+        // Get User Profile News
+        private GetUserProfileNewsService _getUserProfileNewsService;
+        public GetUserProfileNewsService GetUserProfileNewsService
+        {
+            get { return _getUserProfileNewsService = _getUserProfileNewsService ?? new GetUserProfileNewsService(_context); }
+        }
+        // Post User Porfile News
+        private PostUserProfileNewsService _postUserProfileNewsService;
+        public PostUserProfileNewsService PostUserProfileNewsService
+        {
+            get { return _postUserProfileNewsService = _postUserProfileNewsService ?? new PostUserProfileNewsService(_context); }
+        }
+        // Delete User Profile News
+        private DeleteUserProfileNewsService _deleteUserProfileNewsService;
+        public DeleteUserProfileNewsService DeleteUserProfileNewsService
+        {
+            get { return _deleteUserProfileNewsService = _deleteUserProfileNewsService ?? new DeleteUserProfileNewsService(_context); }
         }
     }
 }

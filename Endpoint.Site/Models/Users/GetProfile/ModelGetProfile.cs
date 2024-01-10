@@ -2,6 +2,7 @@
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileNews;
 
 namespace Endpoint.Site.Models.Users.GetProfile
 {
@@ -11,5 +12,6 @@ namespace Endpoint.Site.Models.Users.GetProfile
         public ResultGetUserProfileFavoriteMoviesServiceDto ResultGetUserProfileFavoriteMoviesServiceDto { get; set; }
         public ResultGetCountriesServiceDto resultGetCountriesServiceDto { get; set; }
         public ResultGetUserProfileCompaniesServiceDto ResultGetUserProfileCompaniesServiceDto { get; set; }
+        public ResultGetUserProfileNewsServiceDto ResultGetUserProfileNewsServiceDto{ get; set; }
     }
 }

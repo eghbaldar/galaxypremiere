@@ -19,13 +19,16 @@ using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDupli
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileNews;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileNews;
 using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileNews;
 using galaxypremiere.Common;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Infrastructure.Filters;
@@ -219,6 +222,11 @@ namespace Endpoint.Site.Controllers
                 {
                     UsersId = userId
                 }).Data,
+                ResultGetUserProfileNewsServiceDto=_userProfileFacade.GetUserProfileNewsService
+                .Execute(new RequestGetUserProfileNewsDto
+                {
+                    UsersId= userId
+                }).Data,
                 resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),                
             };
             return View(modelGetProfile);
@@ -263,6 +271,18 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.DeleteUserProfileCompanies.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult ProfileNewsPost(RequestPostUserProfileNewsServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.PostUserProfileNewsService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult ProfileNewsDelete(RequestDeleteUserProfileNewsServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.DeleteUserProfileNewsService.Execute(req));
         }
     }
 }
