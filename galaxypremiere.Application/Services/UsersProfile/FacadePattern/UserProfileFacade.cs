@@ -7,6 +7,7 @@ using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfil
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileLinks;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileNews;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileAttachments;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
@@ -123,6 +124,12 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         public DeleteUserProfileLinksService DeleteUserProfileLinksService
         {
             get { return _deleteUserProfileLinksService = _deleteUserProfileLinksService ?? new DeleteUserProfileLinksService(_context); }
+        }       
+        // Post User Profile Attachment
+        private PostUserProfileAttachmentsService _postUserProfileAttachmentsService;
+        public PostUserProfileAttachmentsService PostUserProfileAttachmentsService
+        {
+            get { return _postUserProfileAttachmentsService = _postUserProfileAttachmentsService ?? new PostUserProfileAttachmentsService(_context); }
         }
     }
 }

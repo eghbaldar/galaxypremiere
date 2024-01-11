@@ -3,6 +3,7 @@ using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfil
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileLinks;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileNews;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileAttachments;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
@@ -38,5 +39,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         GetUserProfileLinksService GetUserProfileLinksService { get; }
         PostUserProfileLinksService PostUserProfileLinksService { get; }
         DeleteUserProfileLinksService DeleteUserProfileLinksService { get; }
+        PostUserProfileAttachmentsService PostUserProfileAttachmentsService { get; }
     }
 }

@@ -47,6 +47,8 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileLinks;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileLinks;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileAttachments;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Endpoint.Site.Controllers
 {
@@ -235,7 +237,7 @@ namespace Endpoint.Site.Controllers
                 {
                     UsersId = userId
                 }).Data,
-                resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),                
+                resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),
             };
             return View(modelGetProfile);
         }
@@ -303,6 +305,17 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.PostUserProfileLinksService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult PostProfileAttachments(string Title)
+        {
+            RequestPostUserProfileAttachmentServiceDto req = new RequestPostUserProfileAttachmentServiceDto()
+            {
+                File = Request.Form.Files[0],
+                Title = Title,
+                UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal),
+            };
+            return Json(_userProfileFacade.PostUserProfileAttachmentsService.Execute(req));
         }
     }
 }
