@@ -3904,6 +3904,39 @@ namespace galaxypremiere.Persistence.Migrations
                     b.ToTable("UsersInRoles");
                 });
 
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersLinks", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UsersId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("UsersLinks");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersLoginLog", b =>
                 {
                     b.Property<Guid>("Id")
@@ -4074,6 +4107,17 @@ namespace galaxypremiere.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Roles");
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersLinks", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Users");
                 });

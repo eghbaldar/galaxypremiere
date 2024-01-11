@@ -5,14 +5,17 @@ using galaxypremiere.Application.Services.Metags.Queries.GetMetagsInfoByLink;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileLinks;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileNews;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileLinks;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileNews;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileLinks;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileNews;
 using System;
 using System.Collections.Generic;
@@ -102,6 +105,24 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         public DeleteUserProfileNewsService DeleteUserProfileNewsService
         {
             get { return _deleteUserProfileNewsService = _deleteUserProfileNewsService ?? new DeleteUserProfileNewsService(_context); }
+        }      
+        // Get User Profile Link
+        private GetUserProfileLinksService _getUserProfileLinksService;
+        public GetUserProfileLinksService GetUserProfileLinksService
+        {
+            get { return _getUserProfileLinksService = _getUserProfileLinksService ?? new GetUserProfileLinksService(_context); }
+        }      
+        // Post User Profile Link
+        private PostUserProfileLinksService _postUserProfileLinksService;
+        public PostUserProfileLinksService PostUserProfileLinksService
+        {
+            get { return _postUserProfileLinksService = _postUserProfileLinksService ?? new PostUserProfileLinksService(_context); }
+        }     
+        // Delete User Profile Link
+        private DeleteUserProfileLinksService _deleteUserProfileLinksService;
+        public DeleteUserProfileLinksService DeleteUserProfileLinksService
+        {
+            get { return _deleteUserProfileLinksService = _deleteUserProfileLinksService ?? new DeleteUserProfileLinksService(_context); }
         }
     }
 }

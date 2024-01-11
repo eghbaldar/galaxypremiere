@@ -32,7 +32,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserPr
                     return new ResultDto
                     {
                         IsSuccess = false,
-                        Message = "The favorite movie does not exist"
+                        Message = "The news does not exist"
                     };
                 }
             }

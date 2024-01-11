@@ -45,6 +45,7 @@ namespace galaxypremiere.Persistence.Context
         public DbSet<UsersFavoriteMovies> UsersFavoriteMovies { get; set; } // User's Educations
         public DbSet<UsersCompanies> UsersCompanies { get; set; } // User's Companies
         public DbSet<UsersNews> UsersNews { get; set; } // Users' News
+        public DbSet<UsersLinks> UsersLinks { get; set; } // Users' Links
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //> FLuent API of Entity Configurations
@@ -64,6 +65,8 @@ namespace galaxypremiere.Persistence.Context
             modelBuilder.ApplyConfiguration(new UsersProfileCompaniesConfigurations());            
             //---- Profile Companies
             modelBuilder.ApplyConfiguration(new UsersProfileNewsConfigurations());
+            //---- Profile Links
+            modelBuilder.ApplyConfiguration(new UsersProfileLinksConfigurations());
             //< End
         }
         public override int SaveChanges()

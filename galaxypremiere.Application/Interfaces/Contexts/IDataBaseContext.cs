@@ -26,6 +26,7 @@ namespace galaxypremiere.Application.Interfaces.Contexts
         DbSet<UsersFavoriteMovies> UsersFavoriteMovies { get; set; } // User's Favorite Movies
         DbSet<UsersCompanies> UsersCompanies { get; set; } // User's Companies
         DbSet<UsersNews> UsersNews { get; set; } // Users' News
+        DbSet<UsersLinks> UsersLinks { get; set; } // Users' Links
         // END OF USER'S ENTITIES ======================================================
 
         //SaveChanges

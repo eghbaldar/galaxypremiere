@@ -32,7 +32,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserPr
                     return new ResultDto
                     {
                         IsSuccess = false,
-                        Message = "The educational case does not exist"
+                        Message = "The company does not exist"
                     };
                 }
             }

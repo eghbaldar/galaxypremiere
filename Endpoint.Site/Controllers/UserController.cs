@@ -29,6 +29,7 @@ using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCom
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileNews;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileLinks;
 using galaxypremiere.Common;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Infrastructure.Filters;
@@ -44,6 +45,8 @@ using System.Runtime.Serialization.Json;
 using System.Security.Claims;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileLinks;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileLinks;
 
 namespace Endpoint.Site.Controllers
 {
@@ -222,10 +225,15 @@ namespace Endpoint.Site.Controllers
                 {
                     UsersId = userId
                 }).Data,
-                ResultGetUserProfileNewsServiceDto=_userProfileFacade.GetUserProfileNewsService
+                ResultGetUserProfileNewsServiceDto = _userProfileFacade.GetUserProfileNewsService
                 .Execute(new RequestGetUserProfileNewsDto
                 {
-                    UsersId= userId
+                    UsersId = userId
+                }).Data,
+                ResultGetUserProfileLinksServiceDto = _userProfileFacade.GetUserProfileLinksService
+                .Execute(new RequestGetUserProfileLinksDto
+                {
+                    UsersId = userId
                 }).Data,
                 resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),                
             };
@@ -283,6 +291,18 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.DeleteUserProfileNewsService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult ProfileLinksDelete(RequestDeleteUserProfileLinksServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.DeleteUserProfileLinksService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult ProfileLinksPost(RequestPostUserProfileLinkServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.PostUserProfileLinksService.Execute(req));
         }
     }
 }
