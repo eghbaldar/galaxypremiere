@@ -48,7 +48,8 @@ using System.Xml.Linq;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileLinks;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileLinks;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileAttachments;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileAttachments;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileAttachments;
 
 namespace Endpoint.Site.Controllers
 {
@@ -237,6 +238,11 @@ namespace Endpoint.Site.Controllers
                 {
                     UsersId = userId
                 }).Data,
+                ResultGetUserProfileAttachmentsServiceDto=_userProfileFacade.GetUserProfileAttachmentsService
+                .Execute(new RequestGetUserProfileAttachmentsServiceDto
+                {
+                    UsersId = userId
+                }).Data,
                 resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),
             };
             return View(modelGetProfile);
@@ -316,6 +322,12 @@ namespace Endpoint.Site.Controllers
                 UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal),
             };
             return Json(_userProfileFacade.PostUserProfileAttachmentsService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult ProfileAttachmentsDelete(RequestDeleteUserProfileAttachmentsServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userProfileFacade.DeleteUserProfileAttachmentsService.Execute(req));
         }
     }
 }

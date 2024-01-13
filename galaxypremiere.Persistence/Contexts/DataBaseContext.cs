@@ -67,7 +67,9 @@ namespace galaxypremiere.Persistence.Context
             //---- Profile Companies
             modelBuilder.ApplyConfiguration(new UsersProfileNewsConfigurations());
             //---- Profile Links
-            modelBuilder.ApplyConfiguration(new UsersProfileLinksConfigurations());
+            modelBuilder.ApplyConfiguration(new UsersProfileLinksConfigurations());     
+            //---- Profile Attachment
+            modelBuilder.ApplyConfiguration(new UsersProfileAttachmentConfigurations());
             //< End
         }
         public override int SaveChanges()

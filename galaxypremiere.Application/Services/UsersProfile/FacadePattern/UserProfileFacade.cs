@@ -2,6 +2,7 @@
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.Metags.Queries.GetMetagsInfoByLink;
+using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileAttachments;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileEducation;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileFavoriteMovies;
@@ -13,6 +14,7 @@ using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileE
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileFavoriteMovies;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileLinks;
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileNews;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileAttachments;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
@@ -130,6 +132,18 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         public PostUserProfileAttachmentsService PostUserProfileAttachmentsService
         {
             get { return _postUserProfileAttachmentsService = _postUserProfileAttachmentsService ?? new PostUserProfileAttachmentsService(_context); }
+        }       
+        // Get User Profile Attachment
+        private GetUserProfileAttachmentsService _getUserProfileAttachmentsService;
+        public GetUserProfileAttachmentsService GetUserProfileAttachmentsService
+        {
+            get { return _getUserProfileAttachmentsService = _getUserProfileAttachmentsService ?? new GetUserProfileAttachmentsService(_context,_mapper); }
+        }     
+        // Delete User Profile Attachment
+        private DeleteUserProfileAttachmentsService _deleteUserProfileAttachmentsService;
+        public DeleteUserProfileAttachmentsService DeleteUserProfileAttachmentsService
+        {
+            get { return _deleteUserProfileAttachmentsService = _deleteUserProfileAttachmentsService ?? new DeleteUserProfileAttachmentsService(_context); }
         }
     }
 }

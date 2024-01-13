@@ -1,4 +1,5 @@
 ﻿using galaxypremiere.Application.Services.Countries.Queries.GetCountries;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileAttachments;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCompanies;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileEducations;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileFavoriteMovies;
@@ -15,5 +16,6 @@ namespace Endpoint.Site.Models.Users.GetProfile
         public ResultGetUserProfileCompaniesServiceDto ResultGetUserProfileCompaniesServiceDto { get; set; }
         public ResultGetUserProfileNewsServiceDto ResultGetUserProfileNewsServiceDto{ get; set; }
         public ResultGetUserProfileLinksServiceDto ResultGetUserProfileLinksServiceDto{ get; set; }
+        public ResultGetUserProfileAttachmentsServiceDto ResultGetUserProfileAttachmentsServiceDto { get; set; }
     }
 }
