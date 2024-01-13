@@ -630,7 +630,7 @@ function dragoutdropzoneheader(e) { //function for dragging out of element
 function dropavatar(e) {
     var file = this.files[0];
     // the following functions uses (fileextensionsize.js)
-    if (checkSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152")) { // => 2 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadshotService.cs) and (UploadSmallFilesService.cs)
+    if (KingCheckSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152",true)) { // => 2 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadshotService.cs) and (UploadSmallFilesService.cs)
         // ////////////////////////// Loaders
         $("#HeadshotLoader").css("display", "table-cell"); // circle loading on photo
         $("#dropzoneAvatar *").attr("disabled", "disabled").off('click'); // disable clickable 
@@ -695,7 +695,7 @@ function dropavatar(e) {
 function dropheader(e) {
     var file = this.files[0];
     // the following functions uses (fileextensionsize.js)
-    if (checkSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "5242880")) { // => 5 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadertService.cs) and (UploadSmallFilesService.cs)
+    if (KingCheckSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "5242880",true)) { // => 5 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadertService.cs) and (UploadSmallFilesService.cs)
         // ////////////////////////// Loaders
         $("#HeaderLoader").css("display", "table-cell"); // circle loading on photo
         $("#dropzoneHeader *").attr("disabled", "disabled").off('click'); // disable clickable 
