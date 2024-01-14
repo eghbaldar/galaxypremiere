@@ -11,7 +11,7 @@
 //
 /////////////////////////////////////////////////////////////////checkSizeExtension
 
-function KingCheckSizeExtension(file, arr_extensions, size,alertMode) {
+function KingCheckSizeExtension(file, arr_extensions, size, alertMode) {
     var getextension = /[^.]+$/.exec(file.name);
     if (parseInt(arr_extensions.indexOf(getextension.toString().trim().toLowerCase())) > -1) {
         var fileSize = size;
