@@ -34,26 +34,30 @@
         top: 4px;
         left: 5px;
     }
+
     .album:hover .divAlbumMenu {
         visibility: visible;
     }
-    @@media (max-width:800px){
-    .divAlbumMenu {
-        visibility: visible;
-    }
+
+    @@media (max-width:800px) {
+        .divAlbumMenu {
+            visibility: visible;
+        }
     }
     /*DropMenu On the menu on album*/
     .dropbtn {
-        background-color:transparent;
+        background-color: transparent;
         color: white;
         padding: 5px;
         font-size: 26px;
         border: none;
     }
+
     .dropdown {
         position: relative;
         display: inline-block;
     }
+
     .dropdown-content {
         display: none;
         position: absolute;
@@ -62,15 +66,18 @@
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
     }
+
         .dropdown-content a {
             color: black;
             padding: 9px 13px;
             text-decoration: none;
             display: block;
         }
+
             .dropdown-content a:hover {
                 background-color: #ddd;
             }
+
     .dropdown:hover .dropdown-content {
         display: block;
     }
@@ -121,6 +128,7 @@
                                                 <div class="dropdown-content">
                                                     <a href="#">Photos</a>
                                                     <a onclick="DeletePhotoAlbum('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">Delete</a>
+                                                    <a onclick="UpdatePhotoAlbumTitle('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">Rename</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -172,18 +180,39 @@
                             url: 'ProfileAlbumPost',
                             success: function (data) {
                                 if (data.isSuccess) {
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: "top-end",
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.onmouseenter = Swal.stopTimer;
+                                            toast.onmouseleave = Swal.resumeTimer;
+                                        }
+                                    });
+                                    Toast.fire({
+                                        icon: "success",
+                                        title: "The Album Has Been Added Successfully."
+                                    });
                                     $("#divAlbum").load(window.location + " #divAlbum");
                                 }
                             },
                             error: function (req, status, err) {
-                                alert(req.responseText);
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "error",
+                                    title: "Something went wrong, please try it again or later!",
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                });
                             }
                         });
                     }
                 }
             });
         }
-        function DeletePhotoAlbum(id,title) {
+        function DeletePhotoAlbum(id, title) {
             Swal.fire({
                 title: 'Delete [' + title + '] album',
                 text: 'All the photos of the album will be deleted, are you sure?',
@@ -199,17 +228,88 @@
                         contentType: 'application/x-www-form-urlencoded',
                         postType: 'json',
                         type: 'POST',
-                        data: {'Id':id},
+                        data: { 'Id': id },
                         url: 'ProfileAlbumDelete',
                         success: function (data) {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "success",
+                                title: "The Album Is Deleted Successfully!"
+                            });
                             if (data.isSuccess) {
                                 $("#divAlbum").load(window.location + " #divAlbum");
                             }
                         },
                         error: function (req, status, err) {
-                            alert(req.responseText);
+                            Swal.fire({
+                                position: "center",
+                                icon: "error",
+                                title: "Something went wrong, please try it again or later!",
+                                showConfirmButton: false,
+                                timer: 3000
+                            });
                         }
                     });
+                }
+            });
+        }
+        function UpdatePhotoAlbumTitle(id, title) {
+            Swal.fire({
+                title: 'The Album Current Title is [' + title + ']',
+                input: "text",
+                inputLabel: "New Title:",
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return "You Need to Write Something!";
+                    } else {
+                        $.ajax({
+                            contentType: 'application/x-www-form-urlencoded',
+                            postType: 'json',
+                            type: 'POST',
+                            data: { 'Id': id, 'Title': value },
+                            url: 'ProfileAlbumRenameUpdate',
+                            success: function (data) {
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: "top-end",
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.onmouseenter = Swal.stopTimer;
+                                        toast.onmouseleave = Swal.resumeTimer;
+                                    }
+                                });
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "The title of the album was renamed successfully!"
+                                });
+                                if (data.isSuccess) {
+                                    $("#divAlbum").load(window.location + " #divAlbum");
+                                }
+                            },
+                            error: function (req, status, err) {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "error",
+                                    title: "Something went wrong, please try it again or later!",
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                });
+                            }
+                        });
+                    }
                 }
             });
         }

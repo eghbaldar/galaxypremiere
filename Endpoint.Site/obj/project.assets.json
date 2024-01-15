@@ -4398,7 +4398,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "galaxypremiere.Application": "1.0.0",
           "galaxypremiere.Common": "1.0.0",
-          "galaxypremiere.Domain": "1.0.0"
+          "galaxypremiere.Domain": "1.0.0",
+          "galaxypremiere.Infrastructure": "1.0.0"
         },
         "compile": {
           "bin/placeholder/galaxypremiere.Persistence.dll": {}

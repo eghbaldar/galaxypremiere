@@ -8,6 +8,7 @@ using galaxypremiere.Application.Services.UserActionsLog.FacadePattern;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Domain.Common;
 using galaxypremiere.Domain.Entities.Users;
+using galaxypremiere.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -72,6 +73,8 @@ namespace galaxypremiere.Persistence.Context
             modelBuilder.ApplyConfiguration(new UsersProfileLinksConfigurations());     
             //---- Profile Attachment
             modelBuilder.ApplyConfiguration(new UsersProfileAttachmentConfigurations());
+            //---- Photo Albums
+            modelBuilder.ApplyConfiguration(new UsersPhotoAlbumConfigurations());
             //< End
         }
         public override int SaveChanges()

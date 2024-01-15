@@ -19,3 +19,5 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\galaxypremiere.Persistence.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\galaxypremiere.Persistence.genruntimeconfig.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\obj\Debug\net6.0\ref\galaxypremiere.Persistence.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Infrastructure.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Persistence\bin\Debug\net6.0\galaxypremiere.Infrastructure.pdb

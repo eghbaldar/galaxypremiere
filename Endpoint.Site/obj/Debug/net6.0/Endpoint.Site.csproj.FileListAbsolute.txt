@@ -269,3 +269,4 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.genruntimeconfig.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\ref\Endpoint.Site.dll
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.MvcApplicationPartsAssemblyInfo.cs
