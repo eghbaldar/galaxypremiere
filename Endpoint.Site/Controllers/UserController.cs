@@ -50,6 +50,12 @@ using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfil
 using galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProfileAttachments;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileAttachments;
 using galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserProfileAttachments;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAlbum;
+using Endpoint.Site.Models.Users.GetPhoto;
+using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum;
+using Microsoft.Extensions.Configuration.UserSecrets;
+using galaxypremiere.Domain.Entities.Users;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotosAlbum;
 
 namespace Endpoint.Site.Controllers
 {
@@ -75,6 +81,7 @@ namespace Endpoint.Site.Controllers
         private readonly IUserPositionFacade _PositionFacade;
         private readonly IUserProfileFacade _userProfileFacade;
         private readonly IMetagsFacade _metagsFacade;
+        private readonly IUserPhotoFacade _userPhotoFacade;
         private readonly IMapper _mapper;
         public UserController(
             IUserInformationFacade userInformationFacade,
@@ -83,6 +90,7 @@ namespace Endpoint.Site.Controllers
             IUserPositionFacade positionFacade,
             IUserProfileFacade userProfileFacade,
             IMetagsFacade metagsFacade,
+            IUserPhotoFacade userPhotoFacade,
         IMapper mapper)
         {
             _userInformationFacade = userInformationFacade;
@@ -92,7 +100,12 @@ namespace Endpoint.Site.Controllers
             _userProfileFacade = userProfileFacade;
             _metagsFacade = metagsFacade;
             _mapper = mapper;
+            _userPhotoFacade = userPhotoFacade;
         }
+        /// <summary>
+        /// //////////////////////////////////////////// Me
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Me()
         {
@@ -206,6 +219,10 @@ namespace Endpoint.Site.Controllers
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userInformationFacade.UpdateUsersInformationOtherService.Execute(req));
         }
+        /// <summary>
+        /// //////////////////////////////////////////// Profile
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Profile()
         {
@@ -328,6 +345,37 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.DeleteUserProfileAttachmentsService.Execute(req));
+        }
+        /// <summary>
+        /// //////////////////////////////////////////// Photos
+        /// </summary>
+        /// <returns></returns>
+        ///         [HttpGet]
+        [HttpGet]
+        public IActionResult Photos()
+        {
+            var usersId = (int)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            ModelGetPhoto modelGetPhoto = new ModelGetPhoto
+            {
+                ResultGetUsersPhotoAlbumServiceDto = _userPhotoFacade.GetUsersPhotoAlbumService
+                .Execute(new RequestGetUsersPhotoAlbumServiceDto
+                {
+                    UsersId = usersId,
+                }).Data
+            };
+            return View(modelGetPhoto);
+        }
+        [HttpPost]
+        public IActionResult ProfileAlbumPost(RequestPostUsersPhotosAlbumServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userPhotoFacade.PostUsersPhotosAlbumService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult ProfileAlbumDelete(RequestDeleteUsersPhotosAlbumServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userPhotoFacade.DeleteUsersPhotosAlbumService.Execute(req));
         }
     }
 }

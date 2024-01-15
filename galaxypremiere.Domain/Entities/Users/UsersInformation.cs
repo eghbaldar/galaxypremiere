@@ -19,7 +19,7 @@ namespace galaxypremiere.Domain.Entities.Users
         public string? Firstname{ get; set; }/*=========*/
         public string? MiddleName{ get; set; }/*=========*/
         public string? Surname{ get; set; }/*=========*/
-        public byte Gender { get; set; } = 0; // Check: [GenderConstants.cs]/*=========*/
+        public byte Gender { get; set; } = 0; // derived from [GenderConstants.cs]/*=========*/
         public int CountryId { get; set; } = 0; // derived from [Countries] entity/*=========*/
         public int LanguageId { get; set; }/*=========*/
         public string? BirthDay { get; set; } // 1989/02/09/*=========*/

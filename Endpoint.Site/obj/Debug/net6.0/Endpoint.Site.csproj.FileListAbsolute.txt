@@ -250,7 +250,6 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.AssemblyInfoInputs.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.AssemblyInfo.cs
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.csproj.CoreCompileInputs.cache
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.MvcApplicationPartsAssemblyInfo.cs
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.MvcApplicationPartsAssemblyInfo.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.RazorAssemblyInfo.cache
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.RazorAssemblyInfo.cs

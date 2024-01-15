@@ -2481,22 +2481,6 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\css\\style.css"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\files\\user-attachments\\638408349585984277_img_avatar.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638408349585984277_img_avatar.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\files\\user-attachments\\638408376181334352_img_avatar.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638408376181334352_img_avatar.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\files\\user-attachments\\638408376502808551_img_avatar.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638408376502808551_img_avatar.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\files\\user-attachments\\638408377066935961art_msc_1037.pdf",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638408377066935961art_msc_1037.pdf"
-    },
-    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\Flaticon.eot",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\Flaticon.eot"
     },
@@ -2701,6 +2685,14 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\.DS_Store"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\addAlbumProfile.svg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\addAlbumProfile.svg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\addPhotoProfile.svg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\addPhotoProfile.svg"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\american-express.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\american-express.png"
     },
@@ -2713,70 +2705,6 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\error.png"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g1.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g1.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g10.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g10.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g11.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g11.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g12.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g12.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g13.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g13.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g14.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g14.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g15.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g15.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g16.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g16.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g2.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g2.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g3.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g3.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g4.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g4.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g5.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g5.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g6.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g6.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g7.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g7.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g8.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g8.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\g9.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\g9.jpg"
-    },
-    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\img-avatar.jpg",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\img-avatar.jpg"
     },
@@ -2785,36 +2713,12 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\img-header.jpg"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\login_image.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\login_image.jpg"
-    },
-    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\map_icon.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\map_icon.png"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\mastercard.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\mastercard.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\msg1.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\msg1.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\msg2.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\msg2.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\msg3.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\msg3.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\msg4.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\msg4.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\msg5.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\msg5.png"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\pattern.png",

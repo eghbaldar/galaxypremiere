@@ -3637,6 +3637,35 @@ namespace galaxypremiere.Persistence.Migrations
                     b.ToTable("UsersAddress");
                 });
 
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersAlbums", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UsersId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("UsersAlbums");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersAttachments", b =>
                 {
                     b.Property<Guid>("Id")
@@ -4036,6 +4065,49 @@ namespace galaxypremiere.Persistence.Migrations
                     b.ToTable("UsersNews");
                 });
 
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPhotos", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DownloadCounter")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Filename")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UsersAlbumsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("UsersAlbumsId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsersAlbumsId1");
+
+                    b.ToTable("UsersPhotos");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPositions", b =>
                 {
                     b.Property<int>("Id")
@@ -4074,6 +4146,17 @@ namespace galaxypremiere.Persistence.Migrations
                 });
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersAddress", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersAlbums", b =>
                 {
                     b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
                         .WithMany()
@@ -4189,6 +4272,17 @@ namespace galaxypremiere.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPhotos", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.UsersAlbums", "UsersAlbums")
+                        .WithMany()
+                        .HasForeignKey("UsersAlbumsId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UsersAlbums");
                 });
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.Roles", b =>

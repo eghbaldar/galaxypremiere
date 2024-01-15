@@ -28,6 +28,8 @@ namespace galaxypremiere.Application.Interfaces.Contexts
         DbSet<UsersNews> UsersNews { get; set; } // Users' News
         DbSet<UsersLinks> UsersLinks { get; set; } // Users' Links
         DbSet<UsersAttachments> UsersAttachments { get; set; } // Users' Attachments
+        DbSet<UsersAlbums> UsersAlbums { get; set; } // Users' Albums
+        DbSet<UsersPhotos> UsersPhotos { get; set; } // Users' Photos
         // END OF USER'S ENTITIES ======================================================
 
         //SaveChanges

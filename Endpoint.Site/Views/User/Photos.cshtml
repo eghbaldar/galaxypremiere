@@ -1,0 +1,217 @@
+﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
+@using Endpoint.Site.Models.Users.GetPhoto
+@model ModelGetPhoto
+@{
+    Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
+}
+@await Component.InvokeAsync("UserPhotosNavigation")
+
+<style>
+    /*General*/
+    .white_shd {
+        box-shadow: none !important;
+    }
+
+    .heading_section {
+        border-top: 0;
+        box-shadow: 2px 20px 12px -16px rgba(0,0,0,0.37);
+        -webkit-box-shadow: 2px 20px 12px -16px rgba(0,0,0,0.37);
+        -moz-box-shadow: 2px 20px 12px -16px rgba(0,0,0,0.37);
+    }
+
+    .album h4 {
+        color: black;
+    }
+
+    .column {
+        cursor: pointer;
+        position: relative;
+    }
+    /*Folowing Menu On Album*/
+    .divAlbumMenu {
+        visibility: hidden;
+        position: absolute;
+        top: 4px;
+        left: 5px;
+    }
+    .album:hover .divAlbumMenu {
+        visibility: visible;
+    }
+    @@media (max-width:800px){
+    .divAlbumMenu {
+        visibility: visible;
+    }
+    }
+    /*DropMenu On the menu on album*/
+    .dropbtn {
+        background-color:transparent;
+        color: white;
+        padding: 5px;
+        font-size: 26px;
+        border: none;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+        .dropdown-content a {
+            color: black;
+            padding: 9px 13px;
+            text-decoration: none;
+            display: block;
+        }
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+</style>
+
+
+
+
+<div id="TabUserAlbums" class="TabcontentClass active">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">ALBUMS</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <!-- Gallery section -->
+                <div class="col-md-12">
+                    <div class="white_shd full margin_bottom_30">
+                        <div class="row mt-3" id="divAlbum">
+                            <div class="col-sm-4 col-md-3 margin_bottom_30 album">
+                                <div class="column">
+                                    <a data-fancybox="gallery"
+                                       onclick="OpenDialogueAddAlbum();">
+                                        <img class="img-responsive"
+                                             src="~/SiteTemplate/innerpages/images/layout_img/addAlbumProfile.svg" alt="#">
+                                    </a>
+                                </div>
+                                <div class="heading_section">
+                                    <h4>+ ADD A NEW ALBUM</h4>
+                                </div>
+                            </div>
+                            @for (int i = 0; i <= Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto.Count - 1; i++)
+                            {
+                                <div class="col-sm-4 col-md-3 margin_bottom_30 album">
+                                    <div class="column">
+                                        <a data-fancybox="gallery" href="images/layout_img/g2.jpg">
+                                            <img class="img-responsive"
+                                             src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg"
+                                             alt="#">
+                                        </a>
+                                        <div class="divAlbumMenu">
+                                            @*<icon class="fa fa-times-circle icon_size16"></icon>*@
+                                            <div class="dropdown" style="float:right;">
+                                                <button class="dropbtn">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-content">
+                                                    <a href="#">Photos</a>
+                                                    <a onclick="DeletePhotoAlbum('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="heading_section">
+                                        <h4>@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title</h4>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TabUserPhotos" class="TabcontentClass">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">PHOTOS</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                2
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @* Tabs *@
+    <script src="~/sitetemplate/innerpages/plugins/tabNavigation/tab.js"></script>
+    @* Functions *@
+    <script>
+        function OpenDialogueAddAlbum() {
+            Swal.fire({
+                title: "ALBUM TITLE",
+                input: "text",
+                inputLabel: "This filed is required.",
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return "You need to write something!";
+                    } else {
+                        $.ajax({
+                            contentType: 'application/x-www-form-urlencoded',
+                            postType: 'json',
+                            type: 'POST',
+                            data: { 'Title': value },
+                            url: 'ProfileAlbumPost',
+                            success: function (data) {
+                                if (data.isSuccess) {
+                                    $("#divAlbum").load(window.location + " #divAlbum");
+                                }
+                            },
+                            error: function (req, status, err) {
+                                alert(req.responseText);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        function DeletePhotoAlbum(id,title) {
+            Swal.fire({
+                title: 'Delete [' + title + '] album',
+                text: 'All the photos of the album will be deleted, are you sure?',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#000222',
+                cancelButtonColor: '#000222',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        postType: 'json',
+                        type: 'POST',
+                        data: {'Id':id},
+                        url: 'ProfileAlbumDelete',
+                        success: function (data) {
+                            if (data.isSuccess) {
+                                $("#divAlbum").load(window.location + " #divAlbum");
+                            }
+                        },
+                        error: function (req, status, err) {
+                            alert(req.responseText);
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}
