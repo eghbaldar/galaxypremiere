@@ -42,15 +42,6 @@ function GetProfileEducationElements() {
     });
 
     if (success) {
-        Swal.fire({
-            title: 'Please Wait !',
-            html: 'Given your number of cases, it may take a long time!',
-            allowEscapeKey: false,
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading()
-            }
-        });
         PostProfileEducation(postData)
     }
     else {
@@ -81,35 +72,59 @@ function PostProfileEducation(data) {
                     }
                 }
                 // setting process is done!
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Updated Successfully."
                 });
                 btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: data.message,
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: data.message
                 });
                 btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
             });
             btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
@@ -141,12 +156,20 @@ function DeleteProfileEducation(e) {
         url: 'ProfileEducationDelete',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Deleted Successfully."
                 });
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
@@ -157,12 +180,20 @@ function DeleteProfileEducation(e) {
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
             });
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
@@ -238,7 +269,7 @@ function PostProfileFavoriteMovies(data) {
         dataType: 'json',
         type: 'POST',
         data: postData,
-        url: 'ProfileFavoriteMovies',
+        url: 'ProfileFavoriteMoviesPost',
         success: function (data) {
             if (data.isSuccess) {
                 // set VALUE of HIDDEN CONTROLS with new value from database (value = ID of new record after inserting)
@@ -261,45 +292,77 @@ function PostProfileFavoriteMovies(data) {
                 }
                 // setting process is done!
                 if (flag) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Information has been saved",
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    Toast.fire({
+                        icon: "success",
+                        title: "Information Has Been Updated Successfully."
                     });
                 }
                 else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "One or more links were detected invalidly, check them out please.",
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
                         showConfirmButton: false,
-                        timer: 4000
+                        timer: 5000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    Toast.fire({
+                        icon: "error",
+                        title: "There is no movie in the link, check your link out.",
                     });
                 }
                 btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: data.message,
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: data.message
                 });
                 btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
             });
             btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
@@ -332,35 +395,66 @@ function DeleteProfileFavoriteMovies(e) {
         url: 'ProfileFavoriteMovieDelete',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Deleted Successfully."
                 });
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: data.message,
+                });
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
             });
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
     });
 }
-function checkRuntimeValidationUrl(e) {
+function checkRuntimeValidationUrlIMDb(e) {
     if (KingIsUrlValidWithDomain($(e).val(), "https://www.imdb.com/")) {
         KingWarningStyleOff("#" + e.id, 0);
         return true;
@@ -422,12 +516,20 @@ function CheckTheLink(e, link) {
 
                 return true;
             } else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: data.message,
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: data.message
                 });
                 KingWarningStyle("#txtMovieLink_" + SeparateID[1], 0);
                 btnWaitMe_Stop(e.id); // Loading Button Stops
@@ -438,12 +540,20 @@ function CheckTheLink(e, link) {
 
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
             });
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
@@ -458,37 +568,17 @@ function GetProfileCompanyElements() {
     pageWaitMe("progress"); // loading process starts
     btnWaitMe_Start('btnUpdateProfileCompanies'); // Loading Button Start
 
-    var Id;
-    var hiddenId;
+    var Id, hiddenId;
 
-    var countryId;
-    var Name;
-    var Position;
-    var dateFrom;
-    var dateTo;
-    var Address1;
-    var Address2;
-    var City;
-    var State;
-    var PostalCode;
-    var Phone;
-    var RecoveryEmail;
-    var Website;
-    var Facebook;
-    var Instagram;
-    var Twitter;
-    var Stage32;
-    var Youtube;
-    var Linkden;
-    var Vimeo;
-    var Imdb;
+    var countryId, Name, Position, dateFrom, dateTo, Address1, Address2, City, State, PostalCode;
+    var Phone, RecoveryEmail, Website, Facebook, Instagram, Twitter, Stage32, Youtube, Linkden, Vimeo, Imdb;
 
     var postData = [];
-    var successCompanyCountryId = true;
-    var successCompanyName = true;
-    var successCompanyPosition = true;
-    var successCompanyFrom = true;
-    var successCompanyTo = true;
+    var successCompanyCountryId = 0,countCompanyCountry = 0;
+    var successCompanyName = 0, countCompanyName = 0;
+    var successCompanyPosition = 0, countCompanyPosition = 0;
+    var successCompanyFrom = 0, countCompanyFrom = 0;
+    var successCompanyTo = 0, countCompanyTo = 0;
 
     var inputValues = $('.form_field_outer_companies :input').map(function () {
         var type = $(this).prop("type");
@@ -502,56 +592,61 @@ function GetProfileCompanyElements() {
             }
         }
         if (type == "select-one") {
+            countCompanyCountry += 1;
             if (value == 'Choose...') {
                 KingWarningStyle("#" + id, 0);
-                successCompanyCountryId = false;
+                successCompanyCountryId -= 1;
             }
             else {
                 KingWarningStyleOff("#" + id, 0);
                 countryId = value;
-                successCompanyCountryId = true;
+                successCompanyCountryId += 1;
             }
         }
         if (type == "text") {
 
             if ((id.indexOf("txtCompanyName") == 0)) {
+                countCompanyName += 1;
                 if (value.trim() == '') {
                     KingWarningStyle("#" + id, 0);
-                    successCompanyName = false;
+                    successCompanyName -= 1;
                 } else {
                     Name = value;
                     KingWarningStyleOff("#" + id, 0);
-                    successCompanyName = true;
+                    successCompanyName += 1;
                 }
             }
             if ((id.indexOf("txtCompanyPosition") == 0)) {
+                countCompanyPosition += 1;
                 if (value.trim() == '') {
                     KingWarningStyle("#" + id, 0);
-                    successCompanyPosition = false;
+                    successCompanyPosition -= 1;
                 } else {
                     Position = value;
                     KingWarningStyleOff("#" + id, 0);
-                    successCompanyPosition = true;
+                    successCompanyPosition += 1;
                 }
             }
             if ((id.indexOf("datepickerCompanyFrom") == 0)) {
+                countCompanyFrom += 1;
                 if (value.trim() == '') {
                     KingWarningStyle("#" + id, 0);
-                    successCompanyFrom = false;
+                    successCompanyFrom -= 1;
                 } else {
                     dateFrom = value;
                     KingWarningStyleOff("#" + id, 0);
-                    successCompanyFrom = true;
+                    successCompanyFrom += 1;
                 }
             }
             if ((id.indexOf("datepickerCompanyTo") == 0)) {
+                countCompanyTo += 1;
                 if (value.trim() == '') {
                     KingWarningStyle("#" + id, 0);
-                    successCompanyTo = false;
+                    successCompanyTo -= 1;
                 } else {
                     dateTo = value;
                     KingWarningStyleOff("#" + id, 0);
-                    successCompanyTo = true;
+                    successCompanyTo += 1;
                 }
             }
 
@@ -577,7 +672,11 @@ function GetProfileCompanyElements() {
         }
     });
 
-    if (successCompanyCountryId && successCompanyName && successCompanyPosition && successCompanyFrom && successCompanyTo) {
+    if ((successCompanyCountryId == countCompanyCountry) &&
+        (successCompanyName == countCompanyName) &&
+        (successCompanyPosition == countCompanyPosition) &&
+        (successCompanyFrom == countCompanyFrom) &&
+        (successCompanyTo == countCompanyTo)) {
         Swal.fire({
             title: 'Please Wait !',
             html: 'Given your number of cases, it may take a long time!',
@@ -617,36 +716,60 @@ function PostProfileCompany(data) {
                     }
                 }
                 // setting process is done!
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Updated Successfully."
                 });
                 btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
                     icon: "error",
                     title: data.message,
-                    showConfirmButton: false,
-                    timer: 3000
                 });
                 btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
             });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
+            }); 
             btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -676,12 +799,20 @@ function DeleteProfileCompany(e) {
         url: 'ProfileCompanyDelete',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Deleted Successfully."
                 });
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
@@ -692,12 +823,20 @@ function DeleteProfileCompany(e) {
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
             });
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
@@ -744,7 +883,17 @@ function GetProfileNewsElements() {
                 KingWarningStyleOff("#" + id, 0);
             if (id.indexOf("txtNewsTitle") == 0) title = value;
             if (id.indexOf("txtNewsReference") == 0) reference = value;
-            if (id.indexOf("txtNewsLink") == 0) link = value;
+
+            if (id.indexOf("txtNewsLink") == 0) {
+                if (KingIsUrlValidWithoutDomain(value)) {
+                    link = value;
+                }
+                else {
+                    KingWarningStyle("#" + id, 0);
+                    success = false;
+                }
+            }
+
             if (id.indexOf("datepickerNewsDate") == 0) date = value;
         }
 
@@ -754,15 +903,6 @@ function GetProfileNewsElements() {
     });
 
     if (success) {
-        Swal.fire({
-            title: 'Please Wait !',
-            html: 'Given your number of cases, it may take a long time!',
-            allowEscapeKey: false,
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading()
-            }
-        });
         PostProfileNews(postData)
     }
     else {
@@ -793,36 +933,60 @@ function PostProfileNews(data) {
                     }
                 }
                 // setting process is done!
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Updated Successfully."
                 });
                 btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: data.message,
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
                 });
+                Toast.fire({
+                    icon: "error",
+                    title: "Something Went Wrong."
+                }); 
                 btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
             });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
+            }); 
             btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -852,12 +1016,20 @@ function DeleteProfileNews(e) {
         url: 'ProfileNewsDelete',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Deleted Successfully."
                 });
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
@@ -868,13 +1040,21 @@ function DeleteProfileNews(e) {
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
             });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
+            }); 
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -922,22 +1102,12 @@ function GetProfileLinksElements() {
                 }
             }
         }
-
         if (type == "button" && id.indexOf("btnRemoveNodeBtnFrmFieldLinks") == 0) {
             postData.push(Id + "|" + title + "|" + link + "|" + hiddenId);
         }
     });
 
     if (success) {
-        Swal.fire({
-            title: 'Please Wait !',
-            html: 'Given your number of cases, it may take a long time!',
-            allowEscapeKey: false,
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading()
-            }
-        });
         PostProfileLinks(postData)
     }
     else {
@@ -968,36 +1138,60 @@ function PostProfileLinks(data) {
                     }
                 }
                 // setting process is done!
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Updated Successfully."
                 });
                 btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: data.message,
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
                 });
+                Toast.fire({
+                    icon: "error",
+                    title: "Something Went Wrong."
+                }); 
                 btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
             });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
+            }); 
             btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -1027,12 +1221,20 @@ function DeleteProfileLinks(e) {
         url: 'ProfileLinksDelete',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Deleted Successfully."
                 });
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
@@ -1043,17 +1245,35 @@ function DeleteProfileLinks(e) {
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
             });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
+            }); 
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
     });
+}
+function checkRuntimeValidationUrlNewslink(e) {
+    if (KingIsUrlValidWithoutDomain($(e).val())) {
+        KingWarningStyleOff("#" + e.id, 0);
+        return true;
+    } else {
+        pageWaitMeRemove(); // loading process stops
+        KingWarningStyle("#" + e.id, 0);
+        return false;
+    }
 }
 // Attachment
 function fileAttachmentChange(e) {
@@ -1125,33 +1345,57 @@ function PostProfileAttachments() {
         success: function (data) {
             if (data.isSuccess) {
                 $("#status").html('UPLOADED!!');
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Updated Successfully."
                 });
                 $("#divAttachments").load(window.location + " #divAttachments"); // update table!
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: data.message,
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
                 });
+                Toast.fire({
+                    icon: "error",
+                    title: data.message
+                }); 
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
             });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
+            }); 
         }
     })
         .always(function (dataOrjqXHR, textStatus, jqXHRorErrorThrown) {
@@ -1174,12 +1418,20 @@ function DeleteProfileAttachment(e, Id) {
         url: 'ProfileAttachmentsDelete',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Information Has Been Deleted Successfully."
                 });
                 $("#divAttachments").load(window.location + " #divAttachments");
                 btnWaitMe_Stop(e.id); // Loading Button Stops
@@ -1191,13 +1443,21 @@ function DeleteProfileAttachment(e, Id) {
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
             });
+            Toast.fire({
+                icon: "error",
+                title: "Something Went Wrong."
+            }); 
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -1355,7 +1615,7 @@ function fireNewFavoriteMoviePart() {
                                                                                                                                                                                                                                                                                 <span class="input-group-text">IMDb Movie Link</span>
                                                                                                                                                                                                                                                                                 <input type="text"
                                                                                                                                                                                                                                                                                     onkeypress="if(event.keyCode === 13)event.preventDefault();"
-                                                                                                                                                                                                                                                                                onkeyup="checkRuntimeValidationUrl(this)"
+                                                                                                                                                                                                                                                                                onkeyup="checkRuntimeValidationUrlIMDb(this)"
                                                                                                                                                                                                                                                                                     class="form-control"
                                                                                                                                                                                                                                                                                             id="txtMovieLink_`+ guid.toString() + `"
                                                                                                                                                                                                                                                                                     placeholder="https://www.imdb.com/title/tt0068646/">
@@ -1382,238 +1642,6 @@ function fireNewFavoriteMoviePart() {
                                                                                                                                                                                                                                                                     </div>
 
                                                                                                                                                                                                                                                                 `);
-}
-function fireNewCompaniesPart() {
-    // After adding the first form, the update button will be enabled.
-    $("#btnUpdateProfileCompanies").prop("disabled", false);
-    //how many new forms a client can add? the answer is: at most 10 forms
-    var index = $(".form_field_outer_companies").find(".form_field_outer_companies_row").length + 1;
-    if (index > 10) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Only 10 companies are allowed.",
-            showConfirmButton: false,
-            timer: 3000
-        });
-        return;
-    }
-    var guid = generateGuid();// generate a random string as the name of the controls
-    $(".form_field_outer_companies").append(`
-
-                                                                                                                                                                                                                                            <div class="row form_field_outer_companies_row" id="company_form_`+ guid.toString() + `">
-
-                                                                                                                                                                                                                                                                <fieldset>
-                                                                                                                                                                                                                                                                            <legend>Company</legend>
-                                                                                                                                                                                                                                                                            <input type="hidden"
-                                                                                                                                                                                                                                                                                    value=`+ guid.toString() + `
-                                                                                                                                                                                                                                                                                       id="hiddenCompany_`+ guid.toString() + `"/>
-
-                                                                                                                                                                                                                                                            <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                <label class="input-group-text" for="inputGroupSelect01">Country</label>
-                                                                                                                                                                                                                                                                <select class="form-select"
-                                                                                                                                                                                                                                                                                id="selectCountry_`+ guid.toString() + `">
-                                                                                                                                                                                                                                                                    <option selected>Choose...</option>
-        @{
-            if (Model.resultGetCountriesServiceDto != null)
-            {
-                foreach (var country in Model.resultGetCountriesServiceDto.getCountriesServiceDto)
-                {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option value="@country.Id">
-                        @country.Name
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    </option>
-                }
-            }
-        }
-                                                                                                                                                                                                                                                                </select>
-                                                                                                                                                                                                                                                            </div>
-
-                                                                                                                                                                                                                                                                            <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                        <span class="input-group-text">Company Name</span>
-                                                                                                                                                                                                                                                                                <input type="text"
-                                                                                                                                                                                                                                                                                   class="form-control"
-                                                                                                                                                                                                                                                                                           id="txtCompanyName_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                   placeholder="Microsoft, Amazon, Google, ...">
-                                                                                                                                                                                                                                                                                <span class="input-group-text">Position</span>
-                                                                                                                                                                                                                                                                                <input type="text"
-                                                                                                                                                                                                                                                                                   class="form-control"
-                                                                                                                                                                                                                                                                                   id="txtCompanyPosition_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                   placeholder="CEO, Editor, Poster Designer, ....">
-                                                                                                                                                                                                                                                                            </div>
-
-
-                                                                                                                                                                                                                                                                            <div style="display:flex;">
-                                                                                                                                                                                                                                                                                <div>
-                                                                                                                                                                                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                                                                                                                                                                                                                       for="inputGroupSelect01">From</label>
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div>
-                                                                                                                                                                                                                                                                                    <input readonly
-                                                                                                                                                                                                                                                                                       placeholder="Starting date of Eduction"
-                                                                                                                                                                                                                                                                                       style="border-radius:0px;border-left:0;" width="300"
-                                                                                                                                                                                                                                                                                       id="datepickerCompanyFrom_`+ guid.toString() + `">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                            </div>
-
-                                                                                                                                                                                                                                                                            <div style="display:flex;">
-                                                                                                                                                                                                                                                                                <div>
-                                                                                                                                                                                                                                                                                    <label class="input-group-text" style="border-radius:5px 0px 0px 5px;"
-                                                                                                                                                                                                                                                                                       for="inputGroupSelect01">To</label>
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div>
-                                                                                                                                                                                                                                                                                    <input readonly
-                                                                                                                                                                                                                                                                                       placeholder="Ending date of Eduction"
-                                                                                                                                                                                                                                                                                       style="border-radius:0px;border-left:0;" width="300"
-                                                                                                                                                                                                                                                                                       id="datepickerCompanyTo_`+ guid.toString() + `">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                            <div class="mb-3">
-                                                                                                                                                                                                                                                                                        <a href="#"  onclick="$('#loginModal_`+ guid.toString() + `').modal();">
-                                                                                                                                                                                                                                                                                    [Click to set more information]
-                                                                                                                                                                                                                                                                                </a>
-                                                                                                                                                                                                                                                                            </div>
-
-
-
-        @*MODAL*@
-                                                                                                                                                                                                                                                                    <div class="modal fade" id="loginModal_`+ guid.toString() + `" role="dialog">
-                                                                                                                                                                                                                                                                        <div class="modal-dialog">
-                                                                                                                                                                                                                                                                            <!-- Modal content-->
-                                                                                                                                                                                                                                                                            <div class="modal-content">
-                                                                                                                                                                                                                                                                                <div class="modal-header">
-                                                                                                                                                                                                                                                                                    <h2>MORE INFORMATION</h2>
-                                                                                                                                                                                                                                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Address Line 1</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyAddress1_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="3015">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Address Line 2</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyAddress2_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="Grand Ave">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">City</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyCity_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="Miami">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">State</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyState_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="Florida">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">PostCode</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyPostCode_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="33133">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Phone</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyPhone_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="(305) 447-2273">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Email</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyEmail_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="support@galaxypremiere.com">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Website</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyWebsite_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="www.galaxypremiere.com">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Facebook ID</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyFacebook_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="@@galaxypremiere">
-                                                                                                                                                                                                                                                                                        <span class="input-group-text">Instagram ID</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyInstagram_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="@@galaxypremiere">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Twitter ID</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyTwitter_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="@@galaxypremiere">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Stage32 ID</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyStage32_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="stage32.com/galaxypremiere">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Youtube</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyYoutube_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="youtube.com/galaxypremiere">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Name</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyLinkden_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="@@galaxypremiere">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                  <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">Vimeo</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyVimeo_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="vimeo.com/galaxypremiere">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                  <div class="input-group mb-3">
-                                                                                                                                                                                                                                                                                    <span class="input-group-text">IMDb</span>
-                                                                                                                                                                                                                                                                                    <input type="text"
-                                                                                                                                                                                                                                                                                       class="form-control"
-                                                                                                                                                                                                                                                                                       id="txtCompanyIMDb_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                       placeholder="IMDb.com/galaxypremiere">
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                    <button type="button"
-                                                                                                                                                                                             data-dismiss="modal" class="btn cur-p btn-primary">
-                                                                                                                                                                                                Done
-                                                                                                                                                                                            </button>
-                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                    </div>
-
-                                                                                                                                                                                                                                                                            <div class="form-group col-md-2 add_del_btn_outer">
-                                                                                                                                                                                                                                                                                                <button type="button" class="btn_round remove_node_btn_frm_field_company"
-                                                                                                                                                                                                                                                                                                            id="btnRemoveNodeBtnFrmFieldCompany_`+ guid.toString() + `"
-                                                                                                                                                                                                                                                                                                    onclick="DeleteProfileCompany(this)">
-                                                                                                                                                                                                                                                                                            <i class="fas fa-trash-alt"></i>
-                                                                                                                                                                                                                                                                                        </button>
-                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                </fieldset>
-                                                                                                                                                                                                                                                    </div>
-
-
-                                                                                                                                                                                                                                            `);
-    $('#datepickerCompanyFrom_' + guid.toString()).datepicker({
-        uiLibrary: 'bootstrap5'
-    });
-    $('#datepickerCompanyTo_' + guid.toString()).datepicker({
-        uiLibrary: 'bootstrap5'
-    });
 }
 function fireNewNewsPart() {
     // After adding the first form, the update button will be enabled.
@@ -1653,6 +1681,7 @@ function fireNewNewsPart() {
                                                                                                                                                 <span class="input-group-text">News Link</span>
                                                                                                                                                 <input type="text"
                                                                                                                                                    class="form-control"
+onkeyup="checkRuntimeValidationUrlNewslink(this)"
                                                                                                                                                    id="txtNewsLink_`+ guid.toString() + `"
                                                                                                                                                    placeholder="www.galaxypremiere.com/blog/2035">
                                                                                                                                             </div>
@@ -1718,6 +1747,7 @@ function fireNewLinksPart() {
                                                                                                                                         <span class="input-group-text">Link</span>
                                                                                                                                         <input type="text"
                                                                                                                                            class="form-control"
+onkeyup="checkRuntimeValidationUrlNewslink(this)"
                                                                                                                                            id="txtLinkLink_`+ guid.toString() + `"
                                                                                                                                            placeholder="www.galaxypremiere.com/blog/2035">
                                                                                                                                     </div>

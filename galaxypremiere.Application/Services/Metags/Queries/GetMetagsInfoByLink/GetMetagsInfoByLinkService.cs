@@ -71,7 +71,7 @@ namespace galaxypremiere.Application.Services.Metags.Queries.GetMetagsInfoByLink
             return new ResultDto
             {
                 IsSuccess = false,
-                Message = "There is no movie in the link, check your link out.",
+                Message = "There is no movie in the link, check out your link.",
             };
         }
     }

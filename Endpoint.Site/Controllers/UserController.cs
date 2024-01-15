@@ -278,7 +278,7 @@ namespace Endpoint.Site.Controllers
             return Json(_userProfileFacade.DeleteUserProfileEducationService.Execute(req));
         }
         [HttpPost]
-        public IActionResult ProfileFavoriteMovies(RequestPostUserProfileFavoriteMoviesServiceDto req)
+        public IActionResult ProfileFavoriteMoviesPost(RequestPostUserProfileFavoriteMoviesServiceDto req)
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userProfileFacade.PostUserProfileFavoriteMoviesService.Execute(req));
