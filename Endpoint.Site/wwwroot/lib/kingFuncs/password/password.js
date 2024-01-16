@@ -135,6 +135,7 @@ function checkPassMatchRePass(originalPass, repeatedPass, warningSpan) {
             $(warningSpan).text("Passwords do not match.");
             Pass.css("background-color", "#fcc");
             rePass.css("background-color", "#fcc");
+            return false;
         }
         else {
             $(warningSpan).text("");
@@ -142,10 +143,12 @@ function checkPassMatchRePass(originalPass, repeatedPass, warningSpan) {
             rePass.css("background-color", "#fff");
             $(warningSpan).text("");
             $(warningSpan).slideUp();
+            return true;
         }
     }
     else {
         Pass.css("background-color", "#fcc");
+        return false;
     }
 }
 

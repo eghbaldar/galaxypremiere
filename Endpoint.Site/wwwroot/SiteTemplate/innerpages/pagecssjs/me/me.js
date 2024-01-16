@@ -292,38 +292,43 @@ function UsernameStatus(flag) {
         $("#btnUpdateUsername").attr('disabled', 'disabled');
     }
 }
-function UpdateInfoPassword() {
+function UpdateInfoPassword(pass,rePass,span) {
 
-    var password = $("#txtPassword").val();
-    if (password == null || password.toString().trim() == '') return false;
-    pageWaitMe("progress"); // loading process starts
-    btnWaitMe_Start('btnUpdatePassword'); // Loading Button Start
+    var password = $(pass).val();
 
-    var postData = {
-        'Password': password
-    }
-    $.ajax({
-        contentType: 'application/x-www-form-urlencoded',
-        dataType: 'json',
-        type: 'POST',
-        data: postData,
-        url: 'MePassword',
-        success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdatePassword'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
+    if (checkPassMatchRePass(pass, rePass, span)) {
+
+        if (password == null || password.toString().trim() == '') return false;
+        pageWaitMe("progress"); // loading process starts
+        btnWaitMe_Start('btnUpdatePassword'); // Loading Button Start
+
+        $.ajax({
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'json',
+            type: 'POST',
+            data: { 'Password': password },
+            url: 'MePassword',
+            success: function (data) {
+                if (data.isSuccess) {
+                    KingSweetAlert(true, null);
+                    btnWaitMe_Stop('btnUpdatePassword'); // Loading Button Stops
+                    pageWaitMeRemove(); // loading process stops
+                }
+                else {
+                    KingSweetAlert(false, null);
+                    btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
+                    pageWaitMeRemove(); // loading process stops
+                }
+            },
+            error: function (request, status, error) {
                 KingSweetAlert(false, null);
-                btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
-        },
-        error: function (request, status, error) {
-            KingSweetAlert(false, null);
-        }
-    });
+        });
+    }
+    else {
+        KingSweetAlert(false, "Check the password strength and password matches.");
+    }
+
 }
 function UpdateInfoAccountType(e, type) {
 
