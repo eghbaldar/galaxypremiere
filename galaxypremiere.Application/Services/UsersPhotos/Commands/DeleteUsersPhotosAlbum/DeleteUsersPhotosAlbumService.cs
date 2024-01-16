@@ -11,7 +11,15 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPh
             _context = context;
         }
         public ResultDto Execute(RequestDeleteUsersPhotosAlbumServiceDto req)
-        {            
+        {
+            if (req == null)
+            {
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "Something went wrong"
+                };
+            }
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {

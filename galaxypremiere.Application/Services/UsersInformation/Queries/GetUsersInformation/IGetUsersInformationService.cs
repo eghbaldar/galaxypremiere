@@ -10,7 +10,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
 {
     public interface IGetUsersInformationService
     {
-        public GetUsersInformationServiceDto Execute(long userId);
+        public GetUsersInformationServiceDto Execute(RequestGetUsersInformationServiceDto req);
     }
 
 }

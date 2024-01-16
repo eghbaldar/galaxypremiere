@@ -19,43 +19,50 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
         }
         public ResultDto Execute(RequestUpdateUsersInformationHeaderServiceDto req)
         {
-
-            var userHeader = _context
-                  .UsersInformation
-                  .Where(u => u.UsersId == req.UsersId).FirstOrDefault();
-            if (userHeader == null) // Create for first time! (INSERT)
+            if (req == null)
             {
-                galaxypremiere.Domain.Entities.Users.UsersInformation usersInfo
-                    = new galaxypremiere.Domain.Entities.Users.UsersInformation();
-                usersInfo = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersInformation>(req);
-                //========================= Upload Headshot
-                var file = CreateFilename(req.Header);
-                switch (file.Success)
-                {
-                    case true:
-                        usersInfo.Header = file.Filename;
-                        break;
-                    case false:
-                        return new ResultDto
-                        {
-                            IsSuccess = false,
-                            Message = file.Message,
-                        };
-                }
-                //=========================
-                _context.UsersInformation.Add(usersInfo);
-                _context.SaveChanges();
-
                 return new ResultDto
                 {
-                    IsSuccess = true,
-                    Message = "Header has just been updated successfully.1"
+                    IsSuccess = false,
+                    Message = "Something went wrong."
                 };
             }
-            else // The user already existed (UPDATE)
+            var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
+            if (user != null)
             {
-                var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
-                if (user != null)
+                var userHeader = _context
+                  .UsersInformation
+                  .Where(u => u.UsersId == req.UsersId).FirstOrDefault();
+                if (userHeader == null) // Create for first time! (INSERT)
+                {
+                    galaxypremiere.Domain.Entities.Users.UsersInformation usersInfo
+                        = new galaxypremiere.Domain.Entities.Users.UsersInformation();
+                    usersInfo = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersInformation>(req);
+                    //========================= Upload Headshot
+                    var file = CreateFilename(req.Header);
+                    switch (file.Success)
+                    {
+                        case true:
+                            usersInfo.Header = file.Filename;
+                            break;
+                        case false:
+                            return new ResultDto
+                            {
+                                IsSuccess = false,
+                                Message = file.Message,
+                            };
+                    }
+                    //=========================
+                    _context.UsersInformation.Add(usersInfo);
+                    _context.SaveChanges();
+
+                    return new ResultDto
+                    {
+                        IsSuccess = true,
+                        Message = "Header has just been updated successfully.1"
+                    };
+                }
+                else // The user already existed (UPDATE)
                 {
                     var mappedDto = _mapper.Map<RequestUpdateUsersInformationHeaderServiceDto>(req);
                     _mapper.Map(mappedDto, userHeader);
@@ -81,15 +88,15 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                         Message = "Header has just been updated successfully.2"
                     };
                 }
-                else
-                {
-                    return new ResultDto
-                    {
-                        IsSuccess = false,
-                        Message = "The user doesn not exist."
-                    };
-                }
             }
+            else
+            {
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "The user doesn not exist."
+                };
+            }            
         }
 
         private ResultUploadDto CreateFilename(IFormFile file)

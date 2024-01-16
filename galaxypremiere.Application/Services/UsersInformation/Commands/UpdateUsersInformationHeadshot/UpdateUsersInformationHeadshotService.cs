@@ -20,44 +20,52 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
         }
         public ResultDto Execute(RequestUpdateUsersInformationHeadshotServiceDto req)
         {
-           
-            var userHeadshot = _context
-                  .UsersInformation
-                  .Where(u => u.UsersId == req.UsersId).FirstOrDefault();
-            if (userHeadshot == null) // Create for first time! (INSERT)
+            if (req == null)
             {
-                galaxypremiere.Domain.Entities.Users.UsersInformation usersInfo
-                    = new galaxypremiere.Domain.Entities.Users.UsersInformation();
-                usersInfo = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersInformation>(req);
-                //========================= Upload Headshot
-                var file = CreateFilename(req.Photo);
-                switch (file.Success)
-                {
-                    case true:
-                        usersInfo.Photo = file.Filename;
-                        break;                        
-                    case false:
-                        return new ResultDto
-                        {
-                            IsSuccess = false,
-                            Message = file.Message,
-                        };
-                }
-                //=========================
-                _context.UsersInformation.Add(usersInfo);
-                _context.SaveChanges();
-
                 return new ResultDto
                 {
-                    IsSuccess = true,
-                    Message = "Headshot has just been updated successfully.1"
+                    IsSuccess = false,
+                    Message = "Something went wrong."
                 };
             }
-            else // The user already existed (UPDATE)
+            var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
+            if (user != null)
             {
-                var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
-                if (user != null)
+                var userHeadshot = _context
+                                  .UsersInformation
+                                  .Where(u => u.UsersId == req.UsersId).FirstOrDefault();
+                if (userHeadshot == null) // Create for first time! (INSERT)
                 {
+                    galaxypremiere.Domain.Entities.Users.UsersInformation usersInfo
+                        = new galaxypremiere.Domain.Entities.Users.UsersInformation();
+                    usersInfo = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersInformation>(req);
+                    //========================= Upload Headshot
+                    var file = CreateFilename(req.Photo);
+                    switch (file.Success)
+                    {
+                        case true:
+                            usersInfo.Photo = file.Filename;
+                            break;
+                        case false:
+                            return new ResultDto
+                            {
+                                IsSuccess = false,
+                                Message = file.Message,
+                            };
+                    }
+                    //=========================
+                    _context.UsersInformation.Add(usersInfo);
+                    _context.SaveChanges();
+
+                    return new ResultDto
+                    {
+                        IsSuccess = true,
+                        Message = "Headshot has just been updated successfully.1"
+                    };
+                }
+                else // The user already existed (UPDATE)
+                {
+
                     var mappedDto = _mapper.Map<RequestUpdateUsersInformationHeadshotServiceDto>(req);
                     _mapper.Map(mappedDto, userHeadshot);
                     //========================= Upload Headshot
@@ -82,14 +90,14 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                         Message = "Headshot has just been updated successfully.2"
                     };
                 }
-                else
+            }
+            else
+            {
+                return new ResultDto
                 {
-                    return new ResultDto
-                    {
-                        IsSuccess = false,
-                        Message = "The user doesn not exist."
-                    };
-                }
+                    IsSuccess = false,
+                    Message = "The user doesn not exist."
+                };
             }
         }
 

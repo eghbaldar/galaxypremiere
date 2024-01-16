@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Domain.Entities.Users;
 
 namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation
 {
@@ -14,19 +15,29 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
             _context = context;
             _imapper = mapper;
         }
-        public GetUsersInformationServiceDto Execute(long userId)
+        public GetUsersInformationServiceDto Execute(RequestGetUsersInformationServiceDto req)
         {
-            var user = _context.Users.Where(u => u.Id == userId).FirstOrDefault();
-            var userInfo = _context.UsersInformation.Where(ui => ui.UsersId == userId).ToList();
-            if (user != null && userInfo.Any())
+            if (req != null)
             {
-                var userInfoSelected = userInfo
-                     .Where(ui => ui.UsersId == userId)
-                     .Select(ui => _imapper.Map<GetUsersInformationServiceDto>(ui))
-                     .First();
-                return userInfoSelected;
+                var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
+                if (user != null)
+                {
+                    var userInfo = _context.UsersInformation.Where(ui => ui.UsersId == req.UsersId).ToList();
+                    if (userInfo.Any())
+                    {
+                        var userInfoSelected = userInfo
+                         .Where(ui => ui.UsersId == req.UsersId)
+                         .Select(ui => _imapper.Map<GetUsersInformationServiceDto>(ui)).First();
+                        return userInfoSelected;
+                    }
+                    else
+                        return null;
+                }
+                else
+                    return null;
             }
-            return null;
+            else
+                return null;
         }
     }
 

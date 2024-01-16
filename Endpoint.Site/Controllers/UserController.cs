@@ -57,6 +57,8 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 using galaxypremiere.Domain.Entities.Users;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
 
 namespace Endpoint.Site.Controllers
 {
@@ -116,10 +118,16 @@ namespace Endpoint.Site.Controllers
             long userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return View(new ModelGetInformation
             {
-                getUsersInformationServiceDto = _userInformationFacade.GetUsersInformationServiceService.Execute(userId),
+                getUsersInformationServiceDto = _userInformationFacade.GetUsersInformationServiceService.Execute(new RequestGetUsersInformationServiceDto
+                {
+                    UsersId=userId,
+                }),
                 resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),
                 resultGetLanguagesServiceDto = _languagesFacade.GetLanguagesService.Execute(),
-                getUsersInformationContactServiceDto = _userInformationFacade.GetUsersInformationContactService.Execute(userId),
+                getUsersInformationContactServiceDto = _userInformationFacade.GetUsersInformationContactService.Execute(new RequestGetUsersInformationContactServiceDto
+                {
+                    UsersId=userId
+                }),
             });
         }
         [HttpPost]

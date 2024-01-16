@@ -72,60 +72,18 @@ function PostProfileEducation(data) {
                     }
                 }
                 // setting process is done!
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Updated Successfully."
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: data.message
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            });
+            KingSweetAlert(false, null);
             btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -156,21 +114,7 @@ function DeleteProfileEducation(e) {
         url: 'ProfileEducationDelete',
         success: function (data) {
             if (data.isSuccess) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Deleted Successfully."
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
@@ -180,21 +124,7 @@ function DeleteProfileEducation(e) {
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            });
+            KingSweetAlert(false, null);
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -292,78 +222,22 @@ function PostProfileFavoriteMovies(data) {
                 }
                 // setting process is done!
                 if (flag) {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "success",
-                        title: "Information Has Been Updated Successfully."
-                    });
+                    KingSweetAlert(true, null);
                 }
                 else {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 5000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "error",
-                        title: "There is no movie in the link, check your link out.",
-                    });
+                    KingSweetAlert(false, "There is no movie in the link, check your link out.");
                 }
                 btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: data.message
-                });
+                KingSweetAlert(false, data.message);
                 btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            });
+            KingSweetAlert(false, null);
             btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -395,60 +269,18 @@ function DeleteProfileFavoriteMovies(e) {
         url: 'ProfileFavoriteMovieDelete',
         success: function (data) {
             if (data.isSuccess) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Deleted Successfully."
-                });
+                KingSweetAlert(true, "Information Has Been Deleted Successfully.");
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: data.message,
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            });
+            KingSweetAlert(false, null);
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -513,48 +345,18 @@ function CheckTheLink(e, link) {
                 KingWarningStyleOff("#txtMovieLink_" + SeparateID[1], 0);
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
-
                 return true;
             } else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: data.message
-                });
+                KingSweetAlert(false, data.message);
                 KingWarningStyle("#txtMovieLink_" + SeparateID[1], 0);
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
-
                 return false;
             }
 
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            });
+            KingSweetAlert(false, null);
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
             return false;
@@ -563,7 +365,7 @@ function CheckTheLink(e, link) {
 
 }
 // Companies
-function GetProfileCompanyElements() {
+function GetProfileCompanyElements()  {
 
     pageWaitMe("progress"); // loading process starts
     btnWaitMe_Start('btnUpdateProfileCompanies'); // Loading Button Start
@@ -716,60 +518,18 @@ function PostProfileCompany(data) {
                     }
                 }
                 // setting process is done!
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Updated Successfully."
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: data.message,
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            }); 
+            KingSweetAlert(false, null);
             btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -799,21 +559,7 @@ function DeleteProfileCompany(e) {
         url: 'ProfileCompanyDelete',
         success: function (data) {
             if (data.isSuccess) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Deleted Successfully."
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
@@ -823,21 +569,7 @@ function DeleteProfileCompany(e) {
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            });
+            KingSweetAlert(false, null);
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -933,60 +665,18 @@ function PostProfileNews(data) {
                     }
                 }
                 // setting process is done!
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Updated Successfully."
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: "Something Went Wrong."
-                }); 
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            }); 
+            KingSweetAlert(false, null);
             btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -1016,21 +706,7 @@ function DeleteProfileNews(e) {
         url: 'ProfileNewsDelete',
         success: function (data) {
             if (data.isSuccess) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Deleted Successfully."
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
@@ -1040,21 +716,7 @@ function DeleteProfileNews(e) {
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            }); 
+            KingSweetAlert(false, null);
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -1138,60 +800,18 @@ function PostProfileLinks(data) {
                     }
                 }
                 // setting process is done!
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Updated Successfully."
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: "Something Went Wrong."
-                }); 
+                KingSweetAlert(false, null); 
                 btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            }); 
+            KingSweetAlert(false, null);
             btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -1221,21 +841,7 @@ function DeleteProfileLinks(e) {
         url: 'ProfileLinksDelete',
         success: function (data) {
             if (data.isSuccess) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Deleted Successfully."
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
@@ -1245,21 +851,7 @@ function DeleteProfileLinks(e) {
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            }); 
+            KingSweetAlert(false, null);
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -1345,57 +937,15 @@ function PostProfileAttachments() {
         success: function (data) {
             if (data.isSuccess) {
                 $("#status").html('UPLOADED!!');
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Updated Successfully."
-                });
+                KingSweetAlert(true, null);
                 $("#divAttachments").load(window.location + " #divAttachments"); // update table!
             }
             else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 5000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "error",
-                    title: data.message
-                }); 
+                KingSweetAlert(true, data.message);
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            }); 
+            KingSweetAlert(false, null); 
         }
     })
         .always(function (dataOrjqXHR, textStatus, jqXHRorErrorThrown) {
@@ -1418,21 +968,7 @@ function DeleteProfileAttachment(e, Id) {
         url: 'ProfileAttachmentsDelete',
         success: function (data) {
             if (data.isSuccess) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Information Has Been Deleted Successfully."
-                });
+                KingSweetAlert(true, null);
                 $("#divAttachments").load(window.location + " #divAttachments");
                 btnWaitMe_Stop(e.id); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
@@ -1443,21 +979,7 @@ function DeleteProfileAttachment(e, Id) {
             }
         },
         error: function (req, status, err) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            }); 
+            KingSweetAlert(false, null);
             btnWaitMe_Stop(e.id); // Loading Button Stops
             pageWaitMeRemove(); // loading process stops
         }
@@ -1496,13 +1018,7 @@ function fireNewEductionalPart() {
     // how many new forms a client can add? the answer is: at most 10 forms
     var index = $(".form_field_outer").find(".form_field_outer_row").length + 1;
     if (index > 10) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Only 10 educational cases are allowed.",
-            showConfirmButton: false,
-            timer: 3000
-        });
+        KingSweetAlert(false, "Only 10 educational cases are allowed.");
         return;
     }
     // end
@@ -1588,13 +1104,7 @@ function fireNewFavoriteMoviePart() {
     //how many new forms a client can add? the answer is: at most 10 forms
     var index = $(".form_field_outer_favoriteMovie").find(".form_field_outer_row_favoriteMovie").length + 1;
     if (index > 10) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Only 10 favorite movie are allowed.",
-            showConfirmButton: false,
-            timer: 3000
-        });
+        KingSweetAlert(false, "Only 10 favorite movie are allowed.");
         return;
     }
     var guid = generateGuid();// generate a random string as the name of the controls
@@ -1649,13 +1159,7 @@ function fireNewNewsPart() {
     //how many new forms a client can add? the answer is: at most 10 forms
     var index = $(".form_field_outer_news").find(".form_field_outer_news_row").length + 1;
     if (index > 10) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Only 10 news are allowed.",
-            showConfirmButton: false,
-            timer: 3000
-        });
+        KingSweetAlert(false, "Only 10 news are allowed.");
         return;
     }
     var guid = generateGuid();// generate a random string as the name of the controls
@@ -1719,13 +1223,7 @@ function fireNewLinksPart() {
     //how many new forms a client can add? the answer is: at most 10 forms
     var index = $(".form_field_outer_links").find(".form_field_outer_links_row").length + 1;
     if (index > 10) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Only 10 links are allowed.",
-            showConfirmButton: false,
-            timer: 3000
-        });
+        KingSweetAlert(false, "Only 10 links are allowed.");
         return;
     }
     var guid = generateGuid();// generate a random string as the name of the controls
@@ -1815,4 +1313,43 @@ function fireDeleteLinksPart(e) {
     $(e).closest(".form_field_outer_links_row").remove();
     var index = $(".form_field_outer_links").find(".form_field_outer_links_row").length;
     if (index == 0) $("#btnUpdateProfileLinks").prop("disabled", true);
+}
+// SWEET ALERT FUNCTION
+function KingSweetAlert(type, message) {
+
+    if (type) { // success
+        if (message == null) message = "Information Has Been Updated Successfully."
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: message
+        });
+    } else { // error
+        if (message == null) message = "Something Went Wrong."
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "error",
+            title: message
+        });
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileNews;
 using galaxypremiere.Common.DTOs;
 
 namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileLinks
@@ -12,6 +13,15 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
         }
         public ResultDto<ResultGetUserProfileLinksServiceDto> Execute(RequestGetUserProfileLinksDto req)
         {
+            if (req == null)
+            {
+                return new ResultDto<ResultGetUserProfileLinksServiceDto>()
+                {
+                    Data = null,
+                    IsSuccess = false,
+                    Message = "Something went wrong."
+                };
+            }
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {

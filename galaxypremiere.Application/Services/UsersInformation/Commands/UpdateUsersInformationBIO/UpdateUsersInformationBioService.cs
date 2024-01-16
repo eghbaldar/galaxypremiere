@@ -19,6 +19,14 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
         }
         public ResultDto Execute(RequestUpdateUsersInformationBioServiceDto req)
         {
+            if (req == null)
+            {
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "Something went wrong."
+                };
+            }
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {

@@ -14,19 +14,25 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
             _context = context;
             _imapper = mapper;
         }
-        public GetUsersInformationContactServiceDto Execute(long userId)
+        public GetUsersInformationContactServiceDto Execute(RequestGetUsersInformationContactServiceDto req)
         {
-            var user = _context.Users.Where(u => u.Id == userId).FirstOrDefault();
-            var userInfo = _context.UsersAddress.Where(ui => ui.UsersId == userId).FirstOrDefault();
-            if (user != null && userInfo != null)
+            if (req != null)
             {
-                var userInfoSelected = _context.UsersAddress
-                     .Where(ui => ui.UsersId == userId)
-                     .Select(ui => _imapper.Map<GetUsersInformationContactServiceDto>(ui))
-                     .First();
-                return userInfoSelected;
+                var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
+                if (user != null)
+                {
+                    var userInfo = _context.UsersAddress.Where(ui => ui.UsersId == req.UsersId).FirstOrDefault();
+                    var userInfoSelected = _context.UsersAddress
+                         .Where(ui => ui.UsersId == req.UsersId)
+                         .Select(ui => _imapper.Map<GetUsersInformationContactServiceDto>(ui))
+                         .First();
+                    return userInfoSelected;
+                }
+                else
+                    return null;
             }
-            return null;
+            else
+                return null;
         }
     }
 }

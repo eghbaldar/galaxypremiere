@@ -12,6 +12,14 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.DeleteUserPr
         }
         public ResultDto Execute(RequestDeleteUserProfileLinksServiceDto req)
         {
+            if (req == null)
+            {
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "Something went wrong"
+                };
+            }
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {

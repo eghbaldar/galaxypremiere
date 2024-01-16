@@ -4,10 +4,6 @@ using System.Text.RegularExpressions;
 
 namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername
 {
-    public class StatusUpdateUsersInformationUsernameServiceDto
-    {
-        public byte Status { get; set; }
-    }
     public class UpdateUsersInformationUsernameService : IUpdateUsersInformationAccountTypeService
     {
         private readonly IDataBaseContext _context;
@@ -17,6 +13,15 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
         }
         public ResultDto<StatusUpdateUsersInformationUsernameServiceDto> Execute(RequestUpdateUsersInformationUsernameServiceDto req)
         {
+            if (req== null)
+            {
+                return new ResultDto<StatusUpdateUsersInformationUsernameServiceDto>
+                {
+                    Data=null,
+                    IsSuccess = false,
+                    Message = "Something went wrong."
+                };
+            }
             var user = _context.Users.Where(u => u.Id == req.userId).FirstOrDefault();
             if (user != null)
             {

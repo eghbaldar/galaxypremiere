@@ -14,9 +14,18 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
             _context = context;
             _mapper = mapper;
         }
-            public ResultDto Execute(RequestUpdateUsersInformationAccountDto req)
+        public ResultDto Execute(RequestUpdateUsersInformationAccountDto req)
+        {
+            if (req == null)
             {
-            try
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "Something went wrong."
+                };
+            }
+            var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
+            if (user != null)
             {
                 var userInfo = _context.UsersInformation.Where(u => u.UsersId == req.UsersId).FirstOrDefault();
                 if (userInfo == null) // Create for first time! (INSERT)
@@ -35,34 +44,22 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                 }
                 else // The user already existed (UPDATE)
                 {
-                    var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
-                    if (user != null)
+                    var mappedDto = _mapper.Map<RequestUpdateUsersInformationAccountDto>(req);
+                    _mapper.Map(mappedDto, userInfo);
+                    _context.SaveChanges();
+                    return new ResultDto
                     {
-                        var mappedDto = _mapper.Map<RequestUpdateUsersInformationAccountDto>(req);
-                        _mapper.Map(mappedDto, userInfo);                        
-                        _context.SaveChanges();
-                        return new ResultDto
-                        {
-                            IsSuccess = true,
-                            Message = "Information has just been update successfully.2"
-                        };
-                    }
-                    else
-                    {
-                        return new ResultDto
-                        {
-                            IsSuccess = false,
-                            Message = "The user doesn't exist."
-                        };
-                    }
+                        IsSuccess = true,
+                        Message = "Information has just been update successfully.2"
+                    };
                 }
             }
-            catch (Exception ex)
+            else
             {
                 return new ResultDto
                 {
                     IsSuccess = false,
-                    Message = ex.Message,
+                    Message = "The user doesn't exist."
                 };
             }
         }

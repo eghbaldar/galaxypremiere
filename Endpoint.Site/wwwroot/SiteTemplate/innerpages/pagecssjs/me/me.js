@@ -32,36 +32,22 @@
         url: 'MeAccount',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdateAccount'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Something went wrong, please try it again or later!",
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop('btnUpdateAccount'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (request, status, error) {
-            Swal.fire({
-                position: "center",
+            KingSweetAlert(false, null);
+            Toast.fire({
                 icon: "error",
-                title: "Something went wrong, please try it again or later!",
-                showConfirmButton: false,
-                timer: 3000
-            });
+                title: "Something Went Wrong."
+            }); 
         }
     });
 }
@@ -112,36 +98,18 @@ function UpdateInfoContact() {
         url: 'MeContact',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Something went wrong, please try it again or later!",
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
-                showConfirmButton: false,
-                timer: 3000
-            });
+            KingSweetAlert(false, null);
         }
     });
 }
@@ -163,15 +131,8 @@ function UpdateInfoPrivacy(e, privacy) {
         data: postData,
         url: 'MePrivacy',
         success: function (data) {
-
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+                KingSweetAlert(true, null);
                 // change styles of buttons
                 $("#btnPrivacy0").addClass('btn cur-p btn-light');
                 $("#btnPrivacy1").addClass('btn cur-p btn-light');
@@ -185,13 +146,7 @@ function UpdateInfoPrivacy(e, privacy) {
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Something went wrong, please try it again or later!",
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop('btnPrivacy0'); // Loading Button Stops
                 btnWaitMe_Stop('btnPrivacy1'); // Loading Button Stops
                 btnWaitMe_Stop('btnPrivacy2'); // Loading Button Stops
@@ -199,13 +154,7 @@ function UpdateInfoPrivacy(e, privacy) {
             }
         },
         error: function (request, status, error) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
-                showConfirmButton: false,
-                timer: 3000
-            });
+            KingSweetAlert(false, null);
         }
     });
 }
@@ -216,22 +165,14 @@ function UpdateInfoUsername() {
     /// why is not the following part placed in CheckValidUsername function?
     /// because if a client enters less than 5 characters, the system is keeping to notify error to him!
     if (username.toString().length < 5) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "The username lenght must be more than 5 characters.",
-            showConfirmButton: false,
-            timer: 3000
-        });
+        KingSweetAlert(false, "The username lenght must be more than 5 characters.");
         return false;
     }
 
     pageWaitMe("progress"); // loading process starts
     btnWaitMe_Start('btnUpdateUsername'); // Loading Button Start
 
-    var postData = {
-        'username': username,
-    };
+    var postData = {'username': username,};
     $.ajax({
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
@@ -240,40 +181,24 @@ function UpdateInfoUsername() {
         url: 'MeUsername',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
+                UsernameStatus(false);
+                $("#txtUsername").attr('data-firstValue',username);
             }
             else {
                 var check = data.data.status;
                 switch (check) {
                     case 0:
                         //duplicated!
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: data.message,
-                            showConfirmButton: false,
-                            timer: 3000
-                        });
+                        KingSweetAlert(false, data.message);
                         btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
                         pageWaitMeRemove(); // loading process stops
                         break;
                     case 2:
                         //user did not find
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: data.message,
-                            showConfirmButton: false,
-                            timer: 3000
-                        });
+                        KingSweetAlert(false, data.message);
                         btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
                         pageWaitMeRemove(); // loading process stops
                         break;
@@ -281,13 +206,7 @@ function UpdateInfoUsername() {
             }
         },
         error: function (request, status, error) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
-                showConfirmButton: false,
-                timer: 3000
-            });
+            KingSweetAlert(false, null);
         }
     });
 }
@@ -318,13 +237,7 @@ function ChangeRuntimeUsername(e){
             }
         },
         error: function (request, status, error) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
-                showConfirmButton: false,
-                timer: 3000
-            });
+            KingSweetAlert(false, null);
         }
     });
 }
@@ -347,38 +260,20 @@ function CheckValidUsername(username) {
     }
 
     if (username.toString().trim().indexOf(' ') != -1) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "A blank found.",
-            showConfirmButton: false,
-            timer: 3000
-        });
+        KingSweetAlert(false, "A blank found.");
         UsernameStatus(false);
         return false;
     }
 
     if ('qwertyuiopasdfghjklzxcvbnm'.indexOf(username.trim().substring(0, 1).toLowerCase().toString()) == -1) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "The username must be starting with an alphabet character.",
-            showConfirmButton: false,
-            timer: 3000
-        });
+        KingSweetAlert(false, "The username must be starting with an alphabet character.");
         UsernameStatus(false);
         return false;
     }
     
     var characterExceptAlphabets = /[^\w\s]/gi;
     if (characterExceptAlphabets.test(username)) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Invalid character(s) found. Only the alphabet and number would be Okay.",
-            showConfirmButton: false,
-            timer: 3000
-        });
+        KingSweetAlert(false, "Invalid character(s) found. Only the alphabet and number would be Okay.");
         UsernameStatus(false);
         return false;
     }
@@ -415,36 +310,18 @@ function UpdateInfoPassword() {
         url: 'MePassword',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdatePassword'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Something went wrong, please try it again or later!",
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (request, status, error) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
-                showConfirmButton: false,
-                timer: 3000
-            });
+            KingSweetAlert(false, null);
         }
     });
 }
@@ -481,14 +358,7 @@ function UpdateInfoAccountType(e, type) {
         success: function (data) {
 
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
-
+                KingSweetAlert(true, null);
                 // change styles of buttons
                 $("#btnAccountType0").addClass('btn cur-p btn-light');
                 $("#btnAccountType0").text('Enable');
@@ -507,19 +377,13 @@ function UpdateInfoAccountType(e, type) {
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Something went wrong, please try it again or later!",
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop(controlId); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (request, status, error) {
-            alert(request.responseText);
+            KingSweetAlert(false, null);
         }
     });
 }
@@ -548,36 +412,18 @@ function UpdateInfoBIO() {
         url: 'MeBIO',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdateBIO'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Something went wrong, please try it again or later!",
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop('btnUpdateBIO'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (request, status, error) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
-                showConfirmButton: false,
-                timer: 3000
-            });
+            KingSweetAlert(false, null);
         }
     });
 }
@@ -666,23 +512,11 @@ function dropavatar(e) {
                 $("#dropzoneAvatar").css("background-image", "none");
                 showfileavatar(file); // showing file for demonstration ...
                 if (data.isSuccess) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Information has been saved",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
+                    KingSweetAlert(true, null);
                     pageWaitMeRemove(); // loading process stops
                 }
                 else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Something went wrong, please try it again or later!",
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
+                    KingSweetAlert(false, null);
                     pageWaitMeRemove(); // loading process stops
                 }
             },
@@ -729,30 +563,18 @@ function dropheader(e) {
                 $('#dropzoneHeader').removeClass('hover').addClass('dropped').find('img').remove();
                 showfileheader(file); // showing file for demonstration ...
                 if (data.isSuccess) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Information has been saved",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
+                    KingSweetAlert(true, null);
                     btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
                     pageWaitMeRemove(); // loading process stops
                 }
                 else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Something went wrong, please try it again or later!",
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
+                    KingSweetAlert(false, null);
                     btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
                     pageWaitMeRemove(); // loading process stops
                 }
             },
             error: function (req, res, err) {
-                alert('req' + req.responseText + 'res:' + res + 'err:' + err);
+                KingSweetAlert(false, null);
             }
         });
     }
@@ -791,35 +613,17 @@ function openDialougePostPosition() {
                 url: 'MePositions',
                 success: function (data) {
                     if (data.isSuccess) {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: data.message,
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
+                        KingSweetAlert(true, null);
                         pageWaitMeRemove(); // loading process stops
                     }
                     else {
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: data.message,
-                            showConfirmButton: false,
-                            timer: 3000
-                        });
+                        KingSweetAlert(false, data.message);
                         btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
                         pageWaitMeRemove(); // loading process stops
                     }
                 },
                 error: function (res, req, err) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Something went wrong, please try it again or later!",
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
+                    KingSweetAlert(false, null);
                 }
             });
         }
@@ -947,36 +751,57 @@ function UpdateOther() {
         url: 'MeOther',
         success: function (data) {
             if (data.isSuccess) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Information has been saved",
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+                KingSweetAlert(true, null);
                 btnWaitMe_Stop('btnUpdateOther'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
             else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Something went wrong, please try it again or later!",
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                KingSweetAlert(false, null);
                 btnWaitMe_Stop('btnUpdateOther'); // Loading Button Stops
                 pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (request, status, error) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Something went wrong, please try it again or later!",
-                showConfirmButton: false,
-                timer: 3000
-            });
+            KingSweetAlert(false, null);
         }
     });
+}
+// SWEET ALERT FUNCTION
+function KingSweetAlert(type, message) {
+    
+    if (type) { // success
+        if (message == null) message = "Information Has Been Updated Successfully."
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: message
+        });
+    } else { // error
+        if (message == null) message = "Something Went Wrong."
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "error",
+            title: message
+        }); 
+    }
 }

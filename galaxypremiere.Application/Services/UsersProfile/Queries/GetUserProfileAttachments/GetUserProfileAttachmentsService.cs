@@ -15,6 +15,15 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
         }
         public ResultDto<ResultGetUserProfileAttachmentsServiceDto> Execute(RequestGetUserProfileAttachmentsServiceDto req)
         {
+            if (req == null)
+            {
+                return new ResultDto<ResultGetUserProfileAttachmentsServiceDto>()
+                {
+                    Data = null,
+                    IsSuccess = false,
+                    Message = "Something went wrong."
+                };
+            }
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {

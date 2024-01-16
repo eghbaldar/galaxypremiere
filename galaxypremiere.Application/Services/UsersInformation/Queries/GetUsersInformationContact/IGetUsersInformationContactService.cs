@@ -9,6 +9,6 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
 {
     public interface IGetUsersInformationContactService
     {
-        public GetUsersInformationContactServiceDto Execute(long userId);
+        public GetUsersInformationContactServiceDto Execute(RequestGetUsersInformationContactServiceDto req);
     }
 }

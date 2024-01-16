@@ -15,6 +15,14 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
         }
         public ResultDto Execute(RequestPostUserProfileNewsServiceDto req)
         {
+            if (req == null)
+            {
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "Something went wrong"
+                };
+            }
             var user = _context.Users.Where(u => u.Id == req.UsersId).FirstOrDefault();
             if (user != null)
             {
