@@ -31,24 +31,15 @@
         data: postData,
         url: 'MeAccount',
         success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdateAccount'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                KingSweetAlert(false, null);
-                btnWaitMe_Stop('btnUpdateAccount'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
+            if (data.isSuccess) KingSweetAlert(true, null);
+            else KingSweetAlert(false, null);
         },
         error: function (request, status, error) {
             KingSweetAlert(false, null);
-            Toast.fire({
-                icon: "error",
-                title: "Something Went Wrong."
-            }); 
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateAccount'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function UpdateInfoContact() {
@@ -97,20 +88,15 @@ function UpdateInfoContact() {
         data: postData,
         url: 'MeContact',
         success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                KingSweetAlert(false, null);
-                btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
+            if (data.isSuccess) KingSweetAlert(true, null);
+            else KingSweetAlert(false, null);
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function UpdateInfoPrivacy(e, privacy) {
@@ -120,15 +106,11 @@ function UpdateInfoPrivacy(e, privacy) {
     btnWaitMe_Start('btnPrivacy1'); // Loading Button Start
     btnWaitMe_Start('btnPrivacy2'); // Loading Button Start
 
-
-    var postData = {
-        'Privacy': privacy
-    }
     $.ajax({
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
         type: 'POST',
-        data: postData,
+        data: { 'Privacy': privacy },
         url: 'MePrivacy',
         success: function (data) {
             if (data.isSuccess) {
@@ -140,22 +122,19 @@ function UpdateInfoPrivacy(e, privacy) {
                 $(e).removeClass();
                 $(e).addClass('btn cur-p btn-primary');
                 // end
-                btnWaitMe_Stop('btnPrivacy0'); // Loading Button Stops
-                btnWaitMe_Stop('btnPrivacy1'); // Loading Button Stops
-                btnWaitMe_Stop('btnPrivacy2'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
             else {
                 KingSweetAlert(false, null);
-                btnWaitMe_Stop('btnPrivacy0'); // Loading Button Stops
-                btnWaitMe_Stop('btnPrivacy1'); // Loading Button Stops
-                btnWaitMe_Stop('btnPrivacy2'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (request, status, error) {
             KingSweetAlert(false, null);
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnPrivacy0'); // Loading Button Stops
+        btnWaitMe_Stop('btnPrivacy1'); // Loading Button Stops
+        btnWaitMe_Stop('btnPrivacy2'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function UpdateInfoUsername() {
@@ -172,7 +151,7 @@ function UpdateInfoUsername() {
     pageWaitMe("progress"); // loading process starts
     btnWaitMe_Start('btnUpdateUsername'); // Loading Button Start
 
-    var postData = {'username': username,};
+    var postData = { 'username': username, };
     $.ajax({
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
@@ -182,10 +161,8 @@ function UpdateInfoUsername() {
         success: function (data) {
             if (data.isSuccess) {
                 KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
                 UsernameStatus(false);
-                $("#txtUsername").attr('data-firstValue',username);
+                $("#txtUsername").attr('data-firstValue', username);
             }
             else {
                 var check = data.data.status;
@@ -193,14 +170,10 @@ function UpdateInfoUsername() {
                     case 0:
                         //duplicated!
                         KingSweetAlert(false, data.message);
-                        btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
-                        pageWaitMeRemove(); // loading process stops
                         break;
                     case 2:
                         //user did not find
                         KingSweetAlert(false, data.message);
-                        btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
-                        pageWaitMeRemove(); // loading process stops
                         break;
                 }
             }
@@ -208,11 +181,14 @@ function UpdateInfoUsername() {
         error: function (request, status, error) {
             KingSweetAlert(false, null);
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateUsername'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
-function ChangeRuntimeUsername(e){
+function ChangeRuntimeUsername(e) {
 
-    var input = $("#txtUsername").val();    
+    var input = $("#txtUsername").val();
     if (!CheckValidUsername(input)) {
         $("#iconCurrentUsername").removeClass();
         $("#iconCurrentUsername").addClass("fa-solid fa-circle-xmark colorRed");
@@ -270,7 +246,7 @@ function CheckValidUsername(username) {
         UsernameStatus(false);
         return false;
     }
-    
+
     var characterExceptAlphabets = /[^\w\s]/gi;
     if (characterExceptAlphabets.test(username)) {
         KingSweetAlert(false, "Invalid character(s) found. Only the alphabet and number would be Okay.");
@@ -292,10 +268,9 @@ function UsernameStatus(flag) {
         $("#btnUpdateUsername").attr('disabled', 'disabled');
     }
 }
-function UpdateInfoPassword(pass,rePass,span) {
+function UpdateInfoPassword(pass, rePass, span) {
 
     var password = $(pass).val();
-
     if (checkPassMatchRePass(pass, rePass, span)) {
 
         if (password == null || password.toString().trim() == '') return false;
@@ -309,20 +284,15 @@ function UpdateInfoPassword(pass,rePass,span) {
             data: { 'Password': password },
             url: 'MePassword',
             success: function (data) {
-                if (data.isSuccess) {
-                    KingSweetAlert(true, null);
-                    btnWaitMe_Stop('btnUpdatePassword'); // Loading Button Stops
-                    pageWaitMeRemove(); // loading process stops
-                }
-                else {
-                    KingSweetAlert(false, null);
-                    btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
-                    pageWaitMeRemove(); // loading process stops
-                }
+                if (data.isSuccess) KingSweetAlert(true, null)
+                else KingSweetAlert(false, null);
             },
             error: function (request, status, error) {
                 KingSweetAlert(false, null);
             }
+        }).always(function () {
+            btnWaitMe_Stop('btnUpdatePassword'); // Loading Button Stops
+            pageWaitMeRemove(); // loading process stops
         });
     }
     else {
@@ -331,7 +301,6 @@ function UpdateInfoPassword(pass,rePass,span) {
 
 }
 function UpdateInfoAccountType(e, type) {
-
 
     pageWaitMe("progress"); // loading process starts
     btnWaitMe_Start('btnAccountType0'); // Loading Button Start
@@ -350,15 +319,12 @@ function UpdateInfoAccountType(e, type) {
             typeCode = 2;
             break;
     }
-    var postData = {
-        'AccountType': typeCode,
-    }
 
     $.ajax({
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
         type: 'POST',
-        data: postData,
+        data: { 'AccountType': typeCode },
         url: 'MeAccountType',
         success: function (data) {
 
@@ -375,21 +341,19 @@ function UpdateInfoAccountType(e, type) {
                 $(e).addClass('btn cur-p btn-primary');
                 $(e).text('Enabled');
                 // end
-
-                btnWaitMe_Stop('btnAccountType0'); // Loading Button Stops
-                btnWaitMe_Stop('btnAccountType1'); // Loading Button Stops
-                btnWaitMe_Stop('btnAccountType2'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
             else {
                 KingSweetAlert(false, null);
-                btnWaitMe_Stop(controlId); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (request, status, error) {
             KingSweetAlert(false, null);
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnAccountType0'); // Loading Button Stops
+        btnWaitMe_Stop('btnAccountType1'); // Loading Button Stops
+        btnWaitMe_Stop('btnAccountType2'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function UpdateInfoBIO() {
@@ -416,20 +380,15 @@ function UpdateInfoBIO() {
         data: postData,
         url: 'MeBIO',
         success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdateBIO'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                KingSweetAlert(false, null);
-                btnWaitMe_Stop('btnUpdateBIO'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
+            if (data.isSuccess) KingSweetAlert(true, null);
+            else  KingSweetAlert(false, null);
         },
         error: function (request, status, error) {
             KingSweetAlert(false, null);
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateBIO'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 /*@* Upload Js *@*/
@@ -481,7 +440,7 @@ function dragoutdropzoneheader(e) { //function for dragging out of element
 function dropavatar(e) {
     var file = this.files[0];
     // the following functions uses (fileextensionsize.js)
-    if (KingCheckSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152",true)) { // => 2 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadshotService.cs) and (UploadSmallFilesService.cs)
+    if (KingCheckSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152", true)) { // => 2 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadshotService.cs) and (UploadSmallFilesService.cs)
         // ////////////////////////// Loaders
         $("#HeadshotLoader").css("display", "table-cell"); // circle loading on photo
         $("#dropzoneAvatar *").attr("disabled", "disabled").off('click'); // disable clickable 
@@ -510,31 +469,26 @@ function dropavatar(e) {
                     cursor: "pointer",
                 });
                 $("#filedropzoneAvatar").css("opacity", "0");
-                pageWaitMeRemove(); // loading process stops
                 //////////////////////////////
                 $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
                 $('#filedropzoneAvatar').val('');
                 $("#dropzoneAvatar").css("background-image", "none");
                 showfileavatar(file); // showing file for demonstration ...
-                if (data.isSuccess) {
-                    KingSweetAlert(true, null);
-                    pageWaitMeRemove(); // loading process stops
-                }
-                else {
-                    KingSweetAlert(false, null);
-                    pageWaitMeRemove(); // loading process stops
-                }
+                if (data.isSuccess) KingSweetAlert(true, null);
+                else  KingSweetAlert(false, null);                    
             },
             error: function (req, res, err) {
-                alert('req' + req.responseText + 'res:' + res + 'err:' + err);
+                KingSweetAlert(false, null);
             }
+        }).always(function () {
+            pageWaitMeRemove(); // loading process stops
         });
     }
 }
 function dropheader(e) {
     var file = this.files[0];
     // the following functions uses (fileextensionsize.js)
-    if (KingCheckSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "5242880",true)) { // => 5 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadertService.cs) and (UploadSmallFilesService.cs)
+    if (KingCheckSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "5242880", true)) { // => 5 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadertService.cs) and (UploadSmallFilesService.cs)
         // ////////////////////////// Loaders
         $("#HeaderLoader").css("display", "table-cell"); // circle loading on photo
         $("#dropzoneHeader *").attr("disabled", "disabled").off('click'); // disable clickable 
@@ -563,24 +517,17 @@ function dropheader(e) {
                     cursor: "pointer",
                 });
                 $("#filedropzoneHeader").css("opacity", "0");
-                pageWaitMeRemove(); // loading process stops
                 //////////////////////////////
                 $('#dropzoneHeader').removeClass('hover').addClass('dropped').find('img').remove();
                 showfileheader(file); // showing file for demonstration ...
-                if (data.isSuccess) {
-                    KingSweetAlert(true, null);
-                    btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
-                    pageWaitMeRemove(); // loading process stops
-                }
-                else {
-                    KingSweetAlert(false, null);
-                    btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
-                    pageWaitMeRemove(); // loading process stops
-                }
+                if (data.isSuccess) KingSweetAlert(true, null);
+                else KingSweetAlert(false, null);
             },
             error: function (req, res, err) {
                 KingSweetAlert(false, null);
             }
+        }).always(function () {
+            pageWaitMeRemove(); // loading process stops
         });
     }
 }
@@ -617,19 +564,14 @@ function openDialougePostPosition() {
                 data: postData,
                 url: 'MePositions',
                 success: function (data) {
-                    if (data.isSuccess) {
-                        KingSweetAlert(true, null);
-                        pageWaitMeRemove(); // loading process stops
-                    }
-                    else {
-                        KingSweetAlert(false, data.message);
-                        btnWaitMe_Stop('btnUpdateContact'); // Loading Button Stops
-                        pageWaitMeRemove(); // loading process stops
-                    }
+                    if (data.isSuccess) KingSweetAlert(true, null);
+                    else  KingSweetAlert(false, data.message);
                 },
                 error: function (res, req, err) {
                     KingSweetAlert(false, null);
                 }
+            }).always(function () {
+                pageWaitMeRemove(); // loading process stops
             });
         }
     });
@@ -755,25 +697,20 @@ function UpdateOther() {
         data: postData,
         url: 'MeOther',
         success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdateOther'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                KingSweetAlert(false, null);
-                btnWaitMe_Stop('btnUpdateOther'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
+            if (data.isSuccess) KingSweetAlert(true, null);
+            else KingSweetAlert(false, null);
         },
         error: function (request, status, error) {
             KingSweetAlert(false, null);
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateOther'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 // SWEET ALERT FUNCTION
 function KingSweetAlert(type, message) {
-    
+
     if (type) { // success
         if (message == null) message = "Information Has Been Updated Successfully."
         const Toast = Swal.mixin({
@@ -807,6 +744,6 @@ function KingSweetAlert(type, message) {
         Toast.fire({
             icon: "error",
             title: message
-        }); 
+        });
     }
 }

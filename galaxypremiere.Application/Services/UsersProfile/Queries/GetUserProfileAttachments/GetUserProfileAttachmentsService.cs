@@ -32,19 +32,14 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
                     .ToList();
                 if (attahcment != null)
                 {
-                    var at = attahcment.Select(e => new GetUserProfileAttachmentsServiceDto
-                    {
-                        Id = e.Id,
-                        Title = e.Title,
-                        Filename = e.Filename,
-                        DownloadCounter = e.DownloadCounter,
-                        InsertDate = e.InsertDate,
-                    }).OrderByDescending(e => e.InsertDate).ToList();
+                    var result = attahcment.Select(
+                        at => _mapper.Map<GetUserProfileAttachmentsServiceDto>(at)
+                        ).OrderByDescending(e => e.InsertDate).ToList();
                     return new ResultDto<ResultGetUserProfileAttachmentsServiceDto>()
                     {
                         Data = new ResultGetUserProfileAttachmentsServiceDto
                         {
-                            getUserProfileAttachmentsServiceDto = at,
+                            getUserProfileAttachmentsServiceDto = result,
                         },
                         IsSuccess = true,
                         Message = "The user does not exist."

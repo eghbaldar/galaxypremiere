@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Application.Interfaces.Contexts;
+﻿using AutoMapper;
+using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileNews;
 using galaxypremiere.Common.DTOs;
 
@@ -7,9 +8,11 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
     public class GetUserProfileLinksService : IGetUserProfileLinksService
     {
         private readonly IDataBaseContext _context;
-        public GetUserProfileLinksService(IDataBaseContext context)
+        private readonly IMapper _mapper;
+        public GetUserProfileLinksService(IDataBaseContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public ResultDto<ResultGetUserProfileLinksServiceDto> Execute(RequestGetUserProfileLinksDto req)
         {
@@ -30,18 +33,14 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
                     .ToList();
                 if (links != null)
                 {
-                    var ed = links.Select(e => new GetUserProfileLinksDto
-                    {
-                        Id = e.Id,
-                        Link = e.Link,
-                        Title = e.Title,
-                        InsertDate = e.InsertDate,
-                    }).OrderByDescending(e => e.InsertDate).ToList();
+                    var result = links.Select(
+                        l=> _mapper.Map<GetUserProfileLinksDto>(l)
+                        ).OrderByDescending(e => e.InsertDate).ToList();
                     return new ResultDto<ResultGetUserProfileLinksServiceDto>()
                     {
                         Data = new ResultGetUserProfileLinksServiceDto
                         {
-                            getUserProfileLinksDto = ed,
+                            getUserProfileLinksDto = result,
                         },
                         IsSuccess = true,
                         Message = "The user does not exist."

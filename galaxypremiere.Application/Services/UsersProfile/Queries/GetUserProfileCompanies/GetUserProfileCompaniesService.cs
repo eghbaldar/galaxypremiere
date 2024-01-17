@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Application.Interfaces.Contexts;
+﻿using AutoMapper;
+using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.DTOs;
 
 namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileCompanies
@@ -6,9 +7,11 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
     public class GetUserProfileCompaniesService : IGetUserProfileCompaniesService
     {
         private readonly IDataBaseContext _context;
-        public GetUserProfileCompaniesService(IDataBaseContext context)
+        private readonly IMapper _mapper;
+        public GetUserProfileCompaniesService(IDataBaseContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public ResultDto<ResultGetUserProfileCompaniesServiceDto> Execute(RequestGetUserProfileCompaniesDto req)
         {
@@ -29,37 +32,14 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
                     .ToList();
                 if (company != null)
                 {
-                    var ed = company.Select(e => new GetUserProfileCompaniesDto
-                    {
-                        Id = e.Id,
-                        CountryId = e.CountryId,
-                        Name = e.Name,
-                        Position=e.Position,                        
-                        From = e.From,
-                        To = e.To,
-                        Address1 = e.Address1,
-                        Address2= e.Address2,
-                        City=e.City,
-                        State=e.State,
-                        PostalCode=e.PostalCode,
-                        Phone=e.Phone,
-                        RecoveryEmail=e.RecoveryEmail,
-                        Website=e.Website,
-                        Facebook=e.Facebook,
-                        Instagram=e.Instagram,
-                        Twitter=e.Twitter,
-                        Stage32 =e.Stage32,
-                        Youtube=e.Youtube,
-                        Linkden=e.Linkden,
-                        Vimeo=e.Vimeo,
-                        Imdb=e.Imdb,
-                        InsertDate = e.InsertDate,
-                    }).OrderByDescending(e => e.InsertDate).ToList();
+                    var result = company.Select(
+                        c=> _mapper.Map<GetUserProfileCompaniesDto>(c)
+                        ).OrderByDescending(e => e.InsertDate).ToList();
                     return new ResultDto<ResultGetUserProfileCompaniesServiceDto>()
                     {
                         Data = new ResultGetUserProfileCompaniesServiceDto
                         {
-                            getUserProfileCompaniesDto = ed,
+                            getUserProfileCompaniesDto = result,
                         },
                         IsSuccess = true,
                         Message = "The user does not exist."

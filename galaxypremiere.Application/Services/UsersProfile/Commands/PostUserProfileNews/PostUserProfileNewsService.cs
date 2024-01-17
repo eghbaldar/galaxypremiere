@@ -8,7 +8,6 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
     public class PostUserProfileNewsService : IPostUserProfileNewsService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _imapper;
         public PostUserProfileNewsService(IDataBaseContext context)
         {
             _context = context;

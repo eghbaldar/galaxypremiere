@@ -73,20 +73,17 @@ function PostProfileEducation(data) {
                 }
                 // setting process is done!
                 KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
             else {
                 KingSweetAlert(false, null);
-                btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateProfileEducations'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function DeleteProfileEducation(e) {
@@ -113,21 +110,14 @@ function DeleteProfileEducation(e) {
         data: postData,
         url: 'ProfileEducationDelete',
         success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, null);
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
+            if (data.isSuccess) KingSweetAlert(true, null);
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop(e.id); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop(e.id); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 // Favorite Movies
@@ -221,26 +211,19 @@ function PostProfileFavoriteMovies(data) {
                     }
                 }
                 // setting process is done!
-                if (flag) {
-                    KingSweetAlert(true, null);
-                }
-                else {
-                    KingSweetAlert(false, "There is no movie in the link, check your link out.");
-                }
-                btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
+                if (flag) KingSweetAlert(true, null)
+                else KingSweetAlert(false, "There is no movie in the link, check your link out.");
             }
             else {
                 KingSweetAlert(false, data.message);
-                btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateProfileFavoriteMovies'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 
 }
@@ -268,22 +251,15 @@ function DeleteProfileFavoriteMovies(e) {
         data: postData,
         url: 'ProfileFavoriteMovieDelete',
         success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, "Information Has Been Deleted Successfully.");
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                KingSweetAlert(false, null);
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
+            if (data.isSuccess) KingSweetAlert(true, "Information Has Been Deleted Successfully.");
+            else KingSweetAlert(false, null);
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop(e.id); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop(e.id); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function checkRuntimeValidationUrlIMDb(e) {
@@ -343,24 +319,20 @@ function CheckTheLink(e, link) {
                     confirmButtonText: '<i class="fa fa-thumbs-up"></i>' + 'Yes, Thats Correct!'
                 });
                 KingWarningStyleOff("#txtMovieLink_" + SeparateID[1], 0);
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
                 return true;
             } else {
                 KingSweetAlert(false, data.message);
                 KingWarningStyle("#txtMovieLink_" + SeparateID[1], 0);
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
                 return false;
             }
-
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop(e.id); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
             return false;
         }
+    }).always(function () {
+        btnWaitMe_Stop(e.id); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 
 }
@@ -519,20 +491,17 @@ function PostProfileCompany(data) {
                 }
                 // setting process is done!
                 KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
             else {
                 KingSweetAlert(false, null);
-                btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateProfileCompanies'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function DeleteProfileCompany(e) {
@@ -558,21 +527,14 @@ function DeleteProfileCompany(e) {
         data: postData,
         url: 'ProfileCompanyDelete',
         success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, null);
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
+            if (data.isSuccess) KingSweetAlert(true, null);
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop(e.id); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop(e.id); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 $(document).keydown(function (event) {
@@ -666,20 +628,17 @@ function PostProfileNews(data) {
                 }
                 // setting process is done!
                 KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
             else {
                 KingSweetAlert(false, null);
-                btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateProfileNews'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function DeleteProfileNews(e) {
@@ -705,21 +664,14 @@ function DeleteProfileNews(e) {
         data: postData,
         url: 'ProfileNewsDelete',
         success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, null);
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
+            if (data.isSuccess) KingSweetAlert(true, null);
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop(e.id); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop(e.id); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 // Link
@@ -801,20 +753,17 @@ function PostProfileLinks(data) {
                 }
                 // setting process is done!
                 KingSweetAlert(true, null);
-                btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
             else {
                 KingSweetAlert(false, null); 
-                btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateProfileLinks'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function DeleteProfileLinks(e) {
@@ -840,21 +789,14 @@ function DeleteProfileLinks(e) {
         data: postData,
         url: 'ProfileLinksDelete',
         success: function (data) {
-            if (data.isSuccess) {
-                KingSweetAlert(true, null);
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
+            if (data.isSuccess) KingSweetAlert(true, null);
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop(e.id); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop(e.id); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 function checkRuntimeValidationUrlNewslink(e) {
@@ -970,19 +912,14 @@ function DeleteProfileAttachment(e, Id) {
             if (data.isSuccess) {
                 KingSweetAlert(true, null);
                 $("#divAttachments").load(window.location + " #divAttachments");
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
-            }
-            else {
-                btnWaitMe_Stop(e.id); // Loading Button Stops
-                pageWaitMeRemove(); // loading process stops
             }
         },
         error: function (req, status, err) {
             KingSweetAlert(false, null);
-            btnWaitMe_Stop(e.id); // Loading Button Stops
-            pageWaitMeRemove(); // loading process stops
         }
+    }).always(function () {
+        btnWaitMe_Stop(e.id); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
     });
 }
 // Add Runtime Controls

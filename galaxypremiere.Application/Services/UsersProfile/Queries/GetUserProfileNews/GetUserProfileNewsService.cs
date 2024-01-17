@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Application.Interfaces.Contexts;
+﻿using AutoMapper;
+using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.DTOs;
 
 namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfileNews
@@ -6,9 +7,11 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
     public class GetUserProfileNewsService : IGetUserProfileNewsService
     {
         private readonly IDataBaseContext _context;
-        public GetUserProfileNewsService(IDataBaseContext context)
+        private readonly IMapper _mapper;
+        public GetUserProfileNewsService(IDataBaseContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public ResultDto<ResultGetUserProfileNewsServiceDto> Execute(RequestGetUserProfileNewsDto req)
         {
@@ -29,20 +32,14 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
                     .ToList();
                 if (news != null)
                 {
-                    var ed = news.Select(e => new GetUserProfileNewsDto
-                    {
-                        Id = e.Id,
-                        Link = e.Link,
-                        PublishedDate = e.PublishedDate,
-                        Reference = e.Reference,
-                        Title = e.Title,
-                        InsertDate = e.InsertDate,
-                    }).OrderByDescending(e => e.InsertDate).ToList();
+                    var result = news.Select(
+                        n => _mapper.Map<GetUserProfileNewsDto>(n)
+                        ).OrderByDescending(e => e.InsertDate).ToList();
                     return new ResultDto<ResultGetUserProfileNewsServiceDto>()
                     {
                         Data = new ResultGetUserProfileNewsServiceDto
                         {
-                            getUserProfileNewsDto = ed,
+                            getUserProfileNewsDto = result,
                         },
                         IsSuccess = true,
                         Message = "The user does not exist."

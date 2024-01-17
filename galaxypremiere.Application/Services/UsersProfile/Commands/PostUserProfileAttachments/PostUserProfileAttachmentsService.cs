@@ -11,9 +11,11 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _imapper;
-        public PostUserProfileAttachmentsService(IDataBaseContext context)
+        public PostUserProfileAttachmentsService(
+            IDataBaseContext context,IMapper mapper)
         {
             _context = context;
+            _imapper = mapper;
         }
         public ResultDto Execute(RequestPostUserProfileAttachmentServiceDto req)
         {
@@ -29,8 +31,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
             if (user != null)
             {
                 UsersAttachments usersAttachments = new UsersAttachments();
-                usersAttachments.UsersId = req.UsersId;
-                usersAttachments.Title = req.Title;
+                usersAttachments = _imapper.Map<UsersAttachments>(req);
                 //========================= Upload Headshot
                 var file = CreateFilename(req.File);
                 switch (file.Success)

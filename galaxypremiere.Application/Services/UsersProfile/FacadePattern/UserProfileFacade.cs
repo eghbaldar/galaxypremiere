@@ -83,7 +83,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         private GetUserProfileCompaniesService _getUserProfileCompaniesService;
         public GetUserProfileCompaniesService GetUserProfileCompaniesService
         {
-            get { return _getUserProfileCompaniesService = _getUserProfileCompaniesService ?? new GetUserProfileCompaniesService(_context); }
+            get { return _getUserProfileCompaniesService = _getUserProfileCompaniesService ?? new GetUserProfileCompaniesService(_context,_mapper); }
         }
         // Delete User Profle Companies
         private DeleteUserProfileCompanies _deleteUserProfileCompanies;
@@ -95,7 +95,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         private GetUserProfileNewsService _getUserProfileNewsService;
         public GetUserProfileNewsService GetUserProfileNewsService
         {
-            get { return _getUserProfileNewsService = _getUserProfileNewsService ?? new GetUserProfileNewsService(_context); }
+            get { return _getUserProfileNewsService = _getUserProfileNewsService ?? new GetUserProfileNewsService(_context,_mapper); }
         }
         // Post User Porfile News
         private PostUserProfileNewsService _postUserProfileNewsService;
@@ -113,7 +113,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         private GetUserProfileLinksService _getUserProfileLinksService;
         public GetUserProfileLinksService GetUserProfileLinksService
         {
-            get { return _getUserProfileLinksService = _getUserProfileLinksService ?? new GetUserProfileLinksService(_context); }
+            get { return _getUserProfileLinksService = _getUserProfileLinksService ?? new GetUserProfileLinksService(_context,_mapper); }
         }      
         // Post User Profile Link
         private PostUserProfileLinksService _postUserProfileLinksService;
@@ -131,7 +131,7 @@ namespace galaxypremiere.Application.Services.UsersProfile.FacadePattern
         private PostUserProfileAttachmentsService _postUserProfileAttachmentsService;
         public PostUserProfileAttachmentsService PostUserProfileAttachmentsService
         {
-            get { return _postUserProfileAttachmentsService = _postUserProfileAttachmentsService ?? new PostUserProfileAttachmentsService(_context); }
+            get { return _postUserProfileAttachmentsService = _postUserProfileAttachmentsService ?? new PostUserProfileAttachmentsService(_context,_mapper); }
         }       
         // Get User Profile Attachment
         private GetUserProfileAttachmentsService _getUserProfileAttachmentsService;

@@ -8,7 +8,6 @@ namespace galaxypremiere.Application.Services.UsersProfile.Commands.PostUserProf
     public class PostUserProfileLinksService : IPostUserProfileLinksService
     {
         private readonly IDataBaseContext _context;
-        private readonly IMapper _imapper;
         public PostUserProfileLinksService(IDataBaseContext context)
         {
             _context = context;

@@ -32,17 +32,14 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
                     .ToList();
                 if (favoriteMovie != null)
                 {
-                    var ed = favoriteMovie.Select(e => new GetUserProfileFavoriteMoviesServiceDto
-                    {
-                        Id = e.Id,
-                        ImdbLink = e.ImdbLink,
-                        InsertDate = e.InsertDate,
-                    }).OrderByDescending(e => e.InsertDate).ToList();
+                    var result = favoriteMovie.Select(
+                        fm => _mapper.Map<GetUserProfileFavoriteMoviesServiceDto>(fm)
+                        ).OrderByDescending(e => e.InsertDate).ToList();
                     return new ResultDto<ResultGetUserProfileFavoriteMoviesServiceDto>()
                     {
                         Data = new ResultGetUserProfileFavoriteMoviesServiceDto
                         {
-                            getUserProfileFavoriteMoviesServiceDto = ed,
+                            getUserProfileFavoriteMoviesServiceDto = result,
                         },
                         IsSuccess = true,
                         Message = "The user does not exist."

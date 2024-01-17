@@ -32,20 +32,14 @@ namespace galaxypremiere.Application.Services.UsersProfile.Queries.GetUserProfil
                     .ToList();
                 if (education != null)
                 {
-                    var ed = education.Select(e => new GetUserProfileEducationsServiceDto
-                    {
-                        Id = e.Id,
-                        Name = e.Name,
-                        Field = e.Field,
-                        From = e.From,
-                        To = e.To,
-                        InsertDate = e.InsertDate,
-                    }).OrderByDescending(e => e.InsertDate).ToList();
+                    var result = education.Select(
+                        e=>_mapper.Map<GetUserProfileEducationsServiceDto>(e)
+                        ).OrderByDescending(e => e.InsertDate).ToList();
                     return new ResultDto<ResultGetUserProfileEducationsServiceDto>()
                     {
                         Data = new ResultGetUserProfileEducationsServiceDto
                         {
-                            getUserProfileEducationsServiceDto = ed,
+                            getUserProfileEducationsServiceDto = result,
                         },
                         IsSuccess = true,
                         Message = "The user does not exist."
