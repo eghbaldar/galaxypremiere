@@ -4095,15 +4095,12 @@ namespace galaxypremiere.Persistence.Migrations
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("UsersAlbumsId")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("UsersAlbumsId1")
+                    b.Property<Guid>("UsersAlbumsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsersAlbumsId1");
+                    b.HasIndex("UsersAlbumsId");
 
                     b.ToTable("UsersPhotos");
                 });
@@ -4278,7 +4275,7 @@ namespace galaxypremiere.Persistence.Migrations
                 {
                     b.HasOne("galaxypremiere.Domain.Entities.Users.UsersAlbums", "UsersAlbums")
                         .WithMany()
-                        .HasForeignKey("UsersAlbumsId1")
+                        .HasForeignKey("UsersAlbumsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

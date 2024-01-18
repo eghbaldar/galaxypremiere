@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum;
 using galaxypremiere.Domain.Entities.Users;
 using System;
@@ -13,6 +14,7 @@ namespace galaxypremiere.Infrastructure.MappingProfiles.UsersPhotos
         public UserPhotosMappingProfile()
         {
             CreateMap<UsersAlbums, GetUsersPhotoAlbumServiceDto>().ReverseMap();
+            CreateMap<galaxypremiere.Domain.Entities.Users.UsersPhotos, RequestPostUsersPhotosPhotoServiceDto>().ReverseMap();
         }
     }
 }

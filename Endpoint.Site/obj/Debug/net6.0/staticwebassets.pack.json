@@ -2509,6 +2509,18 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638410247946586536_img_avatar.png"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\files\\user-attachments\\638410974237231530_img_avatar.png",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638410974237231530_img_avatar.png"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\files\\user-attachments\\638410974601921241_img_avatar.png",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638410974601921241_img_avatar.png"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\files\\user-attachments\\638411801967622280setemlogo.png",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638411801967622280setemlogo.png"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\Flaticon.eot",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\Flaticon.eot"
     },
@@ -2779,30 +2791,6 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\638410096067569482header.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\638410096067569482header.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\638410096168068359header.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\638410096168068359header.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\638410165910988989header.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\638410165910988989header.jpg"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638410094821249573_img_avatar.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\638410094821249573_img_avatar.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638410094956875727img_avatar2.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\638410094956875727img_avatar2.png"
-    },
-    {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638410165877491271_img_avatar.png",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\638410165877491271_img_avatar.png"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\Chart.bundle.js",

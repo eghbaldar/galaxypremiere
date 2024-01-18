@@ -81,10 +81,96 @@
     .dropdown:hover .dropdown-content {
         display: block;
     }
+    /* Loader for headshot and header */
+    .loader {
+        display: none;
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        opacity: .7;
+    }
 
+    @@-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    /* Headshot */
+    .HoverChangePhoto {
+        margin: auto;
+        display: none;
+        color: white;
+        background-color: black;
+        width: 75px;
+        height: 25px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    #dropzoneAvatar {
+        position: relative;
+        border: 3px dashed gray;
+        border-radius: 50%;
+        color: #000;
+        font: bold 14px arial;
+        height: 200px;
+        margin: 30px auto;
+        text-align: center;
+        width: 200px;
+        background-image: url('../../../../sitetemplate/innerpages/images/layout_img/img-avatar.jpg');
+        background-size: cover;
+        background-repeat: repeat;
+    }
+
+        #dropzoneAvatar div {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        #dropzoneAvatar img {
+            border-radius: 50%;
+            vertical-align: middle;
+            max-width: 100%;
+            max-height: 100%;
+            width: 100%;
+            height: 100%;
+        }
+
+        #dropzoneAvatar [type="file"] {
+            cursor: pointer;
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
 </style>
-
-
 
 
 <div id="TabUserAlbums" class="TabcontentClass active">
@@ -114,7 +200,7 @@
                             {
                                 <div class="col-sm-4 col-md-3 margin_bottom_30 album">
                                     <div class="column">
-                                        <a data-fancybox="gallery" href="images/layout_img/g2.jpg">
+                                        <a data-fancybox="gallery" onclick="OpenAlbum('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">
                                             <img class="img-responsive"
                                              src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg"
                                              alt="#">
@@ -126,7 +212,7 @@
                                                     <i class="fa fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-content">
-                                                    <a href="#">Photos</a>
+                                                    <a onclick="OpenAlbum('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">Photos</a>
                                                     <a onclick="DeletePhotoAlbum('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">Delete</a>
                                                     <a onclick="UpdatePhotoAlbumTitle('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">Rename</a>
                                                 </div>
@@ -152,7 +238,20 @@
         </div>
         <div class="card-body">
             <div class="basic-form">
-                2
+                <div>
+                    <input type="hidden" id="hiddenAlbumName" />
+                    <span id="spanAlbumName"></span>
+                    @*88888888888888888888888888888888888888888888*@
+                    <div id="dropzoneAvatar" class="dropped">
+                        <div>
+                            <img src="~/SiteTemplate/innerpages/images/user-headshot/" />
+                        </div>
+                        <div id="HeadshotLoader" class="loader"></div>
+                        <div id="HeadshotChangePhoto" class="HoverChangePhoto">UPLOAD</div>
+                        <input id="filedropzoneAvatar" type="file" />
+                    </div>
+                    @*88888888888888888888888888888888888888888888*@
+                </div>
             </div>
         </div>
     </div>
@@ -160,6 +259,8 @@
 @section Scripts{
     @* Tabs *@
     <script src="~/sitetemplate/innerpages/plugins/tabNavigation/tab.js"></script>
+    @* File Extension and Volume *@
+    <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
     @* Functions *@
     <script>
         function OpenDialogueAddAlbum() {
@@ -312,6 +413,144 @@
                     }
                 }
             });
+        }
+        function OpenAlbum(id, title) {
+            $("#spanAlbumName").text(title);
+            $("#hiddenAlbumName").val(id);
+            tabNavigation(event, 'TabUserPhotos')
+        }
+
+        /*@* Upload Js *@*/
+        var dropzoneavatar = $("#dropzoneAvatar");
+        dropzoneavatar.on({
+            dragenter: draginavatar,
+            dragleave: dragoutavatar
+        });
+        var inputavatar = dropzoneavatar.find('input');
+        inputavatar.on('change', dropavatar);
+
+        $(dropzoneavatar).hover(
+            function () {
+                $("#HeadshotChangePhoto").css("display", "inline");
+                dropzoneavatar.css("opacity", "0.5")
+            }, function () {
+                $(this).find("#HeadshotChangePhoto").css("display", "none");
+                dropzoneavatar.css("opacity", "1")
+            }
+        );
+
+        function draginavatar(e) { //function for drag into element, just turns the bix X white
+            $(dropzoneavatar).addClass('hover');
+        }
+        function dragoutavatar(e) { //function for dragging out of element
+            $(dropzoneavatar).removeClass('hover');
+        }
+        function dropavatar(e) {
+
+            var file = this.files[0];
+            // the following functions uses (fileextensionsize.js)
+            if (KingCheckSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152", true)) { // => 2 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadshotService.cs) and (UploadSmallFilesService.cs)
+                // ////////////////////////// Loaders
+                $("#HeadshotLoader").css("display", "table-cell"); // circle loading on photo
+                $("#dropzoneAvatar *").attr("disabled", "disabled").off('click'); // disable clickable
+                $("#dropzoneAvatar *").css({ // clear ...
+                    cursor: "wait",
+                    opacity: "0.6",
+                });
+                $("#filedropzoneAvatar").css("opacity", "0");
+                pageWaitMe("progress"); // loading process starts
+                ////////////////////////////// upload file here
+
+                var postData = new FormData();
+                postData.append("File", file);
+                postData.append("UsersAlbumsId", $("#hiddenAlbumName").val());
+                postData.append("Title", "");
+                postData.append("Detail", "");
+
+                $.ajax({
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    data: postData,
+                    url: 'PostPhoto',
+                    success: function (data) {
+                        if (data.isSuccess) {
+                            //////////////////////////// Loaders
+                            $("#HeadshotLoader").css("display", "none"); // circle loading on photo
+                            $("#dropzoneAvatar *").attr("disabled", false).off('click'); // enable clickable
+                            $("#dropzoneAvatar *").css({ // clear ...
+                                opacity: "1",
+                                cursor: "pointer",
+                            });
+                            $("#filedropzoneAvatar").css("opacity", "0");
+                            //////////////////////////////
+                            showfileavatar(file); // shows file to feature it...
+                        }
+                        else {
+                            KingSweetAlert(false, data.message);
+                        }
+                    },
+                    error: function (req, res, err) {
+                        KingSweetAlert(false, err);
+                    }
+                }).always(function () {
+                    $("#HeadshotLoader").css("display", "none"); // circle loading on photo
+                    $("#dropzoneAvatar *").attr("disabled", false).off('click'); // enable clickable
+                    $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
+                    $('#filedropzoneAvatar').val('');
+                    $("#dropzoneAvatar *").css({ // clear ...
+                        cursor: "pointer"
+                    });
+                    pageWaitMeRemove(); // loading process stops
+                });
+            }
+        }
+
+        function showfileavatar(file) {
+            var reader = new FileReader(file);
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+                $('#dropzoneAvatar div:not(#HeadshotLoader):not(#HeadshotChangePhoto)').html($('<img />').attr('src', e.target.result).fadeIn());
+            }
+        }
+        // SWEET ALERT FUNCTION
+        function KingSweetAlert(type, message) {
+
+            if (type) { // success
+                if (message == null) message = "Information Has Been Updated Successfully."
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: message
+                });
+            } else { // error
+                if (message == null) message = "Something Went Wrong."
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: message
+                });
+            }
         }
     </script>
 }

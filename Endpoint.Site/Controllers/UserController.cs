@@ -59,6 +59,8 @@ using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotos
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Endpoint.Site.Controllers
 {
@@ -391,6 +393,13 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userPhotoFacade.UpdateUsersPhotosAlbumRenameService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult PostPhoto(RequestPostUsersPhotosPhotoServiceDto req)
+        {
+            req.UsersId= (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            req.Photo= Request.Form.Files[0];
+            return Json(_userPhotoFacade.PostUsersPhotosPhotoService.Execute(req));
         }
     }
 }

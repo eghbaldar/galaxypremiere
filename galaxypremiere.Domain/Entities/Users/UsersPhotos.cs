@@ -9,7 +9,7 @@ namespace galaxypremiere.Domain.Entities.Users
 {
     public class UsersPhotos:BaseEntityGuid
     {
-        public long UsersAlbumsId { get; set; }
+        public Guid UsersAlbumsId { get; set; }
         public virtual UsersAlbums UsersAlbums { get; set; }
         public string Title { get; set; } // Title
         public string Detail { get; set; } // Detail

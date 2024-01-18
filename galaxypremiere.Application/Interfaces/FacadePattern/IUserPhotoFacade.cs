@@ -1,5 +1,6 @@
 ﻿using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAlbum;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum;
 using System;
@@ -16,5 +17,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         GetUsersPhotoAlbumService GetUsersPhotoAlbumService { get; }
         DeleteUsersPhotosAlbumService DeleteUsersPhotosAlbumService { get; }
         UpdateUsersPhotosAlbumRenameService UpdateUsersPhotosAlbumRenameService { get; }
+        PostUsersPhotosPhotoService PostUsersPhotosPhotoService { get; }
     }
 }

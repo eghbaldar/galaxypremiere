@@ -3,6 +3,7 @@ using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAlbum;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum;
 using System;
@@ -45,6 +46,12 @@ namespace galaxypremiere.Application.Services.UsersPhotos.FacadePattern
         public UpdateUsersPhotosAlbumRenameService UpdateUsersPhotosAlbumRenameService
         {
             get { return _updateUsersPhotosAlbumRenameService = _updateUsersPhotosAlbumRenameService ?? new UpdateUsersPhotosAlbumRenameService(_context); }
+        }      
+        // Post User Photo
+        private PostUsersPhotosPhotoService _postUsersPhotosPhotoService;
+        public PostUsersPhotosPhotoService PostUsersPhotosPhotoService
+        {
+            get { return _postUsersPhotosPhotoService = _postUsersPhotosPhotoService ?? new PostUsersPhotosPhotoService(_context,_imapper); }
         }
     }
 }
