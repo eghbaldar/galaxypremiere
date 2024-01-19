@@ -6,6 +6,7 @@ using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAl
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum;
+using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoPhotos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,12 @@ namespace galaxypremiere.Application.Services.UsersPhotos.FacadePattern
         public PostUsersPhotosPhotoService PostUsersPhotosPhotoService
         {
             get { return _postUsersPhotosPhotoService = _postUsersPhotosPhotoService ?? new PostUsersPhotosPhotoService(_context,_imapper); }
+        }      
+        // Get User Photos
+        private GetUsersPhotoPhotosService _getUsersPhotoPhotosService;
+        public GetUsersPhotoPhotosService GetUsersPhotoPhotosService
+        {
+            get { return _getUsersPhotoPhotosService = _getUsersPhotoPhotosService ?? new GetUsersPhotoPhotosService(_context,_imapper); }
         }
     }
 }

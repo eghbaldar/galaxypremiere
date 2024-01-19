@@ -61,6 +61,8 @@ using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInfor
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoPhotos;
+using System.Dynamic;
 
 namespace Endpoint.Site.Controllers
 {
@@ -122,13 +124,13 @@ namespace Endpoint.Site.Controllers
             {
                 getUsersInformationServiceDto = _userInformationFacade.GetUsersInformationServiceService.Execute(new RequestGetUsersInformationServiceDto
                 {
-                    UsersId=userId,
+                    UsersId = userId,
                 }),
                 resultGetCountriesServiceDto = _countiresFacade.GetCountriesService.Execute(),
                 resultGetLanguagesServiceDto = _languagesFacade.GetLanguagesService.Execute(),
                 getUsersInformationContactServiceDto = _userInformationFacade.GetUsersInformationContactService.Execute(new RequestGetUsersInformationContactServiceDto
                 {
-                    UsersId=userId
+                    UsersId = userId
                 }),
             });
         }
@@ -266,7 +268,7 @@ namespace Endpoint.Site.Controllers
                 {
                     UsersId = userId
                 }).Data,
-                ResultGetUserProfileAttachmentsServiceDto=_userProfileFacade.GetUserProfileAttachmentsService
+                ResultGetUserProfileAttachmentsServiceDto = _userProfileFacade.GetUserProfileAttachmentsService
                 .Execute(new RequestGetUserProfileAttachmentsServiceDto
                 {
                     UsersId = userId
@@ -366,15 +368,38 @@ namespace Endpoint.Site.Controllers
         public IActionResult Photos()
         {
             var usersId = (int)ClaimUtility.GetUserId(User as ClaimsPrincipal);
-            ModelGetPhoto modelGetPhoto = new ModelGetPhoto
-            {
-                ResultGetUsersPhotoAlbumServiceDto = _userPhotoFacade.GetUsersPhotoAlbumService
+
+            dynamic model = new ExpandoObject();
+            model.Album = _userPhotoFacade.GetUsersPhotoAlbumService
                 .Execute(new RequestGetUsersPhotoAlbumServiceDto
                 {
                     UsersId = usersId,
-                }).Data
-            };
-            return View(modelGetPhoto);
+                }).Data;
+            model.Photo = _userPhotoFacade.GetUsersPhotoPhotosService
+                .Execute(new RequestGetUsersPhotoPhotosServiceDto
+                {
+                    UsersId = usersId,
+                }).Data;
+            //return Json(_userPhotoFacade.GetUsersPhotoAlbumService
+            //    .Execute(new RequestGetUsersPhotoAlbumServiceDto
+            //    {
+            //        UsersId = usersId,
+            //    }));
+
+            //ModelGetPhoto modelGetPhoto = new ModelGetPhoto
+            //{
+            //    ResultGetUsersPhotoAlbumServiceDto = _userPhotoFacade.GetUsersPhotoAlbumService
+            //    .Execute(new RequestGetUsersPhotoAlbumServiceDto
+            //    {
+            //        UsersId = usersId,
+            //    }).Data,
+            //    //ResultGetUsersPhotoPhotosServiceDto = _userPhotoFacade.GetUsersPhotoPhotosService
+            //    //.Execute(new RequestGetUsersPhotoPhotosServiceDto
+            //    //{
+            //    //    UsersId = usersId,
+            //    //}).Data,
+            //};
+            return View(model);
         }
         [HttpPost]
         public IActionResult ProfileAlbumPost(RequestPostUsersPhotosAlbumServiceDto req)
@@ -397,8 +422,8 @@ namespace Endpoint.Site.Controllers
         [HttpPost]
         public IActionResult PostPhoto(RequestPostUsersPhotosPhotoServiceDto req)
         {
-            req.UsersId= (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
-            req.Photo= Request.Form.Files[0];
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            req.Photo = Request.Form.Files[0];
             return Json(_userPhotoFacade.PostUsersPhotosPhotoService.Execute(req));
         }
     }

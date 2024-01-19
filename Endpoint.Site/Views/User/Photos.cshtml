@@ -1,6 +1,7 @@
 ﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
 @using Endpoint.Site.Models.Users.GetPhoto
-@model ModelGetPhoto
+@using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum;
+@model dynamic
 @{
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
@@ -172,7 +173,6 @@
         }
 </style>
 
-
 <div id="TabUserAlbums" class="TabcontentClass active">
     <div class="card">
         <div class="card-header">
@@ -196,34 +196,15 @@
                                     <h4>+ ADD A NEW ALBUM</h4>
                                 </div>
                             </div>
-                            @for (int i = 0; i <= Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto.Count - 1; i++)
+                            @*<span>
+                                @Model.Album
+                            </span>*@
+                            
+                            @foreach (GetUsersPhotoAlbumServiceDto album in Model.Album.resultGetUsersPhotoAlbumServiceDto)
                             {
-                                <div class="col-sm-4 col-md-3 margin_bottom_30 album">
-                                    <div class="column">
-                                        <a data-fancybox="gallery" onclick="OpenAlbum('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">
-                                            <img class="img-responsive"
-                                             src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg"
-                                             alt="#">
-                                        </a>
-                                        <div class="divAlbumMenu">
-                                            @*<icon class="fa fa-times-circle icon_size16"></icon>*@
-                                            <div class="dropdown" style="float:right;">
-                                                <button class="dropbtn">
-                                                    <i class="fa fa-ellipsis-v"></i>
-                                                </button>
-                                                <div class="dropdown-content">
-                                                    <a onclick="OpenAlbum('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">Photos</a>
-                                                    <a onclick="DeletePhotoAlbum('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">Delete</a>
-                                                    <a onclick="UpdatePhotoAlbumTitle('@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title')">Rename</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="heading_section">
-                                        <h4>@Model.ResultGetUsersPhotoAlbumServiceDto.resultGetUsersPhotoAlbumServiceDto[i].Title</h4>
-                                    </div>
-                                </div>
+                                <span>1</span>
                             }
+                            
                         </div>
                     </div>
                 </div>
@@ -231,31 +212,7 @@
         </div>
     </div>
 </div>
-<div id="TabUserPhotos" class="TabcontentClass">
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">PHOTOS</h4>
-        </div>
-        <div class="card-body">
-            <div class="basic-form">
-                <div>
-                    <input type="hidden" id="hiddenAlbumName" />
-                    <span id="spanAlbumName"></span>
-                    @*88888888888888888888888888888888888888888888*@
-                    <div id="dropzoneAvatar" class="dropped">
-                        <div>
-                            <img src="~/SiteTemplate/innerpages/images/user-headshot/" />
-                        </div>
-                        <div id="HeadshotLoader" class="loader"></div>
-                        <div id="HeadshotChangePhoto" class="HoverChangePhoto">UPLOAD</div>
-                        <input id="filedropzoneAvatar" type="file" />
-                    </div>
-                    @*88888888888888888888888888888888888888888888*@
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 @section Scripts{
     @* Tabs *@
     <script src="~/sitetemplate/innerpages/plugins/tabNavigation/tab.js"></script>
@@ -414,10 +371,11 @@
                 }
             });
         }
+
         function OpenAlbum(id, title) {
             $("#spanAlbumName").text(title);
             $("#hiddenAlbumName").val(id);
-            tabNavigation(event, 'TabUserPhotos')
+            tabNavigation(event, 'TabUserPhotos');
         }
 
         /*@* Upload Js *@*/
@@ -464,9 +422,9 @@
                 var postData = new FormData();
                 postData.append("File", file);
                 postData.append("UsersAlbumsId", $("#hiddenAlbumName").val());
-                postData.append("Title", "");
-                postData.append("Detail", "");
-
+                postData.append("Title", "1");
+                postData.append("Detail", "2");
+                //alert($("#hiddenAlbumName").val());
                 $.ajax({
                     contentType: false,
                     processData: false,
