@@ -172,6 +172,28 @@
             left: 0;
         }
 </style>
+<style>
+    .containerG {
+        padding: 3rem;
+    }
+
+    .rowG {
+        columns: 4;
+        column-gap: 3rem;
+    }
+
+    .itemG {
+        display: block;
+        width: 100%;
+        margin-bottom: 3rem;
+        img
+
+    {
+        width: 100%;
+    }
+
+    }
+</style>
 
 <div id="TabUserAlbums" class="TabcontentClass active">
     <div class="card">
@@ -196,17 +218,76 @@
                                     <h4>+ ADD A NEW ALBUM</h4>
                                 </div>
                             </div>
-                            @*<span>
-                                @Model.Album
-                            </span>*@
-                            
-                            @foreach (GetUsersPhotoAlbumServiceDto album in Model.Album.resultGetUsersPhotoAlbumServiceDto)
+                            @*@foreach (GetUsersPhotoAlbumServiceDto album in Model.Album.resultGetUsersPhotoAlbumServiceDto){}*@
+                            @for (int i = 0; i <= Model.Album.resultGetUsersPhotoAlbumServiceDto.Count - 1; i++)
                             {
-                                <span>1</span>
+                                <div class="col-sm-4 col-md-3 margin_bottom_30 album">
+                                    <div class="column">
+                                        <a data-fancybox="gallery" onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">
+                                            <img class="img-responsive"
+                                             src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg"
+                                             alt="#">
+                                        </a>
+                                        <div class="divAlbumMenu">
+                                            <div class="dropdown" style="float:right;">
+                                                <button class="dropbtn">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-content">
+                                                    <a onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Photos</a>
+                                                    <a onclick="DeletePhotoAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Delete</a>
+                                                    <a onclick="UpdatePhotoAlbumTitle('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Rename</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="heading_section">
+                                        <h4>@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title</h4>
+                                    </div>
+                                </div>
                             }
-                            
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TabUserPhotos" class="TabcontentClass">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">PHOTOS</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <div>
+                    <input type="hidden" id="hiddenAlbumName" />
+                    <span id="spanAlbumName"></span>
+                    @*88888888888888888888888888888888888888888888*@
+                    <div id="dropzoneAvatar" class="dropped">
+                        <div>
+                            <img src="~/SiteTemplate/innerpages/images/user-headshot/" />
+                        </div>
+                        <div id="HeadshotLoader" class="loader"></div>
+                        <div id="HeadshotChangePhoto" class="HoverChangePhoto">UPLOAD</div>
+                        <input id="filedropzoneAvatar" type="file" />
+                    </div>
+                    @*88888888888888888888888888888888888888888888*@
+                    <!-- Gallery -->
+                    <div class="containerG" id="containerPhotos">
+                        <div class="rowG" >
+                            @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto != null)
+                            {
+                                @for (int i = 0; i <= Model.Photo.resultGetUsersPhotoPhotosServiceDto.Count - 1; i++)
+                                {
+                                    <div class="itemG">
+                                        <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename" alt="" />
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <!-- Gallery -->
                 </div>
             </div>
         </div>
@@ -424,7 +505,6 @@
                 postData.append("UsersAlbumsId", $("#hiddenAlbumName").val());
                 postData.append("Title", "1");
                 postData.append("Detail", "2");
-                //alert($("#hiddenAlbumName").val());
                 $.ajax({
                     contentType: false,
                     processData: false,
@@ -442,7 +522,7 @@
                             });
                             $("#filedropzoneAvatar").css("opacity", "0");
                             //////////////////////////////
-                            showfileavatar(file); // shows file to feature it...
+                            $("#containerPhotos").load(window.location + " #containerPhotos");
                         }
                         else {
                             KingSweetAlert(false, data.message);
@@ -461,14 +541,6 @@
                     });
                     pageWaitMeRemove(); // loading process stops
                 });
-            }
-        }
-
-        function showfileavatar(file) {
-            var reader = new FileReader(file);
-            reader.readAsDataURL(file);
-            reader.onload = function (e) {
-                $('#dropzoneAvatar div:not(#HeadshotLoader):not(#HeadshotChangePhoto)').html($('<img />').attr('src', e.target.result).fadeIn());
             }
         }
         // SWEET ALERT FUNCTION
