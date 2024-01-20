@@ -3,7 +3,7 @@
     public class GetUsersPhotoPhotosServiceDto
     {
         public long UsersId { get; set; }
-        public Guid PhotoId { get; set; }
+        public Guid Id { get; set; } // Photo Id
         public Guid UsersAlbumsId { get; set; }
         public string Title { get; set; } // Title
         public string Detail { get; set; } // Detail

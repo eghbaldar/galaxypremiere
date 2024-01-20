@@ -36,11 +36,11 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoP
                     var album = _context.UsersAlbums
                         .Where(al => al.UsersId == req.UsersId && al.Id == req.AlbumId)
                         .FirstOrDefault();
-                    if (album!=null)
+                    if (album != null)
                     {
                         var photos = _context.UsersPhotos
-                            .Where(p=>p.UsersAlbumsId==req.AlbumId)
-                            .OrderBy(p=>p.InsertDate)
+                            .Where(p => p.UsersAlbumsId == req.AlbumId)
+                            .OrderBy(p => p.InsertDate)
                             .ToList();
                         return new ResultDto<ResultGetUsersPhotoPhotosServiceDto>
                         {
@@ -51,7 +51,7 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoP
                                     new GetUsersPhotoPhotosServiceDto
                                     {
                                         Filename=photos.First().Filename,
-                                        PhotoId=photos.First().Id,
+                                        Id=photos.First().Id,
                                     }
                                 }
                             },
@@ -76,14 +76,14 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoP
                 {
                     var album = _context.UsersAlbums
                         .Where(al => al.UsersId == req.UsersId)
-                        .Select(al => new { al.Id,al.UsersId })                        
+                        .Select(al => new { al.Id, al.UsersId })
                         .ToList();
                     if (album != null)
                     {
                         var photos = _context.UsersPhotos
                             .Where(p => p.UsersAlbumsId == album[0].Id)
                             .OrderBy(p => p.InsertDate)
-                            .Select(p => _imapper.Map<GetUsersPhotoPhotosServiceDto>(p))                            
+                            .Select(p => _imapper.Map<GetUsersPhotoPhotosServiceDto>(p))
                             .ToList();
                         return new ResultDto<ResultGetUsersPhotoPhotosServiceDto>
                         {
@@ -107,7 +107,7 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoP
                             Message = "There is no an album with this attribute.",
                         };
                     }
-                }                
+                }
             }
             else
             {

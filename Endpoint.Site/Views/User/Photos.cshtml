@@ -8,6 +8,18 @@
 @await Component.InvokeAsync("UserPhotosNavigation")
 
 <style>
+    /*Modal*/
+    .close {
+        border: 0;
+        background-color: white;
+        font-size: 30px;
+        color: lightgray;
+    }
+    /*Social Media*/
+    .sharedIcon {
+        padding: 5px;
+        font-size: 20px;
+    }
     /*General*/
     .white_shd {
         box-shadow: none !important;
@@ -183,6 +195,7 @@
     }
 
     .itemG {
+        position: relative;
         display: block;
         width: 100%;
         margin-bottom: 3rem;
@@ -192,6 +205,26 @@
         width: 100%;
     }
 
+    }
+
+    .itemG:hover .caption {
+        opacity: 1;
+        padding-top: 40%
+    }
+
+    .itemG > .caption {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: rgba(0,0,0,.5);
+        opacity: 0;
+        transition: all 1s;
+        cursor: pointer;
+        text-align: center;
+        color: white;
+        padding-top: 20%
     }
 </style>
 
@@ -275,14 +308,94 @@
                     @*88888888888888888888888888888888888888888888*@
                     <!-- Gallery -->
                     <div class="containerG" id="containerPhotos">
-                        <div class="rowG" >
+                        <div class="rowG">
                             @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto != null)
                             {
                                 @for (int i = 0; i <= Model.Photo.resultGetUsersPhotoPhotosServiceDto.Count - 1; i++)
                                 {
                                     <div class="itemG">
-                                        <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename" alt="" />
+                                        <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename"
+                                     class="rounded"
+                                     alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
+                                        <span class="caption">
+                                            <span>
+                                                @Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title
+                                            </span>
+                                            <br />
+                                            <span>
+                                                @Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail
+                                            </span>
+                                            <br />
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGrid_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">Detail</button>
+                                        </span>
                                     </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modalGrid_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">PHOTO DETAIL</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container-fluid">
+                                                        <div class="row ">
+
+                                                            <div class="col-md text-center">
+                                                                <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename"
+                                                             class="rounded img-fluid"
+                                                             alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
+
+                                                                <div class="inputs p-2">
+                                                                    <div class="inputSwitch p-3">
+                                                                        <span id="txtPhotoTitleSpan_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id"></span>
+                                                                        <input id="txtPhotoTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id"
+                                                                       class="form-control"
+                                                                       placeholder="The Title of Photo"
+                                                                       value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
+                                                                    </div>
+                                                                    <div class="inputSwitch">
+                                                                        <span id="txtPhotoDetailSpan_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id"></span>
+                                                                        <input class="form-control"
+                                                                       id="txtPhotoDetail_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id"
+                                                                       placeholder="The Description of Photo"
+                                                                       value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <hr />
+                                                                <a href="#" class="sharedIcon fa fa-facebook"></a>
+                                                                <a href="#" class="sharedIcon fa fa-linkedin"></a>
+                                                                <a href="#" class="sharedIcon fa fa-twitter"></a>
+                                                                <a href="#" class="sharedIcon fa fa-google"></a>
+                                                                <a href="#" class="sharedIcon fa fa-instagram"></a>
+                                                                <a href="#" class="sharedIcon fa fa-pinterest"></a>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                    <div class="icon_info">
+                                                        <ul>
+                                                            <li><a href="#" class="fa fa-heart-o"><span class="badge">3</span></a></li>
+                                                        </ul>
+                                                        <ul>
+                                                            <li><a href="#" class="fa fa-comments-o"><span class="badge">3</span></a></li>
+                                                        </ul>
+                                                    </div>
+
+                                                    @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>*@
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--  modal -->
                                 }
                             }
                         </div>
@@ -582,5 +695,34 @@
                 });
             }
         }
+    </script>
+    <script>
+        var $inputSwitches = $(".inputSwitch"), $inputs = $inputSwitches.find("input"), $spans = $inputSwitches.find("span");
+        $spans.on("click", function () {
+            var $this = $(this);
+            $this.hide().siblings("input").show().focus().select();
+        }).each(function () {
+            var $this = $(this);
+            $this.text($this.siblings("input").val());
+        });
+        $inputs.on("blur", function () {
+            var $this = $(this);
+            $this.hide().siblings("span").text($this.val()).show();
+        }).on('keydown', function (e) {
+            if (e.which == 13) { // enter key
+
+                var id = $(this).attr('id');
+                var value = $('#' + id).val();
+                alert(value);
+
+                e.preventDefault();
+                if (e.shiftKey) {
+                    $(this).blur().parent().prevAll($inputSwitches).first().find($spans).click();
+                } else {
+                    $(this).blur().parent().nextAll($inputSwitches).first().find($spans).click();
+                }
+            }
+        }).hide();
+
     </script>
 }

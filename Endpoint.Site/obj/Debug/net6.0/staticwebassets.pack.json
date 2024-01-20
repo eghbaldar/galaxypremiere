@@ -2129,10 +2129,6 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\LoginTemplate\\fonts\\poppins\\Poppins-ThinItalic.ttf"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\LoginTemplate\\images\\bg-01.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\LoginTemplate\\images\\bg-01.jpg"
-    },
-    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\LoginTemplate\\images\\icons\\favicon.ico",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\LoginTemplate\\images\\icons\\favicon.ico"
     },
@@ -2795,6 +2791,34 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\638412964044546203_img_avatar.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\638412964044546203_img_avatar.png"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638413490197836606_DSC0060.JPG",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638413490197836606_DSC0060.JPG"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638413490349596569_DSC0060.JPG",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638413490349596569_DSC0060.JPG"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638413490371662980_DSC00601.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638413490371662980_DSC00601.jpg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\6384134964891347922023-03-11_1-06-53.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\6384134964891347922023-03-11_1-06-53.jpg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638413496552820443user-2.png",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638413496552820443user-2.png"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638413496606211667آقا بیاlessThan2.png",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638413496606211667آقا بیاlessThan2.png"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638413496681934873حروف الفبا.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638413496681934873حروف الفبا.jpg"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\Chart.bundle.js",
