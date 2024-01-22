@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosInformation;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoPhotos;
 using System;
@@ -59,6 +61,18 @@ namespace galaxypremiere.Application.Services.UsersPhotos.FacadePattern
         public GetUsersPhotoPhotosService GetUsersPhotoPhotosService
         {
             get { return _getUsersPhotoPhotosService = _getUsersPhotoPhotosService ?? new GetUsersPhotoPhotosService(_context,_imapper); }
+        }       
+        // Update User Photos
+        private UpdateUsersPhotoInformationService _updateUsersPhotoInformationService;
+        public UpdateUsersPhotoInformationService UpdateUsersPhotoInformationService
+        {
+            get { return _updateUsersPhotoInformationService = _updateUsersPhotoInformationService ?? new UpdateUsersPhotoInformationService(_context); }
+        }       
+        // Delete User Photos
+        private DeleteUsersPhotoPhotoService _deleteUsersPhotoPhotoService;
+        public DeleteUsersPhotoPhotoService DeleteUsersPhotoPhotoService
+        {
+            get { return _deleteUsersPhotoPhotoService = _deleteUsersPhotoPhotoService ?? new DeleteUsersPhotoPhotoService(_context); }
         }
     }
 }

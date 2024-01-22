@@ -198,7 +198,7 @@
         position: relative;
         display: block;
         width: 100%;
-        margin-bottom: 3rem;
+        margin-bottom: 10%;
         img
 
     {
@@ -209,12 +209,11 @@
 
     .itemG:hover .caption {
         opacity: 1;
-        padding-top: 40%
+        padding: 20px;
     }
 
     .itemG > .caption {
         position: absolute;
-        top: 0px;
         left: 0px;
         right: 0px;
         bottom: 0px;
@@ -224,7 +223,10 @@
         cursor: pointer;
         text-align: center;
         color: white;
-        padding-top: 20%
+    }
+
+    .itemG .imgG {
+        cursor: pointer;
     }
 </style>
 
@@ -242,7 +244,7 @@
                             <div class="col-sm-4 col-md-3 margin_bottom_30 album">
                                 <div class="column">
                                     <a data-fancybox="gallery"
-                                       onclick="OpenDialogueAddAlbum();">
+                                       onclick="OpenModalAddAlbum();">
                                         <img class="img-responsive"
                                              src="~/SiteTemplate/innerpages/images/layout_img/addAlbumProfile.svg" alt="#">
                                     </a>
@@ -314,88 +316,25 @@
                                 @for (int i = 0; i <= Model.Photo.resultGetUsersPhotoPhotosServiceDto.Count - 1; i++)
                                 {
                                     <div class="itemG">
-                                        <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename"
-                                     class="rounded"
-                                     alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
+                                        <a class="imgG" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
+                                            <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename"
+                                         class="rounded"
+                                         alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
+                                        </a>
                                         <span class="caption">
-                                            <span>
-                                                @Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title
-                                            </span>
-                                            <br />
-                                            <span>
-                                                @Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail
-                                            </span>
-                                            <br />
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalGrid_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">Detail</button>
+                                            <a onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
+                                                @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title == null)
+                                                {
+                                                    <span>- unknown title -</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title </span>
+                                                }
+                                            </a>
                                         </span>
+
                                     </div>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="modalGrid_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">PHOTO DETAIL</h5>
-                                                    <button type="button" class="close" data-dismiss="modal">
-                                                        <span>&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="container-fluid">
-                                                        <div class="row ">
-
-                                                            <div class="col-md text-center">
-                                                                <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename"
-                                                             class="rounded img-fluid"
-                                                             alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
-
-                                                                <div class="inputs p-2">
-                                                                    <div class="inputSwitch p-3">
-                                                                        <span id="txtPhotoTitleSpan_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id"></span>
-                                                                        <input id="txtPhotoTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id"
-                                                                       class="form-control"
-                                                                       placeholder="The Title of Photo"
-                                                                       value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
-                                                                    </div>
-                                                                    <div class="inputSwitch">
-                                                                        <span id="txtPhotoDetailSpan_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id"></span>
-                                                                        <input class="form-control"
-                                                                       id="txtPhotoDetail_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id"
-                                                                       placeholder="The Description of Photo"
-                                                                       value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail" />
-                                                                    </div>
-                                                                </div>
-
-                                                                <hr />
-                                                                <a href="#" class="sharedIcon fa fa-facebook"></a>
-                                                                <a href="#" class="sharedIcon fa fa-linkedin"></a>
-                                                                <a href="#" class="sharedIcon fa fa-twitter"></a>
-                                                                <a href="#" class="sharedIcon fa fa-google"></a>
-                                                                <a href="#" class="sharedIcon fa fa-instagram"></a>
-                                                                <a href="#" class="sharedIcon fa fa-pinterest"></a>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-
-                                                    <div class="icon_info">
-                                                        <ul>
-                                                            <li><a href="#" class="fa fa-heart-o"><span class="badge">3</span></a></li>
-                                                        </ul>
-                                                        <ul>
-                                                            <li><a href="#" class="fa fa-comments-o"><span class="badge">3</span></a></li>
-                                                        </ul>
-                                                    </div>
-
-                                                    @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>*@
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--  modal -->
                                 }
                             }
                         </div>
@@ -407,6 +346,66 @@
     </div>
 </div>
 
+<!-- Modal Photo -->
+<div class="modal fade" id="modalPhoto">
+    <input id="HiddenPhotoID" type="hidden" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">PHOTO DETAIL</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row ">
+                        <div class="col-md text-center">
+                            <img id="photo" class="rounded img-fluid" />
+                            <div class="inputs p-2">
+                                <div class="inputSwitch p-3">
+                                    <span onclick="" class="spanInputSwitch" id="txtPhotoTitleSpan"></span>
+                                    <input id="txtPhotoTitle" class="form-control" hidden />
+                                </div>
+                                <div class="inputSwitch">
+                                    <span class="spanInputSwitch" id="txtPhotoDetailSpan"></span>
+                                    <input id="txtPhotoDetail" class="form-control" hidden />
+                                </div>
+                            </div>
+
+                            <hr />
+                            <a href="#" class="sharedIcon fa fa-facebook"></a>
+                            <a href="#" class="sharedIcon fa fa-linkedin"></a>
+                            <a href="#" class="sharedIcon fa fa-twitter"></a>
+                            <a href="#" class="sharedIcon fa fa-google"></a>
+                            <a href="#" class="sharedIcon fa fa-instagram"></a>
+                            <a href="#" class="sharedIcon fa fa-pinterest"></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <div class="icon_info">
+                    <div class="float-sm-end">
+                        <button type="button"
+                                onclick="DeletePhotoPhoto('');" class="btn btn-secondary">
+                            DELETE PHOTO
+                        </button>
+                    </div>
+                    <ul>
+                        <li><a href="#" class="fa fa-heart-o"><span class="badge">3</span></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#" class="fa fa-comments-o"><span class="badge">3</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  modal -->
 @section Scripts{
     @* Tabs *@
     <script src="~/sitetemplate/innerpages/plugins/tabNavigation/tab.js"></script>
@@ -414,7 +413,7 @@
     <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
     @* Functions *@
     <script>
-        function OpenDialogueAddAlbum() {
+        function OpenModalAddAlbum() {
             Swal.fire({
                 title: "ALBUM TITLE",
                 input: "text",
@@ -424,6 +423,7 @@
                     if (!value) {
                         return "You need to write something!";
                     } else {
+                        pageWaitMe("progress"); // loading process starts
                         $.ajax({
                             contentType: 'application/x-www-form-urlencoded',
                             postType: 'json',
@@ -432,33 +432,15 @@
                             url: 'ProfileAlbumPost',
                             success: function (data) {
                                 if (data.isSuccess) {
-                                    const Toast = Swal.mixin({
-                                        toast: true,
-                                        position: "top-end",
-                                        showConfirmButton: false,
-                                        timer: 3000,
-                                        timerProgressBar: true,
-                                        didOpen: (toast) => {
-                                            toast.onmouseenter = Swal.stopTimer;
-                                            toast.onmouseleave = Swal.resumeTimer;
-                                        }
-                                    });
-                                    Toast.fire({
-                                        icon: "success",
-                                        title: "The Album Has Been Added Successfully."
-                                    });
+                                    KingSweetAlert(true, null);
                                     $("#divAlbum").load(window.location + " #divAlbum");
                                 }
                             },
                             error: function (req, status, err) {
-                                Swal.fire({
-                                    position: "center",
-                                    icon: "error",
-                                    title: "Something went wrong, please try it again or later!",
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                });
+                                KingSweetAlert(false, null);
                             }
+                        }).always(function () {
+                            pageWaitMeRemove(); // loading process stops
                         });
                     }
                 }
@@ -476,6 +458,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.value) {
+                    pageWaitMe("progress"); // loading process starts
                     $.ajax({
                         contentType: 'application/x-www-form-urlencoded',
                         postType: 'json',
@@ -483,34 +466,16 @@
                         data: { 'Id': id },
                         url: 'ProfileAlbumDelete',
                         success: function (data) {
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: "top-end",
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.onmouseenter = Swal.stopTimer;
-                                    toast.onmouseleave = Swal.resumeTimer;
-                                }
-                            });
-                            Toast.fire({
-                                icon: "success",
-                                title: "The Album Is Deleted Successfully!"
-                            });
                             if (data.isSuccess) {
+                                KingSweetAlert(true, null);
                                 $("#divAlbum").load(window.location + " #divAlbum");
                             }
                         },
                         error: function (req, status, err) {
-                            Swal.fire({
-                                position: "center",
-                                icon: "error",
-                                title: "Something went wrong, please try it again or later!",
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
+                            KingSweetAlert(false, null);
                         }
+                    }).always(function () {
+                        pageWaitMeRemove(); // loading process stops
                     });
                 }
             });
@@ -525,6 +490,7 @@
                     if (!value) {
                         return "You Need to Write Something!";
                     } else {
+                        pageWaitMe("progress"); // loading process starts
                         $.ajax({
                             contentType: 'application/x-www-form-urlencoded',
                             postType: 'json',
@@ -532,40 +498,21 @@
                             data: { 'Id': id, 'Title': value },
                             url: 'ProfileAlbumRenameUpdate',
                             success: function (data) {
-                                const Toast = Swal.mixin({
-                                    toast: true,
-                                    position: "top-end",
-                                    showConfirmButton: false,
-                                    timer: 3000,
-                                    timerProgressBar: true,
-                                    didOpen: (toast) => {
-                                        toast.onmouseenter = Swal.stopTimer;
-                                        toast.onmouseleave = Swal.resumeTimer;
-                                    }
-                                });
-                                Toast.fire({
-                                    icon: "success",
-                                    title: "The title of the album was renamed successfully!"
-                                });
                                 if (data.isSuccess) {
+                                    KingSweetAlert(true, null);
                                     $("#divAlbum").load(window.location + " #divAlbum");
                                 }
                             },
                             error: function (req, status, err) {
-                                Swal.fire({
-                                    position: "center",
-                                    icon: "error",
-                                    title: "Something went wrong, please try it again or later!",
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                });
+                                KingSweetAlert(false, null);
                             }
+                        }).always(function () {
+                            pageWaitMeRemove(); // loading process stops
                         });
                     }
                 }
             });
         }
-
         function OpenAlbum(id, title) {
             $("#spanAlbumName").text(title);
             $("#hiddenAlbumName").val(id);
@@ -616,8 +563,8 @@
                 var postData = new FormData();
                 postData.append("File", file);
                 postData.append("UsersAlbumsId", $("#hiddenAlbumName").val());
-                postData.append("Title", "1");
-                postData.append("Detail", "2");
+                postData.append("Title", "");
+                postData.append("Detail", "");
                 $.ajax({
                     contentType: false,
                     processData: false,
@@ -656,6 +603,135 @@
                 });
             }
         }
+    </script>
+    <script>
+        function OpenModalPhoto(id, title, detail, filename) {
+
+            $("#modalPhoto").modal("show");
+
+            var controlId = $("#HiddenPhotoID");
+            var controlTitleSpan = $("#txtPhotoTitleSpan");
+            var controlDetailSpan = $("#txtPhotoDetailSpan");
+            var controlPhoto = $("#photo");
+
+            controlId.val(id);
+            if (title.trim() == '') controlTitleSpan.text('- unknown title -');
+            else controlTitleSpan.text(title);
+            if (detail.trim() == '') controlDetailSpan.text('- unknown detail -');
+            else controlDetailSpan.text(detail);
+            controlPhoto.attr("src", "../../../SiteTemplate/innerpages/images/user-photos/" + filename);
+
+        }
+        $('document').ready(function () {
+            $('#txtPhotoTitle,#txtPhotoDetail').bind('blur', function () {
+                var input = $(this);
+                var span = $(this).attr("hidden", true).siblings("span").show();
+
+                if (input.attr('id') == 'txtPhotoTitle') {
+                    if (input.val() == '') {
+                        span.text('- unknown title -');
+                    }
+                    else {
+                        span.text(input.val());
+                    }
+                }
+                if (input.attr('id') == 'txtPhotoDetail') {
+                    if (input.val() == '') {
+                        span.text('- unknown detail -');
+                    }
+                    else {
+                         span.text(input.val());
+                    }
+                }
+                // update service launch here:
+                if(input.val()!='')
+                UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
+            });
+        });
+        $('.spanInputSwitch').click(function () {
+            var controlId = $("#HiddenPhotoID");
+            var input = $(this).hide().siblings("input");
+            input.attr("hidden", false).focus().select();
+
+            if (input.attr('id') == 'txtPhotoTitle') {
+                if ($(this).text() == '- unknown title -') {
+                    input.attr("placeholder", "Type title of your photo");
+                    input.val('');
+                }
+                else {
+                    input.val($(this).text());
+                }
+            }
+            if (input.attr('id') == 'txtPhotoDetail') {
+                if ($(this).text() == '- unknown detail -') {
+                    input.attr("placeholder", "Type detail of your photo");
+                    input.val('');
+                }
+                else {
+                    input.val($(this).text());
+                }
+            }
+        });
+        function UpdatePhotoInformation(PhotoId, ControlId, value) {
+            pageWaitMe("progress"); // loading process starts
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                postType: 'json',
+                type: 'POST',
+                data: { 'Id': PhotoId, 'ControlId': ControlId, 'Value': value },
+                url: 'UpdatePhoto',
+                success: function (data) {
+                    KingSweetAlert(true, null);
+                },
+                error: function (req, status, err) {
+                    KingSweetAlert(false, null);
+                }
+            }).always(function () {
+                pageWaitMeRemove(); // loading process stops
+            });
+        }
+        function DeletePhotoPhoto(Id) {
+            Swal.fire({
+                title: 'PHOTO DELETION!',
+                text: 'Are you sure to delete this photo?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#000222',
+                cancelButtonColor: '#000222',
+                confirmButtonText: 'Yes,Sure.',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.value) {
+                    pageWaitMe("progress"); // loading process starts
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        postType: 'json',
+                        type: 'POST',
+                        data: { 'Id': Id },
+                        url: 'DeletePhoto',
+                        success: function (data) {
+                            KingSweetAlert(true, null);
+                            $("#containerPhotos").load(window.location + " #containerPhotos"); // refresh photos
+                        },
+                        error: function (req, status, err) {
+                            KingSweetAlert(false, null);
+                        }
+                    }).always(function () {
+                        pageWaitMeRemove(); // loading process stops
+                        $('.modal').remove();
+                        $('.modal-backdrop').remove();
+                    });
+                }
+            });
+        }
+        // CLOSE FUNCTION FOR ALL MODALS: (when you are supposed to add modals dynamically, for instance):
+        $(document).keydown(function (event) {
+            if (event.keyCode == 27) {
+                $('.modal').modal('hide');
+            }
+        });
+    </script>
+    <script>
         // SWEET ALERT FUNCTION
         function KingSweetAlert(type, message) {
 
@@ -695,34 +771,5 @@
                 });
             }
         }
-    </script>
-    <script>
-        var $inputSwitches = $(".inputSwitch"), $inputs = $inputSwitches.find("input"), $spans = $inputSwitches.find("span");
-        $spans.on("click", function () {
-            var $this = $(this);
-            $this.hide().siblings("input").show().focus().select();
-        }).each(function () {
-            var $this = $(this);
-            $this.text($this.siblings("input").val());
-        });
-        $inputs.on("blur", function () {
-            var $this = $(this);
-            $this.hide().siblings("span").text($this.val()).show();
-        }).on('keydown', function (e) {
-            if (e.which == 13) { // enter key
-
-                var id = $(this).attr('id');
-                var value = $('#' + id).val();
-                alert(value);
-
-                e.preventDefault();
-                if (e.shiftKey) {
-                    $(this).blur().parent().prevAll($inputSwitches).first().find($spans).click();
-                } else {
-                    $(this).blur().parent().nextAll($inputSwitches).first().find($spans).click();
-                }
-            }
-        }).hide();
-
     </script>
 }

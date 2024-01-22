@@ -63,6 +63,8 @@ using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPh
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoPhotos;
 using System.Dynamic;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosInformation;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoPhoto;
 
 namespace Endpoint.Site.Controllers
 {
@@ -380,25 +382,6 @@ namespace Endpoint.Site.Controllers
                 {
                     UsersId = usersId,
                 }).Data;
-            //return Json(_userPhotoFacade.GetUsersPhotoAlbumService
-            //    .Execute(new RequestGetUsersPhotoAlbumServiceDto
-            //    {
-            //        UsersId = usersId,
-            //    }));
-
-            //ModelGetPhoto modelGetPhoto = new ModelGetPhoto
-            //{
-            //    ResultGetUsersPhotoAlbumServiceDto = _userPhotoFacade.GetUsersPhotoAlbumService
-            //    .Execute(new RequestGetUsersPhotoAlbumServiceDto
-            //    {
-            //        UsersId = usersId,
-            //    }).Data,
-            //    //ResultGetUsersPhotoPhotosServiceDto = _userPhotoFacade.GetUsersPhotoPhotosService
-            //    //.Execute(new RequestGetUsersPhotoPhotosServiceDto
-            //    //{
-            //    //    UsersId = usersId,
-            //    //}).Data,
-            //};
             return View(model);
         }
         [HttpPost]
@@ -425,6 +408,18 @@ namespace Endpoint.Site.Controllers
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.Photo = Request.Form.Files[0];
             return Json(_userPhotoFacade.PostUsersPhotosPhotoService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult UpdatePhoto(RequestUpdateUsersPhotoInformationServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userPhotoFacade.UpdateUsersPhotoInformationService.Execute(req));
+        }     
+        [HttpPost]
+        public IActionResult DeletePhoto(RequestDeleteUsersPhotoPhotoServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userPhotoFacade.DeleteUsersPhotoPhotoService.Execute(req));
         }
     }
 }

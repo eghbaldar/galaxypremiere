@@ -74,7 +74,9 @@ namespace galaxypremiere.Persistence.Context
             //---- Profile Attachment
             modelBuilder.ApplyConfiguration(new UsersProfileAttachmentConfigurations());
             //---- Photo Albums
-            modelBuilder.ApplyConfiguration(new UsersPhotoAlbumConfigurations());
+            modelBuilder.ApplyConfiguration(new UsersPhotoAlbumConfigurations());    
+            //---- Photo Photo
+            modelBuilder.ApplyConfiguration(new UsersPhotoPhotoConfigurations());
             //< End
         }
         public override int SaveChanges()
