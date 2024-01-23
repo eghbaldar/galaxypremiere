@@ -228,6 +228,13 @@
     .itemG .imgG {
         cursor: pointer;
     }
+    .spanInputSwitch{
+        cursor:pointer;
+    }
+
+    #txtPhotoDetail:focus{
+        height:200px;
+    }
 </style>
 
 <div id="TabUserAlbums" class="TabcontentClass active">
@@ -321,15 +328,15 @@
                                          class="rounded"
                                          alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
                                         </a>
-                                        <span class="caption">
-                                            <a onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
+                                        <span class="caption" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
+                                            <a>
                                                 @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title == null)
                                                 {
-                                                    <span>- unknown title -</span>
+                                                    <span id="spanTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">- unknown title -</span>
                                                 }
                                                 else
                                                 {
-                                                    <span>@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title </span>
+                                                    <span id="spanTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title </span>
                                                 }
                                             </a>
                                         </span>
@@ -364,12 +371,13 @@
                             <img id="photo" class="rounded img-fluid" />
                             <div class="inputs p-2">
                                 <div class="inputSwitch p-3">
-                                    <span onclick="" class="spanInputSwitch" id="txtPhotoTitleSpan"></span>
+                                    <span class="spanInputSwitch" id="txtPhotoTitleSpan"></span>
                                     <input id="txtPhotoTitle" class="form-control" hidden />
                                 </div>
                                 <div class="inputSwitch">
                                     <span class="spanInputSwitch" id="txtPhotoDetailSpan"></span>
-                                    <input id="txtPhotoDetail" class="form-control" hidden />
+                                    @*<input id="txtPhotoDetail" class="form-control" hidden />*@
+                                    <textarea  id="txtPhotoDetail" class="form-control" cols="40" rows="5" hidden></textarea>
                                 </div>
                             </div>
 
@@ -615,10 +623,8 @@
             var controlPhoto = $("#photo");
 
             controlId.val(id);
-            if (title.trim() == '') controlTitleSpan.text('- unknown title -');
-            else controlTitleSpan.text(title);
-            if (detail.trim() == '') controlDetailSpan.text('- unknown detail -');
-            else controlDetailSpan.text(detail);
+            if (title.trim() == '') controlTitleSpan.text('- unknown title -'); else controlTitleSpan.text(title);
+            if (detail.trim() == '') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.text(detail);
             controlPhoto.attr("src", "../../../SiteTemplate/innerpages/images/user-photos/" + filename);
 
         }
@@ -651,7 +657,9 @@
         $('.spanInputSwitch').click(function () {
             var controlId = $("#HiddenPhotoID");
             var input = $(this).hide().siblings("input");
+            var textarea = $(this).hide().siblings("textarea");
             input.attr("hidden", false).focus().select();
+            textarea.attr("hidden", false).focus().select();
 
             if (input.attr('id') == 'txtPhotoTitle') {
                 if ($(this).text() == '- unknown title -') {
@@ -662,13 +670,13 @@
                     input.val($(this).text());
                 }
             }
-            if (input.attr('id') == 'txtPhotoDetail') {
+            if (textarea.attr('id') == 'txtPhotoDetail') {
                 if ($(this).text() == '- unknown detail -') {
-                    input.attr("placeholder", "Type detail of your photo");
-                    input.val('');
+                    textarea.attr("placeholder", "Type detail of your photo");
+                    textarea.val('');
                 }
                 else {
-                    input.val($(this).text());
+                    textarea.val($(this).text());
                 }
             }
         });
@@ -687,6 +695,7 @@
                     KingSweetAlert(false, null);
                 }
             }).always(function () {
+                $("#containerPhotos").load(window.location + " #containerPhotos");
                 pageWaitMeRemove(); // loading process stops
             });
         }
