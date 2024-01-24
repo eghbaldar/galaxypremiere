@@ -8,6 +8,7 @@
     }
 });
 function tabNavigation(evt, tabName) {
+
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -27,4 +28,21 @@ function tabNavigation(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     //alert(evt.currentTarget.className);
     evt.currentTarget.className += " active";
+}
+
+function tabNavigationByTabName(tabName) {
+    // developed by the King [blog.eghbaldar.ir]
+    var i, tabcontent, tablinks;
+
+    tabcontent = $("body").find(".TabcontentClass");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    tablinks = $("body").find(".tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    tablinks[1].className += " active";
 }

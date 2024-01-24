@@ -133,28 +133,31 @@
         display: none;
         color: white;
         background-color: black;
-        width: 75px;
+        width: 250px;
         height: 25px;
         border: 1px solid #ccc;
         padding: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
-        border-radius: 5px;
+        border-radius: 5px;        
     }
 
     #dropzoneAvatar {
         position: relative;
         border: 3px dashed gray;
-        border-radius: 50%;
         color: #000;
         font: bold 14px arial;
         height: 200px;
         margin: 30px auto;
         text-align: center;
-        width: 200px;
-        background-image: url('../../../../sitetemplate/innerpages/images/layout_img/img-avatar.jpg');
-        background-size: cover;
-        background-repeat: repeat;
+        width: 100%;
+        background: url('../../../../sitetemplate/innerpages/images/layout_img/addPhotoPhoto.svg') no-repeat;
+        background-color: #CACACA;
+        background-position: center center;
+        background-size: contain;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
     }
 
         #dropzoneAvatar div {
@@ -228,12 +231,15 @@
     .itemG .imgG {
         cursor: pointer;
     }
-    .spanInputSwitch{
-        cursor:pointer;
+
+    .spanInputSwitch {
+        cursor: pointer;
+        text-align:left;
+        width:100%;
     }
 
-    #txtPhotoDetail:focus{
-        height:200px;
+    #txtPhotoDetail:focus {
+        height: 200px;
     }
 </style>
 
@@ -265,7 +271,7 @@
                             {
                                 <div class="col-sm-4 col-md-3 margin_bottom_30 album">
                                     <div class="column">
-                                        <a data-fancybox="gallery" onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">
+                                        <a data-fancybox="gallery" onclick="OpenAlbum(this,'@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">
                                             <img class="img-responsive"
                                              src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg"
                                              alt="#">
@@ -276,7 +282,7 @@
                                                     <i class="fa fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-content">
-                                                    <a onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Photos</a>
+                                                    <a onclick="OpenAlbum(this,'@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Photos</a>
                                                     <a onclick="DeletePhotoAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Delete</a>
                                                     <a onclick="UpdatePhotoAlbumTitle('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Rename</a>
                                                 </div>
@@ -311,7 +317,7 @@
                             <img src="~/SiteTemplate/innerpages/images/user-headshot/" />
                         </div>
                         <div id="HeadshotLoader" class="loader"></div>
-                        <div id="HeadshotChangePhoto" class="HoverChangePhoto">UPLOAD</div>
+                        <div id="HeadshotChangePhoto" class="HoverChangePhoto">CLICK OR DRAG TO UPLOAD</div>
                         <input id="filedropzoneAvatar" type="file" />
                     </div>
                     @*88888888888888888888888888888888888888888888*@
@@ -355,7 +361,10 @@
 
 <!-- Modal Photo -->
 <div class="modal fade" id="modalPhoto">
+
     <input id="HiddenPhotoID" type="hidden" />
+
+
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -370,14 +379,13 @@
                         <div class="col-md text-center">
                             <img id="photo" class="rounded img-fluid" />
                             <div class="inputs p-2">
-                                <div class="inputSwitch p-3">
+                                <div class="inputSwitch">
                                     <span class="spanInputSwitch" id="txtPhotoTitleSpan"></span>
                                     <input id="txtPhotoTitle" class="form-control" hidden />
                                 </div>
                                 <div class="inputSwitch">
-                                    <span class="spanInputSwitch" id="txtPhotoDetailSpan"></span>
-                                    @*<input id="txtPhotoDetail" class="form-control" hidden />*@
-                                    <textarea  id="txtPhotoDetail" class="form-control" cols="40" rows="5" hidden></textarea>
+                                    <span class="spanInputSwitch" style=" white-space: pre-line;" id="txtPhotoDetailSpan"></span>
+                                    <textarea id="txtPhotoDetail" class="form-control" cols="40" rows="5" hidden></textarea>
                                 </div>
                             </div>
 
@@ -398,7 +406,7 @@
                 <div class="icon_info">
                     <div class="float-sm-end">
                         <button type="button"
-                                onclick="DeletePhotoPhoto('');" class="btn btn-secondary">
+                                onclick="DeletePhotoPhoto();" class="btn btn-secondary">
                             DELETE PHOTO
                         </button>
                     </div>
@@ -421,6 +429,7 @@
     <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
     @* Functions *@
     <script>
+        /*@* Album Section *@*/
         function OpenModalAddAlbum() {
             Swal.fire({
                 title: "ALBUM TITLE",
@@ -521,12 +530,11 @@
                 }
             });
         }
-        function OpenAlbum(id, title) {
+        function OpenAlbum(event, id, title) {
             $("#spanAlbumName").text(title);
             $("#hiddenAlbumName").val(id);
-            tabNavigation(event, 'TabUserPhotos');
+            tabNavigationByTabName('TabUserPhotos');
         }
-
         /*@* Upload Js *@*/
         var dropzoneavatar = $("#dropzoneAvatar");
         dropzoneavatar.on({
@@ -535,7 +543,6 @@
         });
         var inputavatar = dropzoneavatar.find('input');
         inputavatar.on('change', dropavatar);
-
         $(dropzoneavatar).hover(
             function () {
                 $("#HeadshotChangePhoto").css("display", "inline");
@@ -545,12 +552,15 @@
                 dropzoneavatar.css("opacity", "1")
             }
         );
-
         function draginavatar(e) { //function for drag into element, just turns the bix X white
             $(dropzoneavatar).addClass('hover');
+            $("#HeadshotChangePhoto").css("display", "inline");
+            dropzoneavatar.css("opacity", "0.5")
         }
         function dragoutavatar(e) { //function for dragging out of element
             $(dropzoneavatar).removeClass('hover');
+             $(this).find("#HeadshotChangePhoto").css("display", "none");
+                dropzoneavatar.css("opacity", "1")
         }
         function dropavatar(e) {
 
@@ -611,20 +621,19 @@
                 });
             }
         }
-    </script>
-    <script>
+        /*@* Photo Section *@*/
         function OpenModalPhoto(id, title, detail, filename) {
-
+            
             $("#modalPhoto").modal("show");
 
             var controlId = $("#HiddenPhotoID");
             var controlTitleSpan = $("#txtPhotoTitleSpan");
             var controlDetailSpan = $("#txtPhotoDetailSpan");
             var controlPhoto = $("#photo");
-
+            
             controlId.val(id);
             if (title.trim() == '') controlTitleSpan.text('- unknown title -'); else controlTitleSpan.text(title);
-            if (detail.trim() == '') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.text(detail);
+            if (detail.trim() == '') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(detail);
             controlPhoto.attr("src", "../../../SiteTemplate/innerpages/images/user-photos/" + filename);
 
         }
@@ -646,12 +655,13 @@
                         span.text('- unknown detail -');
                     }
                     else {
-                         span.text(input.val());
+                        span.text(input.val().replaceAll("<br>", "\n"));
+                        //alert('s');
                     }
                 }
                 // update service launch here:
-                if(input.val()!='')
-                UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
+                if (input.val() != '')
+                    UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
             });
         });
         $('.spanInputSwitch').click(function () {
@@ -670,13 +680,13 @@
                     input.val($(this).text());
                 }
             }
-            if (textarea.attr('id') == 'txtPhotoDetail') {
+            if (textarea.attr('id') == 'txtPhotoDetail') {     
                 if ($(this).text() == '- unknown detail -') {
                     textarea.attr("placeholder", "Type detail of your photo");
                     textarea.val('');
                 }
                 else {
-                    textarea.val($(this).text());
+                    textarea.val($(this).html().replaceAll("<br>", "\n"));
                 }
             }
         });
@@ -686,7 +696,7 @@
                 contentType: 'application/x-www-form-urlencoded',
                 postType: 'json',
                 type: 'POST',
-                data: { 'Id': PhotoId, 'ControlId': ControlId, 'Value': value },
+                data: { 'Id': PhotoId, 'ControlId': ControlId, 'Value': value.replaceAll('\n', "<br>") },
                 url: 'UpdatePhoto',
                 success: function (data) {
                     KingSweetAlert(true, null);
@@ -699,7 +709,7 @@
                 pageWaitMeRemove(); // loading process stops
             });
         }
-        function DeletePhotoPhoto(Id) {
+        function DeletePhotoPhoto() {
             Swal.fire({
                 title: 'PHOTO DELETION!',
                 text: 'Are you sure to delete this photo?',
@@ -716,7 +726,7 @@
                         contentType: 'application/x-www-form-urlencoded',
                         postType: 'json',
                         type: 'POST',
-                        data: { 'Id': Id },
+                        data: { 'Id': $("#HiddenPhotoID").val() },
                         url: 'DeletePhoto',
                         success: function (data) {
                             KingSweetAlert(true, null);
@@ -727,8 +737,8 @@
                         }
                     }).always(function () {
                         pageWaitMeRemove(); // loading process stops
-                        $('.modal').remove();
-                        $('.modal-backdrop').remove();
+                        $('.modal').modal('hide');
+                        $(document.body).removeClass('modal-open');
                     });
                 }
             });
@@ -739,8 +749,6 @@
                 $('.modal').modal('hide');
             }
         });
-    </script>
-    <script>
         // SWEET ALERT FUNCTION
         function KingSweetAlert(type, message) {
 
