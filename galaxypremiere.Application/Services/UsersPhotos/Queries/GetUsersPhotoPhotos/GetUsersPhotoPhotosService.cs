@@ -5,7 +5,7 @@ using galaxypremiere.Common.DTOs;
 namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoPhotos
 {
     public class GetUsersPhotoPhotosService : IGetUsersPhotoPhotosService
-    {
+    {   // mahdi javaher
         private readonly IDataBaseContext _context;
         private readonly IMapper _imapper;
         public GetUsersPhotoPhotosService(IDataBaseContext context, IMapper imapper)
@@ -35,25 +35,21 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoP
                 {
                     var album = _context.UsersAlbums
                         .Where(al => al.UsersId == req.UsersId && al.Id == req.AlbumId)
-                        .FirstOrDefault();
+                        .Select(al => new { al.Id, al.UsersId })
+                        .ToList();
                     if (album != null)
                     {
-                        var photos = _context.UsersPhotos
-                            .Where(p => p.UsersAlbumsId == req.AlbumId)
-                            .OrderBy(p => p.InsertDate)
-                            .ToList();
+                        var photos = (from p in _context.UsersPhotos
+                                      where album.Select(p => p.Id).Contains(p.UsersAlbumsId)
+                                      orderby p.InsertDate
+                                      select p)
+                                     .Select(x => _imapper.Map<GetUsersPhotoPhotosServiceDto>(x))
+                                     .ToList();
                         return new ResultDto<ResultGetUsersPhotoPhotosServiceDto>
                         {
                             Data = new ResultGetUsersPhotoPhotosServiceDto
                             {
-                                resultGetUsersPhotoPhotosServiceDto = new List<GetUsersPhotoPhotosServiceDto>()
-                                {
-                                    new GetUsersPhotoPhotosServiceDto
-                                    {
-                                        Filename=photos.First().Filename,
-                                        Id=photos.First().Id,
-                                    }
-                                }
+                                resultGetUsersPhotoPhotosServiceDto = photos
                             },
                             IsSuccess = true,
                             Message = "Successful",
@@ -80,11 +76,13 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoP
                         .ToList();
                     if (album != null)
                     {
-                        var photos = _context.UsersPhotos
-                            .Where(p => p.UsersAlbumsId == album[0].Id)
-                            .OrderBy(p => p.InsertDate)
-                            .Select(p => _imapper.Map<GetUsersPhotoPhotosServiceDto>(p))
-                            .ToList();
+                        var photos = (from p in _context.UsersPhotos
+                                     where album.Select(p => p.Id).Contains(p.UsersAlbumsId)
+                                     orderby p.InsertDate
+                                     select p)
+                                     .Select(x => _imapper.Map<GetUsersPhotoPhotosServiceDto>(x))
+                                     .ToList();
+
                         return new ResultDto<ResultGetUsersPhotoPhotosServiceDto>
                         {
                             Data = new ResultGetUsersPhotoPhotosServiceDto

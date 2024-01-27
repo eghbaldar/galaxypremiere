@@ -139,7 +139,7 @@
         padding: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
-        border-radius: 5px;        
+        border-radius: 5px;
     }
 
     #dropzoneAvatar {
@@ -234,8 +234,8 @@
 
     .spanInputSwitch {
         cursor: pointer;
-        text-align:left;
-        width:100%;
+        text-align: left;
+        width: 100%;
     }
 
     #txtPhotoDetail:focus {
@@ -271,7 +271,7 @@
                             {
                                 <div class="col-sm-4 col-md-3 margin_bottom_30 album">
                                     <div class="column">
-                                        <a data-fancybox="gallery" onclick="OpenAlbum(this,'@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">
+                                        <a data-fancybox="gallery" onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">
                                             <img class="img-responsive"
                                              src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg"
                                              alt="#">
@@ -282,7 +282,7 @@
                                                     <i class="fa fa-ellipsis-v"></i>
                                                 </button>
                                                 <div class="dropdown-content">
-                                                    <a onclick="OpenAlbum(this,'@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Photos</a>
+                                                    <a onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Photos</a>
                                                     <a onclick="DeletePhotoAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Delete</a>
                                                     <a onclick="UpdatePhotoAlbumTitle('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Rename</a>
                                                 </div>
@@ -309,7 +309,7 @@
         <div class="card-body">
             <div class="basic-form">
                 <div>
-                    <input type="hidden" id="hiddenAlbumName" />
+                    <input type="hidden" id="hiddenAlbumId" />
                     <span id="spanAlbumName"></span>
                     @*88888888888888888888888888888888888888888888*@
                     <div id="dropzoneAvatar" class="dropped">
@@ -328,12 +328,13 @@
                             {
                                 @for (int i = 0; i <= Model.Photo.resultGetUsersPhotoPhotosServiceDto.Count - 1; i++)
                                 {
-                                    <div class="itemG">
+                                    <div class="itemG @Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].UsersAlbumsId">
                                         <a class="imgG" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename"
                                          class="rounded"
                                          alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
                                         </a>
+
                                         <span class="caption" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
                                             <a>
                                                 @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title == null)
@@ -380,7 +381,7 @@
                             <img id="photo" class="rounded img-fluid" />
                             <div class="inputs p-2">
                                 <div class="inputSwitch">
-                                    <span class="spanInputSwitch" id="txtPhotoTitleSpan"></span>
+                                    <span class="spanInputSwitch fw-bold" id="txtPhotoTitleSpan"></span>
                                     <input id="txtPhotoTitle" class="form-control" hidden />
                                 </div>
                                 <div class="inputSwitch">
@@ -510,7 +511,7 @@
                         pageWaitMe("progress"); // loading process starts
                         $.ajax({
                             contentType: 'application/x-www-form-urlencoded',
-                            postType: 'json',
+                            dataType: 'json',
                             type: 'POST',
                             data: { 'Id': id, 'Title': value },
                             url: 'ProfileAlbumRenameUpdate',
@@ -530,11 +531,55 @@
                 }
             });
         }
-        function OpenAlbum(event, id, title) {
-            $("#spanAlbumName").text(title);
-            $("#hiddenAlbumName").val(id);
-            tabNavigationByTabName('TabUserPhotos');
+        // Open Album
+        var cardItem = function (data) {
+            if (data.title == null) data.title = '- unknown title -';
+            return `
+            <div class="itemG `+ data.usersAlbumsId + `">
+            <a class="imgG" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
+                    <img src="/SiteTemplate/innerpages/images/user-photos/`+ data.filename + `"  class="rounded"  alt=` + data.title + ` />
+            </a>
+                    <span class="caption" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
+            <a>
+                <span id="spanTitle_`+ data.id + `">` + data.title + `</span>
+            </a>
+            </span>
+        </div>
+        `}
+        function OpenAlbum(albumId, title) {
+
+            $.ajax({
+                type: "GET",
+                url: "PhotosGetPhotosByAlbumId",
+                dataType: "json",
+                data: { 'AlbumId': albumId },
+                success: function (data) {
+
+                    $("#hiddenAlbumId").val(albumId);
+                    $("#spanAlbumName").text(title);
+
+                    var cardItems2;
+                    var json = data.data.resultGetUsersPhotoPhotosServiceDto;
+                    var parsToStr = JSON.stringify(json);
+
+                    $(".rowG").empty();
+                    for (var i = 0; i < json.length; i++) {
+                        //cardItems2 += cardItem(json[i]);
+                        $(".rowG").append( cardItem(json[i]));
+                    }                                        
+
+                    tabNavigationByTabName('TabUserPhotos');
+                    //alert(parsToStr);
+                },
+                error: function (r, s, e) {
+                    alert(s);
+                }
+            });
+
+            //
         }
+        // End Open Album
+
         /*@* Upload Js *@*/
         var dropzoneavatar = $("#dropzoneAvatar");
         dropzoneavatar.on({
@@ -559,8 +604,8 @@
         }
         function dragoutavatar(e) { //function for dragging out of element
             $(dropzoneavatar).removeClass('hover');
-             $(this).find("#HeadshotChangePhoto").css("display", "none");
-                dropzoneavatar.css("opacity", "1")
+            $(this).find("#HeadshotChangePhoto").css("display", "none");
+            dropzoneavatar.css("opacity", "1")
         }
         function dropavatar(e) {
 
@@ -580,7 +625,7 @@
 
                 var postData = new FormData();
                 postData.append("File", file);
-                postData.append("UsersAlbumsId", $("#hiddenAlbumName").val());
+                postData.append("UsersAlbumsId", $("#hiddenAlbumId").val());
                 postData.append("Title", "");
                 postData.append("Detail", "");
                 $.ajax({
@@ -600,7 +645,18 @@
                             });
                             $("#filedropzoneAvatar").css("opacity", "0");
                             //////////////////////////////
-                            $("#containerPhotos").load(window.location + " #containerPhotos");
+                            //alert(data.data.filename);
+                            var newItems = {
+                                'usersAlbumsId': $("#hiddenAlbumId").val(),
+                                'title': '- unknown title -',
+                                'detail': '- unknown detail -',
+                                'filename': data.data.filename,
+                                'id': data.data.photoId,
+                            };
+                            //$(".rowG").empty();
+                            $(".rowG").append(cardItem(newItems));
+                            //$("#containerPhotos").load(window.location + " #containerPhotos");
+                            //$(".containerG .itemG").hide();
                         }
                         else {
                             KingSweetAlert(false, data.message);
@@ -610,6 +666,10 @@
                         KingSweetAlert(false, err);
                     }
                 }).always(function () {
+
+
+                    //.not('div.two')
+
                     $("#HeadshotLoader").css("display", "none"); // circle loading on photo
                     $("#dropzoneAvatar *").attr("disabled", false).off('click'); // enable clickable
                     $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
@@ -623,14 +683,14 @@
         }
         /*@* Photo Section *@*/
         function OpenModalPhoto(id, title, detail, filename) {
-            
+
             $("#modalPhoto").modal("show");
 
             var controlId = $("#HiddenPhotoID");
             var controlTitleSpan = $("#txtPhotoTitleSpan");
             var controlDetailSpan = $("#txtPhotoDetailSpan");
             var controlPhoto = $("#photo");
-            
+
             controlId.val(id);
             if (title.trim() == '') controlTitleSpan.text('- unknown title -'); else controlTitleSpan.text(title);
             if (detail.trim() == '') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(detail);
@@ -656,7 +716,6 @@
                     }
                     else {
                         span.text(input.val().replaceAll("<br>", "\n"));
-                        //alert('s');
                     }
                 }
                 // update service launch here:
@@ -680,7 +739,7 @@
                     input.val($(this).text());
                 }
             }
-            if (textarea.attr('id') == 'txtPhotoDetail') {     
+            if (textarea.attr('id') == 'txtPhotoDetail') {
                 if ($(this).text() == '- unknown detail -') {
                     textarea.attr("placeholder", "Type detail of your photo");
                     textarea.val('');

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto
 {
-    public class PostUsersPhotosPhotoService: IPostUsersPhotosPhotoService
+    public class PostUsersPhotosPhotoService : IPostUsersPhotosPhotoService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
@@ -15,12 +15,13 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
             _context = context;
             _mapper = mapper;
         }
-        public ResultDto Execute(RequestPostUsersPhotosPhotoServiceDto req)
+        public ResultDto<ResultPostUsersPhotosPhotoServiceDto> Execute(RequestPostUsersPhotosPhotoServiceDto req)
         {
             if (req == null)
             {
-                return new ResultDto
+                return new ResultDto<ResultPostUsersPhotosPhotoServiceDto>
                 {
+                    Data = null,
                     IsSuccess = false,
                     Message = "Something went wrong."
                 };
@@ -39,8 +40,9 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
                         usersPhotos.Filename = file.Filename;
                         break;
                     case false:
-                        return new ResultDto
+                        return new ResultDto<ResultPostUsersPhotosPhotoServiceDto>
                         {
+                            Data = null,
                             IsSuccess = false,
                             Message = file.Message,
                         };
@@ -49,16 +51,23 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
                 _context.UsersPhotos.Add(usersPhotos);
                 _context.SaveChanges();
 
-                return new ResultDto
+                return new ResultDto<ResultPostUsersPhotosPhotoServiceDto>
                 {
+                    Data = new ResultPostUsersPhotosPhotoServiceDto
+                    {
+                        AlbumId = req.UsersAlbumsId,
+                        Filename = file.Filename,
+                        PhotoId= usersPhotos.Id,
+                    },
                     IsSuccess = true,
-                    Message = "Headshot has just been updated successfully.1"
+                    Message = "Photo has just been updated successfully.1"
                 };
             }
             else
             {
-                return new ResultDto
+                return new ResultDto<ResultPostUsersPhotosPhotoServiceDto>
                 {
+                    Data = null,
                     IsSuccess = false,
                     Message = "The user doesn not exist."
                 };

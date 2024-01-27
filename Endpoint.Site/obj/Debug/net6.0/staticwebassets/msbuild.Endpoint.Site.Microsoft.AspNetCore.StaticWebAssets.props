@@ -10784,12 +10784,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\logo\logo_icon.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416231162351770_DSC0060.JPG))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384179460970573802023-03-11_1-06-53.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416231162351770_DSC0060.JPG</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/6384179460970573802023-03-11_1-06-53.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10798,14 +10798,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416231162351770_DSC0060.JPG))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384179460970573802023-03-11_1-06-53.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416231191435848_DSC00602.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417946131961638_DSC006026.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416231191435848_DSC00602.jpg</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638417946131961638_DSC006026.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10814,14 +10814,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416231191435848_DSC00602.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417946131961638_DSC006026.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384162312174519322023-03-11_1-06-53.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417952464007062Untitled1.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/6384162312174519322023-03-11_1-06-53.jpg</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638417952464007062Untitled1.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10830,14 +10830,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384162312174519322023-03-11_1-06-53.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417952464007062Untitled1.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416231425706393user-2.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417953406530743Untitled1.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416231425706393user-2.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638417953406530743Untitled1.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10846,14 +10846,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416231425706393user-2.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417953406530743Untitled1.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416259274973171user-3.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417953612159719user-2.png))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416259274973171user-3.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638417953612159719user-2.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10862,14 +10862,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416259274973171user-3.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417953612159719user-2.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416259295353429user-4.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417954000367424Untitled.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416259295353429user-4.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638417954000367424Untitled.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10878,14 +10878,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416259295353429user-4.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417954000367424Untitled.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416259531601143user-4.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417954080717833user-1.png))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416259531601143user-4.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638417954080717833user-1.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10894,14 +10894,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416259531601143user-4.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417954080717833user-1.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416259808528620user-4.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417954314657171user-3.png))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416259808528620user-4.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638417954314657171user-3.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10910,14 +10910,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416259808528620user-4.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638417954314657171user-3.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416260015765686user-4.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419571882112933user-4.png))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416260015765686user-4.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419571882112933user-4.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10926,14 +10926,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416260015765686user-4.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419571882112933user-4.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416260836255833user-4.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419582618323817Untitled.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416260836255833user-4.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419582618323817Untitled.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10942,14 +10942,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416260836255833user-4.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419582618323817Untitled.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416260858013073user-3.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419590288601313user-4.png))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416260858013073user-3.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419590288601313user-4.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10958,14 +10958,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416260858013073user-3.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419590288601313user-4.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416260888418356user-1.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419593333147475user-1.png))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416260888418356user-1.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419593333147475user-1.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10974,14 +10974,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416260888418356user-1.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419593333147475user-1.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384163091996964592023-03-11_1-06-53.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419594056805769_DSC006024.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/6384163091996964592023-03-11_1-06-53.jpg</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419594056805769_DSC006024.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -10990,14 +10990,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384163091996964592023-03-11_1-06-53.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419594056805769_DSC006024.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416309245921654user-4.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419595113498647_DSC0060.JPG))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-photos/638416309245921654user-4.png</RelativePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419595113498647_DSC0060.JPG</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -11006,7 +11006,343 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638416309245921654user-4.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419595113498647_DSC0060.JPG))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419595489928522_DSC0060.JPG))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419595489928522_DSC0060.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419595489928522_DSC0060.JPG))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419597676008952_DSC00602.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419597676008952_DSC00602.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419597676008952_DSC00602.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419600528741827_DSC006023.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419600528741827_DSC006023.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419600528741827_DSC006023.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419601574596137_DSC006024.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419601574596137_DSC006024.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419601574596137_DSC006024.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419602694463853_DSC006025.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419602694463853_DSC006025.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419602694463853_DSC006025.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419604189048948Untitled1.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419604189048948Untitled1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419604189048948Untitled1.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419604463096313user-1.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419604463096313user-1.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419604463096313user-1.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384196048100999412023-03-11_1-06-53.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/6384196048100999412023-03-11_1-06-53.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384196048100999412023-03-11_1-06-53.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419605516737146user-3.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419605516737146user-3.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419605516737146user-3.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419607117693276user-2.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419607117693276user-2.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419607117693276user-2.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419607718257838user-3.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419607718257838user-3.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419607718257838user-3.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419607861375789Untitled1.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419607861375789Untitled1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419607861375789Untitled1.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419608428007546user-3.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419608428007546user-3.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419608428007546user-3.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419609127868531user-3.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419609127868531user-3.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419609127868531user-3.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419609381304982_DSC006026.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419609381304982_DSC006026.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419609381304982_DSC006026.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419627668572095_DSC0060.JPG))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419627668572095_DSC0060.JPG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419627668572095_DSC0060.JPG))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384196279288920492023-03-11_1-06-53.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/6384196279288920492023-03-11_1-06-53.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384196279288920492023-03-11_1-06-53.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384196282765209742023-03-11_1-06-53.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/6384196282765209742023-03-11_1-06-53.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\6384196282765209742023-03-11_1-06-53.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419628745763752Untitled1.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419628745763752Untitled1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419628745763752Untitled1.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419629626045447_DSC006026.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419629626045447_DSC006026.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419629626045447_DSC006026.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419630476612458user-1.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>Endpoint.Site</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Endpoint.Site</BasePath>
+      <RelativePath>SiteTemplate/innerpages/images/user-photos/638419630476612458user-1.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638419630476612458user-1.png))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\js\analyser.js))">
       <SourceType>Package</SourceType>

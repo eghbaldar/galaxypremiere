@@ -421,5 +421,11 @@ namespace Endpoint.Site.Controllers
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userPhotoFacade.DeleteUsersPhotoPhotoService.Execute(req));
         }
+        [HttpGet]
+        public IActionResult PhotosGetPhotosByAlbumId(RequestGetUsersPhotoPhotosServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            return Json(_userPhotoFacade.GetUsersPhotoPhotosService.Execute(req));
+        }
     }
 }
