@@ -311,14 +311,15 @@
                                         <a data-fancybox="gallery" onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">
                                             @if (Model.Album.resultGetUsersPhotoAlbumServiceDto[i].RandomPhoto == null)
                                             {
-                                                <img class="img-responsive"
-                                             src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg"  alt="#">
+                                                <img class="img-responsive albumCover_@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id"
+                                             src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg" 
+                                             alt="@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title">
                                             }
                                             else
                                             {
-                                                <img class="img-responsive"
+                                                <img class="img-responsive albumCover_@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id"
                                              src="~/SiteTemplate/innerpages/images/user-photos/@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].RandomPhoto"
-                                             alt="#">
+                                             alt="@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title">
                                             }
                                         
                                     </a>
@@ -755,6 +756,8 @@
                             };
                             $(".rowG").append(cardItem(newItems));
                             $('.itemG').prop('hidden', false);
+
+                            $('.img-responsive.albumCover_' + $("#hiddenAlbumId").val()).attr('src', '/SiteTemplate/innerpages/images/user-photos/' + data.data.filename);
                         }
                         else {
                             KingSweetAlert(false, data.message);
@@ -764,10 +767,6 @@
                         KingSweetAlert(false, err);
                     }
                 }).always(function () {
-
-
-                    //.not('div.two')
-
                     $("#HeadshotLoader").css("display", "none"); // circle loading on photo
                     $("#dropzoneAvatar *").attr("disabled", false).off('click'); // enable clickable
                     $('#dropzoneAvatar').removeClass('hover').addClass('dropped').find('img').remove();
