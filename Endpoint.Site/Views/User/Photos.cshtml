@@ -32,6 +32,10 @@
         -moz-box-shadow: 2px 20px 12px -16px rgba(0,0,0,0.37);
     }
 
+    .splitter {
+        color: #DDDDDD;
+    }
+
     .album h4 {
         color: black;
     }
@@ -144,20 +148,18 @@
 
     #dropzoneAvatar {
         position: relative;
-        border: 3px dashed gray;
+        border-top: 1px dashed gray;
+        border-bottom: 1px dashed gray;
         color: #000;
         font: bold 14px arial;
-        height: 200px;
+        height: 150px;
         margin: 30px auto;
         text-align: center;
         width: 100%;
         background: url('../../../../sitetemplate/innerpages/images/layout_img/addPhotoPhoto.svg') no-repeat;
-        background-color: #CACACA;
+        background-color: #DDDDDD;
         background-position: center center;
         background-size: contain;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
     }
 
         #dropzoneAvatar div {
@@ -194,7 +196,7 @@
 
     .rowG {
         columns: 4;
-        column-gap: 3rem;
+        /*column-gap: 3rem;*/ /*space between photos*/
     }
 
     .itemG {
@@ -266,9 +268,9 @@
         position: relative;
         width: 250px !important;
         height: 200px !important;
-        -moz-border-radius: 15px;
-        -webkit-border-radius: 15px;
-        border-radius: 15px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
         margin: 5px;
     }
 
@@ -335,59 +337,58 @@
 <div id="TabUserPhotos" class="TabcontentClass">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">PHOTOS</h4>
+            <h4 class="card-title"><span id="spanAlbumName">Loading Album ...</span> <span class="splitter">| PHOTOS</span></h4>
         </div>
-        <div class="card-body">
-            <div class="basic-form">
-                <div>
-                    <input type="hidden" id="hiddenAlbumId" />
-                    <span id="spanAlbumName"></span>
-                    @*88888888888888888888888888888888888888888888*@
-                    <div id="dropzoneAvatar" class="dropped">
-                        <div>
-                            <img src="~/SiteTemplate/innerpages/images/user-headshot/" />
-                        </div>
-                        <div id="HeadshotLoader" class="loader"></div>
-                        <div id="HeadshotChangePhoto" class="HoverChangePhoto">CLICK OR DRAG TO UPLOAD</div>
-                        <input id="filedropzoneAvatar" type="file" />
-                    </div>
-                    @*88888888888888888888888888888888888888888888*@
-                    <!-- Gallery -->
-                    <div class="containerG" id="containerPhotos">
-                        <div class="rowG">
-                            @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto != null)
-                            {
-                                @for (int i = 0; i <= Model.Photo.resultGetUsersPhotoPhotosServiceDto.Count - 1; i++)
-                                {
-                                    <input type="hidden" id="hiddenPhotoDetail_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id" value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail" />
-                                    <input type="hidden" id="hiddenPhotoTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id" value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
-                                    <div class="itemG @Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].UsersAlbumsId" hidden>
-                                        <a class="imgG" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
-                                            <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename"
-                                         class="rounded"
-                                         alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
-                                        </a>                                        
-                                        <span class="caption" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
-                                            <a>
-                                                @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title == null)
-                                                {
-                                                    <span id="spanTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">- unknown title -</span>
-                                                }
-                                                else
-                                                {
-                                                    <span id="spanTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title </span>
-                                                }
-                                            </a>
-                                        </span>
+        <div class="card-body p-0">
+            @*<div class="basic-form">*@
 
-                                    </div>
-                                }
-                            }
-                        </div>
-                    </div>
-                    <!-- Gallery -->
+            <input type="hidden" id="hiddenAlbumId" />
+            @*88888888888888888888888888888888888888888888*@
+            <div id="dropzoneAvatar" class="dropped m-0">
+                <div>
+                    <img src="~/SiteTemplate/innerpages/images/user-headshot/" />
+                </div>
+                <div id="HeadshotLoader" class="loader"></div>
+                <div id="HeadshotChangePhoto" class="HoverChangePhoto">CLICK OR DRAG TO UPLOAD</div>
+                <input id="filedropzoneAvatar" type="file" />
+            </div>
+            @*88888888888888888888888888888888888888888888*@
+            <!-- Gallery -->
+            <div class="containerG p-2" id="containerPhotos">
+                <div class="rowG">
+                    @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto != null)
+                    {
+                        @for (int i = 0; i <= Model.Photo.resultGetUsersPhotoPhotosServiceDto.Count - 1; i++)
+                        {
+                            <input type="hidden" id="hiddenPhotoDetail_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id" value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail" />
+                            <input type="hidden" id="hiddenPhotoTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id" value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
+                            <div class="itemG @Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].UsersAlbumsId" hidden
+                         id="photo_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">
+                                <a class="imgG" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
+                                    <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename"
+                                 class="rounded"
+                                 alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
+                                </a>
+                                <span class="caption" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
+                                    <a>
+                                        @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title == null)
+                                        {
+                                            <span id="spanTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">- unknown title -</span>
+                                        }
+                                        else
+                                        {
+                                            <span id="spanTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id">@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title </span>
+                                        }
+                                    </a>
+                                </span>
+
+                            </div>
+                        }
+                    }
                 </div>
             </div>
+            <!-- Gallery -->
+            @*</div>*@
         </div>
     </div>
 </div>
@@ -567,31 +568,33 @@
         // Open Album
         var skeletonTemplate = function () {
             return `
-                        <div class='col'>
-                        <div class="animated-background"></div>
-                        </div>
-                   `
+                                <div class='col p-0 m-0'>
+                                        <div class="animated-background m-2"></div>
+                                </div>
+                           `
         }
         var cardItem = function (data) {
             if (data.title == null) data.title = '- unknown title -';
             return `
-                                    <div class="itemG `+ data.usersAlbumsId + `">
-                                                    <input type="hidden" id="hiddenPhotoTitle_`+ data.id + `" value="`+ data.title + `" />
-                                                            <input type="hidden" id="hiddenPhotoDetail_`+ data.id + `" value="` + data.detail + `" />
-                                    <a class="imgG" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
-                                            <img src="/SiteTemplate/innerpages/images/user-photos/`+ data.filename + `"  class="rounded"  alt=` + data.title + ` />
-                                    </a>
-                                            <span class="caption" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
-                                    <a>
-                                        <span id="spanTitle_`+ data.id + `">` + data.title + `</span>
-                                    </a>
-                                    </span>
-                                </div>
-                                `}
-
+                                            <div class="itemG `+ data.usersAlbumsId + `"
+                                                    id="photo_`+ data.id + `"
+                                            >
+                                                            <input type="hidden" id="hiddenPhotoTitle_`+ data.id + `" value="` + data.title + `" />
+                                                                    <input type="hidden" id="hiddenPhotoDetail_`+ data.id + `" value="` + data.detail + `" />
+                                            <a class="imgG" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
+                                                    <img src="/SiteTemplate/innerpages/images/user-photos/`+ data.filename + `"  class="rounded"  alt=` + data.title + ` />
+                                            </a>
+                                                    <span class="caption" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
+                                            <a>
+                                                <span id="spanTitle_`+ data.id + `">` + data.title + `</span>
+                                            </a>
+                                            </span>
+                                        </div>
+                                        `}
         function OpenAlbum(albumId, title) {
 
             pageWaitMe("progress"); // loading process starts
+            $("#spanAlbumName").text("Loading Album ...");
             tabNavigationByTabName('TabUserPhotos');
             $('.itemG').prop('hidden', true);
             /////////////////////////////////////////////////////////////////////////
@@ -679,6 +682,20 @@
         }
         function dropavatar(e) {
 
+            if ($("#spanAlbumName").text() == "Loading Album ...") {
+                Swal.fire({
+                    title: 'Please Wait !',
+                    html: 'Your album is getting ready to upload.',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    timer: 4000,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    }
+                });
+                return;
+            }
+
             var file = this.files[0];
             // the following functions uses (fileextensionsize.js)
             if (KingCheckSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152", true)) { // => 2 Mb // NOTE: If you want to change this value you will have to change the same value in (UpdateUsersInformationHeadshotService.cs) and (UploadSmallFilesService.cs)
@@ -753,8 +770,8 @@
 
             $("#modalPhoto").modal("show");
 
-            var controlHiddenDetail = $("#hiddenPhotoDetail_"+id);
-            var controlHiddenTitle = $("#hiddenPhotoTitle_"+id);
+            var controlHiddenDetail = $("#hiddenPhotoDetail_" + id);
+            var controlHiddenTitle = $("#hiddenPhotoTitle_" + id);
             var controlId = $("#HiddenPhotoID");
             var controlTitleSpan = $("#txtPhotoTitleSpan");
             var controlDetailSpan = $("#txtPhotoDetailSpan");
@@ -778,7 +795,7 @@
                     if (input.val() == '') {
                         span.text('- unknown title -');
                     }
-                    else {      
+                    else {
                         span.text(input.val());
                         $("#spanTitle_" + $("#HiddenPhotoID").val()).text(input.val());
                         $("#hiddenPhotoTitle_" + $("#HiddenPhotoID").val()).val(input.val());
@@ -868,7 +885,9 @@
                         url: 'DeletePhoto',
                         success: function (data) {
                             KingSweetAlert(true, null);
-                            $("#containerPhotos").load(window.location + " #containerPhotos"); // refresh photos
+                            //$("#containerPhotos").load(window.location + " #containerPhotos"); // refresh photos
+                            //alert("photo_" + $("#HiddenPhotoID").val());
+                            $("#photo_" + $("#HiddenPhotoID").val()).hide();
                         },
                         error: function (req, status, err) {
                             KingSweetAlert(false, null);
