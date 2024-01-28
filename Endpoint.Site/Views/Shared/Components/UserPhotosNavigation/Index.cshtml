@@ -2,7 +2,9 @@
 <div class="headerNavigation">
     <ul class="drop_menu">
         <li><button class="tablinks active" onclick="tabNavigation(event, 'TabUserAlbums')">Albums</button></li>
-        <li><button class="tablinks" onclick="tabNavigation(event, 'TabUserPhotos')">Photos</button></li>
+        <li><button class="tablinks cursor-auto">Photos</button></li>
+        @*onclick="tabNavigation(event, 'TabUserPhotos')"*@
+        @*I have disabled this clickable feature because I did not want clients to see the empty album at first.*@
     </ul>
 </div>
 <br />
