@@ -242,6 +242,37 @@
         height: 200px;
     }
 </style>
+<style>
+    /*skeleton template*/
+    @@keyframes placeHolderShimmer {
+        0% {
+            background-position: -468px 0
+        }
+
+        100% {
+            background-position: 468px 0
+        }
+    }
+
+    .animated-background {
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background: #f6f7f8;
+        background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+        background-size: 800px 104px;
+        position: relative;
+        width: 250px !important;
+        height: 200px !important;
+        -moz-border-radius: 15px;
+        -webkit-border-radius: 15px;
+        border-radius: 15px;
+        margin: 5px;
+    }
+
+</style>
 
 <div id="TabUserAlbums" class="TabcontentClass active">
     <div class="card">
@@ -328,13 +359,14 @@
                             {
                                 @for (int i = 0; i <= Model.Photo.resultGetUsersPhotoPhotosServiceDto.Count - 1; i++)
                                 {
-                                    <div class="itemG @Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].UsersAlbumsId">
+                                    <input type="hidden" id="hiddenPhotoDetail_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id" value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail" />
+                                    <input type="hidden" id="hiddenPhotoTitle_@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id" value="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
+                                    <div class="itemG @Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].UsersAlbumsId" hidden>
                                         <a class="imgG" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename"
                                          class="rounded"
                                          alt="@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title" />
-                                        </a>
-
+                                        </a>                                        
                                         <span class="caption" onclick="OpenModalPhoto('@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Id','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Detail','@Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Filename')">
                                             <a>
                                                 @if (Model.Photo.resultGetUsersPhotoPhotosServiceDto[i].Title == null)
@@ -364,7 +396,6 @@
 <div class="modal fade" id="modalPhoto">
 
     <input id="HiddenPhotoID" type="hidden" />
-
 
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -422,6 +453,7 @@
         </div>
     </div>
 </div>
+
 <!--  modal -->
 @section Scripts{
     @* Tabs *@
@@ -531,22 +563,38 @@
                 }
             });
         }
+
         // Open Album
+        var skeletonTemplate = function () {
+            return `
+                        <div class='col'>
+                        <div class="animated-background"></div>
+                        </div>
+                   `
+        }
         var cardItem = function (data) {
             if (data.title == null) data.title = '- unknown title -';
             return `
-            <div class="itemG `+ data.usersAlbumsId + `">
-            <a class="imgG" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
-                    <img src="/SiteTemplate/innerpages/images/user-photos/`+ data.filename + `"  class="rounded"  alt=` + data.title + ` />
-            </a>
-                    <span class="caption" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
-            <a>
-                <span id="spanTitle_`+ data.id + `">` + data.title + `</span>
-            </a>
-            </span>
-        </div>
-        `}
+                                    <div class="itemG `+ data.usersAlbumsId + `">
+                                                    <input type="hidden" id="hiddenPhotoTitle_`+ data.id + `" value="`+ data.title + `" />
+                                                            <input type="hidden" id="hiddenPhotoDetail_`+ data.id + `" value="` + data.detail + `" />
+                                    <a class="imgG" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
+                                            <img src="/SiteTemplate/innerpages/images/user-photos/`+ data.filename + `"  class="rounded"  alt=` + data.title + ` />
+                                    </a>
+                                            <span class="caption" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
+                                    <a>
+                                        <span id="spanTitle_`+ data.id + `">` + data.title + `</span>
+                                    </a>
+                                    </span>
+                                </div>
+                                `}
+
         function OpenAlbum(albumId, title) {
+
+            pageWaitMe("progress"); // loading process starts
+            tabNavigationByTabName('TabUserPhotos');
+            $('.itemG').prop('hidden', true);
+            /////////////////////////////////////////////////////////////////////////
 
             $.ajax({
                 type: "GET",
@@ -555,28 +603,50 @@
                 data: { 'AlbumId': albumId },
                 success: function (data) {
 
-                    $("#hiddenAlbumId").val(albumId);
-                    $("#spanAlbumName").text(title);
-
-                    var cardItems2;
                     var json = data.data.resultGetUsersPhotoPhotosServiceDto;
-                    var parsToStr = JSON.stringify(json);
+                    var temp = '';
+                    for (var i = 0; i < json.length; i++) { temp += skeletonTemplate(); }
+                    $(".containerG").append("<div class='container'> <div class='row row-cols-auto'> " + temp + "</div> </div>");
 
-                    $(".rowG").empty();
-                    for (var i = 0; i < json.length; i++) {
-                        //cardItems2 += cardItem(json[i]);
-                        $(".rowG").append( cardItem(json[i]));
-                    }                                        
-
-                    tabNavigationByTabName('TabUserPhotos');
-                    //alert(parsToStr);
                 },
                 error: function (r, s, e) {
                     alert(s);
                 }
             });
 
-            //
+            setTimeout(function () {
+                /////////////////////////////
+                $.ajax({
+                    type: "GET",
+                    url: "PhotosGetPhotosByAlbumId",
+                    dataType: "json",
+                    data: { 'AlbumId': albumId },
+                    success: function (data) {
+
+                        $("#hiddenAlbumId").val(albumId);
+                        $("#spanAlbumName").text(title);
+
+                        var json = data.data.resultGetUsersPhotoPhotosServiceDto;
+                        var parsToStr = JSON.stringify(json);
+
+                        $(".rowG").empty();
+                        for (var i = 0; i < json.length; i++) {
+                            $(".rowG").append(cardItem(json[i]));
+                        }
+                        //alert(parsToStr);
+                    },
+                    error: function (r, s, e) {
+                        alert(s);
+                    }
+                }).always(function () {
+                    pageWaitMeRemove(); // loading process stops
+                    $('.animated-background').hide();
+                    $('.itemG').prop('hidden', false);
+                });
+                ////////////////////////////////
+            }, 3000);
+
+
         }
         // End Open Album
 
@@ -645,7 +715,6 @@
                             });
                             $("#filedropzoneAvatar").css("opacity", "0");
                             //////////////////////////////
-                            //alert(data.data.filename);
                             var newItems = {
                                 'usersAlbumsId': $("#hiddenAlbumId").val(),
                                 'title': '- unknown title -',
@@ -653,10 +722,8 @@
                                 'filename': data.data.filename,
                                 'id': data.data.photoId,
                             };
-                            //$(".rowG").empty();
                             $(".rowG").append(cardItem(newItems));
-                            //$("#containerPhotos").load(window.location + " #containerPhotos");
-                            //$(".containerG .itemG").hide();
+                            $('.itemG').prop('hidden', false);
                         }
                         else {
                             KingSweetAlert(false, data.message);
@@ -686,19 +753,24 @@
 
             $("#modalPhoto").modal("show");
 
+            var controlHiddenDetail = $("#hiddenPhotoDetail_"+id);
+            var controlHiddenTitle = $("#hiddenPhotoTitle_"+id);
             var controlId = $("#HiddenPhotoID");
             var controlTitleSpan = $("#txtPhotoTitleSpan");
             var controlDetailSpan = $("#txtPhotoDetailSpan");
             var controlPhoto = $("#photo");
 
             controlId.val(id);
-            if (title.trim() == '') controlTitleSpan.text('- unknown title -'); else controlTitleSpan.text(title);
-            if (detail.trim() == '') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(detail);
+            if (title.trim() == '') controlTitleSpan.text('- unknown title -'); else controlTitleSpan.text(controlHiddenTitle.val());
+            if (detail.trim() == '') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(controlHiddenDetail.val());
+            //if (detail.trim() == '') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(detail);
             controlPhoto.attr("src", "../../../SiteTemplate/innerpages/images/user-photos/" + filename);
 
         }
         $('document').ready(function () {
             $('#txtPhotoTitle,#txtPhotoDetail').bind('blur', function () {
+
+                //var controlDetailHidden = $('#hiddenPhotoDetail_' + id);
                 var input = $(this);
                 var span = $(this).attr("hidden", true).siblings("span").show();
 
@@ -706,9 +778,14 @@
                     if (input.val() == '') {
                         span.text('- unknown title -');
                     }
-                    else {
+                    else {      
                         span.text(input.val());
+                        $("#spanTitle_" + $("#HiddenPhotoID").val()).text(input.val());
+                        $("#hiddenPhotoTitle_" + $("#HiddenPhotoID").val()).val(input.val());
                     }
+                    // update service launch here:
+                    if (input.val() != '')
+                        UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
                 }
                 if (input.attr('id') == 'txtPhotoDetail') {
                     if (input.val() == '') {
@@ -716,11 +793,14 @@
                     }
                     else {
                         span.text(input.val().replaceAll("<br>", "\n"));
+                        //alert(input.attr('id'));
+                        $("#hiddenPhotoDetail_" + $("#HiddenPhotoID").val()).val(input.val());
+                        //controlDetailHidden.val(input.val().replaceAll("<br>", "\n"));
                     }
+                    // update service launch here:
+                    if (input.val() != '')
+                        UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
                 }
-                // update service launch here:
-                if (input.val() != '')
-                    UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
             });
         });
         $('.spanInputSwitch').click(function () {
@@ -762,9 +842,8 @@
                 },
                 error: function (req, status, err) {
                     KingSweetAlert(false, null);
-                }
+                },
             }).always(function () {
-                $("#containerPhotos").load(window.location + " #containerPhotos");
                 pageWaitMeRemove(); // loading process stops
             });
         }
