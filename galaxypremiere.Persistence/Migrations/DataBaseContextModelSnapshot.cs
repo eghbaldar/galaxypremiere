@@ -4272,7 +4272,7 @@ namespace galaxypremiere.Persistence.Migrations
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPhotos", b =>
                 {
                     b.HasOne("galaxypremiere.Domain.Entities.Users.UsersAlbums", "UsersAlbums")
-                        .WithMany()
+                        .WithMany("UsersPhotos")
                         .HasForeignKey("UsersAlbumsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -4288,6 +4288,11 @@ namespace galaxypremiere.Persistence.Migrations
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.Users", b =>
                 {
                     b.Navigation("UsersInRoles");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersAlbums", b =>
+                {
+                    b.Navigation("UsersPhotos");
                 });
 #pragma warning restore 612, 618
         }

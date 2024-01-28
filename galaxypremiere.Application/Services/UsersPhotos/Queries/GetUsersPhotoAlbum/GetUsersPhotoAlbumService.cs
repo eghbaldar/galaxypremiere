@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.DTOs;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum
 {
@@ -32,9 +34,16 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoA
             {
                 var result = _context.UsersAlbums
                     .Where(e => e.UsersId == req.UsersId)
-                    .Select(
-                    al => _imapper.Map<GetUsersPhotoAlbumServiceDto>(al)
+                    .Include(t => t.UsersPhotos)
+                    .Select( //_imapper.Map<GetUsersPhotoAlbumServiceDto>(al)
+                    al => new GetUsersPhotoAlbumServiceDto
+                    {
+                        Id = al.Id,
+                        RandomPhoto = al.UsersPhotos.Select(x => x.Filename).OrderBy(_ => Guid.NewGuid()).FirstOrDefault(),
+                        Title = al.Title,
+                    }
                     ).ToList();
+
                 return new ResultDto<ResultGetUsersPhotoAlbumServiceDto>
                 {
                     Data = new ResultGetUsersPhotoAlbumServiceDto

@@ -12,5 +12,6 @@ namespace galaxypremiere.Domain.Entities.Users
         public long UsersId { get; set; }
         public virtual Users Users { get; set; }
         public string Title { get; set; } // Title
+        public ICollection<UsersPhotos> UsersPhotos { get; set; }
     }
 }
