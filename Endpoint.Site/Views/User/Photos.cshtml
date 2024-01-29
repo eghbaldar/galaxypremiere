@@ -632,7 +632,7 @@
                 }
             });
 
-            setTimeout(function () {
+            //setTimeout(function () {
                 /////////////////////////////
                 $.ajax({
                     type: "GET",
@@ -662,9 +662,7 @@
                     $('.itemG').prop('hidden', false);
                 });
                 ////////////////////////////////
-            }, 3000);
-
-
+            //}, 1000);
         }
         // End Open Album
 
@@ -756,8 +754,7 @@
                             };
                             $(".rowG").append(cardItem(newItems));
                             $('.itemG').prop('hidden', false);
-
-                            $('.img-responsive.albumCover_' + $("#hiddenAlbumId").val()).attr('src', '/SiteTemplate/innerpages/images/user-photos/' + data.data.filename);
+                            $('.img-responsive.albumCover_' + $("#hiddenAlbumId").val()).attr('src', '/SiteTemplate/innerpages/images/user-photos/' + data.data.filename); // change the cover of album
                         }
                         else {
                             KingSweetAlert(false, data.message);
@@ -897,10 +894,18 @@
                         data: { 'Id': $("#HiddenPhotoID").val() },
                         url: 'DeletePhoto',
                         success: function (data) {
-                            KingSweetAlert(true, null);
-                            //$("#containerPhotos").load(window.location + " #containerPhotos"); // refresh photos
-                            //alert("photo_" + $("#HiddenPhotoID").val());
-                            $("#photo_" + $("#HiddenPhotoID").val()).hide();
+                            if(data.isSuccess){
+                                KingSweetAlert(true, null);
+                                $("#photo_" + $("#HiddenPhotoID").val()).hide();
+
+                                if(data.data.leftover){
+                                    $('.img-responsive.albumCover_' + $("#hiddenAlbumId").val()).attr('src', '/SiteTemplate/innerpages/images/user-photos/' + data.data.randomPhoto); // change the cover of album
+                                }                        
+                                else
+                                {
+                                    $('.img-responsive.albumCover_' + $("#hiddenAlbumId").val()).attr('src', '/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg'); // change the cover of album to default
+                                }
+                            }                            
                         },
                         error: function (req, status, err) {
                             KingSweetAlert(false, null);

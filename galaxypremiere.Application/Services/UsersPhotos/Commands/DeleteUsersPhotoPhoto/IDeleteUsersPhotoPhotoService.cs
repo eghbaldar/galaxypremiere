@@ -9,6 +9,6 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPh
 {
     public interface IDeleteUsersPhotoPhotoService
     {
-        ResultDto Execute(RequestDeleteUsersPhotoPhotoServiceDto req);
+        ResultDto<ResulttDeleteUsersPhotoPhotoServiceDto> Execute(RequestDeleteUsersPhotoPhotoServiceDto req);
     }
 }
