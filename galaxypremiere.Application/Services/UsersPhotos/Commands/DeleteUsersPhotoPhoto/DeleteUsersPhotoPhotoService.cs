@@ -39,7 +39,6 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPh
                                 .OrderBy(_ => Guid.NewGuid())
                             .ToList(); // Materialize the query by calling ToList()
 
-
                             _context.UsersPhotos.Remove(photo); // attention: the deletion not be happened because of changeover of DataBaseContext.cs                    
                             _context.SaveChanges();
                             transactionScope.Complete(); // => commit

@@ -25,6 +25,11 @@
         box-shadow: none !important;
     }
 
+    .img-crop-square {
+        object-fit: cover !important;
+        aspect-ratio: 1/1 !important;
+    }
+
     .cursor-auto {
         cursor: default !important;
     }
@@ -74,7 +79,7 @@
         border: none;
     }
 
-    .dropdown {
+    .dropdown {        
         position: relative;
         display: inline-block;
     }
@@ -85,7 +90,7 @@
         background-color: #f1f1f1;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
+        z-index:2;
     }
 
         .dropdown-content a {
@@ -295,7 +300,7 @@
                                 <div class="column">
                                     <a data-fancybox="gallery"
                                        onclick="OpenModalAddAlbum();">
-                                        <img class="img-responsive"
+                                        <img class="img-responsive img-crop-square"
                                              src="~/SiteTemplate/innerpages/images/layout_img/addAlbumProfile.svg" alt="#">
                                     </a>
                                 </div>
@@ -306,41 +311,42 @@
                             @*@foreach (GetUsersPhotoAlbumServiceDto album in Model.Album.resultGetUsersPhotoAlbumServiceDto){}*@
                             @for (int i = 0; i <= Model.Album.resultGetUsersPhotoAlbumServiceDto.Count - 1; i++)
                             {
-                                <div class="col-sm-4 col-md-3 margin_bottom_30 album">
+                                <div class="col-sm-4 col-md-3 margin_bottom_30 album" id="divAlbum_@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id">
                                     <div class="column">
-                                        <a data-fancybox="gallery" onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">
+                                        <a data-fancybox="gallery" onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id')">
                                             @if (Model.Album.resultGetUsersPhotoAlbumServiceDto[i].RandomPhoto == null)
                                             {
-                                                <img class="img-responsive albumCover_@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id"
-                                             src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg" 
-                                             alt="@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title">
+                                                <img class="img-responsive img-crop-square albumCover_@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id"
+                                             src="~/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg">
                                             }
                                             else
                                             {
-                                                <img class="img-responsive albumCover_@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id"
-                                             src="~/SiteTemplate/innerpages/images/user-photos/@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].RandomPhoto"
-                                             alt="@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title">
+                                                <img class="img-responsive img-crop-square albumCover_@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id"
+                                             src="~/SiteTemplate/innerpages/images/user-photos/@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].RandomPhoto">
                                             }
-                                        
-                                    </a>
-                                    <div class="divAlbumMenu">
-                                        <div class="dropdown" style="float:right;">
-                                            <button class="dropbtn">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-content">
-                                                <a onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Photos</a>
-                                                <a onclick="DeletePhotoAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Delete</a>
-                                                <a onclick="UpdatePhotoAlbumTitle('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id','@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title')">Rename</a>
+
+                                        </a>
+                                        <div class="divAlbumMenu">
+                                            <div class="dropdown">
+                                                <button class="dropbtn">
+                                                    <i class="fa fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-content">
+                                                    <a onclick="OpenAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id')">Photos</a>
+                                                    <a onclick="DeletePhotoAlbum('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id')">Delete</a>
+                                                    <a onclick="UpdatePhotoAlbumTitle('@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id')">Rename</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="heading_section">
+                                        <h4>
+                                            <span id="titleAlbumH4_@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Id">
+                                                @Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title
+                                                </span>
+                                            </h4>
+                                    </div>
                                 </div>
-                                <div class="heading_section">
-                                    <h4>@Model.Album.resultGetUsersPhotoAlbumServiceDto[i].Title</h4>
-                                </div>
-                            </div>
-
                             }
                         </div>
                     </div>
@@ -479,6 +485,35 @@
     @* Functions *@
     <script>
         /*@* Album Section *@*/
+        var albumTemplate = function (o) {
+            return `
+        <div class="col-sm-4 col-md-3 margin_bottom_30 album" id="divAlbum_`+ o.id + `">
+            <div class="column">
+                <a data-fancybox="gallery" onclick="OpenAlbum('`+ o.id + `')">
+                        <img class="img-responsive img-crop-square albumCover_`+ o.id + `"
+                     src="/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg">
+                </a>
+                <div class="divAlbumMenu">
+                    <div class="dropdown" style="float:right;">
+                        <button class="dropbtn">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a onclick="OpenAlbum('`+ o.id + `')">Photos</a>
+                            <a onclick="DeletePhotoAlbum('`+ o.id + `')">Delete</a>
+                            <a onclick="UpdatePhotoAlbumTitle('`+ o.id + `')">Rename</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="heading_section">
+                        <h4>
+                                <span id="titleAlbumH4_`+ o.id + `">` + o.title + `</span>
+                        </h4>
+            </div>
+        </div>
+            `
+        }
         function OpenModalAddAlbum() {
             Swal.fire({
                 title: "ALBUM TITLE",
@@ -499,7 +534,8 @@
                             success: function (data) {
                                 if (data.isSuccess) {
                                     KingSweetAlert(true, null);
-                                    $("#divAlbum").load(window.location + " #divAlbum");
+                                    //$("#divAlbum").load(window.location + " #divAlbum");
+                                    $("#divAlbum").append(albumTemplate(data.data));
                                 }
                             },
                             error: function (req, status, err) {
@@ -512,9 +548,9 @@
                 }
             });
         }
-        function DeletePhotoAlbum(id, title) {
+        function DeletePhotoAlbum(id) {
             Swal.fire({
-                title: 'Delete [' + title + '] album',
+                title: 'Delete This Album',
                 text: 'All the photos of the album will be deleted, are you sure?',
                 icon: 'info',
                 showCancelButton: true,
@@ -534,7 +570,7 @@
                         success: function (data) {
                             if (data.isSuccess) {
                                 KingSweetAlert(true, null);
-                                $("#divAlbum").load(window.location + " #divAlbum");
+                                $("#divAlbum_"+id).hide();
                             }
                         },
                         error: function (req, status, err) {
@@ -546,7 +582,8 @@
                 }
             });
         }
-        function UpdatePhotoAlbumTitle(id, title) {
+        function UpdatePhotoAlbumTitle(id) {
+            var title = $("#titleAlbumH4_" + id).text();
             Swal.fire({
                 title: 'The Album Current Title is [' + title + ']',
                 input: "text",
@@ -566,7 +603,7 @@
                             success: function (data) {
                                 if (data.isSuccess) {
                                     KingSweetAlert(true, null);
-                                    $("#divAlbum").load(window.location + " #divAlbum");
+                                    $("#titleAlbumH4_" + id).text(value);
                                 }
                             },
                             error: function (req, status, err) {
@@ -579,35 +616,34 @@
                 }
             });
         }
-
         // Open Album
         var skeletonTemplate = function () {
             return `
-                                        <div class='col p-0 m-0'>
-                                                <div class="animated-background m-2"></div>
-                                        </div>
-                                   `
+                                                <div class='col p-0 m-0'>
+                                                        <div class="animated-background m-2"></div>
+                                                </div>
+                                           `
         }
-        var cardItem = function (data) {
+        var cardItemTemplate = function (data) {
             if (data.title == null) data.title = '- unknown title -';
             return `
-                                                    <div class="itemG `+ data.usersAlbumsId + `"
-                                                            id="photo_`+ data.id + `"
-                                                    >
-                                                                    <input type="hidden" id="hiddenPhotoTitle_`+ data.id + `" value="` + data.title + `" />
-                                                                            <input type="hidden" id="hiddenPhotoDetail_`+ data.id + `" value="` + data.detail + `" />
-                                                    <a class="imgG" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
-                                                            <img src="/SiteTemplate/innerpages/images/user-photos/`+ data.filename + `"  class="rounded"  alt=` + data.title + ` />
-                                                    </a>
-                                                            <span class="caption" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
-                                                    <a>
-                                                        <span id="spanTitle_`+ data.id + `">` + data.title + `</span>
-                                                    </a>
-                                                    </span>
-                                                </div>
-                                                `}
-        function OpenAlbum(albumId, title) {
-
+                                                            <div class="itemG `+ data.usersAlbumsId + `"
+                                                                    id="photo_`+ data.id + `"
+                                                            >
+                                                                            <input type="hidden" id="hiddenPhotoTitle_`+ data.id + `" value="` + data.title + `" />
+                                                                                    <input type="hidden" id="hiddenPhotoDetail_`+ data.id + `" value="` + data.detail + `" />
+                                                            <a class="imgG" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
+                                                                    <img src="/SiteTemplate/innerpages/images/user-photos/`+ data.filename + `"  class="rounded"  alt=` + data.title + ` />
+                                                            </a>
+                                                                    <span class="caption" onclick="OpenModalPhoto('`+ data.id + `','` + data.title + `','` + data.detail + `','` + data.filename + `')">
+                                                            <a>
+                                                                <span id="spanTitle_`+ data.id + `">` + data.title + `</span>
+                                                            </a>
+                                                            </span>
+                                                        </div>
+                                                        `}
+        function OpenAlbum(albumId) {
+            var title = $("#titleAlbumH4_" + albumId).text();
             pageWaitMe("progress"); // loading process starts
             $("#spanAlbumName").text("Loading Album ...");
             tabNavigationByTabName('TabUserPhotos');
@@ -633,39 +669,38 @@
             });
 
             //setTimeout(function () {
-                /////////////////////////////
-                $.ajax({
-                    type: "GET",
-                    url: "PhotosGetPhotosByAlbumId",
-                    dataType: "json",
-                    data: { 'AlbumId': albumId },
-                    success: function (data) {
+            /////////////////////////////
+            $.ajax({
+                type: "GET",
+                url: "PhotosGetPhotosByAlbumId",
+                dataType: "json",
+                data: { 'AlbumId': albumId },
+                success: function (data) {
 
-                        $("#hiddenAlbumId").val(albumId);
-                        $("#spanAlbumName").text(title);
+                    $("#hiddenAlbumId").val(albumId);
+                    $("#spanAlbumName").text(title);
 
-                        var json = data.data.resultGetUsersPhotoPhotosServiceDto;
-                        var parsToStr = JSON.stringify(json);
+                    var json = data.data.resultGetUsersPhotoPhotosServiceDto;
+                    var parsToStr = JSON.stringify(json);
 
-                        $(".rowG").empty();
-                        for (var i = 0; i < json.length; i++) {
-                            $(".rowG").append(cardItem(json[i]));
-                        }
-                        //alert(parsToStr);
-                    },
-                    error: function (r, s, e) {
-                        alert(s);
+                    $(".rowG").empty();
+                    for (var i = 0; i < json.length; i++) {
+                        $(".rowG").append(cardItemTemplate(json[i]));
                     }
-                }).always(function () {
-                    pageWaitMeRemove(); // loading process stops
-                    $('.animated-background').hide();
-                    $('.itemG').prop('hidden', false);
-                });
-                ////////////////////////////////
+                    //alert(parsToStr);
+                },
+                error: function (r, s, e) {
+                    alert(s);
+                }
+            }).always(function () {
+                pageWaitMeRemove(); // loading process stops
+                $('.animated-background').hide();
+                $('.itemG').prop('hidden', false);
+            });
+            ////////////////////////////////
             //}, 1000);
         }
         // End Open Album
-
         /*@* Upload Js *@*/
         var dropzoneavatar = $("#dropzoneAvatar");
         dropzoneavatar.on({
@@ -752,7 +787,7 @@
                                 'filename': data.data.filename,
                                 'id': data.data.photoId,
                             };
-                            $(".rowG").append(cardItem(newItems));
+                            $(".rowG").append(cardItemTemplate(newItems));
                             $('.itemG').prop('hidden', false);
                             $('.img-responsive.albumCover_' + $("#hiddenAlbumId").val()).attr('src', '/SiteTemplate/innerpages/images/user-photos/' + data.data.filename); // change the cover of album
                         }
@@ -774,6 +809,9 @@
                     pageWaitMeRemove(); // loading process stops
                 });
             }
+            else{
+                $('#filedropzoneAvatar').val('');
+            }
         }
         /*@* Photo Section *@*/
         function OpenModalPhoto(id, title, detail, filename) {
@@ -788,9 +826,8 @@
             var controlPhoto = $("#photo");
 
             controlId.val(id);
-            if (title.trim() == '') controlTitleSpan.text('- unknown title -'); else controlTitleSpan.text(controlHiddenTitle.val());
-            if (detail.trim() == '') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(controlHiddenDetail.val());
-            //if (detail.trim() == '') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(detail);
+            if (title.trim() == '' || title == null) controlTitleSpan.text('- unknown title -'); else controlTitleSpan.text(controlHiddenTitle.val());
+            if (detail.trim() == '' || detail == null || detail.trim() == 'null') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(controlHiddenDetail.val());
             controlPhoto.attr("src", "../../../SiteTemplate/innerpages/images/user-photos/" + filename);
 
         }
@@ -894,18 +931,17 @@
                         data: { 'Id': $("#HiddenPhotoID").val() },
                         url: 'DeletePhoto',
                         success: function (data) {
-                            if(data.isSuccess){
+                            if (data.isSuccess) {
                                 KingSweetAlert(true, null);
                                 $("#photo_" + $("#HiddenPhotoID").val()).hide();
 
-                                if(data.data.leftover){
+                                if (data.data.leftover) {
                                     $('.img-responsive.albumCover_' + $("#hiddenAlbumId").val()).attr('src', '/SiteTemplate/innerpages/images/user-photos/' + data.data.randomPhoto); // change the cover of album
-                                }                        
-                                else
-                                {
+                                }
+                                else {
                                     $('.img-responsive.albumCover_' + $("#hiddenAlbumId").val()).attr('src', '/SiteTemplate/innerpages/images/layout_img/addPhotoProfile.svg'); // change the cover of album to default
                                 }
-                            }                            
+                            }
                         },
                         error: function (req, status, err) {
                             KingSweetAlert(false, null);

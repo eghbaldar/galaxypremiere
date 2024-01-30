@@ -5,7 +5,7 @@ using galaxypremiere.Domain.Entities.Users;
 
 namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAlbum
 {
-    public class PostUsersPhotosAlbumService: IPostUsersPhotosAlbumService
+    public class PostUsersPhotosAlbumService : IPostUsersPhotosAlbumService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _imapper;
@@ -14,12 +14,13 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
             _context = context;
             _imapper = imapper;
         }
-        public ResultDto Execute(RequestPostUsersPhotosAlbumServiceDto req)
+        public ResultDto<ResultPostUsersPhotosAlbumServiceDto> Execute(RequestPostUsersPhotosAlbumServiceDto req)
         {
             if (req == null)
             {
-                return new ResultDto
+                return new ResultDto<ResultPostUsersPhotosAlbumServiceDto>
                 {
+                    Data = null,
                     IsSuccess = false,
                     Message = "Something went wrong"
                 };
@@ -31,8 +32,9 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
 
                 if (req == null)
                 {
-                    return new ResultDto
+                    return new ResultDto<ResultPostUsersPhotosAlbumServiceDto>
                     {
+                        Data = null,
                         IsSuccess = false,
                         Message = "Something went wrong."
                     };
@@ -45,16 +47,22 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
 
                     _context.UsersAlbums.Add(usersAlbums);
                     _context.SaveChanges();
-                    return new ResultDto
+                    return new ResultDto<ResultPostUsersPhotosAlbumServiceDto>
                     {
+                        Data = new ResultPostUsersPhotosAlbumServiceDto
+                        {
+                            Id = usersAlbums.Id,
+                            Title = req.Title,
+                        },
                         IsSuccess = true,
                         Message = "Everything went Ok."
                     };
                 }
                 else
                 {
-                    return new ResultDto
+                    return new ResultDto<ResultPostUsersPhotosAlbumServiceDto>
                     {
+                        Data = null,
                         IsSuccess = false,
                         Message = "The title is not allowed to be empty thing."
                     };
@@ -62,8 +70,9 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
             }
             else
             {
-                return new ResultDto
+                return new ResultDto<ResultPostUsersPhotosAlbumServiceDto>
                 {
+                    Data = null,
                     IsSuccess = false,
                     Message = "The user does not exist."
                 };
