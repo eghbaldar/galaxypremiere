@@ -116,9 +116,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.MapControllers();
-
-
 app.MapControllerRoute(
       name: "areas",
       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
@@ -132,7 +129,5 @@ app.MapControllerRoute(
     pattern: "{username}",
     defaults: new { controller = "Profile", action = "Index", username = "" }
 );
-
-
 
 app.Run();
