@@ -25,6 +25,7 @@ using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Net;
+using System.Security.Policy;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -115,6 +116,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+//app.MapControllers();
+
+
 app.MapControllerRoute(
       name: "areas",
       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
@@ -122,6 +126,12 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "profile",
+    pattern: "{username}",
+    defaults: new { controller = "Profile", action = "Index", username = "" }
+);
 
 
 
