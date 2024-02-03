@@ -1,0 +1,158 @@
+﻿/* General */
+.colorRed {
+    color: red;
+}
+
+.colorGreen {
+    color: green;
+}
+
+.colorGray {
+    color: gray;
+}
+/* other */
+.clickOnSuggestion{
+    font-size:10px;
+    color:gray;
+}
+    .clickOnSuggestion:hover {
+        cursor: pointer;
+        text-decoration: underline dashed !important;
+    }
+/* Loader for headshot and header */
+.loader {
+    display: none;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    opacity: .7;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* Headshot */
+.HoverChangePhoto {
+    margin: auto;
+    display: none;
+    color: white;
+    background-color: black;
+    width: 75px;
+    height: 25px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+#dropzoneAvatar {
+    position: relative;
+    border: 3px dashed gray;
+    border-radius: 50%;
+    color: #000;
+    font: bold 14px arial;
+    height: 200px;
+    margin: 30px auto;
+    text-align: center;
+    width: 200px;
+    background-image: url('../../../images/layout_img/img-avatar.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat !important;
+
+}
+    #dropzoneAvatar div {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    #dropzoneAvatar img {
+        border-radius: 50%;
+        vertical-align: middle;
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover !important; /*crop the photo when it is not a square one*/
+        
+    }
+
+    #dropzoneAvatar [type="file"] {
+        cursor: pointer;
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+/* Header*/
+#dropzoneHeader {
+    position: relative;
+    border: 3px dashed gray;
+    border-radius: 15px;
+    color: #000;
+    font: bold 14px arial;
+    text-align: center;
+    background-image: url('../../../images/layout_img/img-header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat !important;
+    height: 300px;
+}
+
+    #dropzoneHeader img.wide {
+        border-radius: 15px;
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+    }
+
+    #dropzoneHeader img.tall {
+        border-radius: 15px;
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+    }
+
+    #dropzoneHeader div {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    #dropzoneHeader [type="file"] {
+        cursor: pointer;
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }

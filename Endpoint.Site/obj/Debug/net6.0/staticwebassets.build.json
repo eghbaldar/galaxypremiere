@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Jl8b+EwTKrAilDVOtbG0NgCAY2A/aEmJ8eKUWgtu6Vo=",
+  "Hash": "QB5LC+j+4BOghqh/B3QWc3aB2tradcVWJ/1PlzWtq+o=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -17969,12 +17969,12 @@
       "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\modules\\zingchart-zoom.min.js"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.css",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\me\\me.css",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/pagecssjs/me/me.css",
+      "RelativePath": "SiteTemplate/innerpages/pagecssjs/user/me/me.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -17983,15 +17983,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.css"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\me\\me.css"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.js",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\me\\me.js",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/pagecssjs/me/me.js",
+      "RelativePath": "SiteTemplate/innerpages/pagecssjs/user/me/me.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -18000,15 +18000,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.js"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\me\\me.js"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.css",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\photos\\photos.css",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/pagecssjs/profile/profile.css",
+      "RelativePath": "SiteTemplate/innerpages/pagecssjs/user/photos/photos.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -18017,15 +18017,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.css"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\photos\\photos.css"
     },
     {
-      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.js",
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\photos\\photos.js",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/pagecssjs/profile/profile.js",
+      "RelativePath": "SiteTemplate/innerpages/pagecssjs/user/photos/photos.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -18034,7 +18034,41 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.js"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\photos\\photos.js"
+    },
+    {
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\profile\\profile.css",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "SiteTemplate/innerpages/pagecssjs/user/profile/profile.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\profile\\profile.css"
+    },
+    {
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\profile\\profile.js",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "SiteTemplate/innerpages/pagecssjs/user/profile/profile.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\profile\\profile.js"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\plugins\\tabNavigation\\tab.css",

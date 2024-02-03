@@ -3909,20 +3909,28 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\modules\\zingchart-zoom.min.js"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.css",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.css"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\me\\me.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\user\\me\\me.css"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.js",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\me\\me.js"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\me\\me.js",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\user\\me\\me.js"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.css",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.css"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\photos\\photos.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\user\\photos\\photos.css"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.js",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.js"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\photos\\photos.js",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\user\\photos\\photos.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\profile\\profile.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\user\\profile\\profile.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\profile\\profile.js",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\user\\profile\\profile.js"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\plugins\\tabNavigation\\tab.css",
