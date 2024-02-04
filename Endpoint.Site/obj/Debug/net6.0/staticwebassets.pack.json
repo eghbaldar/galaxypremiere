@@ -2517,6 +2517,10 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638411801967622280setemlogo.png"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\files\\user-attachments\\638425716940646815_DSC00602.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\files\\user-attachments\\638425716940646815_DSC00602.jpg"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\fonts\\Flaticon.eot",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\fonts\\Flaticon.eot"
     },
@@ -2791,6 +2795,26 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638425715476745966_DSC0060.JPG",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638425715476745966_DSC0060.JPG"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638425715712015689Untitled1.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638425715712015689Untitled1.jpg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\6384257158933823662023-03-11_1-06-53.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\6384257158933823662023-03-11_1-06-53.jpg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638425715919855054Untitled.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638425715919855054Untitled.jpg"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638425715944067204Untitled1.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638425715944067204Untitled1.jpg"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\Chart.bundle.js",
@@ -3907,6 +3931,14 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\modules\\zingchart-zoom.min.js",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\modules\\zingchart-zoom.min.js"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.css",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.js",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\pagecssjs\\profile\\profile.js"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\pagecssjs\\user\\me\\me.css",
