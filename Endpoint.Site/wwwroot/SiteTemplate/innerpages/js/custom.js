@@ -14,6 +14,8 @@
 "use strict";
 
 $(document).ready(function () {
+    //$('#sidebar').css('display', 'block');
+  //$('#sidebar').toggleClass('active');
   /*-- sidebar js --*/
   $('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');

@@ -818,7 +818,7 @@ span {
     display: inline-block;
 }
 
-#sidebar {
+#sidebar {    
     min-width: 280px;
     max-width: 280px;
     background-color: #f2f2f2;

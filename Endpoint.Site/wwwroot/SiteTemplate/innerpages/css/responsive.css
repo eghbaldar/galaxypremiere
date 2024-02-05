@@ -11,77 +11,96 @@
 /*-----------------------------------
   sidebar small only desktop
 -----------------------------------*/
+#sidebar.active {
+    min-width: 90px;
+    max-width: 90px;
+    text-align: center;
+}
 
-@media (min-width: 1200px) {
-    /*-- small sidebar --*/
-    #sidebar.active {
-        min-width: 90px;
-        max-width: 90px;
-        text-align: center;
-    }
     #sidebar.active .sidebar-header h3,
     #sidebar.active .CTAs {
         display: none;
     }
+
     #sidebar.active .sidebar-header strong {
         display: block;
     }
+
     #sidebar.active ul li a {
         padding: 10px 0;
         float: left;
         width: 100%;
         text-align: center;
     }
-    #sidebar.active ul li a i {
-        width: 100%;
-        text-align: center;
-        margin: 0 0 5px 0;
-        font-size: 24px;
-    }
+
+        #sidebar.active ul li a i {
+            width: 100%;
+            text-align: center;
+            margin: 0 0 5px 0;
+            font-size: 24px;
+        }
+
     #sidebar.active ul ul a {
         padding: 10px !important;
     }
+
     #sidebar.active .dropdown-toggle::after {
         display: none;
     }
-    nav#sidebar.active .logo_big {
-        text-align: center;
-        padding: 8px 0 7px;
-    }
-    #sidebar.active .logo_big img {
-        height: 45px;
-    }
-    #sidebar.active .logo_section {
-        padding: 0;
-        margin-bottom: 10px;
-        background: #fff;
-        width: 100%;
-    }
-    #sidebar.active ul.components {
-        padding: 0;
-    }
-    #sidebar.active .logo_big {
-        display: none;
-    }
-    .logo_icon {
-        display: none;
-    }
-    #sidebar.active .logo_icon {
-        display: block;
-    }
-    #sidebar.active .logo_big img {
-        height: 45px;
-    }
-    #sidebar.active h4 {
-        display: none;
-    }
-    #sidebar.active .sidebar_user_info {
-        display: none;
-    }
-    #sidebar.active ul li a span {
-        font-size: 13px;
-    }
-    #sidebar ul li a i {}
+
+nav#sidebar.active .logo_big {
+    text-align: center;
+    padding: 8px 0 7px;
+}
+
+#sidebar.active .logo_big img {
+    height: 45px;
+}
+
+#sidebar.active .logo_section {
+    padding: 0;
+    margin-bottom: 10px;
+    background: #fff;
+    width: 100%;
+}
+
+#sidebar.active ul.components {
+    padding: 0;
+}
+
+#sidebar.active .logo_big {
+    display: none;
+}
+
+.logo_icon {
+    display: none;
+}
+
+#sidebar.active .logo_icon {
+    display: block;
+}
+
+#sidebar.active .logo_big img {
+    height: 45px;
+}
+
+#sidebar.active h4 {
+    display: none;
+}
+
+#sidebar.active .sidebar_user_info {
+    display: none;
+}
+
+#sidebar.active ul li a span {
+    font-size: 13px;
+}
+
+#sidebar ul li a i {
+}
+@media (min-width: 1200px) {
+    /*-- small sidebar --*/
+ 
 }
 
 
@@ -109,7 +128,7 @@
     }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 992px){
     .counter_section {
         display: block;
     }
@@ -186,7 +205,7 @@
     }
 }
 
-@media (max-width: 1199px) {
+/*@media (max-width: 1199px) {
     * {
         box-sizing: border-box;
     }
@@ -206,7 +225,7 @@
     #sidebar .sidebar-header strong {
         display: block;
     }
-    /*-- responsive --*/
+    -- responsive --
     #sidebar.active+#content .topbar {
         transition: ease all 0.3s;
     }
@@ -260,7 +279,7 @@
     .logo_section img.logo_icon {
         display: none;
     }
-}
+}*/
 
 @media (max-width: 350px) {
     .icon_info ul li {
