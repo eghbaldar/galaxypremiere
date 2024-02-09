@@ -2765,6 +2765,10 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\mastercard.png"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\mission.svg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\mission.svg"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\pattern.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\pattern.png"
     },
@@ -2775,6 +2779,10 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\paypal.png",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\paypal.png"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\trophy.svg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\layout_img\\trophy.svg"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\user_img.jpg",

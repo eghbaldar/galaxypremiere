@@ -29,6 +29,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Data\" />
+    <Folder Include="Models\Home\" />
     <Folder Include="wwwroot\lib\bootstrap-datepicker-sandbox\css\" />
     <Folder Include="wwwroot\lib\bootstrap-datepicker-sandbox\js\" />
     <Folder Include="wwwroot\lib\jquery-upload\" />

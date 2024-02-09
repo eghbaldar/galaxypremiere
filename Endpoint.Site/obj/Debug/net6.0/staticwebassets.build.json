@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zPJO6pP6+CqJAn7j2pBdWckUx8NBgpJ1P/9lkno9pE0=",
+  "Hash": "wQa6rDrm6nwEFXedP4tZgsPQlKlPFojnQt9AKYhfpkw=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -11373,6 +11373,23 @@
       "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\mastercard.png"
     },
     {
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\mission.svg",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "SiteTemplate/innerpages/images/layout_img/mission.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\mission.svg"
+    },
+    {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\pattern.png",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
@@ -11422,6 +11439,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\paypal.png"
+    },
+    {
+      "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\trophy.svg",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "SiteTemplate/innerpages/images/layout_img/trophy.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\trophy.svg"
     },
     {
       "Identity": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\layout_img\\user_img.jpg",

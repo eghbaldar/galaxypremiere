@@ -613,7 +613,7 @@
         </div>
     </div>
     <br />
-    @*Account Type = Filmmaker & Distributor*@
+    @*Account Type = Filmmaker & Distributor & FESTIVAL TYPE & Company*@
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">ACCOUNT TYPE</h4>
@@ -787,6 +787,40 @@ Model.getUsersInformationServiceDto.AccountType==2)
                             </div>
                         </div>
                     </div>
+
+                     <div class="col-xl-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Company Type</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">If you have a small or big company to take up a new member or advertise your stuff, let's go!</p>
+                            </div>
+                            <div class="card-footer d-sm-flex justify-content-between">
+                                <button id="btnAccountType3" type="button" onclick="UpdateInfoAccountType(this,'COMPANY');"
+                                        class="
+                                @if (
+Model.getUsersInformationServiceDto != null &&
+Model.getUsersInformationServiceDto.AccountType==3)
+                                @("btn cur-p btn-primary")
+                                else
+                                @("btn cur-p btn-light")
+">
+                                    @if (Model.getUsersInformationServiceDto != null)
+                                        if (Model.getUsersInformationServiceDto.AccountType == 3)
+                                            @("Enabled")
+                                        else
+                                            @("Enable")
+                                    else
+                                        @("Enable")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
                 </div>
             </div>
         </div>

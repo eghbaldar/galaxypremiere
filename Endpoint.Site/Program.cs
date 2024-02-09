@@ -13,6 +13,7 @@ using galaxypremiere.Application.Services.UsersPhotos.FacadePattern;
 using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Domain.Entities.Users;
+using galaxypremiere.Infrastructure.MappingProfiles.Profiles;
 using galaxypremiere.Infrastructure.MappingProfiles.Users;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersInformation;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersLoginLog;
@@ -57,6 +58,7 @@ builder.Services.AddAutoMapper(typeof(UserLoginLogMappingProfile));
 builder.Services.AddAutoMapper(typeof(UsersInformationProfile));
 builder.Services.AddAutoMapper(typeof(UserPositionsMappingProfile));
 builder.Services.AddAutoMapper(typeof(UserProfileMappingProfile));
+builder.Services.AddAutoMapper(typeof(ProfilesMappingProfile));
 
 // ASN // Add Authentication & Auhortization
 builder.Services.AddAuthentication(option =>

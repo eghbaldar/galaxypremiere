@@ -9,6 +9,7 @@ using galaxypremiere.Common.Constants;
 using galaxypremiere.Domain.Common;
 using galaxypremiere.Domain.Entities.Users;
 using galaxypremiere.Infrastructure.Configurations;
+using galaxypremiere.Infrastructure.MappingProfiles.Profiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;

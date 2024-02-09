@@ -306,6 +306,7 @@ function UpdateInfoAccountType(e, type) {
     btnWaitMe_Start('btnAccountType0'); // Loading Button Start
     btnWaitMe_Start('btnAccountType1'); // Loading Button Start
     btnWaitMe_Start('btnAccountType2'); // Loading Button Start
+    btnWaitMe_Start('btnAccountType3'); // Loading Button Start
 
     var typeCode;
     switch (type) { //AccountTypeConstants
@@ -317,6 +318,9 @@ function UpdateInfoAccountType(e, type) {
             break;
         case 'FESTIVAL':
             typeCode = 2;
+            break;
+        case 'COMPANY':
+            typeCode = 3;
             break;
     }
 
@@ -337,6 +341,8 @@ function UpdateInfoAccountType(e, type) {
                 $("#btnAccountType1").text('Enable');
                 $("#btnAccountType2").addClass('btn cur-p btn-light');
                 $("#btnAccountType2").text('Enable');
+                $("#btnAccountType3").addClass('btn cur-p btn-light');
+                $("#btnAccountType3").text('Enable');
                 $(e).removeClass();
                 $(e).addClass('btn cur-p btn-primary');
                 $(e).text('Enabled');
@@ -353,6 +359,7 @@ function UpdateInfoAccountType(e, type) {
         btnWaitMe_Stop('btnAccountType0'); // Loading Button Stops
         btnWaitMe_Stop('btnAccountType1'); // Loading Button Stops
         btnWaitMe_Stop('btnAccountType2'); // Loading Button Stops
+        btnWaitMe_Stop('btnAccountType3'); // Loading Button Stops
         pageWaitMeRemove(); // loading process stops
     });
 }

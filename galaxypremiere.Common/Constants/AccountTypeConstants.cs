@@ -11,5 +11,6 @@ namespace galaxypremiere.Common.Constants
         public const byte Filmmaker = 0;
         public const byte Distributor = 1;
         public const byte Festival = 2;
+        public const byte Company = 3;
     }
 }

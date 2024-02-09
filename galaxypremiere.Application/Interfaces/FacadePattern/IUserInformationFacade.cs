@@ -10,6 +10,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
 using System;
 using System.Collections.Generic;
@@ -34,5 +35,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         public UpdateUsersInformationHeadshotService UpdateUsersInformationHeadshotService { get; }
         public UpdateUsersInformationHeaderService UpdateUsersInformationHeaderService { get; }
         public UpdateUsersInformationOtherService UpdateUsersInformationOtherService { get; }
+        public GetUsersInformationByUsernameService GetUsersInformationByUsernameService { get; }
     }
 }
