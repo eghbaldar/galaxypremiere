@@ -39,7 +39,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                         = new galaxypremiere.Domain.Entities.Users.UsersInformation();
                     usersInfo = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersInformation>(req);
                     //========================= Upload Headshot
-                    var file = CreateFilename(req.Header);
+                    var file = CreateFilename(req.Header,req.UsersId);
                     switch (file.Success)
                     {
                         case true:
@@ -67,7 +67,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                     var mappedDto = _mapper.Map<RequestUpdateUsersInformationHeaderServiceDto>(req);
                     _mapper.Map(mappedDto, userHeader);
                     //========================= Upload Headshot
-                    var file = CreateFilename(req.Header);
+                    var file = CreateFilename(req.Header, req.UsersId);
                     switch (file.Success)
                     {
                         case true:
@@ -99,7 +99,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
             }            
         }
 
-        private ResultUploadDto CreateFilename(IFormFile file)
+        private ResultUploadDto CreateFilename(IFormFile file,long userId)
         {
             UploadSmallFilesService uploadSmallFilesService = new UploadSmallFilesService();
             var filename = uploadSmallFilesService.UploadFile(new RequestUploadSmallFilesServiceDto
@@ -109,6 +109,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                 Exension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
                 FileSize = "5242880", // => 5 Mb
                 File = file,
+                UsersId=userId,
             });
             return filename;
         }

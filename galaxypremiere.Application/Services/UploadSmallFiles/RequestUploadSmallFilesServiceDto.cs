@@ -9,5 +9,6 @@ namespace galaxypremiere.Application.Services.UploadSmallFiles
         public IFormFile File { get; set; }
         public string[] Exension { get; set; } // acceptable extension
         public string FileSize { get; set; } // acceptable fileSize
+        public long UsersId { get; set; }
     }
 }

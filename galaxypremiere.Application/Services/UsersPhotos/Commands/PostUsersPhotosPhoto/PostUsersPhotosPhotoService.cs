@@ -33,7 +33,7 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
                     = new galaxypremiere.Domain.Entities.Users.UsersPhotos();
                 usersPhotos = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersPhotos>(req);
                 //========================= Upload Headshot
-                var file = CreateFilename(req.Photo);
+                var file = CreateFilename(req.Photo,req.UsersId);
                 switch (file.Success)
                 {
                     case true:
@@ -73,7 +73,7 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
                 };
             }
         }
-        private ResultUploadDto CreateFilename(IFormFile file)
+        private ResultUploadDto CreateFilename(IFormFile file, long userId)
         {
             UploadSmallFilesService uploadSmallFilesService = new UploadSmallFilesService();
             var filename = uploadSmallFilesService.UploadFile(new RequestUploadSmallFilesServiceDto
@@ -83,6 +83,7 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
                 Exension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
                 FileSize = "2097152", // => 2 Mb
                 File = file,
+                UsersId= userId,
             });
             return filename;
         }

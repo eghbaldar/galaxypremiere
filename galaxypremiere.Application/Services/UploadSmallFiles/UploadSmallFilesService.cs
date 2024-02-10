@@ -52,7 +52,7 @@ namespace galaxypremiere.Application.Services.UploadSmallFiles
                 Directory.CreateDirectory(uploadRootFolder);
             }
             // create a unique file name ...
-            string filename = DateTime.Now.Ticks.ToString() + req.File.FileName;
+            string filename = DateTime.Now.Ticks.ToString() + "-" + req.UsersId + info.Extension.ToLower();
             // copy file ...
             var filePath = Path.Combine(uploadRootFolder, filename);
             using (var fileStream = new FileStream(filePath, FileMode.Create))
