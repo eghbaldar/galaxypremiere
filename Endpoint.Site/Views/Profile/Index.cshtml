@@ -23,6 +23,11 @@
     .tab-content {
         padding: 0 !important;
     }
+
+    .rounded-circle {
+        aspect-ratio: 1;
+        object-fit: cover !important;
+    }
     /**/
     .counter .img-responsive-top-icons.img-crop-square {
         filter: invert(85%) sepia(7%) saturate(25%) hue-rotate(353deg) brightness(103%) contrast(78%);
@@ -48,7 +53,7 @@
         left: 0;
     }
 </style>
-    
+
 @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.IsSuccess)
 {
     @*HEADER*@
@@ -61,7 +66,7 @@
                         <div class="widget head-profile has-shadow">
                             <div class="widget-body pb-0">
                                 <div class="row d-flex align-items-center">
-                                    <div class="col-xl-4 col-md-4 d-flex justify-content-lg-start justify-content-md-start justify-content-center">
+                                    <div class="col-xl-4 col-md-4 d-flex justify-content-lg-start justify-content-md-start justify-content-center topItems">
                                         <ul>
                                             <li>
                                                 <div class="counter">
@@ -93,6 +98,7 @@
                                         <div class="image-default">
                                             <img class="rounded-circle"
                                              src=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Photo != null ? "/SiteTemplate/innerpages/images/user-headshot/"+Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Photo : "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg")
+                                             onerror="this.src='/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg'"
                                              alt=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Fullname.Trim() != "" ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Fullname : TopRightUserPanelViewComponent.username)>
                                         </div>
                                         <div class="infos">
@@ -138,6 +144,34 @@
             <div class="card">
                 <div class="card-body">
                     <div class="profile-statistics">
+
+                        <div class="row d-flex align-items-center topItems-576" style="display:none;">
+                            <div class="col-xl-4 col-md-4 d-flex justify-content-lg-start justify-content-md-start justify-content-center">
+                               <div class="topItems-content">
+                                    <div class="counter">
+                                        <div class="svg-container topItems-576-img">
+                                            <img class="img-responsive-top-icons img-crop-square"
+                                             src="~/SiteTemplate/innerpages/images/layout_img/mission.svg" alt="#">
+                                        </div>
+                                    </div>
+                                    <div class="counter">30</div>
+                                    <div class="heading">Missions</div>
+                                </div>
+
+                                <div class="topItems-content">
+                                    <div class="counter icon">
+                                        <div class="svg-container topItems-576-img">
+                                            <img class="img-responsive-top-icons img-crop-square "
+                                             src="~/SiteTemplate/innerpages/images/layout_img/trophy.svg" alt="#">
+                                        </div>
+                                    </div>
+                                    <div class="counter">40</div>
+                                    <div class="heading">Accolades</div>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <div class="text-center mt-4 border-bottom-1 pb-3">
                             <div class="row">
                                 <div class="col">
@@ -153,8 +187,7 @@
                             <div class="mt-4">
                                 <a href="javascript:void()" class="btn btn-primary pl-5 pr-5 mr-3 mb-4">Follow</a>
                                 <a href="javascript:void()" class="btn btn-dark pl-5 pr-5 mb-4">
-                                    Send
-                                    Message
+                                    Send Message
                                 </a>
                             </div>
                         </div>
@@ -708,7 +741,7 @@
                                     <div class="profile-lang pt-5 border-bottom-1 pb-5">
                                         <h4 class="text-primary mb-4">Language</h4><a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-us"></i> English</a> <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-fr"></i> French</a>
                                         <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-bd"></i> Bangla</a>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div id="profile-contact" class="tab-pane fade">
                                     <div class="pt-3">
@@ -799,25 +832,13 @@ else
 @section Scripts{
 
     @*set user 's headshot and header*@
-    @if(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Header != null)
+    @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Header != null)
     {
-       <script>
-        $(document).ready(function(){
-            var filename = '@Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Header';
-            $(".jumbotron").css("background-image", "url('SiteTemplate/innerpages/images/user-header/" + filename + "')");
-        });
-    </script> 
-  }    
-    
-    @*    <script>
-        $('document').ready(function () {
-            $('#sidebar').toggleClass('active');
-        });
-    </script>*@
-    @*
-    <!-- Required vendors -->
-    <script src="~/sitetemplate/profilepages/assets/js/global.min.js"></script>
-    <script src="~/sitetemplate/profilepages/assets/js/quixnav-init.js"></script>
-    <script src="~/sitetemplate/profilepages/assets/js/custom.min.js"></script>*@
-
+        <script>
+            $(document).ready(function () {
+                var filename = '@Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Header';
+                $(".jumbotron").css("background-image", "url('SiteTemplate/innerpages/images/user-header/" + filename + "')");
+            });
+        </script>
+    }
 }

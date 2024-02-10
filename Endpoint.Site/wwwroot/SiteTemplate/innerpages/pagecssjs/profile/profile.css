@@ -6,6 +6,19 @@
     padding: 0px !important;
 }
 
+    .db-social .image-default img {
+        width: 120px;
+        position: absolute;
+        top: -80px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        box-shadow: 0 0 0 6px rgba(255,255,255,1);
+        z-index: 1;
+        aspect-ratio: 1;
+        object-fit: cover !important;
+    }
+
 @media (min-width: 768px) {
     .container, .container-md, .container-sm {
         width: 100% !important;
@@ -15,22 +28,59 @@
     margin: 0 !important;
     padding: 0 !important;
 }
-
-@media (min-width: 576px) {
-    .container, .container-sm {
-        left: 0 !important;
-        max-width: 100% !important;
-        padding: 10px.db-social .jumbotron
-
-{
+.topItems-content{
+    text-align:center;
+    padding:10px;
+    width:150px;
+    height:150px;
+    margin-bottom:50px; 
 }
+.topItems-576 {
+    display: none !important;
+    margin-top: 70px;
 }
+    .topItems-576 .counter {
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .topItems-576 .heading {
+        font-size: 1.8rem;
+        color: #ccc;
+    }
+.topItems-576-img {
+    width: 100px !important;
+}
+@media (max-width: 768px) {
+    .topItems-576 {
+        display: inline !important;
+    }
+
+    .topItems {
+        display: none !important;
+    }
+    .db-social .image-default img {
+        width: 220px;
+    }
+}
+    @media (min-width: 576px) {
+        .topItems-576 {
+            margin-top: 350px !important;
+        }
+        .container, .container-sm {
+            left: 0 !important;
+            max-width: 100% !important;
+            padding: 10px;
+        }
+    }
 
 .db-social .jumbotron {
-    
+    background: url('../../../../SiteTemplate/innerpages/images/layout_img/img-header.jpg') center center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    aspect-ratio: 16 / 9;
     background-size: cover;
+    /*    background-attachment: fixed;
+    aspect-ratio: 16 / 9;
+    background-size: cover;*/
     background-position: bottom center;
     color: #fff !important;
     height: 300px;
@@ -97,7 +147,7 @@
 .pb-0, .py-0 {
     padding-bottom: 0 !important;
 }
-
+/*
 .db-social .image-default img {
     width: 120px;
     position: absolute;
@@ -107,8 +157,10 @@
     margin: 0 auto;
     box-shadow: 0 0 0 6px rgba(255,255,255,1);
     z-index: 1;
+    aspect-ratio: 1;
+    object-fit: cover !important;   
 }
-
+*/
 .db-social .infos {
     text-align: center;
     margin-top: 4rem;
