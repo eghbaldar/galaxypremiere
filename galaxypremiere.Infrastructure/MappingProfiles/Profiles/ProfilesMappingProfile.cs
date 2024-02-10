@@ -14,26 +14,22 @@ namespace galaxypremiere.Infrastructure.MappingProfiles.Profiles
         public ProfilesMappingProfile()
         {
             CreateMap<Domain.Entities.Users.UsersInformation, GetUsersInformationByUsernameServiceDto>()
-                .ForMember(dest => dest.AccountType, act => act.MapFrom(src=> test()))
+                .ForMember(dest => dest.AccountType, act => act.MapFrom(src=> ChangeAccountType(src.AccountType)))
+                .ForMember(dest => dest.Fullname, opt => opt.MapFrom(src => $"{src.Firstname} {src.MiddleName} {src.Surname}"))
                 .ReverseMap();
-        }
-
-        private string test()
-        {
-            return "342fff";
         }
         private string ChangeAccountType(byte type)
         {
-            string variableName = "";
+            string value = "";
             foreach (var field in typeof(AccountTypeConstants).GetFields())
             {
                 if (field.IsLiteral && field.FieldType == typeof(byte) && (byte)field.GetRawConstantValue() == type)
                 {
-                    variableName = field.Name;
+                    value = field.Name;
                     break;
                 }
             }
-            return variableName;
+            return value;
         }
     }
 }

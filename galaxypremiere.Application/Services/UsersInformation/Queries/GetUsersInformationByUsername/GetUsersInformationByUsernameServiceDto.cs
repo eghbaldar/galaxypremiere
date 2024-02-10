@@ -5,9 +5,10 @@
         public long UsersId { get; set; }
         public string AccountType { get; set; } // check [AccountTypeConstants.cs]
         public string? Username { get; set; } // www.galaxypremiere.com/Username
-        public string? Firstname { get; set; }
-        public string? MiddleName { get; set; }
-        public string? Surname { get; set; }
+        //public string? Firstname { get; set; }
+        //public string? MiddleName { get; set; }
+        //public string? Surname { get; set; }
+        public string Fullname { get; set; } // this filed will be filled up with autompper=> Firstname + Middlename + Surname
         public byte Gender { get; set; } = 0; // Check: [GenderConstants.cs]
         public int CountryId { get; set; } = 0; // derived from [Countries] entity
         public int LanguageId { get; set; }
