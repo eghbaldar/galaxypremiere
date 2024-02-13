@@ -8,7 +8,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
-        public GetUsersInformationByUsernameService(IDataBaseContext context,IMapper mapper)
+        public GetUsersInformationByUsernameService(IDataBaseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -25,17 +25,25 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                         Message = "The page does not exist.",
                     }
                 };
-            var userInformation = _context.UsersInformation
-                .Where(u => u.Username == req.Username)
-                .Select(u => _mapper.Map<GetUsersInformationByUsernameServiceDto>(u))
-                .FirstOrDefault();
+
+            var userInformation = (
+            from i in _context.UsersInformation
+            where (i.Username == req.Username)
+            select new
+            {
+                UserInformation = i,
+            }
+            ).FirstOrDefault();
+
             if (userInformation != null)
             {
+                var mappedUserInformation = _mapper.Map<GetUsersInformationByUsernameServiceDto>(userInformation.UserInformation);
+
                 return new ResultGetUsersInformationByUsernameServiceDto
                 {
                     resultGetUsersInformationByUsernameServiceDto = new ResultDto<GetUsersInformationByUsernameServiceDto>
                     {
-                        Data = userInformation,
+                        Data = mappedUserInformation,
                         IsSuccess = true,
                         Message = "Success!",
                     }

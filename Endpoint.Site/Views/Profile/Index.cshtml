@@ -5,6 +5,23 @@
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
 <style>
+    /*tags*/
+    .label {
+        display: inline;
+        padding: 0.2em 0.6em 0.3em;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25em;
+    }
+
+    .label-info {
+        background-color: #5bc0de;
+    }
     /*General*/
     .text-primary {
         color: #0079BF !important;
@@ -53,7 +70,51 @@
         left: 0;
     }
 </style>
+<style>
+    /*tabs + loader*/
+    .tab-pane.active {
+        display: block;
+        position: relative;
+        padding-left: 5px;
+    }
 
+    .loadingTab {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.3;
+        z-index: 1;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+    }
+
+    .loadingTabLoader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+</style>
 @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.IsSuccess)
 {
     @*HEADER*@
@@ -144,10 +205,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="profile-statistics">
-
                         <div class="row d-flex align-items-center topItems-576" style="display:none;">
                             <div class="col-xl-4 col-md-4 d-flex justify-content-lg-start justify-content-md-start justify-content-center">
-                               <div class="topItems-content">
+                                <div class="topItems-content">
                                     <div class="counter">
                                         <div class="svg-container topItems-576-img">
                                             <img class="img-responsive-top-icons img-crop-square"
@@ -171,7 +231,6 @@
 
                             </div>
                         </div>
-
                         <div class="text-center mt-4 border-bottom-1 pb-3">
                             <div class="row">
                                 <div class="col">
@@ -653,97 +712,131 @@
                                 </div>
                                 <div id="profile-about" class="tab-pane fade">
 
-                                    <div class="profile-personal-info">
+                                    <div class="loadingTab" id="loadingTabAbout">
+                                        <div class="loadingTabLoader">
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-personal-info pt-4">
                                         <h4 class="text-primary mb-4">Personal Information</h4>
                                         <div class="row mb-4">
                                             <div class="col-3">
-                                                <h5 class="f-w-500">
-                                                    Name <span class="pull-right">:</span>
+                                                <h5 class="f-w-300">
+                                                    Firstname <span class="pull-right">:</span>
                                                 </h5>
                                             </div>
                                             <div class="col-9">
                                                 <span>
-
+                                                    @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Firstname != null ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Firstname : "unknown")
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="row mb-4">
                                             <div class="col-3">
-                                                <h5 class="f-w-500">
-                                                    Email <span class="pull-right">:</span>
+                                                <h5 class="f-w-300">
+                                                    Middle name <span class="pull-right">:</span>
                                                 </h5>
                                             </div>
                                             <div class="col-9">
-                                                <span>example@examplel.com</span>
+                                                <span>
+                                                    @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.MiddleName != null ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.MiddleName : "unknown")
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="row mb-4">
                                             <div class="col-3">
-                                                <h5 class="f-w-500">Availability <span class="pull-right">:</span></h5>
+                                                <h5 class="f-w-300">
+                                                    Surname <span class="pull-right">:</span>
+                                                </h5>
                                             </div>
                                             <div class="col-9">
-                                                <span>Full Time (Free Lancer)</span>
+                                                <span>
+                                                    @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Surname != null ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Surname : "unknown")
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="row mb-4">
                                             <div class="col-3">
-                                                <h5 class="f-w-500">
+                                                <h5 class="f-w-300">
+                                                    Gender <span class="pull-right">:</span>
+                                                </h5>
+                                            </div>
+                                            <div class="col-9">
+                                                <span id="spanInfoAbout_gender"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-3">
+                                                <h5 class="f-w-300">Language<span class="pull-right">:</span></h5>
+                                            </div>
+                                            <div class="col-9">
+                                                <span id="spanInfoAbout_language"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-3">
+                                                <h5 class="f-w-300">
                                                     Age <span class="pull-right">:</span>
                                                 </h5>
                                             </div>
                                             <div class="col-9">
-                                                <span>27</span>
+                                                <span id="spanInfoAbout_age"></span>
                                             </div>
                                         </div>
                                         <div class="row mb-4">
                                             <div class="col-3">
-                                                <h5 class="f-w-500">Location <span class="pull-right">:</span></h5>
+                                                <h5 class="f-w-300">Birth City <span class="pull-right">:</span></h5>
                                             </div>
                                             <div class="col-9">
-                                                <span>
-                                                    Rosemont Avenue Melbourne,
-                                                    Florida
-                                                </span>
+                                                <span id="spanInfoAbout_birthcity"></span>
                                             </div>
                                         </div>
                                         <div class="row mb-4">
                                             <div class="col-3">
-                                                <h5 class="f-w-500">Year Experience <span class="pull-right">:</span></h5>
+                                                <h5 class="f-w-300">Current City<span class="pull-right">:</span></h5>
                                             </div>
                                             <div class="col-9">
-                                                <span>07 Year Experiences</span>
+                                                <span id="spanInfoAbout_currentCity"></span>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="profile-about-me">
+                                        <div class="border-bottom-1 pb-4">
+                                            <h4 class="text-primary">Inroduction</h4>
+                                            <span id="spanInfoAbout_introduction"></span>
+                                        </div>
                                         <div class="pt-4 border-bottom-1 pb-4">
-                                            <h4 class="text-primary">About Me</h4>
-                                            <p>
-                                                A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence was created for the
-                                                bliss of souls like mine.I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents.
-                                            </p>
-                                            <p>
-                                                A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed
-                                                in a nice, gilded frame.
-                                            </p>
+                                            <h4 class="text-primary">Biography</h4>
+                                            <span id="spanInfoAbout_bio"></span>
+                                        </div>
+                                        <div class="pt-4 border-bottom-1 pb-4">
+                                            <h4 class="text-primary">Note</h4>
+                                            <span id="spanInfoAbout_note"></span>
                                         </div>
                                     </div>
                                     <div class="profile-skills pt-2 border-bottom-1 pb-2">
-                                        <h4 class="text-primary mb-4">Skills</h4>
-                                        <a href="javascript:void()" class="btn btn-outline-dark btn-rounded pl-4 my-3 my-sm-0 pr-4 mr-3 m-b-10">Admin</a>
-                                        <a href="javascript:void()" class="btn btn-outline-dark btn-rounded pl-4 my-3 my-sm-0 pr-4 mr-3 m-b-10">Dashboard</a>
-                                        <a href="javascript:void()" class="btn btn-outline-dark btn-rounded pl-4 my-3 my-sm-0 pr-4 mr-3 m-b-10">Photoshop</a>
-                                        <a href="javascript:void()" class="btn btn-outline-dark btn-rounded pl-4 my-3 my-sm-0 pr-4 mr-3 m-b-10">Bootstrap</a>
-                                        <a href="javascript:void()" class="btn btn-outline-dark btn-rounded pl-4 my-3 my-sm-0 pr-4 mr-3 m-b-10">Responsive</a>
-                                        <a href="javascript:void()" class="btn btn-outline-dark btn-rounded pl-4 my-3 my-sm-0 pr-4 mr-3 m-b-10">Crypto</a>
+                                        <h4 class="text-primary mb-4">Positions</h4>
+
+                                        <div id="positions" class="panel-body pb5"></div>
+
                                     </div>
-                                    <div class="profile-lang pt-5 border-bottom-1 pb-5">
-                                        <h4 class="text-primary mb-4">Language</h4><a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-us"></i> English</a> <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-fr"></i> French</a>
-                                        <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-bd"></i> Bangla</a>
-                                    </div>
+
+
+
                                 </div>
                                 <div id="profile-contact" class="tab-pane fade">
+
+                                    <div class="row mb-4">
+                                        <div class="col-3">
+                                            <h5 class="f-w-500">Country <span class="pull-right">:</span></h5>
+                                        </div>
+                                        <div class="col-9">
+                                            <span>
+
+                                            </span>
+                                        </div>
+                                    </div>
+
                                     <div class="pt-3">
                                         <div class="settings-form">
                                             <h4 class="text-primary">Account Setting</h4>
@@ -831,7 +924,7 @@ else
 }
 @section Scripts{
 
-    @*set user 's headshot and header*@
+    @* set user 's headshot and header *@
     @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Header != null)
     {
         <script>
@@ -841,4 +934,104 @@ else
             });
         </script>
     }
+    @* set user 's positions *@
+    @*    @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Position != null)
+    {*@
+
+    <script>
+        // Get the tab links
+        const tabLinks = document.querySelectorAll('.nav-link');
+        // Loop through the tab links and add a click event listener
+        tabLinks.forEach(tabLink => {
+            tabLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                // Get the target tab content ID from the link's href attribute
+                const target = this.getAttribute('href');
+                switch (target) {
+                    case '#profile-posts':
+                        alert('post');
+                        break;
+                    case '#profile-missions':
+                        alert('missions');
+                        break;
+                    case '#profile-accolades':
+                        alert('accolades');
+                        break;
+                    case '#profile-photos':
+                        alert('photos');
+                        break;
+                    case '#profile-about':
+
+                        $('#loadingTabAbout').css('display', 'block'); // get started loading ...
+
+                        setTimeout(function () {
+                            // retrives data from databse
+                            $.ajax({
+                                contentType: 'application/x-www-form-urlencoded',
+                                dataType: 'json',
+                                type: 'GET',
+                                data: { 'username': '@TopRightUserPanelViewComponent.username' },
+                                url: 'profile/GetInfoAbout',
+                                success: function (data) {
+                                    if (data.resultGetUsersInformationAboutByUsernameServiceDto.isSuccess) {
+                                        var fetchedData = data.resultGetUsersInformationAboutByUsernameServiceDto.data;
+                                        $("#spanInfoAbout_gender").text(fetchedData.genderText);
+                                        $("#spanInfoAbout_language").text(fetchedData.languageName);
+                                        $("#spanInfoAbout_age").text('(' + fetchedData.age + ') ' + fetchedData.birthDay);
+                                        $("#spanInfoAbout_birthcity").text(fetchedData.birthCity);
+                                        $("#spanInfoAbout_currentCity").text(fetchedData.currentCity);
+                                        $("#spanInfoAbout_introduction").text(fetchedData.introduction);
+                                        $("#spanInfoAbout_bio").text(fetchedData.bio);
+                                        $("#spanInfoAbout_note").text(fetchedData.note);
+                                        SetPositions(fetchedData.position);
+                                    }
+                                    else {
+                                        alert('err from server');
+                                    }
+                                },
+                                error: function (request, status, error) {
+                                    alert(request.responseText + ' ' + status + ' ' + error);
+                                }
+                            }).done(function () {
+                                $('#loadingTabAbout').css('display', 'none');
+                            });
+                        }, 5000);
+
+                        break;
+                    case '#profile-contact':
+                        alert('contact');
+                        break;
+                }
+            });
+        });
+        var positionsBox = function (o) {
+            return `<span class="label label-info mr5 mb10 ib lh15">` + o + `</span> `
+        }
+        function SetPositions(positions) {
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'GET',
+                data: { 'positions': positions },
+                url: 'profile/GetInfoPositions',
+                success: function (data) {
+                    if (data.isSuccess) {
+                        $("#positions").empty();
+                        var count = data.data.split(',');
+                        for (var i = 0; i < count.length; i++) {
+                            $("#positions").append(positionsBox(count[i].toString()));
+                        }
+                    }
+                    else {
+                        alert('err from server');
+                    }
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText + ' ' + status + ' ' + error);
+                }
+            });
+        }
+    </script>
+    @*}*@
+
 }

@@ -1,7 +1,9 @@
 ﻿using Endpoint.Site.Models.Porfile.GetInformationByUsername;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationByUsername;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationAboutByUsername;
 using Microsoft.AspNetCore.Mvc;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPositions;
 
 namespace Endpoint.Site.Controllers
 {
@@ -22,8 +24,23 @@ namespace Endpoint.Site.Controllers
                     Username = username
                 }),
             };
-
             return View(modelGetInformationByUsername);
+        }
+        [HttpGet]
+        public IActionResult GetInfoAbout(string username)
+        {
+            return Json(_userInformationFacade.GetUsersInformationAboutByUsernameService.Execute(new RequestGetUsersInformationAboutByUsernameServiceDto
+            {
+                Username = username
+            }));
+        }
+        [HttpGet]
+        public IActionResult GetInfoPositions(string positions)
+        {
+            return Json(_userInformationFacade.GetUsersInformationPositionsService.Execute(new RequestGetUsersInformationPositionsServiceDto
+            {
+               Positions= positions,
+            }));
         }
     }
 }

@@ -13,8 +13,10 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetCheckDuplicatedUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationAboutByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPositions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,11 +114,23 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
         {
             get { return _updateUsersInformationOtherService = _updateUsersInformationOtherService ?? new UpdateUsersInformationOtherService(_context, _mapper); }
         }        
-        // Update User Information => Other
+        // Get User Information By Username => Main Information
         private GetUsersInformationByUsernameService _getUsersInformationByUsernameService;
         public GetUsersInformationByUsernameService GetUsersInformationByUsernameService
         {
             get { return _getUsersInformationByUsernameService = _getUsersInformationByUsernameService ?? new GetUsersInformationByUsernameService(_context,_mapper); }
+        }
+        // Get User Information By Username => About Me
+        private GetUsersInformationAboutByUsernameService _getUsersInformationAboutByUsernameService;
+        public GetUsersInformationAboutByUsernameService GetUsersInformationAboutByUsernameService
+        {
+            get { return _getUsersInformationAboutByUsernameService = _getUsersInformationAboutByUsernameService ?? new GetUsersInformationAboutByUsernameService(_context, _mapper); }
+        }     
+        // Get User Positions => About Me
+        private GetUsersInformationPositionsService _getUsersInformationPositionsService;
+        public GetUsersInformationPositionsService GetUsersInformationPositionsService
+        {
+            get { return _getUsersInformationPositionsService = _getUsersInformationPositionsService ?? new GetUsersInformationPositionsService(_context); }
         }
     }
 }
