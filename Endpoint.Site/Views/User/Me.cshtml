@@ -70,27 +70,6 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Country</label>
-                        <select class="form-select"
-                                id="selectCountry">
-                            <option selected>Choose...</option>
-                            @{
-                                if (Model.resultGetCountriesServiceDto != null)
-                                {
-                                    foreach (var country in Model.resultGetCountriesServiceDto.getCountriesServiceDto)
-                                    {
-                                        <option value="@country.Id"
-                                    selected="@(Model.getUsersInformationServiceDto != null && country.Id == Model.getUsersInformationServiceDto.CountryId)">
-                                            @country.Name
-                                        </option>
-
-                                    }
-                                }
-                            }
-                        </select>
-                    </div>
-
-                    <div class="input-group mb-3">
                         <label class="input-group-text" for="inputGroupSelect01">Language</label>
                         <select class="form-select" id="selectLanguage">
                             <option selected>Choose...</option>
@@ -166,6 +145,17 @@
             <div class="basic-form">
                 <form asp-action="CraeteUpdateContact" id="frmContact" method="post">
 
+<div class="input-group mb-3">
+                        <span class="input-group-text">Postal Code (Zip Code)</span>
+                        <input type="text"
+                               class="form-control"
+                               id="txtPostalCode"
+                               placeholder="33133"
+                               value=@{
+                               if(Model.getUsersInformationContactServiceDto != null)
+                                   @Model.getUsersInformationContactServiceDto.PostalCode
+                               }>
+                    </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Address Line 1</span>
                         <input type="text"
@@ -211,16 +201,25 @@
                                }>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Postal Code (Zip Code)</span>
-                        <input type="text"
-                               class="form-control"
-                               id="txtPostalCode"
-                               placeholder="33133"
-                               value=@{
-                               if(Model.getUsersInformationContactServiceDto != null)
-                                   @Model.getUsersInformationContactServiceDto.PostalCode
-                               }>
-                    </div>
+                        <label class="input-group-text" for="inputGroupSelect01">Country</label>
+                        <select class="form-select"
+                                id="selectCountry">
+                            <option selected>Choose...</option>
+                            @{
+                                if (Model.resultGetCountriesServiceDto != null)
+                                {
+                                    foreach (var country in Model.resultGetCountriesServiceDto.getCountriesServiceDto)
+                                    {
+                                        <option value="@country.Id"
+                                    selected="@(Model.getUsersInformationContactServiceDto != null && country.Id == Model.getUsersInformationContactServiceDto.CountryId)">
+                                            @country.Name
+                                        </option>
+
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>                    
                     <div class="input-group mb-3">
                         <span class="input-group-text">Phone</span>
                         <input type="text"

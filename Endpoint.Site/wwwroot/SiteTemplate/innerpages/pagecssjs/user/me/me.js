@@ -6,8 +6,7 @@
     var firstname = $('#txtFirstname').val();
     var middlename = $('#txtMiddlename').val();
     var surname = $('#txtSurname').val();
-    var genderId = $('#selectGender').val();
-    var countryId = $('#selectCountry').val();
+    var genderId = $('#selectGender').val();    
     var languageId = $('#selectLanguage').val();
     var birthday = $('#datepickerBirthday').val();
     var birthcity = $('#txtBirthcity').val();
@@ -17,8 +16,7 @@
         'Firstname': firstname,
         'MiddleName': middlename,
         'Surname': surname,
-        'Gender': genderId,
-        'CountryId': countryId,
+        'Gender': genderId,        
         'LanguageId': languageId,
         'BirthDay': birthday,
         'BirthCity': birthcity,
@@ -51,6 +49,7 @@ function UpdateInfoContact() {
     var city = $('#txtCity').val();
     var state = $('#txtState').val();
     var postalCode = $('#txtPostalCode').val();
+    var countryId = $('#selectCountry').val();
     var phone = $('#txtPhone').val();
     var recoveryEmail = $('#txtRecoveryEmail').val();
     var website = $('#txtWebsite').val();
@@ -69,6 +68,7 @@ function UpdateInfoContact() {
         'City': city,
         'State': state,
         'PostalCode': postalCode,
+        'CountryId': countryId,
         'Phone': phone,
         'RecoveryEmail': recoveryEmail,
         'Website': website,

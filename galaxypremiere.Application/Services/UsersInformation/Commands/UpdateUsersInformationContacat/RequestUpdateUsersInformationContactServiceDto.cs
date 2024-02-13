@@ -8,6 +8,7 @@
         public string? City { get; set; }
         public string? State { get; set; }
         public string? PostalCode { get; set; }
+        public int CountryId { get; set; }
         public string? Phone { get; set; }
         public string? RecoveryEmail { get; set; }
         public string? Website { get; set; }

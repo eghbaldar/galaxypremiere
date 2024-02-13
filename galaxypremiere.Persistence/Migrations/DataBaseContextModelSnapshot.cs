@@ -3878,9 +3878,6 @@ namespace galaxypremiere.Persistence.Migrations
                     b.Property<string>("BirthDay")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
                     b.Property<byte>("CurrencyId")
                         .HasColumnType("tinyint");
 
