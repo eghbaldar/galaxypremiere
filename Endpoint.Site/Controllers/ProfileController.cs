@@ -4,6 +4,7 @@ using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInfor
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationAboutByUsername;
 using Microsoft.AspNetCore.Mvc;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPositions;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContactByUsername;
 
 namespace Endpoint.Site.Controllers
 {
@@ -22,7 +23,7 @@ namespace Endpoint.Site.Controllers
                 ResultGetUsersInformationByUsernameServiceDto = _userInformationFacade.GetUsersInformationByUsernameService.Execute(new RequestUsersInformationByUsernameServiceDto
                 {
                     Username = username
-                }),
+                })
             };
             return View(modelGetInformationByUsername);
         }
@@ -39,7 +40,15 @@ namespace Endpoint.Site.Controllers
         {
             return Json(_userInformationFacade.GetUsersInformationPositionsService.Execute(new RequestGetUsersInformationPositionsServiceDto
             {
-               Positions= positions,
+                Positions = positions,
+            }));
+        }
+        [HttpGet]
+        public IActionResult GetInfoContact(string username)
+        {
+            return Json(_userInformationFacade.GetUsersInformationContactByUsernameService.Execute(new RequestGetUsersInformationContactByUsernameServiceDto
+            {
+                Username = username
             }));
         }
     }

@@ -719,11 +719,11 @@
 
                                     <div class="profile-personal-info pt-4">
                                         <h4 class="text-primary mb-4">Personal Information</h4>
-                                        <div class="row mb-4">
+                                        <div class="row mb-1">
                                             <div class="col-3">
-                                                <h5 class="f-w-300">
+                                                <h6 class="f-w-300">
                                                     Firstname <span class="pull-right">:</span>
-                                                </h5>
+                                                </h6>
                                             </div>
                                             <div class="col-9">
                                                 <span>
@@ -731,11 +731,11 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
+                                        <div class="row mb-1">
                                             <div class="col-3">
-                                                <h5 class="f-w-300">
+                                                <h6 class="f-w-300">
                                                     Middle name <span class="pull-right">:</span>
-                                                </h5>
+                                                </h6>
                                             </div>
                                             <div class="col-9">
                                                 <span>
@@ -743,11 +743,11 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
+                                        <div class="row mb-1">
                                             <div class="col-3">
-                                                <h5 class="f-w-300">
+                                                <h6 class="f-w-300">
                                                     Surname <span class="pull-right">:</span>
-                                                </h5>
+                                                </h6>
                                             </div>
                                             <div class="col-9">
                                                 <span>
@@ -755,70 +755,68 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
+                                        <div class="row mb-1">
                                             <div class="col-3">
-                                                <h5 class="f-w-300">
+                                                <h6 class="f-w-300">
                                                     Gender <span class="pull-right">:</span>
-                                                </h5>
+                                                </h6>
                                             </div>
                                             <div class="col-9">
                                                 <span id="spanInfoAbout_gender"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
+                                        <div class="row mb-1">
                                             <div class="col-3">
-                                                <h5 class="f-w-300">Language<span class="pull-right">:</span></h5>
+                                                <h6 class="f-w-300">Language<span class="pull-right">:</span></h6>
                                             </div>
                                             <div class="col-9">
                                                 <span id="spanInfoAbout_language"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
+                                        <div class="row mb-1">
                                             <div class="col-3">
-                                                <h5 class="f-w-300">
+                                                <h6 class="f-w-300">
                                                     Age <span class="pull-right">:</span>
-                                                </h5>
+                                                </h6>
                                             </div>
                                             <div class="col-9">
                                                 <span id="spanInfoAbout_age"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
+                                        <div class="row mb-1">
                                             <div class="col-3">
-                                                <h5 class="f-w-300">Birth City <span class="pull-right">:</span></h5>
+                                                <h6 class="f-w-300">Birth City <span class="pull-right">:</span></h6>
                                             </div>
                                             <div class="col-9">
                                                 <span id="spanInfoAbout_birthcity"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
+                                        <div class="row mb-1">
                                             <div class="col-3">
-                                                <h5 class="f-w-300">Current City<span class="pull-right">:</span></h5>
+                                                <h6 class="f-w-300">Current City<span class="pull-right">:</span></h6>
                                             </div>
                                             <div class="col-9">
                                                 <span id="spanInfoAbout_currentCity"></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="profile-about-me">
-                                        <div class="border-bottom-1 pb-4">
+                                    <div class="profile-about-me mt-3">
+                                        <div class="border-bottom-1 pb-2">
                                             <h4 class="text-primary">Inroduction</h4>
                                             <span id="spanInfoAbout_introduction"></span>
                                         </div>
-                                        <div class="pt-4 border-bottom-1 pb-4">
+                                        <div class="pt-4 border-bottom-1 pb-2">
                                             <h4 class="text-primary">Biography</h4>
                                             <span id="spanInfoAbout_bio"></span>
                                         </div>
-                                        <div class="pt-4 border-bottom-1 pb-4">
+                                        <div class="pt-4 border-bottom-1 pb-2">
                                             <h4 class="text-primary">Note</h4>
                                             <span id="spanInfoAbout_note"></span>
                                         </div>
                                     </div>
                                     <div class="profile-skills pt-2 border-bottom-1 pb-2">
                                         <h4 class="text-primary mb-4">Positions</h4>
-
                                         <div id="positions" class="panel-body pb5"></div>
-
                                     </div>
 
 
@@ -826,71 +824,185 @@
                                 </div>
                                 <div id="profile-contact" class="tab-pane fade">
 
-                                    <div class="row mb-4">
-                                        <div class="col-3">
-                                            <h5 class="f-w-500">Country <span class="pull-right">:</span></h5>
-                                        </div>
-                                        <div class="col-9">
-                                            <span>
-
-                                            </span>
+                                    <div class="loadingTab" id="loadingTabContact">
+                                        <div class="loadingTabLoader">
                                         </div>
                                     </div>
 
-                                    <div class="pt-3">
-                                        <div class="settings-form">
-                                            <h4 class="text-primary">Account Setting</h4>
-                                            <form>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label>Email</label>
-                                                        <input type="email" placeholder="Email" class="form-control">
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label>Password</label>
-                                                        <input type="password" placeholder="Password" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Address</label>
-                                                    <input type="text" placeholder="1234 Main St" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Address 2</label>
-                                                    <input type="text" placeholder="Apartment, studio, or floor" class="form-control">
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label>City</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label>State</label>
-                                                        <select class="form-control" id="inputState">
-                                                            <option selected="">Choose...</option>
-                                                            <option>Option 1</option>
-                                                            <option>Option 2</option>
-                                                            <option>Option 3</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-md-2">
-                                                        <label>Zip</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input" id="gridCheck">
-                                                        <label for="gridCheck" class="form-check-label">Check me out</label>
-                                                    </div>
-                                                </div>
-                                                <button class="btn btn-primary" type="submit">
-                                                    Sign
-                                                    in
-                                                </button>
-                                            </form>
+                                    <div class="profile-personal-info pt-4">
+                                        <h4 class="text-primary mb-4">Personal Contact</h4>
+
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Country<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_country"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Address Line 1<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Address1"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Address Line 2<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Address2"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">City<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_City"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">State<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_State"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Postal Code<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_postalCode"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Phone<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Phone"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Email<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Email"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                         <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Website<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Website"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Facebook<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Facebook"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Instagram<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Instagram"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                         <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Twitter<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Twitter"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                           <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Stage32<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Stage32"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Youtube<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Youtube"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Linkden<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Linkden"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                            <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">Vimeo<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Vimeo"></span>
+                                                </span>
+                                            </div>
+                                        </div> <div class="row mb-1">
+                                            <div class="col-3">
+                                                <h6 class="f-w-200">IMDb<span class="pull-right">:</span></h6>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>
+                                                    <span id="spanInfoContact_Imdb"></span>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -961,9 +1073,7 @@ else
                         alert('photos');
                         break;
                     case '#profile-about':
-
                         $('#loadingTabAbout').css('display', 'block'); // get started loading ...
-
                         setTimeout(function () {
                             // retrives data from databse
                             $.ajax({
@@ -993,13 +1103,55 @@ else
                                     alert(request.responseText + ' ' + status + ' ' + error);
                                 }
                             }).done(function () {
-                                $('#loadingTabAbout').css('display', 'none');
+                                $('#loadingTabAbout').css('display', 'none');  // get stopped loading ...
                             });
                         }, 5000);
-
                         break;
                     case '#profile-contact':
-                        alert('contact');
+                        $('#loadingTabContact').css('display', 'block'); // get started loading ...
+                        setTimeout(function () {
+                            // retrives data from databse
+                            $.ajax({
+                                contentType: 'application/x-www-form-urlencoded',
+                                dataType: 'json',
+                                type: 'GET',
+                                data: { 'username': '@TopRightUserPanelViewComponent.username' },
+                                url: 'profile/GetInfoContact',
+                                success: function (data) {
+                                    if (data.resultGetUsersInformationContactByUsernameServiceDto.isSuccess) {
+
+                                        var fetchedData = data.resultGetUsersInformationContactByUsernameServiceDto.data;
+
+                                        $("#spanInfoContact_country").text(fetchedData.countryName);
+                                        $("#spanInfoContact_Address1").text(fetchedData.address1);
+                                        $("#spanInfoContact_Address2").text(fetchedData.address2);
+                                        $("#spanInfoContact_City").text(fetchedData.city);
+                                        $("#spanInfoContact_State").text(fetchedData.state);
+                                        $("#spanInfoContact_postalCode").text(fetchedData.postalCode);
+                                        $("#spanInfoContact_Phone").text(fetchedData.phone);
+                                        $("#spanInfoContact_Email").text(fetchedData.recoveryEmail);
+                                        $("#spanInfoContact_Website").text(fetchedData.website);
+                                        $("#spanInfoContact_Facebook").text(fetchedData.facebook);
+                                        $("#spanInfoContact_Instagram").text(fetchedData.instagram);
+                                        $("#spanInfoContact_Twitter").text(fetchedData.twitter);
+                                        $("#spanInfoContact_Stage32").text(fetchedData.stage32);
+                                        $("#spanInfoContact_Youtube").text(fetchedData.youtube);
+                                        $("#spanInfoContact_Linkden").text(fetchedData.linkden);
+                                        $("#spanInfoContact_Vimeo").text(fetchedData.vimeo);
+                                        $("#spanInfoContact_Imdb").text(fetchedData.imdb);
+
+                                    }
+                                    else {
+                                        alert('err from server');
+                                    }
+                                },
+                                error: function (request, status, error) {
+                                    alert(request.responseText + ' ' + status + ' ' + error);
+                                }
+                            }).done(function () {
+                                $('#loadingTabContact').css('display', 'none');  // get stopped loading ...
+                            });
+                        }, 2000);
                         break;
                 }
             });

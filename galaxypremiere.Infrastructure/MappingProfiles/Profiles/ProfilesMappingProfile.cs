@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationAboutByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationByUsername;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContactByUsername;
 using galaxypremiere.Common.Constants;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace galaxypremiere.Infrastructure.MappingProfiles.Profiles
                 .ForMember(dest => dest.Fullname, act => act.MapFrom(src => $"{src.Firstname} {src.MiddleName} {src.Surname}"))
                 .ForMember(dest => dest.GenderText, act => act.MapFrom(src => ChangeGender(src.Gender)))
                 .ForMember(dest => dest.Age, act => act.MapFrom(src => CalcAge(src.BirthDay)))
+                .ReverseMap();
+            CreateMap<Domain.Entities.Users.UsersAddress, GetUsersInformationContactByUsernameServiceDto>()
                 .ReverseMap();
         }
         private string CalcAge(string? birtday)
