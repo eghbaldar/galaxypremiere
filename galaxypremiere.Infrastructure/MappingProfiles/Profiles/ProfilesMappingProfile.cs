@@ -2,6 +2,7 @@
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationAboutByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContactByUsername;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPhotosByUsername;
 using galaxypremiere.Common.Constants;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace galaxypremiere.Infrastructure.MappingProfiles.Profiles
                 .ForMember(dest => dest.Age, act => act.MapFrom(src => CalcAge(src.BirthDay)))
                 .ReverseMap();
             CreateMap<Domain.Entities.Users.UsersAddress, GetUsersInformationContactByUsernameServiceDto>()
+                .ReverseMap();
+            CreateMap<Domain.Entities.Users.UsersPhotos, GetUsersInformationPhotosByUsernameServiceDto>()
                 .ReverseMap();
         }
         private string CalcAge(string? birtday)

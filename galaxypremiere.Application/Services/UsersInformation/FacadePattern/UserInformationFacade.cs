@@ -17,6 +17,7 @@ using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInfor
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContactByUsername;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPhotosByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPositions;
 using System;
 using System.Collections.Generic;
@@ -138,6 +139,12 @@ namespace galaxypremiere.Application.Services.UsersInformation.FacadePattern
         public GetUsersInformationContactByUsernameService GetUsersInformationContactByUsernameService
         {
             get { return _getUsersInformationContactByUsernameService = _getUsersInformationContactByUsernameService ?? new GetUsersInformationContactByUsernameService(_context,_mapper); }
+        }      
+        // Get User Photos => Photos
+        private GetUsersInformationPhotosByUsernameService _getUsersInformationPhotosByUsernameService;
+        public GetUsersInformationPhotosByUsernameService GetUsersInformationPhotosByUsernameService
+        {
+            get { return _getUsersInformationPhotosByUsernameService = _getUsersInformationPhotosByUsernameService ?? new GetUsersInformationPhotosByUsernameService(_context,_mapper); }
         }
     }
 }

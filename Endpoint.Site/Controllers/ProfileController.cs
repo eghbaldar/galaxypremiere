@@ -5,6 +5,7 @@ using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInfor
 using Microsoft.AspNetCore.Mvc;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPositions;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContactByUsername;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPhotosByUsername;
 
 namespace Endpoint.Site.Controllers
 {
@@ -23,7 +24,12 @@ namespace Endpoint.Site.Controllers
                 ResultGetUsersInformationByUsernameServiceDto = _userInformationFacade.GetUsersInformationByUsernameService.Execute(new RequestUsersInformationByUsernameServiceDto
                 {
                     Username = username
-                })
+                }),
+                ResultGetUsersInformationPhotosByUsernameServiceDto = _userInformationFacade.GetUsersInformationPhotosByUsernameService.Execute(new RequestGetUsersInformationPhotosByUsernameServiceDto
+                {
+                    Username = username,
+                    TotalPhotos = 6
+                }),
             };
             return View(modelGetInformationByUsername);
         }

@@ -42,7 +42,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                         .Select(int.Parse)
                         .ToArray();
 
-                    if(checkPositions(intArray))
+                    if (checkPositions(intArray))
                     {
                         return new ResultDto
                         {
@@ -52,21 +52,14 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                     }
                 }
                 else
-                {
-                    return new ResultDto
-                    {
-                        IsSuccess = false,
-                        Message = "The input position is null."
-                        // You may provide a custom message or perform additional actions here
-                    };
-                }
+                    intArray = null;
 
                 if (userBIO == null) // Create for first time! (INSERT)
                 {
                     galaxypremiere.Domain.Entities.Users.UsersInformation usersInfo
                         = new galaxypremiere.Domain.Entities.Users.UsersInformation();
                     usersInfo = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersInformation>(req);
-                    usersInfo.Position = string.Join(",", intArray);
+                    if (intArray != null) usersInfo.Position = string.Join(",", intArray);
                     _context.UsersInformation.Add(usersInfo);
                     _context.SaveChanges();
 
@@ -79,7 +72,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                 else // The user already existed (UPDATE)
                 {
                     var mappedDto = _mapper.Map<RequestUpdateUsersInformationBioServiceDto>(req);
-                    mappedDto.Position = string.Join(",", intArray);
+                    if (intArray != null) mappedDto.Position = string.Join(",", intArray);
                     _mapper.Map(mappedDto, userBIO);
                     _context.SaveChanges();
                     return new ResultDto

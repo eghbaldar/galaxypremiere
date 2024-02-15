@@ -14,6 +14,7 @@ using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInfor
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContact;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContactByUsername;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPhotosByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPositions;
 using System;
 using System.Collections.Generic;
@@ -42,5 +43,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         public GetUsersInformationAboutByUsernameService GetUsersInformationAboutByUsernameService { get; }
         public GetUsersInformationPositionsService GetUsersInformationPositionsService { get; }
         public GetUsersInformationContactByUsernameService GetUsersInformationContactByUsernameService { get; }
+        public GetUsersInformationPhotosByUsernameService GetUsersInformationPhotosByUsernameService { get; }
     }
 }

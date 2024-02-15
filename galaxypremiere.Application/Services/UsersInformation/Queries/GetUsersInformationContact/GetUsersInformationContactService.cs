@@ -22,11 +22,15 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                 if (user != null)
                 {
                     var userInfo = _context.UsersAddress.Where(ui => ui.UsersId == req.UsersId).FirstOrDefault();
-                    var userInfoSelected = _context.UsersAddress
+                    if(userInfo!=null)
+                    {
+                        var userInfoSelected = _context.UsersAddress
                          .Where(ui => ui.UsersId == req.UsersId)
                          .Select(ui => _imapper.Map<GetUsersInformationContactServiceDto>(ui))
                          .First();
-                    return userInfoSelected;
+                        return userInfoSelected;
+                    }else
+                        return null;
                 }
                 else
                     return null;

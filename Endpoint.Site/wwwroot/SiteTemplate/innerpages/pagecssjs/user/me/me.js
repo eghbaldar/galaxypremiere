@@ -6,7 +6,7 @@
     var firstname = $('#txtFirstname').val();
     var middlename = $('#txtMiddlename').val();
     var surname = $('#txtSurname').val();
-    var genderId = $('#selectGender').val();    
+    var genderId = $('#selectGender').val();
     var languageId = $('#selectLanguage').val();
     var birthday = $('#datepickerBirthday').val();
     var birthcity = $('#txtBirthcity').val();
@@ -16,7 +16,7 @@
         'Firstname': firstname,
         'MiddleName': middlename,
         'Surname': surname,
-        'Gender': genderId,        
+        'Gender': genderId,
         'LanguageId': languageId,
         'BirthDay': birthday,
         'BirthCity': birthcity,
@@ -371,7 +371,10 @@ function UpdateInfoBIO() {
     var intro = $("#txtIntroduction").val();
     var bio = $("#txtBIO").val();
     var note = $("#txtNote").val();
-    var position = getSelectedItems().toString(); // toString() is converting array to string, unless you will be able to get the first item of array
+
+    var position = getSelectedItems().toString();
+    // lib/kingFuncs/taggers/sellect.js
+    // toString() is converting array to string, unless you will be able to get the first item of array
 
     var postData = {
         'Introduction': intro,
@@ -388,7 +391,7 @@ function UpdateInfoBIO() {
         url: 'MeBIO',
         success: function (data) {
             if (data.isSuccess) KingSweetAlert(true, null);
-            else  KingSweetAlert(false, null);
+            else KingSweetAlert(false, null);
         },
         error: function (request, status, error) {
             KingSweetAlert(false, null);
@@ -491,7 +494,7 @@ function dropavatar(e) {
                 $("#dropzoneAvatar").css("background-image", "none");
                 showfileavatar(file); // showing file for demonstration ...
                 if (data.isSuccess) KingSweetAlert(true, null);
-                else  KingSweetAlert(false, null);                    
+                else KingSweetAlert(false, null);
             },
             error: function (req, res, err) {
                 KingSweetAlert(false, null);
@@ -581,7 +584,7 @@ function openDialougePostPosition() {
                 url: 'MePositions',
                 success: function (data) {
                     if (data.isSuccess) KingSweetAlert(true, null);
-                    else  KingSweetAlert(false, data.message);
+                    else KingSweetAlert(false, data.message);
                 },
                 error: function (res, req, err) {
                     KingSweetAlert(false, null);

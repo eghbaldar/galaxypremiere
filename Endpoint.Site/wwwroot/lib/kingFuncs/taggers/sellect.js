@@ -500,10 +500,13 @@ function taggerInit() {/*eghbaldar*/
 function getSelectedItems() {/*eghbaldar*/
 
     var itemsValues = [];
-    $(".sellect-destination-list>span").each(function () {
+    $(".sellect-destination-list>span").each(function () {        
         itemsValues.push($(this).val())
     });
-    return itemsValues;
+    if (itemsValues != null)
+        return itemsValues;
+    else
+        return 0;
 }
 
 function updateDemoLists(event, item) { }

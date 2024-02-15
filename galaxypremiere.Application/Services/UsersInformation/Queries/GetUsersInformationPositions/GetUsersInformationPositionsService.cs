@@ -12,20 +12,32 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
         }
         public ResultDto<string> Execute(RequestGetUsersInformationPositionsServiceDto req)
         {
-            int[] splited = req.Positions.Split(",").Select(int.Parse).ToArray();
-            if (splited.Length > 0)
+            if (req.Positions != null)
             {
-                var positions = splited.Select(positionId =>
+                int[] splited = req.Positions.Split(",").Select(int.Parse).ToArray();
+                if (splited.Length > 0)
+                {
+                    var positions = splited.Select(positionId =>
                     {
                         var pos = _context.UsersPositions.FirstOrDefault(u => u.Id == positionId);
                         return pos != null ? pos.Position : string.Empty;
                     }).ToArray();
-                return new ResultDto<string>
+                    return new ResultDto<string>
+                    {
+                        Data = string.Join(",", positions),
+                        IsSuccess = true,
+                        Message = "Succeed"
+                    };
+                }
+                else
                 {
-                    Data = string.Join(",", positions),
-                    IsSuccess = true,
-                    Message = "Succeed"
-                };
+                    return new ResultDto<string>
+                    {
+                        Data = "NotSpecified",
+                        IsSuccess = true,
+                        Message = "Succeed"
+                    };
+                }
             }
             else
             {

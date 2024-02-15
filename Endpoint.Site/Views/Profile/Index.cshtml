@@ -23,6 +23,34 @@
         background-color: #5bc0de;
     }
     /*General*/
+    .col-3 {
+        flex: 0 0 25%;
+        max-width: 18% !important;
+    }
+    @@media (max-width:800px) {
+        .col-3 {
+            font-size: 14px;
+            font-weight:bold;
+            flex: 0 0 100%;
+            max-width: 100% !important;
+            padding-bottom:5px;
+            padding-top:5px;
+        }
+        .col-9{
+            max-width:100% !important;
+            flex: 0 0 100%;
+            width:100% !important;
+            font-size:17px;
+            background-color:#f8f8f8;
+        }
+                .col-9 span{
+            padding-top:5px;
+            padding-bottom:5px;
+        }
+        .pull-right{
+            display:none;
+        }
+    }
     .text-primary {
         color: #0079BF !important;
     }
@@ -114,6 +142,15 @@
             transform: translate(-50%, -50%) rotate(360deg);
         }
     }
+</style>
+<style>
+/*photos*/
+.img-fluid{
+    aspect-ratio:1;
+            object-fit: cover !important;
+            padding:1px;   
+
+}
 </style>
 @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.IsSuccess)
 {
@@ -257,47 +294,29 @@
                         <h4>Darwin Creative Agency Theme</h4>
                         <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
                     </div>
-                    <div class="profile-interest mt-4 pb-2 border-bottom-1">
-                        <h5 class="text-primary d-inline">Interest</h5>
+                   
+                       
+
+                            @if(Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto != null
+                            && Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count>0)
+                            {
+                                 <div class="profile-interest mt-4 pb-2 border-bottom-1">
+                                 <h5 class="text-primary d-inline">PHOTOS</h5>
                         <div class="row mt-4">
-                            <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
-                                <a href="javascript:void()" class="interest-cat">
-                                    <img src="~/sitetemplate/profilepages/assets/images/profile/2.jpg" alt="" class="img-fluid">
-                                    <p>Shopping Mall</p>
-                                </a>
+                                @for(byte i=0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count -1; i++)
+                                {
+                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">                               
+                                    <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt="" 
+                                    class="img-fluid">                                   
+                                    </div>
+                                }
                             </div>
-                            <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
-                                <a href="javascript:void()" class="interest-cat">
-                                    <img src="~/sitetemplate/profilepages/assets/images/profile/3.jpg" alt="" class="img-fluid">
-                                    <p>Photography</p>
-                                </a>
                             </div>
-                            <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
-                                <a href="javascript:void()" class="interest-cat">
-                                    <img src="~/sitetemplate/profilepages/assets/images/profile/4.jpg" alt="" class="img-fluid">
-                                    <p>Art &amp; Gallery</p>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
-                                <a href="javascript:void()" class="interest-cat">
-                                    <img src="~/sitetemplate/profilepages/assets/images/profile/2.jpg" alt="" class="img-fluid">
-                                    <p>Visiting Place</p>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
-                                <a href="javascript:void()" class="interest-cat">
-                                    <img src="~/sitetemplate/profilepages/assets/images/profile/3.jpg" alt="" class="img-fluid">
-                                    <p>Shopping</p>
-                                </a>
-                            </div>
-                            <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
-                                <a href="javascript:void()" class="interest-cat">
-                                    <img src="~/sitetemplate/profilepages/assets/images/profile/4.jpg" alt="" class="img-fluid">
-                                    <p>Biking</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                            }
+                           
+                            
+                        
+                    
                     <div class="profile-news mt-4 pb-3">
                         <h5 class="text-primary d-inline">Our Latest News</h5>
                         <div class="media pt-3 pb-3">
@@ -716,46 +735,42 @@
                                         <div class="loadingTabLoader">
                                         </div>
                                     </div>
-
-                                    <div class="profile-personal-info pt-4">
+                                    <div id="divInfoAbout" hidden>
+                                            There is no information.
+                                        </div>
+                                    <div class="profile-personal-info pt-4 pb-2">
                                         <h4 class="text-primary mb-4">Personal Information</h4>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoAbout_firstname" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-300">
                                                     Firstname <span class="pull-right">:</span>
                                                 </h6>
                                             </div>
                                             <div class="col-9">
-                                                <span>
-                                                    @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Firstname != null ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Firstname : "unknown")
-                                                </span>
+                                                 <span id="spanInfoAbout_firstname"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoAbout_middlename" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-300">
                                                     Middle name <span class="pull-right">:</span>
                                                 </h6>
                                             </div>
                                             <div class="col-9">
-                                                <span>
-                                                    @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.MiddleName != null ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.MiddleName : "unknown")
-                                                </span>
+                                                <span id="spanInfoAbout_middlename"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoAbout_surname" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-300">
                                                     Surname <span class="pull-right">:</span>
                                                 </h6>
                                             </div>
                                             <div class="col-9">
-                                                <span>
-                                                    @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Surname != null ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Surname : "unknown")
-                                                </span>
+                                                <span id="spanInfoAbout_surname"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoAbout_gender" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-300">
                                                     Gender <span class="pull-right">:</span>
@@ -765,7 +780,7 @@
                                                 <span id="spanInfoAbout_gender"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoAbout_language" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-300">Language<span class="pull-right">:</span></h6>
                                             </div>
@@ -773,7 +788,7 @@
                                                 <span id="spanInfoAbout_language"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoAbout_age" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-300">
                                                     Age <span class="pull-right">:</span>
@@ -783,7 +798,7 @@
                                                 <span id="spanInfoAbout_age"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoAbout_birthcity" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-300">Birth City <span class="pull-right">:</span></h6>
                                             </div>
@@ -791,7 +806,7 @@
                                                 <span id="spanInfoAbout_birthcity"></span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoAbout_currentcity" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-300">Current City<span class="pull-right">:</span></h6>
                                             </div>
@@ -801,25 +816,23 @@
                                         </div>
                                     </div>
                                     <div class="profile-about-me mt-3">
-                                        <div class="border-bottom-1 pb-2">
+                                        <div class="border-bottom-1 pb-2" id="divInfoAbout_inroduction" hidden>
                                             <h4 class="text-primary">Inroduction</h4>
                                             <span id="spanInfoAbout_introduction"></span>
                                         </div>
-                                        <div class="pt-4 border-bottom-1 pb-2">
+                                        <div class="pt-4 border-bottom-1 pb-2" id="divInfoAbout_bio" hidden>
                                             <h4 class="text-primary">Biography</h4>
                                             <span id="spanInfoAbout_bio"></span>
                                         </div>
-                                        <div class="pt-4 border-bottom-1 pb-2">
+                                        <div class="pt-4 border-bottom-1 pb-2" id="divInfoAbout_note" hidden>
                                             <h4 class="text-primary">Note</h4>
                                             <span id="spanInfoAbout_note"></span>
                                         </div>
                                     </div>
-                                    <div class="profile-skills pt-2 border-bottom-1 pb-2">
+                                    <div class="profile-skills pt-2 border-bottom-1 pb-2" id="divInfoAbout_positions" hidden>
                                         <h4 class="text-primary mb-4">Positions</h4>
                                         <div id="positions" class="panel-body pb5"></div>
                                     </div>
-
-
 
                                 </div>
                                 <div id="profile-contact" class="tab-pane fade">
@@ -829,10 +842,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="profile-personal-info pt-4">
+                                    <div class="profile-personal-info pt-4 pb-2">
                                         <h4 class="text-primary mb-4">Personal Contact</h4>
 
-                                        <div class="row mb-1">
+                                        <div id="divInfoContact" hidden>
+                                            There is no information.
+                                        </div>
+
+                                        <div class="row mb-1" id="divInfoContact_country" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Country<span class="pull-right">:</span></h6>
                                             </div>
@@ -842,7 +859,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_address_1" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Address Line 1<span class="pull-right">:</span></h6>
                                             </div>
@@ -852,7 +869,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_address_2" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Address Line 2<span class="pull-right">:</span></h6>
                                             </div>
@@ -862,7 +879,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_city" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">City<span class="pull-right">:</span></h6>
                                             </div>
@@ -872,7 +889,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_state" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">State<span class="pull-right">:</span></h6>
                                             </div>
@@ -882,7 +899,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_postalCode" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Postal Code<span class="pull-right">:</span></h6>
                                             </div>
@@ -892,7 +909,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_Phone" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Phone<span class="pull-right">:</span></h6>
                                             </div>
@@ -902,7 +919,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_Email" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Email<span class="pull-right">:</span></h6>
                                             </div>
@@ -912,7 +929,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                         <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_Website" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Website<span class="pull-right">:</span></h6>
                                             </div>
@@ -922,7 +939,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_FB" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Facebook<span class="pull-right">:</span></h6>
                                             </div>
@@ -932,7 +949,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_INST" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Instagram<span class="pull-right">:</span></h6>
                                             </div>
@@ -942,7 +959,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                         <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_TW" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Twitter<span class="pull-right">:</span></h6>
                                             </div>
@@ -952,7 +969,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                           <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_ST32" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Stage32<span class="pull-right">:</span></h6>
                                             </div>
@@ -962,7 +979,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_Y" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Youtube<span class="pull-right">:</span></h6>
                                             </div>
@@ -972,7 +989,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_LINK" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Linkden<span class="pull-right">:</span></h6>
                                             </div>
@@ -982,7 +999,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                            <div class="row mb-1">
+                                        <div class="row mb-1" id="divInfoContact_VIMEO" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">Vimeo<span class="pull-right">:</span></h6>
                                             </div>
@@ -991,7 +1008,7 @@
                                                     <span id="spanInfoContact_Vimeo"></span>
                                                 </span>
                                             </div>
-                                        </div> <div class="row mb-1">
+                                        </div> <div class="row mb-1" id="divInfoContact_IMDB" hidden>
                                             <div class="col-3">
                                                 <h6 class="f-w-200">IMDb<span class="pull-right">:</span></h6>
                                             </div>
@@ -1084,19 +1101,98 @@ else
                                 url: 'profile/GetInfoAbout',
                                 success: function (data) {
                                     if (data.resultGetUsersInformationAboutByUsernameServiceDto.isSuccess) {
+
+                                        $("#divInfoAbout").prop("hidden", true);
                                         var fetchedData = data.resultGetUsersInformationAboutByUsernameServiceDto.data;
-                                        $("#spanInfoAbout_gender").text(fetchedData.genderText);
-                                        $("#spanInfoAbout_language").text(fetchedData.languageName);
-                                        $("#spanInfoAbout_age").text('(' + fetchedData.age + ') ' + fetchedData.birthDay);
-                                        $("#spanInfoAbout_birthcity").text(fetchedData.birthCity);
-                                        $("#spanInfoAbout_currentCity").text(fetchedData.currentCity);
-                                        $("#spanInfoAbout_introduction").text(fetchedData.introduction);
-                                        $("#spanInfoAbout_bio").text(fetchedData.bio);
-                                        $("#spanInfoAbout_note").text(fetchedData.note);
-                                        SetPositions(fetchedData.position);
+
+                                        var varFirstname = fetchedData.firstname;
+                                        if (varFirstname != null) {
+                                            $("#spanInfoAbout_firstname").text(varFirstname);
+                                            $("#divInfoAbout_firstname").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_firstname").prop("hidden", true);
+                                        var varMiddlename = fetchedData.middleName;
+                                        if (varMiddlename != null) {
+                                            $("#spanInfoAbout_middlename").text(varMiddlename);
+                                            $("#divInfoAbout_middlename").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_middlename").prop("hidden", true);
+                                        var varSurname = fetchedData.surname;
+                                        if (varSurname != null) {
+                                            $("#spanInfoAbout_surname").text(varSurname);
+                                            $("#divInfoAbout_surname").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_surname").prop("hidden", true);
+                                        var varGender = fetchedData.genderText;
+                                        if (varGender != 'NotSpecified') {
+                                            $("#spanInfoAbout_gender").text(varGender);
+                                            $("#divInfoAbout_gender").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_gender").prop("hidden", true);
+                                        var varLang = fetchedData.languageName;
+                                        if (varLang != null) {
+                                            $("#spanInfoAbout_language").text(varLang);
+                                            $("#divInfoAbout_language").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_language").prop("hidden", true);
+                                        var varAge = fetchedData.birthDay;
+                                        if (varAge != null) {
+                                            varAge = '(' + fetchedData.age + ') ' + varAge;
+                                            $("#spanInfoAbout_age").text(varAge);
+                                            $("#divInfoAbout_age").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_age").prop("hidden", true);
+                                        var varBirthCity = fetchedData.birthCity;
+                                        if (varBirthCity != null) {
+                                            $("#spanInfoAbout_birthcity").text(varBirthCity);
+                                            $("#divInfoAbout_birthcity").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_birthcity").prop("hidden", true);
+                                        var varCurrentCity = fetchedData.currentCity;
+                                        if (varCurrentCity != null) {
+                                            $("#spanInfoAbout_currentCity").text(varCurrentCity);
+                                            $("#divInfoAbout_currentcity").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_currentcity").prop("hidden", true);
+                                        var varIntroduction = fetchedData.introduction;
+                                        if (varIntroduction != null) {
+                                            $("#spanInfoAbout_introduction").text(varIntroduction);
+                                            $("#divInfoAbout_inroduction").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_inroduction").prop("hidden", true);
+                                        var varBio = fetchedData.bio;
+                                        if (varBio != null) {
+                                            $("#spanInfoAbout_bio").text(varBio);
+                                            $("#divInfoAbout_bio").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_bio").prop("hidden", true);
+                                        var varNote = fetchedData.note;
+                                        if (varNote != null) {
+                                            $("#spanInfoAbout_note").text(varNote);
+                                            $("#divInfoAbout_note").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_note").prop("hidden", true);
+                                        var varPositions = fetchedData.position;
+                                        if (varNote != null) {
+                                            SetPositions(fetchedData.position);
+                                            $("#divInfoAbout_positions").prop("hidden", false);
+                                        }
+                                        else $("#divInfoAbout_positions").prop("hidden", true);
                                     }
                                     else {
-                                        alert('err from server');
+                                        $("#divInfoAbout").prop("hidden", false);
+                                        $("#divInfoAbout_firstname").prop("hidden", true);
+                                        $("#divInfoAbout_middlename").prop("hidden", true);
+                                        $("#divInfoAbout_surname").prop("hidden", true);
+                                        $("#divInfoAbout_gender").prop("hidden", true);
+                                        $("#divInfoAbout_language").prop("hidden", true);
+                                        $("#divInfoAbout_age").prop("hidden", true);
+                                        $("#divInfoAbout_birthcity").prop("hidden", true);
+                                        $("#divInfoAbout_currentcity").prop("hidden", true);
+                                        $("#divInfoAbout_inroduction").prop("hidden", true);
+                                        $("#divInfoAbout_bio").prop("hidden", true);
+                                        $("#divInfoAbout_note").prop("hidden", true);
+                                        $("#divInfoAbout_positions").prop("hidden", true);
                                     }
                                 },
                                 error: function (request, status, error) {
@@ -1120,29 +1216,130 @@ else
                                 success: function (data) {
                                     if (data.resultGetUsersInformationContactByUsernameServiceDto.isSuccess) {
 
+                                        $("#divInfoContact").prop("hidden", true);
                                         var fetchedData = data.resultGetUsersInformationContactByUsernameServiceDto.data;
-
-                                        $("#spanInfoContact_country").text(fetchedData.countryName);
-                                        $("#spanInfoContact_Address1").text(fetchedData.address1);
-                                        $("#spanInfoContact_Address2").text(fetchedData.address2);
-                                        $("#spanInfoContact_City").text(fetchedData.city);
-                                        $("#spanInfoContact_State").text(fetchedData.state);
-                                        $("#spanInfoContact_postalCode").text(fetchedData.postalCode);
-                                        $("#spanInfoContact_Phone").text(fetchedData.phone);
-                                        $("#spanInfoContact_Email").text(fetchedData.recoveryEmail);
-                                        $("#spanInfoContact_Website").text(fetchedData.website);
-                                        $("#spanInfoContact_Facebook").text(fetchedData.facebook);
-                                        $("#spanInfoContact_Instagram").text(fetchedData.instagram);
-                                        $("#spanInfoContact_Twitter").text(fetchedData.twitter);
-                                        $("#spanInfoContact_Stage32").text(fetchedData.stage32);
-                                        $("#spanInfoContact_Youtube").text(fetchedData.youtube);
-                                        $("#spanInfoContact_Linkden").text(fetchedData.linkden);
-                                        $("#spanInfoContact_Vimeo").text(fetchedData.vimeo);
-                                        $("#spanInfoContact_Imdb").text(fetchedData.imdb);
-
+                                        var varCountry = fetchedData.countryName;
+                                        if (varCountry != null) {
+                                            $("#spanInfoContact_country").text(varCountry);
+                                            $("#divInfoContact_country").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_country").prop("hidden", true);
+                                        var varAdd1 = fetchedData.address1;
+                                        if (varAdd1 != null) {
+                                            $("#spanInfoContact_Address1").text(varAdd1);
+                                            $("#divInfoContact_address_1").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_address_1").prop("hidden", true);
+                                        var varAdd2 = fetchedData.address2;
+                                        if (varAdd2 != null) {
+                                            $("#spanInfoContact_Address2").text(varAdd2);
+                                            $("#divInfoContact_address_2").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_address_2").prop("hidden", true);
+                                        var varCity = fetchedData.city;
+                                        if (varCity != null) {
+                                            $("#spanInfoContact_City").text(varCity);
+                                            $("#divInfoContact_city").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_city").prop("hidden", true);
+                                        var varState = fetchedData.state;
+                                        if (varState != null) {
+                                            $("#spanInfoContact_State").text(varState);
+                                            $("#divInfoContact_state").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_state").prop("hidden", true);                                             
+                                        var varPostalCode = fetchedData.postalCode;
+                                        if (varPostalCode!= null) {
+                                            $("#spanInfoContact_postalCode").text(varPostalCode);
+                                            $("#divInfoContact_postalCode").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_postalCode").prop("hidden", true);
+                                        var varPhone = fetchedData.phone;
+                                        if (varPhone!= null) {
+                                            $("#spanInfoContact_Phone").text(varPhone);
+                                            $("#divInfoContact_Phone").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_Phone").prop("hidden", true);       
+                                        var varEmail = fetchedData.recoveryEmail;
+                                        if (varEmail!= null) {
+                                            $("#spanInfoContact_Email").text(varEmail);
+                                            $("#divInfoContact_Email").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_Email").prop("hidden", true);          
+                                        var varWebsite = fetchedData.website;
+                                        if (varWebsite!= null) {
+                                            $("#spanInfoContact_Website").text(varWebsite);
+                                            $("#divInfoContact_Website").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_Website").prop("hidden", true);            
+                                        var varFB = fetchedData.facebook;
+                                        if (varFB!= null) {
+                                            $("#spanInfoContact_Facebook").text(varFB);
+                                            $("#divInfoContact_FB").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_FB").prop("hidden", true);              
+                                        var varINST = fetchedData.instagram;
+                                        if (varINST!= null) {
+                                            $("#spanInfoContact_Instagram").text(varINST);
+                                            $("#divInfoContact_INST").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_INST").prop("hidden", true);
+                                        var varTW = fetchedData.twitter;
+                                        if (varTW!= null) {
+                                            $("#spanInfoContact_Twitter").text(varTW);
+                                            $("#divInfoContact_TW").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_TW").prop("hidden", true);     
+                                        var varST32 = fetchedData.stage32;
+                                        if (varST32!= null) {
+                                            $("#spanInfoContact_Stage32").text(varST32);
+                                            $("#divInfoContact_ST32").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_ST32").prop("hidden", true);         
+                                        var varY = fetchedData.youtube;
+                                        if (varY!= null) {
+                                            $("#spanInfoContact_Youtube").text(varY);
+                                            $("#divInfoContact_Y").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_Y").prop("hidden", true);        
+                                        var varLINK = fetchedData.linkden;
+                                        if (varLINK!= null) {
+                                            $("#spanInfoContact_Linkden").text(varLINK);
+                                            $("#divInfoContact_LINK").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_LINK").prop("hidden", true);   
+                                        var varVimeo = fetchedData.vimeo;
+                                        if (varVimeo!= null) {
+                                            $("#spanInfoContact_Vimeo").text(varVimeo);
+                                            $("#divInfoContact_VIMEO").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_VIMEO").prop("hidden", true);    
+                                        var varIMDB = fetchedData.imdb;
+                                        if (varIMDB!= null) {
+                                            $("#spanInfoContact_Imdb").text(varIMDB);
+                                            $("#divInfoContact_IMDB").prop("hidden", false);
+                                        }
+                                        else $("#divInfoContact_IMDB").prop("hidden", true);
                                     }
                                     else {
-                                        alert('err from server');
+                                        $("#divInfoContact").prop("hidden", false);
+                                        $("#divInfoContact_country").prop("hidden", true);
+                                        $("#divInfoContact_address_1").prop("hidden", true);
+                                        $("#divInfoContact_address_2").prop("hidden", true);
+                                        $("#divInfoContact_city").prop("hidden", true);
+                                        $("#divInfoContact_state").prop("hidden", true);
+                                        $("#divInfoContact_postalCode").prop("hidden", true);
+                                        $("#divInfoContact_Phone").prop("hidden", true);
+                                        $("#divInfoContact_Email").prop("hidden", true);
+                                        $("#divInfoContact_Website").prop("hidden", true);
+                                        $("#divInfoContact_FB").prop("hidden", true);
+                                        $("#divInfoContact_INST").prop("hidden", true);
+                                        $("#divInfoContact_TW").prop("hidden", true);
+                                        $("#divInfoContact_ST32").prop("hidden", true);
+                                        $("#divInfoContact_Y").prop("hidden", true);
+                                        $("#divInfoContact_LINK").prop("hidden", true);
+                                        $("#divInfoContact_VIMEO").prop("hidden", true);
+                                        $("#divInfoContact_IMDB").prop("hidden", true);
                                     }
                                 },
                                 error: function (request, status, error) {
