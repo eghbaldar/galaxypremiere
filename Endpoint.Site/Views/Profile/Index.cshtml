@@ -27,30 +27,35 @@
         flex: 0 0 25%;
         max-width: 18% !important;
     }
+
     @@media (max-width:800px) {
         .col-3 {
             font-size: 14px;
-            font-weight:bold;
+            font-weight: bold;
             flex: 0 0 100%;
             max-width: 100% !important;
-            padding-bottom:5px;
-            padding-top:5px;
+            padding-bottom: 5px;
+            padding-top: 5px;
         }
-        .col-9{
-            max-width:100% !important;
+
+        .col-9 {
+            max-width: 100% !important;
             flex: 0 0 100%;
-            width:100% !important;
-            font-size:17px;
-            background-color:#f8f8f8;
+            width: 100% !important;
+            font-size: 17px;
+            background-color: #f8f8f8;
         }
-                .col-9 span{
-            padding-top:5px;
-            padding-bottom:5px;
-        }
-        .pull-right{
-            display:none;
+
+            .col-9 span {
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+        .pull-right {
+            display: none;
         }
     }
+
     .text-primary {
         color: #0079BF !important;
     }
@@ -144,13 +149,41 @@
     }
 </style>
 <style>
-/*photos*/
-.img-fluid{
-    aspect-ratio:1;
-            object-fit: cover !important;
-            padding:1px;   
+    /*photos*/
+    .img-fluid {
+        aspect-ratio: 1;
+        object-fit: cover !important;
+        padding: 1px;
+    }
+    /*modal*/
+    .img-size {
+        /* 	padding: 0;
+                                            margin: 0; */
+        height: 450px;
+        width: 700px;
+        background-size: cover;
+        overflow: hidden;
+    }
 
-}
+    .modal-content {
+        border: none;
+    }
+
+    .modal-body {
+        padding: 0;
+    }
+
+    .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+        width: 30px;
+        height: 48px;
+    }
+
+    .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+        width: 30px;
+        height: 48px;
+    }
 </style>
 @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.IsSuccess)
 {
@@ -294,29 +327,36 @@
                         <h4>Darwin Creative Agency Theme</h4>
                         <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
                     </div>
-                   
-                       
 
-                            @if(Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto != null
-                            && Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count>0)
-                            {
-                                 <div class="profile-interest mt-4 pb-2 border-bottom-1">
-                                 <h5 class="text-primary d-inline">PHOTOS</h5>
-                        <div class="row mt-4">
-                                @for(byte i=0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count -1; i++)
+
+
+                    @if (Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto != null
+                   && Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count > 0)
+                    {
+
+                        <div class="profile-interest mt-4 pb-2 border-bottom-1">
+                            <h5 class="text-primary d-inline">PHOTOS</h5>
+                            <div class="row mt-4">
+                                @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
-                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">                               
-                                    <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt="" 
-                                    class="img-fluid">                                   
+                                    <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail')">
+
+
+                                            <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
+                                     class="img-fluid">
+
+
+                                        </a>
                                     </div>
                                 }
                             </div>
-                            </div>
-                            }
-                           
-                            
-                        
-                    
+                        </div>
+                    }
+
+
+
+
                     <div class="profile-news mt-4 pb-3">
                         <h5 class="text-primary d-inline">Our Latest News</h5>
                         <div class="media pt-3 pb-3">
@@ -736,8 +776,8 @@
                                         </div>
                                     </div>
                                     <div id="divInfoAbout" hidden>
-                                            There is no information.
-                                        </div>
+                                        There is no information.
+                                    </div>
                                     <div class="profile-personal-info pt-4 pb-2">
                                         <h4 class="text-primary mb-4">Personal Information</h4>
                                         <div class="row mb-1" id="divInfoAbout_firstname" hidden>
@@ -747,7 +787,7 @@
                                                 </h6>
                                             </div>
                                             <div class="col-9">
-                                                 <span id="spanInfoAbout_firstname"></span>
+                                                <span id="spanInfoAbout_firstname"></span>
                                             </div>
                                         </div>
                                         <div class="row mb-1" id="divInfoAbout_middlename" hidden>
@@ -1047,6 +1087,57 @@ else
         </div>
     </div>
 }
+
+
+
+
+
+<!-- Modal -->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="PhotoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span id="PhotoModalTitle"></span></h5>
+                <a class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="margin:0 !important;">
+                    <div class="col-8" style="background-color:#f9f9f9;text-align:center">
+                        <img id="PhotoModalIMG" style="max-height: 300px;" />
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="timeline-header p-2">
+                                <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+                                <span class="username">Sean Ngu</span>
+                                <span class="pull-right text-muted">1,282 Views</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col p-2">
+                                <span id="PhotoModalDetail" style="width:100%;"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="timeline-footer">
+                                <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
+                                <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
 @section Styles{
     <link href="~/sitetemplate/profilepages/assets/css/style.css" rel="stylesheet" />
     <link href="~/sitetemplate/innerpages/pagecssjs/profile/profile.css" rel="stylesheet" />
@@ -1068,6 +1159,18 @@ else
     {*@
 
     <script>
+        // Modal
+        function openModalPhotos6(file, title, detail) {
+            $("#PhotoModal").modal("show");
+            $("#PhotoModalIMG").attr("src", "/SiteTemplate/innerpages/images/user-photos/" + file);
+            if (title == null || title.trim() == '')
+                $("#PhotoModalTitle").text('unknown');
+            else
+                $("#PhotoModalTitle").text(title);
+
+            detail = `<i class="fa fa-quote-left fa-fw"></i>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
+            $("#PhotoModalDetail").html(detail);
+        }
         // Get the tab links
         const tabLinks = document.querySelectorAll('.nav-link');
         // Loop through the tab links and add a click event listener
@@ -1247,75 +1350,75 @@ else
                                             $("#spanInfoContact_State").text(varState);
                                             $("#divInfoContact_state").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_state").prop("hidden", true);                                             
+                                        else $("#divInfoContact_state").prop("hidden", true);
                                         var varPostalCode = fetchedData.postalCode;
-                                        if (varPostalCode!= null) {
+                                        if (varPostalCode != null) {
                                             $("#spanInfoContact_postalCode").text(varPostalCode);
                                             $("#divInfoContact_postalCode").prop("hidden", false);
                                         }
                                         else $("#divInfoContact_postalCode").prop("hidden", true);
                                         var varPhone = fetchedData.phone;
-                                        if (varPhone!= null) {
+                                        if (varPhone != null) {
                                             $("#spanInfoContact_Phone").text(varPhone);
                                             $("#divInfoContact_Phone").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_Phone").prop("hidden", true);       
+                                        else $("#divInfoContact_Phone").prop("hidden", true);
                                         var varEmail = fetchedData.recoveryEmail;
-                                        if (varEmail!= null) {
+                                        if (varEmail != null) {
                                             $("#spanInfoContact_Email").text(varEmail);
                                             $("#divInfoContact_Email").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_Email").prop("hidden", true);          
+                                        else $("#divInfoContact_Email").prop("hidden", true);
                                         var varWebsite = fetchedData.website;
-                                        if (varWebsite!= null) {
+                                        if (varWebsite != null) {
                                             $("#spanInfoContact_Website").text(varWebsite);
                                             $("#divInfoContact_Website").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_Website").prop("hidden", true);            
+                                        else $("#divInfoContact_Website").prop("hidden", true);
                                         var varFB = fetchedData.facebook;
-                                        if (varFB!= null) {
+                                        if (varFB != null) {
                                             $("#spanInfoContact_Facebook").text(varFB);
                                             $("#divInfoContact_FB").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_FB").prop("hidden", true);              
+                                        else $("#divInfoContact_FB").prop("hidden", true);
                                         var varINST = fetchedData.instagram;
-                                        if (varINST!= null) {
+                                        if (varINST != null) {
                                             $("#spanInfoContact_Instagram").text(varINST);
                                             $("#divInfoContact_INST").prop("hidden", false);
                                         }
                                         else $("#divInfoContact_INST").prop("hidden", true);
                                         var varTW = fetchedData.twitter;
-                                        if (varTW!= null) {
+                                        if (varTW != null) {
                                             $("#spanInfoContact_Twitter").text(varTW);
                                             $("#divInfoContact_TW").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_TW").prop("hidden", true);     
+                                        else $("#divInfoContact_TW").prop("hidden", true);
                                         var varST32 = fetchedData.stage32;
-                                        if (varST32!= null) {
+                                        if (varST32 != null) {
                                             $("#spanInfoContact_Stage32").text(varST32);
                                             $("#divInfoContact_ST32").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_ST32").prop("hidden", true);         
+                                        else $("#divInfoContact_ST32").prop("hidden", true);
                                         var varY = fetchedData.youtube;
-                                        if (varY!= null) {
+                                        if (varY != null) {
                                             $("#spanInfoContact_Youtube").text(varY);
                                             $("#divInfoContact_Y").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_Y").prop("hidden", true);        
+                                        else $("#divInfoContact_Y").prop("hidden", true);
                                         var varLINK = fetchedData.linkden;
-                                        if (varLINK!= null) {
+                                        if (varLINK != null) {
                                             $("#spanInfoContact_Linkden").text(varLINK);
                                             $("#divInfoContact_LINK").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_LINK").prop("hidden", true);   
+                                        else $("#divInfoContact_LINK").prop("hidden", true);
                                         var varVimeo = fetchedData.vimeo;
-                                        if (varVimeo!= null) {
+                                        if (varVimeo != null) {
                                             $("#spanInfoContact_Vimeo").text(varVimeo);
                                             $("#divInfoContact_VIMEO").prop("hidden", false);
                                         }
-                                        else $("#divInfoContact_VIMEO").prop("hidden", true);    
+                                        else $("#divInfoContact_VIMEO").prop("hidden", true);
                                         var varIMDB = fetchedData.imdb;
-                                        if (varIMDB!= null) {
+                                        if (varIMDB != null) {
                                             $("#spanInfoContact_Imdb").text(varIMDB);
                                             $("#divInfoContact_IMDB").prop("hidden", false);
                                         }

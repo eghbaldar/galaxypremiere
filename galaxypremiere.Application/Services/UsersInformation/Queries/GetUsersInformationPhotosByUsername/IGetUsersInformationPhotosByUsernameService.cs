@@ -11,20 +11,6 @@ using System.Threading.Tasks;
 
 namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPhotosByUsername
 {
-    public class RequestGetUsersInformationPhotosByUsernameServiceDto
-    {
-        public string Username { get; set; }
-        public byte TotalPhotos { get; set; } // how many photos are going to be shown?
-    }
-    public class GetUsersInformationPhotosByUsernameServiceDto
-    {
-        public Guid Id { get; set; } // PhotoId
-        public string Filename { get; set; }
-    }
-    public class ResultGetUsersInformationPhotosByUsernameServiceDto
-    {
-        public List<GetUsersInformationPhotosByUsernameServiceDto> resultGetUsersInformationPhotosByUsernameServiceDto { get; set; }
-    }
     public interface IGetUsersInformationPhotosByUsernameService
     {
         ResultGetUsersInformationPhotosByUsernameServiceDto Execute(RequestGetUsersInformationPhotosByUsernameServiceDto req);
@@ -40,26 +26,27 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
         }
         public ResultGetUsersInformationPhotosByUsernameServiceDto Execute(RequestGetUsersInformationPhotosByUsernameServiceDto req)
         {
-            if (req == null) return null;            
+            if (req == null) return null;
             var photos =
                 (
                 from p in _context.UsersPhotos
-                    join albums in _context.UsersAlbums on p.UsersAlbumsId equals albums.Id into GroupAlbums
+                join albums in _context.UsersAlbums on p.UsersAlbumsId equals albums.Id into GroupAlbums
                 from albums in GroupAlbums.DefaultIfEmpty()
-                    join info in _context.UsersInformation on albums.UsersId equals info.UsersId into GroupUser
+                join info in _context.UsersInformation on albums.UsersId equals info.UsersId into GroupUser
                 from info in GroupUser.DefaultIfEmpty()
                 where (info.Username == req.Username)
                 select new
                 {
                     Photos = p,
                 }
-                )                
+                )
                 .OrderBy(p => p.Photos.InsertDate)
                 .Select(p => new GetUsersInformationPhotosByUsernameServiceDto
                 {
-                    Filename=p.Photos.Filename,
-                    Id=p.Photos.Id
-
+                    Filename = p.Photos.Filename,
+                    Id = p.Photos.Id,
+                    Title = p.Photos.Title,
+                    Detail = p.Photos.Detail,
                 })
                 .Take(6)
                 .ToList();
@@ -67,7 +54,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
             {
                 return new ResultGetUsersInformationPhotosByUsernameServiceDto
                 {
-                    resultGetUsersInformationPhotosByUsernameServiceDto= photos,
+                    resultGetUsersInformationPhotosByUsernameServiceDto = photos,
                 };
             }
             else
