@@ -23,6 +23,10 @@
         background-color: #5bc0de;
     }
     /*General*/
+    .cursor {
+        cursor: pointer;
+    }
+
     .col-3 {
         flex: 0 0 25%;
         max-width: 18% !important;
@@ -156,12 +160,13 @@
         padding: 1px;
     }
     /*modal*/
-    .btn-close{
-        cursor:pointer;
+    .btn-close {
+        cursor: pointer;
     }
+
     .img-size {
         /* 	padding: 0;
-                                            margin: 0; */
+                                                            margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -324,12 +329,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile-blog pt-3 border-bottom-1 pb-1">
-                        <h5 class="text-primary d-inline">LastCall Festivals</h5><a href="javascript:void()" class="pull-right f-s-16">More</a>
-                        <img src="~/sitetemplate/profilepages/assets/images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
-                        <h4>Darwin Creative Agency Theme</h4>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                    </div>
+
 
 
 
@@ -342,7 +342,7 @@
                             <div class="row mt-4">
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
-                                    <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
+                                    <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
                                         <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail')">
 
 
@@ -358,7 +358,12 @@
                     }
 
 
-
+                    <div class="profile-blog pt-3 border-bottom-1 pb-1">
+                        <h5 class="text-primary d-inline">LastCall Festivals</h5><a href="javascript:void()" class="pull-right f-s-16">More</a>
+                        <img src="~/sitetemplate/profilepages/assets/images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
+                        <h4>Darwin Creative Agency Theme</h4>
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                    </div>
 
                     <div class="profile-news mt-4 pb-3">
                         <h5 class="text-primary d-inline">Our Latest News</h5>
@@ -471,14 +476,10 @@
                                                     <div class="timeline-comment-box">
                                                         <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
                                                         <div class="input">
-                                                            <form action="">
-                                                                <div class="input-group">
-                                                                    <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
-                                                                    <span class="input-group-btn p-l-10">
-                                                                        <button type="button">Comment</button>
-                                                                    </span>
-                                                                </div>
-                                                            </form>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                                                <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Dark</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1091,38 +1092,57 @@ else
     </div>
 }
 
-
 <!-- Modal -->
 <div class="modal fade" id="PhotoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"><span id="PhotoModalTitle"></span></h5>
-                <a class="btn-close"  data-dismiss="modal" aria-label="Close"></a>
+                <a class="btn-close" data-dismiss="modal" aria-label="Close"></a>
             </div>
             <div class="modal-body">
                 <div class="row" style="margin:0 !important;">
-                    <div class="col-8" style="background-color:#f9f9f9;text-align:center;padding:2px;">
+                    <div class="col-7" style="background-color:#f9f9f9;text-align:center;padding:2px;">
                         <img id="PhotoModalIMG" style="max-height: 300px;" />
                     </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <div class="timeline-header p-2">
-                                <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
-                                <span class="username">Sean Ngu</span>
-                                <span class="pull-right text-muted">1,282 Views</span>
+                    <div class="col-5">
+                        <div id="PhotoModalCaption">
+                            <div class="row">
+                                <div class="timeline-header p-2">
+                                    <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+                                    <span class="username">Sean Ngu</span>
+                                    <span class="pull-right text-muted">1,282 Views</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col p-2">
+                                    <span id="PhotoModalDetail" style="width:100%;"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="timeline-footer" style="padding:0;margin:0;">
+                                    <div class="icon_info" style="padding:0;margin:0;">
+                                        <ul>
+                                            <li><a class="fa fa-heart-o cursor"><span class="badge">3</span></a></li>
+                                        </ul>
+                                        <ul>
+                                            <li><a onclick="openComments();" class="fa fa-comments-o cursor"><span class="badge">3</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col p-2">
-                                <span id="PhotoModalDetail" style="width:100%;"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="timeline-footer">
-                                <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                                <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                        <div id="PhotoModalComment" hidden>
+                            <a onclick="closeComments();" class="cursor"> <i class="fa fa-mail-reply"></i> </a>
+                            <div class="timeline-comment-box" style="padding:0px;background-color:transparent;margin:0;">
+                                <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
+                                <div class="input">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                        <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Comment</button>
+                                    </div>
+                                </div>
+                                <span>List of comments</span>
                             </div>
                         </div>
                     </div>
@@ -1162,7 +1182,7 @@ else
             else
                 $("#PhotoModalTitle").text(title);
 
-            detail = `<i class="fa fa-quote-left fa-fw"></i>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
+            detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
         }
         // Get the tab links
@@ -1476,6 +1496,14 @@ else
                     alert(request.responseText + ' ' + status + ' ' + error);
                 }
             });
+        }
+        function openComments() {
+            $("#PhotoModalComment").prop("hidden", false);
+            $("#PhotoModalCaption").prop("hidden", true);
+        }
+        function closeComments() {
+            $("#PhotoModalComment").prop("hidden", true);
+            $("#PhotoModalCaption").prop("hidden", false);
         }
     </script>
     @*}*@

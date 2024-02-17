@@ -340,44 +340,41 @@ function OpenModalPhoto(id, title, detail, filename) {
     var controlPhoto = $("#photo");
 
     controlId.val(id);
-    if (title.trim() == '' || title == null) controlTitleSpan.text('- unknown title -'); else controlTitleSpan.text(controlHiddenTitle.val());
-    if (detail.trim() == '' || detail == null || detail.trim() == 'null') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(controlHiddenDetail.val());
+    if (controlHiddenTitle.val().trim() == '' || controlHiddenTitle.val() == null) controlTitleSpan.text('- unknown title -'); else controlTitleSpan.text(controlHiddenTitle.val());
+    if (controlHiddenDetail.val().trim() == '' || controlHiddenDetail.val() == null || controlHiddenDetail.val().trim() == 'null') controlDetailSpan.text('- unknown detail -'); else controlDetailSpan.html(controlHiddenDetail.val());
     controlPhoto.attr("src", "../../../SiteTemplate/innerpages/images/user-photos/" + filename);
 
 }
 $('document').ready(function () {
     $('#txtPhotoTitle,#txtPhotoDetail').bind('blur', function () {
-
-        //var controlDetailHidden = $('#hiddenPhotoDetail_' + id);
+        // This event fires when the field gets lost its focuse
         var input = $(this);
         var span = $(this).attr("hidden", true).siblings("span").show();
 
         if (input.attr('id') == 'txtPhotoTitle') {
             if (input.val() == '') {
                 span.text('- unknown title -');
+                $("#hiddenPhotoTitle_" + $("#HiddenPhotoID").val()).val('');
             }
             else {
                 span.text(input.val());
                 $("#spanTitle_" + $("#HiddenPhotoID").val()).text(input.val());
                 $("#hiddenPhotoTitle_" + $("#HiddenPhotoID").val()).val(input.val());
-            }
+            }            
             // update service launch here:
-            if (input.val() != '')
-                UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
+            UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
         }
         if (input.attr('id') == 'txtPhotoDetail') {
             if (input.val() == '') {
                 span.text('- unknown detail -');
+                $("#hiddenPhotoDetail_" + $("#HiddenPhotoID").val()).val('');
             }
             else {
                 span.text(input.val().replaceAll("<br>", "\n"));
-                //alert(input.attr('id'));
                 $("#hiddenPhotoDetail_" + $("#HiddenPhotoID").val()).val(input.val());
-                //controlDetailHidden.val(input.val().replaceAll("<br>", "\n"));
             }
             // update service launch here:
-            if (input.val() != '')
-                UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
+            UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
         }
     });
 });
