@@ -156,6 +156,9 @@
         padding: 1px;
     }
     /*modal*/
+    .btn-close{
+        cursor:pointer;
+    }
     .img-size {
         /* 	padding: 0;
                                             margin: 0; */
@@ -1089,22 +1092,17 @@ else
 }
 
 
-
-
-
-<!-- Modal -->
-<!-- Button trigger modal -->
 <!-- Modal -->
 <div class="modal fade" id="PhotoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"><span id="PhotoModalTitle"></span></h5>
-                <a class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                <a class="btn-close"  data-dismiss="modal" aria-label="Close"></a>
             </div>
             <div class="modal-body">
                 <div class="row" style="margin:0 !important;">
-                    <div class="col-8" style="background-color:#f9f9f9;text-align:center">
+                    <div class="col-8" style="background-color:#f9f9f9;text-align:center;padding:2px;">
                         <img id="PhotoModalIMG" style="max-height: 300px;" />
                     </div>
                     <div class="col-4">
@@ -1129,10 +1127,6 @@ else
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
