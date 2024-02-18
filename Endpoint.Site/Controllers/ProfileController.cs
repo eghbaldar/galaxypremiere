@@ -6,15 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPositions;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContactByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPhotosByUsername;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoComment;
+using Endpoint.Site.Utilities;
+using System.Security.Claims;
 
 namespace Endpoint.Site.Controllers
 {
     public class ProfileController : Controller
     {
         private readonly IUserInformationFacade _userInformationFacade;
-        public ProfileController(IUserInformationFacade userInformationFacade)
+        private readonly IUserPhotoFacade _userPhoto;
+        public ProfileController(IUserInformationFacade userInformationFacade,IUserPhotoFacade userPhotoFacade)
         {
             _userInformationFacade = userInformationFacade;
+            _userPhoto = userPhotoFacade;
         }
         [HttpGet]
         public IActionResult Index(string username)
@@ -56,6 +61,13 @@ namespace Endpoint.Site.Controllers
             {
                 Username = username
             }));
+        }
+        [HttpPost]
+        public IActionResult PostPhotoComment(RequestPostUsersPhotoCommentServiceDto req)
+        {
+            var userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            req.UsersId = userId;
+            return Json(_userPhoto.PostUsersPhotoCommentService.Execute(req));
         }
     }
 }

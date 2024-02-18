@@ -3,6 +3,7 @@ using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotosAlbum;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoComment;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
@@ -73,6 +74,12 @@ namespace galaxypremiere.Application.Services.UsersPhotos.FacadePattern
         public DeleteUsersPhotoPhotoService DeleteUsersPhotoPhotoService
         {
             get { return _deleteUsersPhotoPhotoService = _deleteUsersPhotoPhotoService ?? new DeleteUsersPhotoPhotoService(_context); }
+        }        
+        // Add User Photos Comment
+        private PostUsersPhotoCommentService _postUsersPhotoCommentService;
+        public PostUsersPhotoCommentService PostUsersPhotoCommentService
+        {
+            get { return _postUsersPhotoCommentService = _postUsersPhotoCommentService ?? new PostUsersPhotoCommentService(_context,_imapper); }
         }
     }
 }

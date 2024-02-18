@@ -4062,6 +4062,43 @@ namespace galaxypremiere.Persistence.Migrations
                     b.ToTable("UsersNews");
                 });
 
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPhotoComments", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("Parent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UsersId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("UsersPhotosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
+
+                    b.HasIndex("UsersPhotosId");
+
+                    b.ToTable("UsersPhotoComments");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPhotos", b =>
                 {
                     b.Property<Guid>("Id")
@@ -4264,6 +4301,25 @@ namespace galaxypremiere.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPhotoComments", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.UsersPhotos", "UsersPhotos")
+                        .WithMany()
+                        .HasForeignKey("UsersPhotosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
+
+                    b.Navigation("UsersPhotos");
                 });
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPhotos", b =>

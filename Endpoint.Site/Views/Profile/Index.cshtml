@@ -166,7 +166,7 @@
 
     .img-size {
         /* 	padding: 0;
-                                                            margin: 0; */
+                                                                margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -343,7 +343,7 @@
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
-                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail')">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail')">
 
 
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
@@ -1106,6 +1106,8 @@ else
                         <img id="PhotoModalIMG" style="max-height: 300px;" />
                     </div>
                     <div class="col-5">
+                        <input type="hidden" id="hiddenPhotoModalId" />
+                        @*Caption*@
                         <div id="PhotoModalCaption">
                             <div class="row">
                                 <div class="timeline-header p-2">
@@ -1132,14 +1134,22 @@ else
                                 </div>
                             </div>
                         </div>
+                        @*Comment*@
                         <div id="PhotoModalComment" hidden>
                             <a onclick="closeComments();" class="cursor"> <i class="fa fa-mail-reply"></i> </a>
                             <div class="timeline-comment-box" style="padding:0px;background-color:transparent;margin:0;">
                                 <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
                                 <div class="input">
                                     <div class="input-group">
-                                        <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
-                                        <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Comment</button>
+                                        <input type="text"
+                                               id="txtPostModalComment"
+                                               class="form-control rounded-corner" placeholder="Write a comment...">
+                                        <button type="button"
+                                                id="btnPostModalComment"
+                                                onclick="PostModalComment()"
+                                                class="btn cur-p btn-dark" style="border-radius:0px !important;">
+                                            Comment
+                                        </button>
                                     </div>
                                 </div>
                                 <span>List of comments</span>
@@ -1174,8 +1184,9 @@ else
 
     <script>
         // Modal
-        function openModalPhotos6(file, title, detail) {
+        function openModalPhotos6(id, file, title, detail) {
             $("#PhotoModal").modal("show");
+            $("#hiddenPhotoModalId").val(id);
             $("#PhotoModalIMG").attr("src", "/SiteTemplate/innerpages/images/user-photos/" + file);
             if (title == null || title.trim() == '')
                 $("#PhotoModalTitle").text('unknown');
@@ -1184,6 +1195,26 @@ else
 
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
+        }
+        function PostModalComment() {
+            var postData = {
+                'UsersPhotosId': $("#hiddenPhotoModalId").val(),
+                'Parent': null,
+                'Comment': $("#txtPostModalComment").val(),
+            };
+            $.ajax({
+                contentType:'application/x-www-form-urlencoded',
+                dataType:'json',
+                type:'POST',
+                data:postData ,
+                url: 'profile/PostPhotoComment',
+                success:function(data){
+                    alert(data.isSuccess);
+                },
+                error:function(req, status, error){
+                    alert(req.responseText + status + error)
+                }
+            });
         }
         // Get the tab links
         const tabLinks = document.querySelectorAll('.nav-link');
