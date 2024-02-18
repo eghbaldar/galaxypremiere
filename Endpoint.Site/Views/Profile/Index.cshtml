@@ -166,7 +166,7 @@
 
     .img-size {
         /* 	padding: 0;
-                                                                margin: 0; */
+                                                                    margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -191,6 +191,22 @@
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23009be1' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
         width: 30px;
         height: 48px;
+    }
+</style>
+<style>
+    /*comment*/
+    .mw40 {
+        max-width: 40px !important;
+    }
+    .media-heading{
+        font-size:11px;
+        font-weight:bold;
+    }
+    .commentsBox{
+        margin-top:15px !important;
+    }
+    .commentsText{
+        font-size:11px !important;
     }
 </style>
 @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.IsSuccess)
@@ -1152,7 +1168,48 @@ else
                                         </button>
                                     </div>
                                 </div>
-                                <span>List of comments</span>
+                                <div class="media commentsBox">
+                                    <a class="pull-left" href="#">
+                                        <div class="user">
+                                        <img class="media-object mn thumbnail thumbnail-sm rounded mw40" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="...">
+                                        </div>
+                                    </a>
+                                    <div class="media-body mb5">
+                                        <h5 class="media-heading mbn">
+                                            Simon Rivers Posted
+                                            <small> - 3 hours ago</small>
+                                        </h5>
+                                        <p  class="commentsText"> Omg so freaking sweet dude.</p>
+                                        <div class="media pb10">
+                                            <a class="pull-left" href="#">
+                                             <div class="user">
+                                                <img class="media-object mn thumbnail thumbnail-sm rounded mw40" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
+                                            </div>    
+                                            </a>
+                                            <div class="media-body mb5">
+                                                <h5 class="media-heading mbn">
+                                                    Jessica Wong
+                                                    <small> - 3 hours ago</small>
+                                                </h5>
+                                                <p  class="commentsText"> Omg so freaking sweet dude.</p>
+                                            </div>
+                                        </div>
+                                        <div class="media mtn">
+                                            <a class="pull-left" href="#">
+                                                 <div class="user">
+                                                <img class="media-object mn thumbnail thumbnail-sm rounded mw40" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
+                                            </div>    
+                                            </a>
+                                            <div class="media-body mb5">
+                                                <h5 class="media-heading mbn">
+                                                    Jessica Wong
+                                                    <small> - 3 hours ago</small>
+                                                </h5>
+                                                <p class="commentsText"> Omg so freaking sweet dude.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1203,15 +1260,15 @@ else
                 'Comment': $("#txtPostModalComment").val(),
             };
             $.ajax({
-                contentType:'application/x-www-form-urlencoded',
-                dataType:'json',
-                type:'POST',
-                data:postData ,
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: postData,
                 url: 'profile/PostPhotoComment',
-                success:function(data){
+                success: function (data) {
                     alert(data.isSuccess);
                 },
-                error:function(req, status, error){
+                error: function (req, status, error) {
                     alert(req.responseText + status + error)
                 }
             });

@@ -8,6 +8,7 @@ using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAl
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosInformation;
+using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUserPhotoComments;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoPhotos;
 using System;
@@ -80,6 +81,12 @@ namespace galaxypremiere.Application.Services.UsersPhotos.FacadePattern
         public PostUsersPhotoCommentService PostUsersPhotoCommentService
         {
             get { return _postUsersPhotoCommentService = _postUsersPhotoCommentService ?? new PostUsersPhotoCommentService(_context,_imapper); }
+        }       
+        // Get User Photos Comment
+        private GetUserPhotoCommentsService _getUserPhotoCommentsService;
+        public GetUserPhotoCommentsService GetUserPhotoCommentsService
+        {
+            get { return _getUserPhotoCommentsService = _getUserPhotoCommentsService ?? new GetUserPhotoCommentsService(_context,_imapper); }
         }
     }
 }
