@@ -9,6 +9,12 @@ using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInfor
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoComment;
 using Endpoint.Site.Utilities;
 using System.Security.Claims;
+using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUserPhotoComments;
+using galaxypremiere.Common.Constants;
+using galaxypremiere.Domain.Entities.Users;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Endpoint.Site.Views.Shared.Components;
 
 namespace Endpoint.Site.Controllers
 {
@@ -16,7 +22,7 @@ namespace Endpoint.Site.Controllers
     {
         private readonly IUserInformationFacade _userInformationFacade;
         private readonly IUserPhotoFacade _userPhoto;
-        public ProfileController(IUserInformationFacade userInformationFacade,IUserPhotoFacade userPhotoFacade)
+        public ProfileController(IUserInformationFacade userInformationFacade, IUserPhotoFacade userPhotoFacade)
         {
             _userInformationFacade = userInformationFacade;
             _userPhoto = userPhotoFacade;
@@ -68,6 +74,17 @@ namespace Endpoint.Site.Controllers
             var userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UsersId = userId;
             return Json(_userPhoto.PostUsersPhotoCommentService.Execute(req));
+        }
+        [HttpGet]
+        public IActionResult GetPhotoCommentById(Guid Id)
+        {
+            var tset = User;
+            //long userId = TopRightUserPanelViewComponent.userId;
+            return Json(_userPhoto.GetUserPhotoCommentsService.Execute(new RequestGetUserPhotoCommentsServiceDto
+            {
+                Id = Id,
+                //UserId = userId,
+            }));
         }
     }
 }

@@ -51,3 +51,31 @@ function KingIsUrlValidWithoutDomain(link) {
     }
     return false;
 };
+// give a data and get the time ago based on the following structure
+function getTimeAgo(date) {
+    var currentDate = new Date();
+    var timeDiff = currentDate.getTime() - date.getTime();
+    var seconds = Math.floor(timeDiff / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    var days = Math.floor(hours / 24);
+    var weeks = Math.floor(days / 7);
+    var months = Math.floor(days / 30);
+    var years = Math.floor(days / 365);
+
+    if (seconds < 60) {
+        return seconds + " sec ago";
+    } else if (minutes < 60) {
+        return minutes + " min ago";
+    } else if (hours < 24) {
+        return hours + " hour ago";
+    } else if (days < 7) {
+        return days + " day ago";
+    } else if (weeks < 4) {
+        return weeks + " week ago";
+    } else if (months < 12) {
+        return months + " month ago";
+    } else {
+        return years + " year ago";
+    }
+}

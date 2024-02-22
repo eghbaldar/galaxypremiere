@@ -1,3 +1,4 @@
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\appsettings.Development.json
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\appsettings.json
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\bundleconfig.json
@@ -5,8 +6,6 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.exe
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.deps.json
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.runtimeconfig.json
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.dll
-D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\AspNet.Security.OAuth.Instagram.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\AutoMapper.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
@@ -269,4 +268,5 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\ne
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\refint\Endpoint.Site.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\Endpoint.Site.genruntimeconfig.cache
+D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\bin\Debug\net6.0\Endpoint.Site.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\obj\Debug\net6.0\ref\Endpoint.Site.dll

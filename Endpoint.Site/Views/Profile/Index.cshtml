@@ -115,7 +115,7 @@
         padding-left: 5px;
     }
 
-    .loadingTab {
+    .loadingBox {
         position: absolute;
         top: 0;
         left: 0;
@@ -129,7 +129,7 @@
         border-radius: 2px;
     }
 
-    .loadingTabLoader {
+    .loadingBoxLoader {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -166,7 +166,7 @@
 
     .img-size {
         /* 	padding: 0;
-                                                                    margin: 0; */
+                                                                                    margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -198,15 +198,18 @@
     .mw40 {
         max-width: 40px !important;
     }
-    .media-heading{
-        font-size:11px;
-        font-weight:bold;
+
+    .media-heading {
+        font-size: 11px;
+        font-weight: bold;
     }
-    .commentsBox{
-        margin-top:15px !important;
+
+    .commentsBox {
+        margin-top: 15px !important;
     }
-    .commentsText{
-        font-size:11px !important;
+
+    .commentsText {
+        font-size: 11px !important;
     }
 </style>
 @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.IsSuccess)
@@ -791,8 +794,8 @@
                                 </div>
                                 <div id="profile-about" class="tab-pane fade">
 
-                                    <div class="loadingTab" id="loadingTabAbout">
-                                        <div class="loadingTabLoader">
+                                    <div class="loadingBox" id="loadingTabAbout">
+                                        <div class="loadingBoxLoader">
                                         </div>
                                     </div>
                                     <div id="divInfoAbout" hidden>
@@ -897,8 +900,8 @@
                                 </div>
                                 <div id="profile-contact" class="tab-pane fade">
 
-                                    <div class="loadingTab" id="loadingTabContact">
-                                        <div class="loadingTabLoader">
+                                    <div class="loadingBox" id="loadingTabContact">
+                                        <div class="loadingBoxLoader">
                                         </div>
                                     </div>
 
@@ -1160,7 +1163,7 @@ else
                                         <input type="text"
                                                id="txtPostModalComment"
                                                class="form-control rounded-corner" placeholder="Write a comment...">
-                                        <button type="button"
+                                        <button type="button" disabled
                                                 id="btnPostModalComment"
                                                 onclick="PostModalComment()"
                                                 class="btn cur-p btn-dark" style="border-radius:0px !important;">
@@ -1169,46 +1172,14 @@ else
                                     </div>
                                 </div>
                                 <div class="media commentsBox">
-                                    <a class="pull-left" href="#">
-                                        <div class="user">
-                                        <img class="media-object mn thumbnail thumbnail-sm rounded mw40" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="...">
-                                        </div>
-                                    </a>
-                                    <div class="media-body mb5">
-                                        <h5 class="media-heading mbn">
-                                            Simon Rivers Posted
-                                            <small> - 3 hours ago</small>
-                                        </h5>
-                                        <p  class="commentsText"> Omg so freaking sweet dude.</p>
-                                        <div class="media pb10">
-                                            <a class="pull-left" href="#">
-                                             <div class="user">
-                                                <img class="media-object mn thumbnail thumbnail-sm rounded mw40" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
-                                            </div>    
-                                            </a>
-                                            <div class="media-body mb5">
-                                                <h5 class="media-heading mbn">
-                                                    Jessica Wong
-                                                    <small> - 3 hours ago</small>
-                                                </h5>
-                                                <p  class="commentsText"> Omg so freaking sweet dude.</p>
-                                            </div>
-                                        </div>
-                                        <div class="media mtn">
-                                            <a class="pull-left" href="#">
-                                                 <div class="user">
-                                                <img class="media-object mn thumbnail thumbnail-sm rounded mw40" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
-                                            </div>    
-                                            </a>
-                                            <div class="media-body mb5">
-                                                <h5 class="media-heading mbn">
-                                                    Jessica Wong
-                                                    <small> - 3 hours ago</small>
-                                                </h5>
-                                                <p class="commentsText"> Omg so freaking sweet dude.</p>
-                                            </div>
-                                        </div>
+                                    
+                                    <div class="loadingBox" id="divPhotoCommentLoader">
+                                        <div class="loadingBoxLoader"></div>
                                     </div>
+
+                                    <div class="media-body mb5" id="media-body-comments" hidden>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -1254,10 +1225,12 @@ else
             $("#PhotoModalDetail").html(detail);
         }
         function PostModalComment() {
+            var comment = $("#txtPostModalComment").val();
+            if(comment == null || comment.trim()=='') return false;
             var postData = {
                 'UsersPhotosId': $("#hiddenPhotoModalId").val(),
                 'Parent': null,
-                'Comment': $("#txtPostModalComment").val(),
+                'Comment': comment,
             };
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
@@ -1588,10 +1561,80 @@ else
         function openComments() {
             $("#PhotoModalComment").prop("hidden", false);
             $("#PhotoModalCaption").prop("hidden", true);
+            laodComments($("#hiddenPhotoModalId").val());
         }
         function closeComments() {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
+        }
+        var commentsBox = function (o) {
+
+            var name; if (o.fullname == null || o.fullname == '')  name = o.email;  else name = o.fullname;
+            var commentDate = new Date(o.insertDate);            
+            var avatar; if (o.avatar == null || o.avatar == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
+            var allowToRemove = o.allowToRemove;
+            alert(allowToRemove);
+            return `
+            <div class="media pb10">
+                <a class="pull-left" href="#">
+                    <div class="user">
+                            <img class="rounded-circle"
+                                src=`+avatar+` alt="...">
+                    </div>
+                </a>
+            <div class="media-body mb5">
+
+                <h5 class="media-heading mbn"> `+ name + `
+                    <small> - `+getTimeAgo(commentDate)+`</small>
+                </h5>
+
+                <p class="commentsText">`+ o.comment + `</p>
+
+            </div>
+                    ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
+
+            </div>
+                 `
+        }
+        function laodComments(id) {
+
+            $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
+            setTimeout(function(){
+
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'GET',
+                data: { 'Id': id },
+                url: 'profile/GetPhotoCommentById',
+                success: function (data) {
+                    if (data.isSuccess) {
+
+                        $("#media-body-comments").prop("hidden", false);
+                        $('#btnPostModalComment').prop("disabled", false);
+                        var fetchedData = data.data.resultGetUserPhotoCommentsServiceDto;
+                        $("#media-body-comments").empty()
+                        for (var i = 0; i < fetchedData.length; i++) {                            
+                                $("#media-body-comments").append(commentsBox(fetchedData[i]));
+                        }
+                    }
+                    else {
+                        $("#media-body-comments").prop("hidden", true);
+                            $('#btnPostModalComment').prop("disabled", true);
+                    }
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText + ' ' + status + ' ' + error);
+                }
+            }).done(function () {
+                $('#divPhotoCommentLoader').css('display', 'none');  // get stopped loading ...
+            });
+
+            },1000);
+;
+        }
+        function removeComment(id){
+            alert(id);
         }
     </script>
     @*}*@
