@@ -18,6 +18,8 @@ using Endpoint.Site.Views.Shared.Components;
 
 namespace Endpoint.Site.Controllers
 {
+    //[Authorize]
+    //[Authorize(AuthenticationSchemes = "user")]
     public class ProfileController : Controller
     {
         private readonly IUserInformationFacade _userInformationFacade;
@@ -30,6 +32,7 @@ namespace Endpoint.Site.Controllers
         [HttpGet]
         public IActionResult Index(string username)
         {
+            var result = User.Identity.IsAuthenticated;
             ModelGetInformationByUsername modelGetInformationByUsername = new ModelGetInformationByUsername
             {
                 ResultGetUsersInformationByUsernameServiceDto = _userInformationFacade.GetUsersInformationByUsernameService.Execute(new RequestUsersInformationByUsernameServiceDto

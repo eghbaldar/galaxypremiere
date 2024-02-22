@@ -38,30 +38,10 @@ namespace Endpoint.Site.Controllers
         {
             return View();
         }
-        //public async Task Login(string returnUrl)
-        //{
-        //    await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties()
-        //    {
-        //        RedirectUri = Url.Action("GoogleResponse")
-        //    });
-        //}
-        //public async Task<IActionResult> GoogleResponse(string returnUrl)
-        //{
-        //    var loginInfo = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-        //    string email = loginInfo.Principal.FindFirst(ClaimTypes.Email).Value;
-        //    string firstname = loginInfo.Principal.FindFirst(ClaimTypes.GivenName)?.Value?? null;
-        //    string lastname = loginInfo.Principal.FindFirst(ClaimTypes.Surname)?.Value?? null;
-
-        //    if(Url.IsLocalUrl(returnUrl)) { 
-        //        //
-        //    }
-
-        //    return View();
-        //}
         [HttpPost]
         public IActionResult Login(RequestAuthLoginUsersServiceDto req)
-        {
+            {
             var login = _userFacade.AuthLoginUsersService.Execute(req);
             if (login != null)
             {
@@ -75,6 +55,7 @@ namespace Endpoint.Site.Controllers
                     };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    //var identity = new ClaimsIdentity(claims, "user");
                     var principal = new ClaimsPrincipal(identity);
                     var propertise = new AuthenticationProperties()
                     {
@@ -87,9 +68,14 @@ namespace Endpoint.Site.Controllers
                         IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     });
                     HttpContext.SignInAsync(
-                        "user",
+                       
                         principal,
                         propertise);
+                    //HttpContext.SignInAsync(
+                    //    "user",
+                    //    principal,
+                    //    propertise);
+
                 }
             }
             return Json(login);
@@ -97,8 +83,14 @@ namespace Endpoint.Site.Controllers
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.SignOutAsync("user");
-            return RedirectToAction("Index", "Home", new { area = "" });
+
+            string currentUrl = Request.Headers["Referer"].ToString(); // Get the current URL
+            return Redirect(currentUrl);
+
+            //return Redirect(Request.Path.UrlReferrer.ToString());
+
+            //HttpContext.SignOutAsync("user");
+            //return RedirectToAction("Index", "Home", new { area = "" });
         }
 
     }

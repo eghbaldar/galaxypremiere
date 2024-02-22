@@ -60,7 +60,10 @@
                                 <a href="index.html"><img class="img-responsive" src="~/SiteTemplate/innerpages/images/logo/logo.png" alt="#" /></a>
                             </div>
                             <div class="right_topbar">
+                                @if (User.Identity.IsAuthenticated)
+                                {
                                 @await Component.InvokeAsync("TopRightUserPanel") <i class="mdi mdi-chevron-down"></i>
+                                }
                             </div>
                         </div>
                     </nav>

@@ -10,6 +10,7 @@ namespace Endpoint.Site.Utilities
             {
                 var claimIdentity = User.Identity as ClaimsIdentity;
                 long userId = long.Parse(claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value);
+
                 return userId;
             }
             catch (Exception)
