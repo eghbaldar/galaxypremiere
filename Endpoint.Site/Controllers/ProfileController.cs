@@ -15,11 +15,10 @@ using galaxypremiere.Domain.Entities.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Endpoint.Site.Views.Shared.Components;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoComment;
 
 namespace Endpoint.Site.Controllers
 {
-    //[Authorize]
-    //[Authorize(AuthenticationSchemes = "user")]
     public class ProfileController : Controller
     {
         private readonly IUserInformationFacade _userInformationFacade;
@@ -32,7 +31,6 @@ namespace Endpoint.Site.Controllers
         [HttpGet]
         public IActionResult Index(string username)
         {
-            var result = User.Identity.IsAuthenticated;
             ModelGetInformationByUsername modelGetInformationByUsername = new ModelGetInformationByUsername
             {
                 ResultGetUsersInformationByUsernameServiceDto = _userInformationFacade.GetUsersInformationByUsernameService.Execute(new RequestUsersInformationByUsernameServiceDto
@@ -81,13 +79,22 @@ namespace Endpoint.Site.Controllers
         [HttpGet]
         public IActionResult GetPhotoCommentById(Guid Id)
         {
-            var tset = User;
-            //long userId = TopRightUserPanelViewComponent.userId;
+            long userId = 0;
+            if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+
             return Json(_userPhoto.GetUserPhotoCommentsService.Execute(new RequestGetUserPhotoCommentsServiceDto
             {
                 Id = Id,
-                //UserId = userId,
+                UserId = userId,
             }));
+        }
+        [HttpPost]
+        public IActionResult DeletePhotoComment(RequestDeleteUsersPhotoCommentServiceDto req)
+        {
+            long userId = 0;
+            if (User.Identity.IsAuthenticated) userId=(long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            req.UserId = userId;
+            return Json(_userPhoto.DeleteUsersPhotoCommentService.Execute(req));
         }
     }
 }

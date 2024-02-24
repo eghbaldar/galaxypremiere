@@ -79,6 +79,8 @@ namespace galaxypremiere.Persistence.Context
             modelBuilder.ApplyConfiguration(new UsersPhotoAlbumConfigurations());    
             //---- Photo Photo
             modelBuilder.ApplyConfiguration(new UsersPhotoPhotoConfigurations());
+            //---- Photo Comments
+            modelBuilder.ApplyConfiguration(new UsersPhotoCommentsConfigurations());
             //< End
         }
         public override int SaveChanges()

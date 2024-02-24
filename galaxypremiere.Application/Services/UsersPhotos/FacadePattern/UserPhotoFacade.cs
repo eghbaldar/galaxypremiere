@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoComment;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoComment;
@@ -87,6 +88,12 @@ namespace galaxypremiere.Application.Services.UsersPhotos.FacadePattern
         public GetUserPhotoCommentsService GetUserPhotoCommentsService
         {
             get { return _getUserPhotoCommentsService = _getUserPhotoCommentsService ?? new GetUserPhotoCommentsService(_context,_imapper); }
+        }       
+        // Delete User Photos Comment
+        private DeleteUsersPhotoCommentService _deleteUsersPhotoCommentService;
+        public DeleteUsersPhotoCommentService DeleteUsersPhotoCommentService
+        {
+            get { return _deleteUsersPhotoCommentService = _deleteUsersPhotoCommentService ?? new DeleteUsersPhotoCommentService(_context); }
         }
     }
 }

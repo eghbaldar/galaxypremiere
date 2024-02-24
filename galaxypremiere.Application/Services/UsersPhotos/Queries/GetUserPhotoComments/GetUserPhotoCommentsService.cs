@@ -39,7 +39,7 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUserPhotoCo
                         Comments = c,
                         information = info,
                         Email = user.Email,
-                        AllowToRemove = (c.UsersId.Equals(req.UserId)) ? true : false,
+                        AllowToRemove = (req.UserId != 0 ? ((c.UsersId.Equals(req.UserId)) ? true : false) : false)
                     }
                     )
                     .Select(x => new GetUserPhotoCommentsServiceDto

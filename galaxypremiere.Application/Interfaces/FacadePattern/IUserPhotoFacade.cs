@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoPhoto;
+﻿using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoComment;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoComment;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAlbum;
@@ -28,5 +29,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         DeleteUsersPhotoPhotoService DeleteUsersPhotoPhotoService { get; }
         PostUsersPhotoCommentService PostUsersPhotoCommentService { get; }
         GetUserPhotoCommentsService GetUserPhotoCommentsService { get; }
+        DeleteUsersPhotoCommentService DeleteUsersPhotoCommentService { get; }
     }
 }

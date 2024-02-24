@@ -32,7 +32,7 @@ public class TopRightUserPanelViewComponent : ViewComponent
         {
             fullname = ClaimUtility.GetUserFullname(User as ClaimsPrincipal);
         }
-        if (string.IsNullOrEmpty(username))
+        if (!string.IsNullOrEmpty(username))
         {
             try
             {
@@ -44,7 +44,7 @@ public class TopRightUserPanelViewComponent : ViewComponent
             }
             catch (Exception ex)
             {
-                username = "null";
+                username = null;
             }
         }
         return View("Index");

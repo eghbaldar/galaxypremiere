@@ -55,7 +55,6 @@ namespace Endpoint.Site.Controllers
                     };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    //var identity = new ClaimsIdentity(claims, "user");
                     var principal = new ClaimsPrincipal(identity);
                     var propertise = new AuthenticationProperties()
                     {
@@ -67,30 +66,17 @@ namespace Endpoint.Site.Controllers
                         UsersId = login.Data.IdUser,
                         IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     });
-                    HttpContext.SignInAsync(
-                       
-                        principal,
-                        propertise);
-                    //HttpContext.SignInAsync(
-                    //    "user",
-                    //    principal,
-                    //    propertise);
-
+                    HttpContext.SignInAsync(principal, propertise);
                 }
             }
             return Json(login);
         }
         public IActionResult Logout()
+
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
             string currentUrl = Request.Headers["Referer"].ToString(); // Get the current URL
             return Redirect(currentUrl);
-
-            //return Redirect(Request.Path.UrlReferrer.ToString());
-
-            //HttpContext.SignOutAsync("user");
-            //return RedirectToAction("Index", "Home", new { area = "" });
         }
 
     }
