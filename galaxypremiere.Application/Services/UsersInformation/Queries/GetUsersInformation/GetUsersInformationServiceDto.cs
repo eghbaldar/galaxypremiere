@@ -4,7 +4,7 @@
     {
         public long UsersId { get; set; }
         public byte AccountType { get; set; } // check [AccountTypeConstants.cs]
-        public string? Username { get; set; } // www.galaxypremiere.com/Username
+        public string Username { get; set; } = ""; // www.galaxypremiere.com/Username
         public string? Firstname { get; set; }
         public string? MiddleName { get; set; }
         public string? Surname { get; set; }

@@ -32,19 +32,23 @@ public class TopRightUserPanelViewComponent : ViewComponent
         {
             fullname = ClaimUtility.GetUserFullname(User as ClaimsPrincipal);
         }
-        if (!string.IsNullOrEmpty(username))
+        if (string.IsNullOrEmpty(username))
         {
             try
             {
-                username = _userInformationFacade.GetUsersInformationServiceService.Execute
+                var retrieve = _userInformationFacade.GetUsersInformationServiceService.Execute
                 (new galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation.RequestGetUsersInformationServiceDto
                 {
                     UsersId = userId
-                }).Username;
+                });
+                if(retrieve != null)
+                    username= retrieve.Username;
+                else
+                    username= "";
             }
             catch (Exception ex)
             {
-                username = null;
+                username = "";
             }
         }
         return View("Index");

@@ -698,7 +698,16 @@ $(document).ready(function () {
         if (evn.keyCode == 13)
             $("#btnUpdateContact").trigger("click");
     });
-    // End Triggers
+    //End Triggers    
+    // when the user does not have a unique unsername and tries to open www.galaxypremiere.com/username
+    var queryString = window.location.search; // Get the query string from the current URL Process
+    var params = new URLSearchParams(queryString);
+    var parameterValue = params.get('tour');
+    if (parameterValue == "username") {
+        tabNavigationByTabName('TabUserPrivacy', 4);
+        $(".bubble").css("display", "block");
+    }
+    // end
 });
 function UpdateOther() {
     pageWaitMe("progress"); // loading process starts
@@ -765,4 +774,9 @@ function KingSweetAlert(type, message) {
             title: message
         });
     }
+}
+// Close the bubble is supposed to be shown on the "username" field
+function closeBubble() {
+    var bubble = document.getElementById("bubble");
+    bubble.style.display = "none";
 }

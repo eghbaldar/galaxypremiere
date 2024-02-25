@@ -156,3 +156,61 @@
         bottom: 0;
         left: 0;
     }
+    /*Bubble on the USERNAME field*/
+.bubble {
+    position: relative;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: block;
+    animation: bubbleMove 1s ease-in-out infinite alternate;
+    display: none;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .close:hover {
+        color: red;
+    }
+
+.pointer {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #f1f1f1;
+}
+
+    .pointer:before {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid #f1f1f1;
+    }
+
+@keyframes bubbleMove {
+    0% {
+        transform: translateX(-5px) translateY(-5px);
+    }
+
+    100% {
+        transform: translateX(5px) translateY(5px);
+    }
+}
+
+#bubbleText {
+    color: red;
+}

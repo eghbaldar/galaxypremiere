@@ -550,6 +550,12 @@
                                                    class="form-control"
                                                    placeholder="Username">
                                         </div>
+                                        @*bubble on the field*@
+                                        <div class="bubble" id="bubble">
+                                            <span class="pointer"></span>
+                                            <span class="close" onclick="closeBubble()">&times;</span>
+                                            <p id="bubbleText">To have a dedicated profile, it is necessary to assign a unique username for yourself at first.</p>
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <button type="button" onclick="UpdateInfoUsername();" id="btnUpdateUsername" class="btn btn-light mb-2">Update</button>
@@ -1105,12 +1111,11 @@ data-seletedItem=@{
             </script>
         }
     }
+        @* Tabs *@
+    <script src="~/sitetemplate/innerpages/plugins/tabNavigation/tab.js"></script>
     @*Executive Functions : Only for this page*@
     <script src="~/SiteTemplate/innerpages/pagecssjs/user/me/me.js"></script>
-    @* Tabs *@
-    <script src="~/sitetemplate/innerpages/plugins/tabNavigation/tab.js"></script>
     @*King Tagger*@
     <script src="~/lib/kingFuncs/taggers/sellect.js"></script>
-
 }
 

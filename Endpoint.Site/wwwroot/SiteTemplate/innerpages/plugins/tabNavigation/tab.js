@@ -30,7 +30,7 @@ function tabNavigation(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-function tabNavigationByTabName(tabName) {
+function tabNavigationByTabName(tabName, indexPage) {
     // developed by the King [blog.eghbaldar.ir]
     var i, tabcontent, tablinks;
 
@@ -44,5 +44,5 @@ function tabNavigationByTabName(tabName) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(tabName).style.display = "block";
-    tablinks[1].className += " active";
+    tablinks[indexPage].className += " active";
 }

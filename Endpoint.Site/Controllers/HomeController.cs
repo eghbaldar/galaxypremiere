@@ -13,6 +13,7 @@ using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UserLoginLog.Commands.PostUserLoginLog;
 using galaxypremiere.Common.Constants;
 using Microsoft.AspNetCore.Authorization;
+using Endpoint.Site.Views.Shared.Components;
 
 namespace Endpoint.Site.Controllers
 {
@@ -66,6 +67,11 @@ namespace Endpoint.Site.Controllers
                         UsersId = login.Data.IdUser,
                         IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     });
+                    // clear static variables ...>
+                    TopRightUserPanelViewComponent.username = null;
+                    TopRightUserPanelViewComponent.fullname = null;
+                    TopRightUserPanelViewComponent.userId = 0;
+                    // end cleanliness ...<
                     HttpContext.SignInAsync(principal, propertise);
                 }
             }

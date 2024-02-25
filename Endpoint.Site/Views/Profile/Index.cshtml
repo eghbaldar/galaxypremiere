@@ -166,7 +166,7 @@
 
     .img-size {
         /* 	padding: 0;
-                                                                                        margin: 0; */
+                                                                                                margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -257,11 +257,11 @@
                                             <img class="rounded-circle"
                                              src=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Photo != null ? "/SiteTemplate/innerpages/images/user-headshot/"+Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Photo : "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg")
                                              onerror="this.src='/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg'"
-                                             alt=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Fullname.Trim() != "" ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Fullname : TopRightUserPanelViewComponent.username)>
+                                             alt=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Fullname.Trim() != "" ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Fullname : Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Username)>
                                         </div>
                                         <div class="infos">
                                             <h2>
-                                                @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Fullname.Trim() != "" ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Fullname : TopRightUserPanelViewComponent.username)
+                                                @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Fullname.Trim() != "" ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Fullname : Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Username)
                                             </h2>
                                             <div class="location">
                                                 @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.AccountType != null ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.AccountType : "null")
@@ -1164,12 +1164,26 @@ else
                                         <input type="text"
                                                id="txtPostModalComment"
                                                class="form-control rounded-corner" placeholder="Write a comment...">
-                                        <button type="button" disabled
+
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <button type="button" disabled
                                                 id="btnPostModalComment"
                                                 onclick="PostModalComment()"
                                                 class="btn cur-p btn-dark" style="border-radius:0px !important;">
                                             Comment
-                                        </button>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" disabled
+                                                id="btnPostModalComment"
+                                                
+                                                class="btn cur-p btn-dark" style="border-radius:0px !important;">
+                                                Sign Up
+                                            </button>
+                                        }
+
                                     </div>
                                 </div>
                                 <div class="media commentsBox">
@@ -1214,6 +1228,8 @@ else
     <script>
         // Modal
         function openModalPhotos6(id, file, title, detail) {
+            $("#PhotoModalComment").prop("hidden", true);
+            $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
             $("#hiddenPhotoModalId").val(id);
             $("#PhotoModalIMG").attr("src", "/SiteTemplate/innerpages/images/user-photos/" + file);
@@ -1226,26 +1242,41 @@ else
             $("#PhotoModalDetail").html(detail);
         }
         function PostModalComment() {
-            var comment = $("#txtPostModalComment").val();
-            if (comment == null || comment.trim() == '') return false;
-            var postData = {
-                'UsersPhotosId': $("#hiddenPhotoModalId").val(),
-                'Parent': null,
-                'Comment': comment,
-            };
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                dataType: 'json',
-                type: 'POST',
-                data: postData,
-                url: 'profile/PostPhotoComment',
-                success: function (data) {
-                    alert(data.isSuccess);
-                },
-                error: function (req, status, error) {
-                    alert(req.responseText + status + error)
-                }
-            });
+            $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
+            setTimeout(function () {
+                var comment = $("#txtPostModalComment").val();
+                if (comment == null || comment.trim() == '') return false;
+                var postData = {
+                    'UsersPhotosId': $("#hiddenPhotoModalId").val(),
+                    'Parent': null,
+                    'Comment': comment,
+                };
+                $.ajax({
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: postData,
+                    url: 'profile/PostPhotoComment',
+                    success: function (data) {
+                        alert(data.isSuccess);
+                        var fetchedData = {
+                            'id': data.data.id,
+                            'avatar': data.data.avatar,
+                            'fullname': data.data.fullname,
+                            'insertDate': null,
+                            'allowToRemove': true,
+                            'comment': comment,
+                            'email': data.data.email,
+                        };
+                        $("#media-body-comments").append(commentsBox(fetchedData));
+                    },
+                    error: function (req, status, error) {
+                        alert(req.responseText + status + error)
+                    }
+                }).done(function () {
+                    $('#divPhotoCommentLoader').css('display', 'none');  // get stopped loading ...
+                });
+            }, 1000);
         }
         // Get the tab links
         const tabLinks = document.querySelectorAll('.nav-link');
@@ -1570,31 +1601,31 @@ else
         }
         var commentsBox = function (o) {
 
-            var name; if (o.fullname == null || o.fullname == '') name = o.email; else name = o.fullname;
-            var commentDate = new Date(o.insertDate);
-            var avatar; if (o.avatar == null || o.avatar == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
+            var name; if (o.fullname == null || o.fullname.trim() == '') name = o.email; else name = o.fullname;
+            var commentDate; if (o.insertDate == null) commentDate = 'NEW'; else commentDate = getTimeAgo(new Date(o.insertDate));
+            var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
             var allowToRemove = o.allowToRemove;
             return `
-                            <div class="media pb10" id="photoCommentBox_` + o.id + `">
-                <a class="pull-left" href="#">
-                    <div class="user">
-                            <img class="rounded-circle"
-                                src=`+ avatar + ` alt="...">
-                    </div>
-                </a>
-            <div class="media-body mb5">
+                <div class="media pb10" id="photoCommentBox_` + o.id + `">
+                    <a class="pull-left" href="#">
+                        <div class="user">
+                                <img class="rounded-circle"
+                                    src=`+ avatar + ` alt="...">
+                        </div>
+                    </a>
+                <div class="media-body mb5">
 
-                <h5 class="media-heading mbn"> `+ name + `
-                    <small> - `+ getTimeAgo(commentDate) + `</small>
-                </h5>
+                    <h5 class="media-heading mbn"> `+ name + `
+                        <small> - `+ commentDate + `</small>
+                    </h5>
 
-                <p class="commentsText">`+ o.comment + `</p>
+                    <p class="commentsText">`+ o.comment + `</p>
 
-            </div>
-                    ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
+                </div>
+                        ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
 
-            </div>
-                    `
+                </div>
+                  `
         }
         function laodComments(id) {
 
@@ -1637,18 +1668,18 @@ else
             $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
             setTimeout(function () {
                 $.ajax({
-                    contentType:'application/x-www-form-urlencoded',
-                    dataType:'json',
-                    type:'POST',
-                    data:{'Id':id},
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: { 'Id': id },
                     url: 'profile/DeletePhotoComment',
-                    success:function(data){
-                       if(data.isSuccess){
-                           $("#photoCommentBox_"+id).prop("hidden",true);
-                       }
+                    success: function (data) {
+                        if (data.isSuccess) {
+                            $("#photoCommentBox_" + id).prop("hidden", true);
+                        }
                     },
-                    error:function(req, status, err){
-                        alert(req.responseText + ' ' + status + ' ' +  err);
+                    error: function (req, status, err) {
+                        alert(req.responseText + ' ' + status + ' ' + err);
                     }
                 }).done(function () {
                     $('#divPhotoCommentLoader').css('display', 'none');  // get stopped loading ...

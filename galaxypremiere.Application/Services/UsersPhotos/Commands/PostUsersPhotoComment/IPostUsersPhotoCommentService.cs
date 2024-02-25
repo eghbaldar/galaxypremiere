@@ -9,6 +9,6 @@ namespace galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhot
 {
     public interface IPostUsersPhotoCommentService
     {
-        ResultDto Execute(RequestPostUsersPhotoCommentServiceDto req);
+        ResultDto<PostUsersPhotoCommentServiceDto> Execute(RequestPostUsersPhotoCommentServiceDto req);
     }
 }

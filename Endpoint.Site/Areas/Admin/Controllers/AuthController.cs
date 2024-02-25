@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http;
 using AutoMapper;
+using Endpoint.Site.Views.Shared.Components;
 
 namespace Endpoint.Site.Areas.Admin.Controllers
 {
@@ -60,6 +61,11 @@ namespace Endpoint.Site.Areas.Admin.Controllers
                         UsersId = login.Data.IdUser,
                         IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     });
+                    // clear static variables ...>
+                    TopRightUserPanelViewComponent.username = null;
+                    TopRightUserPanelViewComponent.fullname = null;
+                    TopRightUserPanelViewComponent.userId = 0;
+                    // end cleanliness ...<
                     HttpContext.SignInAsync(principal, propertise);
                 }
             }

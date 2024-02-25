@@ -74,6 +74,7 @@ namespace Endpoint.Site.Controllers
         {
             var userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UsersId = userId;
+            req.Email = ClaimUtility.GetUserEmail(User as ClaimsPrincipal);
             return Json(_userPhoto.PostUsersPhotoCommentService.Execute(req));
         }
         [HttpGet]
@@ -92,7 +93,7 @@ namespace Endpoint.Site.Controllers
         public IActionResult DeletePhotoComment(RequestDeleteUsersPhotoCommentServiceDto req)
         {
             long userId = 0;
-            if (User.Identity.IsAuthenticated) userId=(long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UserId = userId;
             return Json(_userPhoto.DeleteUsersPhotoCommentService.Execute(req));
         }

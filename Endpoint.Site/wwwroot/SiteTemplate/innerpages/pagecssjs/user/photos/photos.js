@@ -160,7 +160,7 @@ function OpenAlbum(albumId) {
     var title = $("#titleAlbumH4_" + albumId).text();
     pageWaitMe("progress"); // loading process starts
     $("#spanAlbumName").text("Loading Album ...");
-    tabNavigationByTabName('TabUserPhotos');
+    tabNavigationByTabName('TabUserPhotos', 1);
     $('.itemG').prop('hidden', true);
     /////////////////////////////////////////////////////////////////////////
 
@@ -360,7 +360,7 @@ $('document').ready(function () {
                 span.text(input.val());
                 $("#spanTitle_" + $("#HiddenPhotoID").val()).text(input.val());
                 $("#hiddenPhotoTitle_" + $("#HiddenPhotoID").val()).val(input.val());
-            }            
+            }
             // update service launch here:
             UpdatePhotoInformation($("#HiddenPhotoID").val(), input.attr('id'), input.val());
         }
