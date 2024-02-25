@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Endpoint.Site.Views.Shared.Components;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoComment;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoIncreaseVisitorCounter;
 
 namespace Endpoint.Site.Controllers
 {
@@ -96,6 +97,11 @@ namespace Endpoint.Site.Controllers
             if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UserId = userId;
             return Json(_userPhoto.DeleteUsersPhotoCommentService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult PostPhotoIncrementVisitorCounter(RequestPostUsersPhotoIncreaseVisitorCounterServiceDto req)
+        {
+            return Json(_userPhoto.PostUsersPhotoIncreaseVisitorCounterService.Execute(req));
         }
     }
 }

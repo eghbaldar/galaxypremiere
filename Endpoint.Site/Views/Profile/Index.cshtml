@@ -166,7 +166,7 @@
 
     .img-size {
         /* 	padding: 0;
-                                                                                                margin: 0; */
+                                                                                                    margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -1171,14 +1171,13 @@ else
                                                 id="btnPostModalComment"
                                                 onclick="PostModalComment()"
                                                 class="btn cur-p btn-dark" style="border-radius:0px !important;">
-                                            Comment
+                                                Comment
                                             </button>
                                         }
                                         else
                                         {
                                             <button type="button" disabled
                                                 id="btnPostModalComment"
-                                                
                                                 class="btn cur-p btn-dark" style="border-radius:0px !important;">
                                                 Sign Up
                                             </button>
@@ -1227,7 +1226,7 @@ else
 
     <script>
         // Modal
-        function openModalPhotos6(id, file, title, detail,visitorCounter) {
+        function openModalPhotos6(id, file, title, detail, visitorCounter) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
@@ -1236,10 +1235,25 @@ else
             if (title == null || title.trim() == '')
                 $("#PhotoModalTitle").text('unknown');
             else
-                $("#PhotoModalTitle").text(title);
-            $('#spanPhotoVisitorCouter').text(visitorCounter + ' views');
+                $("#PhotoModalTitle").text(title);            
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
+            IncreamentPhotoVisitorCounter(id);
+        }
+        function IncreamentPhotoVisitorCounter(id) {
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: { 'PhotoId': id },
+                url: 'profile/PostPhotoIncrementVisitorCounter',
+                success:function(data){
+                    $('#spanPhotoVisitorCouter').text(data.data.visitorCounter + ' views');
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText + ' ' + status + ' ' + error);
+                }
+            });
         }
         function PostModalComment() {
             $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
@@ -1606,26 +1620,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
             var allowToRemove = o.allowToRemove;
             return `
-                <div class="media pb10" id="photoCommentBox_` + o.id + `">
-                    <a class="pull-left" href="#">
-                        <div class="user">
-                                <img class="rounded-circle"
-                                    src=`+ avatar + ` alt="...">
+                        <div class="media pb10" id="photoCommentBox_` + o.id + `">
+                            <a class="pull-left" href="#">
+                                <div class="user">
+                                        <img class="rounded-circle"
+                                            src=`+ avatar + ` alt="...">
+                                </div>
+                            </a>
+                        <div class="media-body mb5">
+
+                            <h5 class="media-heading mbn"> `+ name + `
+                                <small> - `+ commentDate + `</small>
+                            </h5>
+
+                            <p class="commentsText">`+ o.comment + `</p>
+
                         </div>
-                    </a>
-                <div class="media-body mb5">
+                                ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
 
-                    <h5 class="media-heading mbn"> `+ name + `
-                        <small> - `+ commentDate + `</small>
-                    </h5>
-
-                    <p class="commentsText">`+ o.comment + `</p>
-
-                </div>
-                        ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
-
-                </div>
-                  `
+                        </div>
+                          `
         }
         function laodComments(id) {
 
@@ -1642,8 +1656,8 @@ else
                         if (data.isSuccess) {
 
                             $("#media-body-comments").prop("hidden", false);
-                            $('#btnPostModalComment').prop("disabled", false);                            
-                            var fetchedData = data.data.resultGetUserPhotoCommentsServiceDto;                            
+                            $('#btnPostModalComment').prop("disabled", false);
+                            var fetchedData = data.data.resultGetUserPhotoCommentsServiceDto;
                             $("#media-body-comments").empty()
                             for (var i = 0; i < fetchedData.length; i++) {
                                 $("#media-body-comments").append(commentsBox(fetchedData[i]));

@@ -5,6 +5,7 @@ using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoC
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoComment;
+using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoIncreaseVisitorCounter;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
@@ -94,6 +95,12 @@ namespace galaxypremiere.Application.Services.UsersPhotos.FacadePattern
         public DeleteUsersPhotoCommentService DeleteUsersPhotoCommentService
         {
             get { return _deleteUsersPhotoCommentService = _deleteUsersPhotoCommentService ?? new DeleteUsersPhotoCommentService(_context); }
+        }    
+        // Increament of User Photos Comment Visitor Counter
+        private PostUsersPhotoIncreaseVisitorCounterService _postUsersPhotoIncreaseVisitorCounterService;
+        public PostUsersPhotoIncreaseVisitorCounterService PostUsersPhotoIncreaseVisitorCounterService
+        {
+            get { return _postUsersPhotoIncreaseVisitorCounterService = _postUsersPhotoIncreaseVisitorCounterService ?? new PostUsersPhotoIncreaseVisitorCounterService(_context); }
         }
     }
 }
