@@ -362,7 +362,7 @@
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
-                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail')">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter')">
 
 
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
@@ -1133,7 +1133,7 @@ else
                                 <div class="timeline-header p-2">
                                     <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
                                     <span class="username">Sean Ngu</span>
-                                    <span class="pull-right text-muted">1,282 Views</span>
+                                    <span class="pull-right text-muted" id="spanPhotoVisitorCouter"></span>
                                 </div>
                             </div>
                             <div class="row">
@@ -1227,7 +1227,7 @@ else
 
     <script>
         // Modal
-        function openModalPhotos6(id, file, title, detail) {
+        function openModalPhotos6(id, file, title, detail,visitorCounter) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
@@ -1237,7 +1237,7 @@ else
                 $("#PhotoModalTitle").text('unknown');
             else
                 $("#PhotoModalTitle").text(title);
-
+            $('#spanPhotoVisitorCouter').text(visitorCounter + ' views');
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
         }
@@ -1642,8 +1642,8 @@ else
                         if (data.isSuccess) {
 
                             $("#media-body-comments").prop("hidden", false);
-                            $('#btnPostModalComment').prop("disabled", false);
-                            var fetchedData = data.data.resultGetUserPhotoCommentsServiceDto;
+                            $('#btnPostModalComment').prop("disabled", false);                            
+                            var fetchedData = data.data.resultGetUserPhotoCommentsServiceDto;                            
                             $("#media-body-comments").empty()
                             for (var i = 0; i < fetchedData.length; i++) {
                                 $("#media-body-comments").append(commentsBox(fetchedData[i]));

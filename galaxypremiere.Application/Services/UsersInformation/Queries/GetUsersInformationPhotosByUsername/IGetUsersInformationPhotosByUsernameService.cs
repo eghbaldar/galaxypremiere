@@ -47,6 +47,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                     Id = p.Photos.Id,
                     Title = p.Photos.Title,
                     Detail = p.Photos.Detail,
+                    VisitorCounter = p.Photos.VisitorCounter,
                 })
                 .Take(6)
                 .ToList();

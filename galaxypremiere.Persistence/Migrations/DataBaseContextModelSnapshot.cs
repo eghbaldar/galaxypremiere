@@ -4130,6 +4130,9 @@ namespace galaxypremiere.Persistence.Migrations
                     b.Property<Guid>("UsersAlbumsId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<long>("VisitorCounter")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UsersAlbumsId");

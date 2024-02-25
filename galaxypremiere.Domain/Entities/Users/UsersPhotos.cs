@@ -15,5 +15,6 @@ namespace galaxypremiere.Domain.Entities.Users
         public string? Detail { get; set; } // Detail
         public string Filename { get; set; } // Filename
         public int DownloadCounter { get; set; } // How many times the file has been downloaded?
+        public long VisitorCounter { get; set; } // How many times the file has been visted?
     }
 }

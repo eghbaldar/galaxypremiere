@@ -6,5 +6,6 @@
         public string Filename { get; set; }
         public string Title { get; set; }
         public string Detail { get; set; }
+        public long VisitorCounter { get; set; }
     }
 }
