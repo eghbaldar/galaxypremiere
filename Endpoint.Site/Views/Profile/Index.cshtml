@@ -166,7 +166,7 @@
 
     .img-size {
         /* 	padding: 0;
-                                                                                                    margin: 0; */
+        margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -362,7 +362,7 @@
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
-                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter')">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments')">
 
 
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
@@ -1148,7 +1148,7 @@ else
                                             <li><a class="fa fa-heart-o cursor"><span class="badge">3</span></a></li>
                                         </ul>
                                         <ul>
-                                            <li><a onclick="openComments();" class="fa fa-comments-o cursor"><span class="badge">3</span></a></li>
+                                            <li><a onclick="openComments();" class="fa fa-comments-o cursor"><span class="badge" id="spanPhotoCountComments"></span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1226,7 +1226,7 @@ else
 
     <script>
         // Modal
-        function openModalPhotos6(id, file, title, detail, visitorCounter) {
+        function openModalPhotos6(id, file, title, detail, visitorCounter,countComments) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
@@ -1238,6 +1238,7 @@ else
                 $("#PhotoModalTitle").text(title);            
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
+            $('#spanPhotoCountComments').text(countComments);
             IncreamentPhotoVisitorCounter(id);
         }
         function IncreamentPhotoVisitorCounter(id) {
@@ -1254,44 +1255,7 @@ else
                     alert(request.responseText + ' ' + status + ' ' + error);
                 }
             });
-        }
-        function PostModalComment() {
-            $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
-            setTimeout(function () {
-                var comment = $("#txtPostModalComment").val();
-                if (comment == null || comment.trim() == '') return false;
-                var postData = {
-                    'UsersPhotosId': $("#hiddenPhotoModalId").val(),
-                    'Parent': null,
-                    'Comment': comment,
-                };
-                $.ajax({
-                    contentType: 'application/x-www-form-urlencoded',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: postData,
-                    url: 'profile/PostPhotoComment',
-                    success: function (data) {
-                        alert(data.isSuccess);
-                        var fetchedData = {
-                            'id': data.data.id,
-                            'avatar': data.data.avatar,
-                            'fullname': data.data.fullname,
-                            'insertDate': null,
-                            'allowToRemove': true,
-                            'comment': comment,
-                            'email': data.data.email,
-                        };
-                        $("#media-body-comments").append(commentsBox(fetchedData));
-                    },
-                    error: function (req, status, error) {
-                        alert(req.responseText + status + error)
-                    }
-                }).done(function () {
-                    $('#divPhotoCommentLoader').css('display', 'none');  // get stopped loading ...
-                });
-            }, 1000);
-        }
+        }        
         // Get the tab links
         const tabLinks = document.querySelectorAll('.nav-link');
         // Loop through the tab links and add a click event listener
@@ -1604,6 +1568,44 @@ else
                 }
             });
         }
+        // Comments Section
+        function PostModalComment() {
+            $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
+            setTimeout(function () {
+                var comment = $("#txtPostModalComment").val();
+                if (comment == null || comment.trim() == '') return false;
+                var postData = {
+                    'UsersPhotosId': $("#hiddenPhotoModalId").val(),
+                    'Parent': null,
+                    'Comment': comment,
+                };
+                $.ajax({
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: postData,
+                    url: 'profile/PostPhotoComment',
+                    success: function (data) {
+                        var fetchedData = {
+                            'id': data.data.id,
+                            'avatar': data.data.avatar,
+                            'fullname': data.data.fullname,
+                            'insertDate': null,
+                            'allowToRemove': true,
+                            'comment': comment,
+                            'email': data.data.email,
+                        };
+                        $("#media-body-comments").append(commentsBox(fetchedData));
+                        $('#spanPhotoCountComments').text(parseInt($('#spanPhotoCountComments').text()) + 1);
+                    },
+                    error: function (req, status, error) {
+                        alert(req.responseText + status + error)
+                    }
+                }).done(function () {
+                    $('#divPhotoCommentLoader').css('display', 'none');  // get stopped loading ...
+                });
+            }, 1000);
+        }
         function openComments() {
             $("#PhotoModalComment").prop("hidden", false);
             $("#PhotoModalCaption").prop("hidden", true);
@@ -1657,7 +1659,7 @@ else
 
                             $("#media-body-comments").prop("hidden", false);
                             $('#btnPostModalComment').prop("disabled", false);
-                            var fetchedData = data.data.resultGetUserPhotoCommentsServiceDto;
+                            var fetchedData = data.data.resultGetUserPhotoCommentsServiceDto;                            
                             $("#media-body-comments").empty()
                             for (var i = 0; i < fetchedData.length; i++) {
                                 $("#media-body-comments").append(commentsBox(fetchedData[i]));
@@ -1690,6 +1692,7 @@ else
                     success: function (data) {
                         if (data.isSuccess) {
                             $("#photoCommentBox_" + id).prop("hidden", true);
+                            $('#spanPhotoCountComments').text(parseInt($('#spanPhotoCountComments').text())-1);
                         }
                     },
                     error: function (req, status, err) {
@@ -1700,6 +1703,7 @@ else
                 });
             }, 2000);
         }
+        // Like Section
     </script>
     @*}*@
 

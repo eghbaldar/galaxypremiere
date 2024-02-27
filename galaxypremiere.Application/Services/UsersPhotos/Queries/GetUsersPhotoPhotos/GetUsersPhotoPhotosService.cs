@@ -5,7 +5,7 @@ using galaxypremiere.Common.DTOs;
 namespace galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoPhotos
 {
     public class GetUsersPhotoPhotosService : IGetUsersPhotoPhotosService
-    {   // mahdi javaher
+    {   
         private readonly IDataBaseContext _context;
         private readonly IMapper _imapper;
         public GetUsersPhotoPhotosService(IDataBaseContext context, IMapper imapper)

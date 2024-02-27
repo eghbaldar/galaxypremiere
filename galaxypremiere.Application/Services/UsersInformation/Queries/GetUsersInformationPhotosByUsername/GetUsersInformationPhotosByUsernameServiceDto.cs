@@ -7,5 +7,6 @@
         public string Title { get; set; }
         public string Detail { get; set; }
         public long VisitorCounter { get; set; }
+        public string CountComments { get; set; } // the number of all comments
     }
 }

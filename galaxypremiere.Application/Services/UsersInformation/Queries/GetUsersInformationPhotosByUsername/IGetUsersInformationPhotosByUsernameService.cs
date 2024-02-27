@@ -2,12 +2,14 @@
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPhotosByUsername
 {
@@ -27,6 +29,10 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
         public ResultGetUsersInformationPhotosByUsernameServiceDto Execute(RequestGetUsersInformationPhotosByUsernameServiceDto req)
         {
             if (req == null) return null;
+
+            var groupedComments = _context.UsersPhotoComments.GroupBy(
+                    p => p.UsersPhotosId, p => p.Comment, (key, g) => new { PhotoId = key, Count = g.Count() });
+
             var photos =
                 (
                 from p in _context.UsersPhotos
@@ -47,10 +53,11 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                     Id = p.Photos.Id,
                     Title = p.Photos.Title,
                     Detail = p.Photos.Detail,
-                    VisitorCounter = p.Photos.VisitorCounter+1,
+                    VisitorCounter = p.Photos.VisitorCounter + 1,
+                    CountComments = groupedComments.Where(gc => gc.PhotoId == p.Photos.Id).Select(gc => gc.Count).First().ToString(),
                 })
                 .Take(6)
-                .ToList();            
+                .ToList();
 
             if (photos != null)
             {
