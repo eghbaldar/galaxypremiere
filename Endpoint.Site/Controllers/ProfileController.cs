@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 using Endpoint.Site.Views.Shared.Components;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoComment;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoIncreaseVisitorCounter;
+using galaxypremiere.Application.Services.Likes.Commands.PostLike;
 
 namespace Endpoint.Site.Controllers
 {
@@ -24,10 +25,14 @@ namespace Endpoint.Site.Controllers
     {
         private readonly IUserInformationFacade _userInformationFacade;
         private readonly IUserPhotoFacade _userPhoto;
-        public ProfileController(IUserInformationFacade userInformationFacade, IUserPhotoFacade userPhotoFacade)
+        private readonly ILikesFacade _ikesFacade;
+        public ProfileController(IUserInformationFacade userInformationFacade,
+            IUserPhotoFacade userPhotoFacade,
+            ILikesFacade ikesFacade)
         {
             _userInformationFacade = userInformationFacade;
             _userPhoto = userPhotoFacade;
+            _ikesFacade = ikesFacade;
         }
         [HttpGet]
         public IActionResult Index(string username)
@@ -102,6 +107,14 @@ namespace Endpoint.Site.Controllers
         public IActionResult PostPhotoIncrementVisitorCounter(RequestPostUsersPhotoIncreaseVisitorCounterServiceDto req)
         {
             return Json(_userPhoto.PostUsersPhotoIncreaseVisitorCounterService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult PostPhotoLike(RequestPostLikeServiceDto req)
+        {
+            long userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            req.UsersId = userId;
+            req.Section = SectionsConstants.UserPhotos; // drived from "SectionsConstants.cs"
+            return Json(_ikesFacade.PostLikeService.Execute(req));
         }
     }
 }

@@ -166,7 +166,7 @@
 
     .img-size {
         /* 	padding: 0;
-        margin: 0; */
+            margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -1145,7 +1145,7 @@ else
                                 <div class="timeline-footer" style="padding:0;margin:0;">
                                     <div class="icon_info" style="padding:0;margin:0;">
                                         <ul>
-                                            <li><a class="fa fa-heart-o cursor"><span class="badge">3</span></a></li>
+                                            <li><a onclick="ApplyLike();" class="fa fa-heart-o cursor"><span class="badge">3</span></a></li>
                                         </ul>
                                         <ul>
                                             <li><a onclick="openComments();" class="fa fa-comments-o cursor"><span class="badge" id="spanPhotoCountComments"></span></a></li>
@@ -1226,7 +1226,7 @@ else
 
     <script>
         // Modal
-        function openModalPhotos6(id, file, title, detail, visitorCounter,countComments) {
+        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
@@ -1235,7 +1235,7 @@ else
             if (title == null || title.trim() == '')
                 $("#PhotoModalTitle").text('unknown');
             else
-                $("#PhotoModalTitle").text(title);            
+                $("#PhotoModalTitle").text(title);
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
             $('#spanPhotoCountComments').text(countComments);
@@ -1248,14 +1248,14 @@ else
                 type: 'POST',
                 data: { 'PhotoId': id },
                 url: 'profile/PostPhotoIncrementVisitorCounter',
-                success:function(data){
+                success: function (data) {
                     $('#spanPhotoVisitorCouter').text(data.data.visitorCounter + ' views');
                 },
                 error: function (request, status, error) {
                     alert(request.responseText + ' ' + status + ' ' + error);
                 }
             });
-        }        
+        }
         // Get the tab links
         const tabLinks = document.querySelectorAll('.nav-link');
         // Loop through the tab links and add a click event listener
@@ -1622,26 +1622,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
             var allowToRemove = o.allowToRemove;
             return `
-                        <div class="media pb10" id="photoCommentBox_` + o.id + `">
-                            <a class="pull-left" href="#">
-                                <div class="user">
-                                        <img class="rounded-circle"
-                                            src=`+ avatar + ` alt="...">
+                                <div class="media pb10" id="photoCommentBox_` + o.id + `">
+                                    <a class="pull-left" href="#">
+                                        <div class="user">
+                                                <img class="rounded-circle"
+                                                    src=`+ avatar + ` alt="...">
+                                        </div>
+                                    </a>
+                                <div class="media-body mb5">
+
+                                    <h5 class="media-heading mbn"> `+ name + `
+                                        <small> - `+ commentDate + `</small>
+                                    </h5>
+
+                                    <p class="commentsText">`+ o.comment + `</p>
+
                                 </div>
-                            </a>
-                        <div class="media-body mb5">
+                                        ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
 
-                            <h5 class="media-heading mbn"> `+ name + `
-                                <small> - `+ commentDate + `</small>
-                            </h5>
-
-                            <p class="commentsText">`+ o.comment + `</p>
-
-                        </div>
-                                ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
-
-                        </div>
-                          `
+                                </div>
+                                  `
         }
         function laodComments(id) {
 
@@ -1659,7 +1659,7 @@ else
 
                             $("#media-body-comments").prop("hidden", false);
                             $('#btnPostModalComment').prop("disabled", false);
-                            var fetchedData = data.data.resultGetUserPhotoCommentsServiceDto;                            
+                            var fetchedData = data.data.resultGetUserPhotoCommentsServiceDto;
                             $("#media-body-comments").empty()
                             for (var i = 0; i < fetchedData.length; i++) {
                                 $("#media-body-comments").append(commentsBox(fetchedData[i]));
@@ -1692,7 +1692,7 @@ else
                     success: function (data) {
                         if (data.isSuccess) {
                             $("#photoCommentBox_" + id).prop("hidden", true);
-                            $('#spanPhotoCountComments').text(parseInt($('#spanPhotoCountComments').text())-1);
+                            $('#spanPhotoCountComments').text(parseInt($('#spanPhotoCountComments').text()) - 1);
                         }
                     },
                     error: function (req, status, err) {
@@ -1704,6 +1704,23 @@ else
             }, 2000);
         }
         // Like Section
+        function ApplyLike() {
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                type: 'POST',
+                data: { 'SectionId': $("#hiddenPhotoModalId").val() },
+                url: 'profile/PostPhotoLike',
+                success: function (data) {
+                    if(data.isSuccess){
+                        alert('LIKED');
+                    }
+                },
+                error: function (req, status, err) {
+                    alert(req + status + err);
+                }
+            });
+        }
     </script>
     @*}*@
 

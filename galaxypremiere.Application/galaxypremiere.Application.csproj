@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="Services\Countries\Commands\" />
     <Folder Include="Services\Languages\Commands\" />
+    <Folder Include="Services\Likes\Queries\" />
     <Folder Include="Services\Metags\Commands\" />
     <Folder Include="Services\Roles\Commands\" />
     <Folder Include="Services\UserActionsLog\Queries\" />

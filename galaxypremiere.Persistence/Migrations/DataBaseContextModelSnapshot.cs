@@ -3434,6 +3434,34 @@ namespace galaxypremiere.Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("galaxypremiere.Domain.Common.Likes", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("Section")
+                        .HasColumnType("tinyint");
+
+                    b.Property<Guid>("SectionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("UsersId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("Likes");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.Roles", b =>
                 {
                     b.Property<byte>("Id")
@@ -4164,6 +4192,17 @@ namespace galaxypremiere.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UsersPositions");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Common.Likes", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersActionsLog", b =>
