@@ -166,7 +166,7 @@
 
     .img-size {
         /* 	padding: 0;
-            margin: 0; */
+                margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -362,7 +362,7 @@
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
-                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments')">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes')">
 
 
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
@@ -1145,10 +1145,19 @@ else
                                 <div class="timeline-footer" style="padding:0;margin:0;">
                                     <div class="icon_info" style="padding:0;margin:0;">
                                         <ul>
-                                            <li><a onclick="ApplyLike();" class="fa fa-heart-o cursor"><span class="badge">3</span></a></li>
+                                            <li>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <a onclick="ApplyLike();" id="anchorPhotoLike" class="fa fa-heart-o cursor"><span id="spanPhotoCountLikes" class="badge"></span></a>
+                                                }
+                                                else
+                                                {
+                                                    <a onclick="alert('SignIn');" id="anchorPhotoLike" class="fa fa-heart-o cursor"><span id="spanPhotoCountLikes" class="badge"></span></a>
+                                                }
+                                            </li>
                                         </ul>
                                         <ul>
-                                            <li><a onclick="openComments();" class="fa fa-comments-o cursor"><span class="badge" id="spanPhotoCountComments"></span></a></li>
+                                            <li><a onclick="openComments();" id="anchorPhotoComment" class="fa fa-comments-o cursor"><span class="badge" id="spanPhotoCountComments"></span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1226,7 +1235,7 @@ else
 
     <script>
         // Modal
-        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments) {
+        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
@@ -1239,6 +1248,14 @@ else
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
             $('#spanPhotoCountComments').text(countComments);
+            $('#spanPhotoCountLikes').text(CountLikes);
+            if (like == 'True') {// liked
+                $("#anchorPhotoLike").removeClass("fa-heart-o");
+                $("#anchorPhotoLike").addClass("fa-heart");
+            } else {// unliked
+                $("#anchorPhotoLike").removeClass("fa-heart");
+                $("#anchorPhotoLike").addClass("fa-heart-o");
+            }
             IncreamentPhotoVisitorCounter(id);
         }
         function IncreamentPhotoVisitorCounter(id) {
@@ -1622,26 +1639,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
             var allowToRemove = o.allowToRemove;
             return `
-                                <div class="media pb10" id="photoCommentBox_` + o.id + `">
-                                    <a class="pull-left" href="#">
-                                        <div class="user">
-                                                <img class="rounded-circle"
-                                                    src=`+ avatar + ` alt="...">
+                                        <div class="media pb10" id="photoCommentBox_` + o.id + `">
+                                            <a class="pull-left" href="#">
+                                                <div class="user">
+                                                        <img class="rounded-circle"
+                                                            src=`+ avatar + ` alt="...">
+                                                </div>
+                                            </a>
+                                        <div class="media-body mb5">
+
+                                            <h5 class="media-heading mbn"> `+ name + `
+                                                <small> - `+ commentDate + `</small>
+                                            </h5>
+
+                                            <p class="commentsText">`+ o.comment + `</p>
+
                                         </div>
-                                    </a>
-                                <div class="media-body mb5">
+                                                ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
 
-                                    <h5 class="media-heading mbn"> `+ name + `
-                                        <small> - `+ commentDate + `</small>
-                                    </h5>
-
-                                    <p class="commentsText">`+ o.comment + `</p>
-
-                                </div>
-                                        ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
-
-                                </div>
-                                  `
+                                        </div>
+                                          `
         }
         function laodComments(id) {
 
@@ -1712,8 +1729,16 @@ else
                 data: { 'SectionId': $("#hiddenPhotoModalId").val() },
                 url: 'profile/PostPhotoLike',
                 success: function (data) {
-                    if(data.isSuccess){
-                        alert('LIKED');
+                    if (data.isSuccess) {
+                        if (data.data) { // liked
+                            $("#anchorPhotoLike").removeClass("fa-heart-o");
+                            $("#anchorPhotoLike").addClass("fa-heart");
+                            $('#spanPhotoCountLikes').text(parseInt($('#spanPhotoCountLikes').text()) + 1);
+                        } else { // unliked
+                            $("#anchorPhotoLike").removeClass("fa-heart");
+                            $("#anchorPhotoLike").addClass("fa-heart-o");
+                            $('#spanPhotoCountLikes').text(parseInt($('#spanPhotoCountLikes').text()) - 1);
+                        }
                     }
                 },
                 error: function (req, status, err) {

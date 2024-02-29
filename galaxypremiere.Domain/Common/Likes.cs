@@ -14,7 +14,7 @@ namespace galaxypremiere.Domain.Common
         public virtual Users Users { get; set; }
         public byte Section { get; set; } // drived from "SectionsConstants.cs"
         public Guid SectionId { get; set; } // for example, when the section is related to USER-PHOTO, the ID of photo will be stored in it.
-        public DateTime InsertTime { get; set; } //
-        public DateTime DeleteTime { get; set; } // x=null: liekd | x!=null:unliked
+        public DateTime InsertTime { get; set; } = DateTime.Now; //
+        public DateTime? DeleteTime { get; set; } = null; // x=null: liekd | x!=null:unliked
     }
 }

@@ -10,6 +10,6 @@ namespace galaxypremiere.Application.Services.Likes.Commands.PostLike
 {
     public interface IPostLikeService
     {
-        ResultDto Execute(RequestPostLikeServiceDto req);
+        ResultDto<bool> Execute(RequestPostLikeServiceDto req);
     }
 }

@@ -37,6 +37,11 @@ namespace Endpoint.Site.Controllers
         [HttpGet]
         public IActionResult Index(string username)
         {
+            long userId = 0;
+            if (User.Identity.IsAuthenticated)
+            {
+                userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            }
             ModelGetInformationByUsername modelGetInformationByUsername = new ModelGetInformationByUsername
             {
                 ResultGetUsersInformationByUsernameServiceDto = _userInformationFacade.GetUsersInformationByUsernameService.Execute(new RequestUsersInformationByUsernameServiceDto
@@ -46,7 +51,8 @@ namespace Endpoint.Site.Controllers
                 ResultGetUsersInformationPhotosByUsernameServiceDto = _userInformationFacade.GetUsersInformationPhotosByUsernameService.Execute(new RequestGetUsersInformationPhotosByUsernameServiceDto
                 {
                     Username = username,
-                    TotalPhotos = 6
+                    TotalPhotos = 6,
+                    UserId= userId,
                 }),
             };
             return View(modelGetInformationByUsername);

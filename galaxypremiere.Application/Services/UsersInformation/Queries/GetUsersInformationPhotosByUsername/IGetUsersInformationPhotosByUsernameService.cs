@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Common.Constants;
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -30,9 +31,17 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
         {
             if (req == null) return null;
 
-            var groupedComments = _context.UsersPhotoComments.GroupBy(
-                    p => p.UsersPhotosId, p => p.Comment, (key, g) => new { PhotoId = key, Count = g.Count() });
+            var groupedComments = _context.UsersPhotoComments
+                    .GroupBy(p => p.UsersPhotosId, p => p.Comment, (key, g) => new { PhotoId = key, Count = g.Count() });
+            var groupedLikes = _context.Likes
+                     .Where(l => l.DeleteTime == null && l.Section == SectionsConstants.UserPhotos)
+                     .GroupBy(l => new { l.SectionId, l.Section })
+                     .Select(g => new { SectionId = g.Key.SectionId, Section = g.Key.Section, Count = g.Count() });
 
+            // x==0  meants it is a guest and x!=0 it is a user ant its "userId" has just been returned.
+            var currentUserLikeUnlike = _context.Likes.Where(l => l.UsersId == req.UserId && l.DeleteTime == null).AsQueryable();
+            
+            // here SectionId is equal too PhotoId
             var photos =
                 (
                 from p in _context.UsersPhotos
@@ -55,6 +64,8 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                     Detail = p.Photos.Detail,
                     VisitorCounter = p.Photos.VisitorCounter + 1,
                     CountComments = groupedComments.Where(gc => gc.PhotoId == p.Photos.Id).Select(gc => gc.Count).First().ToString(),
+                    CountLikes = groupedLikes.Where(gl => gl.SectionId == p.Photos.Id).Select(gl=>gl.Count).First().ToString(),
+                    Like = currentUserLikeUnlike.Where(x=>x.SectionId==p.Photos.Id).Any(),
                 })
                 .Take(6)
                 .ToList();

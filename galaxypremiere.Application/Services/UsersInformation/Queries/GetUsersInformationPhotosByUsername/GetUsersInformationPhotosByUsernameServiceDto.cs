@@ -8,5 +8,7 @@
         public string Detail { get; set; }
         public long VisitorCounter { get; set; }
         public string CountComments { get; set; } // the number of all comments
+        public bool Like { get; set; } // true: liked | false: unliked
+        public string CountLikes { get; set; }
     }
 }
