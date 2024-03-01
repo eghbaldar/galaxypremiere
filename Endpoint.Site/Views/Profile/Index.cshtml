@@ -1152,7 +1152,7 @@ else
                                                 }
                                                 else
                                                 {
-                                                    <a onclick="alert('SignIn');" id="anchorPhotoLike" class="fa fa-heart-o cursor"><span id="spanPhotoCountLikes" class="badge"></span></a>
+                                                    <a onclick="showLoginModal();" id="anchorPhotoLike" class="fa fa-heart-o cursor"><span id="spanPhotoCountLikes" class="badge"></span></a>
                                                 }
                                             </li>
                                         </ul>
@@ -1185,8 +1185,8 @@ else
                                         }
                                         else
                                         {
-                                            <button type="button" disabled
-                                                id="btnPostModalComment"
+                                            <button type="button"
+                                                onclick="showLoginModal();"
                                                 class="btn cur-p btn-dark" style="border-radius:0px !important;">
                                                 Sign Up
                                             </button>

@@ -5121,12 +5121,12 @@
       "PackagePath": "staticwebassets\\lib\\kingFuncs\\taggers\\sellect.js"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\modal\\modal-user-companies.css",
-      "PackagePath": "staticwebassets\\modal\\modal-user-companies.css"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\modal\\modal-user-companies.css",
+      "PackagePath": "staticwebassets\\lib\\modal\\modal-user-companies.css"
     },
     {
-      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\modal\\modal.css",
-      "PackagePath": "staticwebassets\\modal\\modal.css"
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\modal\\modal.css",
+      "PackagePath": "staticwebassets\\lib\\modal\\modal.css"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\sweetalert\\sweetalert2.all.min.js",

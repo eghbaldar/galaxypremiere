@@ -38,10 +38,7 @@ namespace Endpoint.Site.Controllers
         public IActionResult Index(string username)
         {
             long userId = 0;
-            if (User.Identity.IsAuthenticated)
-            {
-                userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
-            }
+            if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             ModelGetInformationByUsername modelGetInformationByUsername = new ModelGetInformationByUsername
             {
                 ResultGetUsersInformationByUsernameServiceDto = _userInformationFacade.GetUsersInformationByUsernameService.Execute(new RequestUsersInformationByUsernameServiceDto

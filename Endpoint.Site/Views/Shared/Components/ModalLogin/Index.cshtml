@@ -1,7 +1,8 @@
-﻿<div class="modal fade" id="loginModal" role="dialog">
+﻿ <link href="~/lib/modal/modal.css" rel="stylesheet" />
+<div class="modal fade" id="loginModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
-        <div class="modal-content">
+        <div class="modal-content-login">
             <h2>Let's go ...</h2>
 
             <form>
@@ -12,7 +13,7 @@
             <a href="#" class="link">
                 forgot your password ?
             </a>
-            <br />
+            
             <div>
                 <button id="btnRegister" onclick="btnLogin()">
                     login
@@ -46,12 +47,13 @@
                     </div>
                 </button>
             </div>
-            <br />
+            
         </div>
     </div>
 </div>
 <script>
     function showLoginModal() {
+        $('.modal').modal('hide'); // close all previous modals at first!
         $("#loginModal").modal("show");
     }
     function btnLogin() {
@@ -67,7 +69,8 @@
             url: '/home/Login',
             success: function (data) {
                 if (data.isSuccess) {
-                    location.replace('/user/me');
+                    // Check the current page URL
+                    if (window.location.pathname == "/") location.replace('/user/me'); else location.reload();
                 }
                 else {
                     Swal.fire({

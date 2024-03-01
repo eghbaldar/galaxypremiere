@@ -1,0 +1,115 @@
+﻿.modal-content-company {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: white;
+    background-clip: padding-box;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.modal-content-company h2 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: lighter;
+    text-transform: uppercase;
+    color: #414141;
+    font-size: 26px;
+}
+.modal-content-company .close {
+border:0;
+opacity:.2;
+color:black;
+font-size:25px;
+background-color:transparent;
+}
+.modal-content-company{
+    padding:10px;
+}
+    .modal-content-company input {
+        display: block;
+        margin: 0 auto;
+    }
+
+.modal-content-company #btnRegister {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    text-align: center;
+    height: 60px;
+    margin-top: -10px;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    width: 100%;
+}
+
+    .modal-content-company #btnRegister:nth-of-type(1) {
+        background: #3691D7;
+        width: 50%;
+    }
+
+    .modal-content-company #btnRegister:nth-of-type(2) {
+        background: #ff5722;
+        width: 50%;
+    }
+
+.modal-content-company span :hover {
+    -webkit-transform: translateX(30px);
+    transform: translateX(30px);
+}
+
+.modal-content-company .reg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transform: translateY(-100%) scale(1);
+    transform: translateY(-100%) scale(1);
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    background: #3691D7;
+    z-index: 5;
+    -webkit-transition: .8s ease-in-out;
+    transition: .8s ease-in-out;
+}
+
+.modal-content-company h3 {
+    position: absolute;
+    top: -100%;
+    left: 20%;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: rgba(255,255,255,.3);
+    -webkit-transition: .3s ease-in-out 1.2s;
+    transition: .3s ease-in-out 1.2s;
+}
+/*SeprationLineAlongWithOr*/
+.orSeparation {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+    .orSeparation .line {
+        display: inline-block;
+        left: 0px;
+        position: absolute;
+        width: 100%;
+        border-bottom: 1px solid rgb(216, 216, 216);
+    }
+
+    .orSeparation .or {
+        background-color: rgb(255, 255, 255);
+        color: lightgray;
+        display: block;
+        z-index: 1;
+        padding: 10px 5px;
+    }
