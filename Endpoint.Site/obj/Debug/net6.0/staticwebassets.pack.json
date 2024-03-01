@@ -2821,6 +2821,10 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638436120199541891-1.jpg"
     },
     {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638449217415493211-2.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-photos\\638449217415493211-2.jpg"
+    },
+    {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\js\\Chart.bundle.js",
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\js\\Chart.bundle.js"
     },
@@ -5123,6 +5127,10 @@
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\modal\\modal-user-companies.css",
       "PackagePath": "staticwebassets\\lib\\modal\\modal-user-companies.css"
+    },
+    {
+      "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\modal\\modal-user-photo.css",
+      "PackagePath": "staticwebassets\\lib\\modal\\modal-user-photo.css"
     },
     {
       "Id": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\wwwroot\\lib\\modal\\modal.css",

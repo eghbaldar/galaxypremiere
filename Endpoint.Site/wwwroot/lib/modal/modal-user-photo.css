@@ -1,0 +1,37 @@
+﻿.modal-content-photo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: white;
+    background-clip: padding-box;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+    .modal-content-photo .row {
+        margin:0 !important;
+    }
+
+        .modal-content-photo .row .col-7 {
+            background-color: #f9f9f9;
+            text-align: center;
+            padding: 2px;
+        }
+#PhotoModalIMG {
+    max-height: 400px; /* maximume of the photo height}*/
+}
+#PhotoModalDetail {
+    width: 100%;    
+}
+.modal-content-photo .row .timeline-footer, .modal-content-photo .row .timeline-footer .icon_info {
+    padding: 0;
+    margin: 0;
+}
+.modal-content-photo .row .timeline-comment-box {
+    padding: 0px;
+    background-color: transparent;
+    margin: 0;
+}
+

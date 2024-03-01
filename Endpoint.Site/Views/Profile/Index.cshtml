@@ -362,7 +362,7 @@
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
-                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes')">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Fullname')">
 
 
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
@@ -1115,15 +1115,15 @@ else
 <!-- Modal -->
 <div class="modal fade" id="PhotoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content-photo">
             <div class="modal-header">
                 <h5 class="modal-title"><span id="PhotoModalTitle"></span></h5>
                 <a class="btn-close" data-dismiss="modal" aria-label="Close"></a>
             </div>
             <div class="modal-body">
-                <div class="row" style="margin:0 !important;">
-                    <div class="col-7" style="background-color:#f9f9f9;text-align:center;padding:2px;">
-                        <img id="PhotoModalIMG" style="max-height: 300px;" />
+                <div class="row">
+                    <div class="col-7">
+                        <img id="PhotoModalIMG" />
                     </div>
                     <div class="col-5">
                         <input type="hidden" id="hiddenPhotoModalId" />
@@ -1132,18 +1132,18 @@ else
                             <div class="row">
                                 <div class="timeline-header p-2">
                                     <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
-                                    <span class="username">Sean Ngu</span>
+                                    <span class="username" id="spanPhotoOwner"></span>
                                     <span class="pull-right text-muted" id="spanPhotoVisitorCouter"></span>
                                 </div>
                             </div>
                             <div class="row" id="PhotoModalBoxDetail" >
                                 <div class="col p-2">
-                                    <span id="PhotoModalDetail" style="width:100%;"></span>
+                                    <span id="PhotoModalDetail"></span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="timeline-footer" style="padding:0;margin:0;">
-                                    <div class="icon_info" style="padding:0;margin:0;">
+                                <div class="timeline-footer">
+                                    <div class="icon_info" style="">
                                         <ul>
                                             <li>
                                                 @if (User.Identity.IsAuthenticated)
@@ -1166,7 +1166,7 @@ else
                         @*Comment*@
                         <div id="PhotoModalComment" hidden>
                             <a onclick="closeComments();" class="cursor"> <i class="fa fa-mail-reply"></i> </a>
-                            <div class="timeline-comment-box" style="padding:0px;background-color:transparent;margin:0;">
+                            <div class="timeline-comment-box">
                                 <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
                                 <div class="input">
                                     <div class="input-group">
@@ -1212,13 +1212,12 @@ else
         </div>
     </div>
 </div>
-<!-- modal -->
 @section Styles{
+    <link href="~/lib/modal/modal-user-photo.css" rel="stylesheet" />
     <link href="~/sitetemplate/profilepages/assets/css/style.css" rel="stylesheet" />
     <link href="~/sitetemplate/innerpages/pagecssjs/profile/profile.css" rel="stylesheet" />
 }
 @section Scripts{
-
     @* set user 's headshot and header *@
     @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Header != null)
     {
@@ -1229,13 +1228,9 @@ else
             });
         </script>
     }
-    @* set user 's positions *@
-    @*    @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Position != null)
-    {*@
-
     <script>
         // Modal
-        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes) {
+        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes,fullname) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
@@ -1247,6 +1242,7 @@ else
                 $("#PhotoModalTitle").text(title);
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
+            $("#spanPhotoOwner").text(fullname);
             if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden",true); else $('#PhotoModalBoxDetail').prop("hidden",false);
             if (CountLikes == null || CountLikes.trim() == '') $('#spanPhotoCountLikes').text("0"); else $('#spanPhotoCountLikes').text(CountLikes);
             if (countComments == null || countComments.trim() == '') $('#spanPhotoCountComments').text("0"); else $('#spanPhotoCountComments').text(countComments);
@@ -1749,6 +1745,4 @@ else
             });
         }
     </script>
-    @*}*@
-
 }
