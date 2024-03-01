@@ -166,7 +166,7 @@
 
     .img-size {
         /* 	padding: 0;
-                margin: 0; */
+                    margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -1136,7 +1136,7 @@ else
                                     <span class="pull-right text-muted" id="spanPhotoVisitorCouter"></span>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id="PhotoModalBoxDetail" >
                                 <div class="col p-2">
                                     <span id="PhotoModalDetail" style="width:100%;"></span>
                                 </div>
@@ -1247,8 +1247,9 @@ else
                 $("#PhotoModalTitle").text(title);
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
-            $('#spanPhotoCountComments').text(countComments);
-            $('#spanPhotoCountLikes').text(CountLikes);
+            if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden",true); else $('#PhotoModalBoxDetail').prop("hidden",false);
+            if (CountLikes == null || CountLikes.trim() == '') $('#spanPhotoCountLikes').text("0"); else $('#spanPhotoCountLikes').text(CountLikes);
+            if (countComments == null || countComments.trim() == '') $('#spanPhotoCountComments').text("0"); else $('#spanPhotoCountComments').text(countComments);
             if (like == 'True') {// liked
                 $("#anchorPhotoLike").removeClass("fa-heart-o");
                 $("#anchorPhotoLike").addClass("fa-heart");
@@ -1612,6 +1613,7 @@ else
                             'comment': comment,
                             'email': data.data.email,
                         };
+                        $("#txtPostModalComment").val('');
                         $("#media-body-comments").append(commentsBox(fetchedData));
                         $('#spanPhotoCountComments').text(parseInt($('#spanPhotoCountComments').text()) + 1);
                     },
@@ -1639,26 +1641,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
             var allowToRemove = o.allowToRemove;
             return `
-                                        <div class="media pb10" id="photoCommentBox_` + o.id + `">
-                                            <a class="pull-left" href="#">
-                                                <div class="user">
-                                                        <img class="rounded-circle"
-                                                            src=`+ avatar + ` alt="...">
+                                                <div class="media pb10" id="photoCommentBox_` + o.id + `">
+                                                    <a class="pull-left" href="#">
+                                                        <div class="user">
+                                                                <img class="rounded-circle"
+                                                                    src=`+ avatar + ` alt="...">
+                                                        </div>
+                                                    </a>
+                                                <div class="media-body mb5">
+
+                                                    <h5 class="media-heading mbn"> `+ name + `
+                                                        <small> - `+ commentDate + `</small>
+                                                    </h5>
+
+                                                    <p class="commentsText">`+ o.comment + `</p>
+
                                                 </div>
-                                            </a>
-                                        <div class="media-body mb5">
+                                                        ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
 
-                                            <h5 class="media-heading mbn"> `+ name + `
-                                                <small> - `+ commentDate + `</small>
-                                            </h5>
-
-                                            <p class="commentsText">`+ o.comment + `</p>
-
-                                        </div>
-                                                ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
-
-                                        </div>
-                                          `
+                                                </div>
+                                                  `
         }
         function laodComments(id) {
 
