@@ -157,7 +157,7 @@
     .img-fluid {
         aspect-ratio: 1;
         object-fit: cover !important;
-        padding: 1px;
+        /*padding: 1px;*/
     }
     /*modal*/
     .btn-close {
@@ -362,7 +362,7 @@
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
-                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Fullname')">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Fullname','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Headshot')">
 
 
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
@@ -1131,8 +1131,8 @@ else
                         <div id="PhotoModalCaption">
                             <div class="row">
                                 <div class="timeline-header p-2">
-                                    <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
-                                    <span class="username" id="spanPhotoOwner"></span>
+                                    <span class="userimage"><img class="img-fluid" id="imgPhotoOwnerHeadshot" alt=""></span>
+                                    <span class="username" id="spanPhotoOwnerName"></span>
                                     <span class="pull-right text-muted" id="spanPhotoVisitorCouter"></span>
                                 </div>
                             </div>
@@ -1230,7 +1230,7 @@ else
     }
     <script>
         // Modal
-        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes,fullname) {
+        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes,fullname,headshot) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
@@ -1242,7 +1242,8 @@ else
                 $("#PhotoModalTitle").text(title);
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
-            $("#spanPhotoOwner").text(fullname);
+            $("#spanPhotoOwnerName").text(fullname);
+            if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"); else $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/user-headshot/" + headshot);
             if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden",true); else $('#PhotoModalBoxDetail').prop("hidden",false);
             if (CountLikes == null || CountLikes.trim() == '') $('#spanPhotoCountLikes').text("0"); else $('#spanPhotoCountLikes').text(CountLikes);
             if (countComments == null || countComments.trim() == '') $('#spanPhotoCountComments').text("0"); else $('#spanPhotoCountComments').text(countComments);

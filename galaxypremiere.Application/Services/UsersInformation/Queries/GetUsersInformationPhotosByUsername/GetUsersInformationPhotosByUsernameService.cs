@@ -40,7 +40,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                 {
                     Photos = p,
                     Fullname = $"{info.Firstname} {info.MiddleName} {info.Surname}",
-                    Username = info.Username,
+                    info = info,
                 }
                 )
                 .OrderBy(p => p.Photos.InsertDate)
@@ -54,7 +54,8 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                     CountComments = groupedComments.Where(gc => gc.PhotoId == p.Photos.Id).Select(gc => gc.Count).First().ToString(),
                     CountLikes = groupedLikes.Where(gl => gl.SectionId == p.Photos.Id).Select(gl => gl.Count).First().ToString(),
                     Like = currentUserLikeUnlike.Where(x => x.SectionId == p.Photos.Id).Any(),
-                    Fullname= (string.IsNullOrEmpty(p.Fullname.Trim()))?p.Username:p.Fullname,
+                    Fullname= (string.IsNullOrEmpty(p.Fullname.Trim()))?p.info.Username:p.Fullname,
+                    Headshot = p.info.Photo,
                 })
                 .Take(6)
                 .ToList();
