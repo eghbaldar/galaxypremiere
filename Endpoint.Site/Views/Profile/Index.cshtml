@@ -77,11 +77,6 @@
     .tab-content {
         padding: 0 !important;
     }
-
-    .rounded-circle {
-        aspect-ratio: 1;
-        object-fit: cover !important;
-    }
     /**/
     .counter .img-responsive-top-icons.img-crop-square {
         filter: invert(85%) sepia(7%) saturate(25%) hue-rotate(353deg) brightness(103%) contrast(78%);
@@ -153,20 +148,12 @@
     }
 </style>
 <style>
-    /*photos*/
-    .img-fluid {
-        aspect-ratio: 1;
-        object-fit: cover !important;
-        /*padding: 1px;*/
-    }
     /*modal*/
     .btn-close {
         cursor: pointer;
     }
 
     .img-size {
-        /* 	padding: 0;
-                    margin: 0; */
         height: 450px;
         width: 700px;
         background-size: cover;
@@ -254,7 +241,7 @@
                                     </div>
                                     <div class="col-xl-4 col-md-4 d-flex justify-content-center">
                                         <div class="image-default">
-                                            <img class="rounded-circle"
+                                            <img class="kingImgFit rounded-circle"
                                              src=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Photo != null ? "/SiteTemplate/innerpages/images/user-headshot/"+Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Photo : "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg")
                                              onerror="this.src='/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg'"
                                              alt=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Fullname.Trim() != "" ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Fullname : Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Username)>
@@ -362,11 +349,11 @@
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
-                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Fullname','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Headshot')">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Fullname','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Headshot','@TopRightUserPanelViewComponent.headshot')">
 
 
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
-                                     class="img-fluid">
+                                     class="img-fluid kingImgFit">
 
 
                                         </a>
@@ -379,7 +366,7 @@
 
                     <div class="profile-blog pt-3 border-bottom-1 pb-1">
                         <h5 class="text-primary d-inline">LastCall Festivals</h5><a href="javascript:void()" class="pull-right f-s-16">More</a>
-                        <img src="~/sitetemplate/profilepages/assets/images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
+                        <img src="~/sitetemplate/profilepages/assets/images/profile/1.jpg" alt="" class="img-fluid kingImgFit mt-4 mb-4 w-100">
                         <h4>Darwin Creative Agency Theme</h4>
                         <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
                     </div>
@@ -1131,7 +1118,7 @@ else
                         <div id="PhotoModalCaption">
                             <div class="row">
                                 <div class="timeline-header p-2">
-                                    <span class="userimage"><img class="img-fluid" id="imgPhotoOwnerHeadshot" alt=""></span>
+                                    <span class="userimage"><img class="img-fluid kingImgFit" id="imgPhotoOwnerHeadshot" alt=""></span>
                                     <span class="username" id="spanPhotoOwnerName"></span>
                                     <span class="pull-right text-muted" id="spanPhotoVisitorCouter"></span>
                                 </div>
@@ -1167,7 +1154,7 @@ else
                         <div id="PhotoModalComment" hidden>
                             <a onclick="closeComments();" class="cursor"> <i class="fa fa-mail-reply"></i> </a>
                             <div class="timeline-comment-box">
-                                <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
+                                <div class="user"><img id="imgPhotoCommenterHeadshot" alt="" /></div>
                                 <div class="input">
                                     <div class="input-group">
                                         <input type="text"
@@ -1230,7 +1217,7 @@ else
     }
     <script>
         // Modal
-        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes,fullname,headshot) {
+        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes,fullname,headshot,commenterHeadshot) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
@@ -1243,7 +1230,11 @@ else
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
             $("#spanPhotoOwnerName").text(fullname);
+
+            $("#imgPhotoCommenterHeadshot").attr("src", commenterHeadshot);
             if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"); else $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/user-headshot/" + headshot);
+            
+            
             if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden",true); else $('#PhotoModalBoxDetail').prop("hidden",false);
             if (CountLikes == null || CountLikes.trim() == '') $('#spanPhotoCountLikes').text("0"); else $('#spanPhotoCountLikes').text(CountLikes);
             if (countComments == null || countComments.trim() == '') $('#spanPhotoCountComments').text("0"); else $('#spanPhotoCountComments').text(countComments);
@@ -1641,7 +1632,7 @@ else
                                                 <div class="media pb10" id="photoCommentBox_` + o.id + `">
                                                     <a class="pull-left" href="#">
                                                         <div class="user">
-                                                                <img class="rounded-circle"
+                                                                <img class="kingImgFit"
                                                                     src=`+ avatar + ` alt="...">
                                                         </div>
                                                     </a>

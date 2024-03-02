@@ -15,6 +15,7 @@ public class TopRightUserPanelViewComponent : ViewComponent
     public static String fullname;
     public static long userId;
     public static String? username;
+    public static String? headshot;
 
     private readonly IUserInformationFacade _userInformationFacade;
 
@@ -39,12 +40,18 @@ public class TopRightUserPanelViewComponent : ViewComponent
                 var retrieve = _userInformationFacade.GetUsersInformationServiceService.Execute
                 (new galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation.RequestGetUsersInformationServiceDto
                 {
-                    UsersId = userId
+                    UsersId = userId,
                 });
-                if(retrieve != null)
-                    username= retrieve.Username;
+                if (retrieve != null)
+                {
+                    username = retrieve.Username;
+                    headshot = (string.IsNullOrEmpty(retrieve.Photo)) ? "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg" : $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}";
+                }
                 else
-                    username= "";
+                {
+                    username = "";
+                    headshot = "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg";
+                }
             }
             catch (Exception ex)
             {

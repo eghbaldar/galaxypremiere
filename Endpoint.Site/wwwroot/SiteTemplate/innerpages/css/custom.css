@@ -1,5 +1,8 @@
 /*------------------------------------------------------------------
-    File Name: custom.css
+    File Name: custom.css img-fluid rounded-circle
 -------------------------------------------------------------------*/
-
-/** ADD YOUR AWESOME CODES HERE **/
+.kingImgFit {
+    aspect-ratio: 1 !important;
+    object-fit: cover !important;
+    /** use ".rounded-circle" to make cirle your photo **/
+}	

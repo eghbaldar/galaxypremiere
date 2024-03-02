@@ -887,7 +887,7 @@ select.form-control:not([size]):not([multiple]) {
 
         .timeline-comment-box .user img {
             max-width: 100%;
-            max-height: 100%
+            /*max-height: 100%*/
         }
 
         .timeline-comment-box .user + .input {
