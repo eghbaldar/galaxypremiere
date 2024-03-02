@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JGU3njXtAoqn4WoUsxT8tkUBzwGQ8gcK82R2DQj25WwRj2CtDQDyTj6638L83nrxvFAZ1O7FuX5w/UdqT7hfdQ==",
+  "dgSpecHash": "WF7hrGwX4Ry5IDmbNKAlMzBUh8WxFFfzxuPBza8ayOxQd9sUg2Jg9oSVwOiBsTeOI/NyMapf+NKpRS8AZ8+XuQ==",
   "success": true,
   "projectFilePath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Application\\galaxypremiere.Application.csproj",
   "expectedPackageFiles": [
@@ -25,13 +25,16 @@
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\sixlabors.imagesharp\\3.1.2\\sixlabors.imagesharp.3.1.2.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"

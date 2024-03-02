@@ -1230,11 +1230,8 @@ else
             detail = `<i class="fa fa-quote-left fa-fw"></i><br>` + detail.replace(/<br>/g, '<br>') + `<i class="fa fa-quote-right fa-fw"></i>`;
             $("#PhotoModalDetail").html(detail);
             $("#spanPhotoOwnerName").text(fullname);
-
             $("#imgPhotoCommenterHeadshot").attr("src", commenterHeadshot);
             if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"); else $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/user-headshot/" + headshot);
-            
-            
             if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden",true); else $('#PhotoModalBoxDetail').prop("hidden",false);
             if (CountLikes == null || CountLikes.trim() == '') $('#spanPhotoCountLikes').text("0"); else $('#spanPhotoCountLikes').text(CountLikes);
             if (countComments == null || countComments.trim() == '') $('#spanPhotoCountComments').text("0"); else $('#spanPhotoCountComments').text(countComments);
