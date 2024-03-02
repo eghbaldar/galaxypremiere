@@ -12022,23 +12022,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\King\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\Endpoint.Site.csproj",
+      "projectUniqueName": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\Endpoint.Site.csproj",
       "projectName": "Endpoint.Site",
-      "projectPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\Endpoint.Site.csproj",
-      "packagesPath": "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\",
-      "outputPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\Endpoint.Site\\obj\\",
+      "projectPath": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\Endpoint.Site.csproj",
+      "packagesPath": "C:\\Users\\King\\.nuget\\packages\\",
+      "outputPath": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\IRANFILMPORT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\King\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12052,14 +12048,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Application\\galaxypremiere.Application.csproj": {
-              "projectPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Application\\galaxypremiere.Application.csproj"
+            "D:\\_PROJECT_\\GalaxyPremiere\\galaxypremiere.Application\\galaxypremiere.Application.csproj": {
+              "projectPath": "D:\\_PROJECT_\\GalaxyPremiere\\galaxypremiere.Application\\galaxypremiere.Application.csproj"
             },
-            "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Infrastructure\\galaxypremiere.Infrastructure.csproj": {
-              "projectPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Infrastructure\\galaxypremiere.Infrastructure.csproj"
+            "D:\\_PROJECT_\\GalaxyPremiere\\galaxypremiere.Infrastructure\\galaxypremiere.Infrastructure.csproj": {
+              "projectPath": "D:\\_PROJECT_\\GalaxyPremiere\\galaxypremiere.Infrastructure\\galaxypremiere.Infrastructure.csproj"
             },
-            "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Persistence\\galaxypremiere.Persistence.csproj": {
-              "projectPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Persistence\\galaxypremiere.Persistence.csproj"
+            "D:\\_PROJECT_\\GalaxyPremiere\\galaxypremiere.Persistence\\galaxypremiere.Persistence.csproj": {
+              "projectPath": "D:\\_PROJECT_\\GalaxyPremiere\\galaxypremiere.Persistence\\galaxypremiere.Persistence.csproj"
             }
           }
         }

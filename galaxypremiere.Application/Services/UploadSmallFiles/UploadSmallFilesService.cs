@@ -14,7 +14,7 @@ namespace galaxypremiere.Application.Services.UploadSmallFiles
     {
         public ResultUploadDto UploadFile(RequestUploadSmallFilesServiceDto req)
         {
-            // check file ...
+            // check file ....
             if (req.File == null || req.File.Length == 0)
             {
                 return new ResultUploadDto

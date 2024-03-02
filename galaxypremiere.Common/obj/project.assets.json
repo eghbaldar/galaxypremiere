@@ -79,23 +79,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\King\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Common\\galaxypremiere.Common.csproj",
+      "projectUniqueName": "D:\\_PROJECT_\\GalaxyPremiere\\galaxypremiere.Common\\galaxypremiere.Common.csproj",
       "projectName": "galaxypremiere.Common",
-      "projectPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Common\\galaxypremiere.Common.csproj",
-      "packagesPath": "C:\\Users\\IRANFILMPORT\\.nuget\\packages\\",
-      "outputPath": "D:\\_Developing_\\GalaxyPremiere\\Project\\galaxypremiere\\galaxypremiere.Common\\obj\\",
+      "projectPath": "D:\\_PROJECT_\\GalaxyPremiere\\galaxypremiere.Common\\galaxypremiere.Common.csproj",
+      "packagesPath": "C:\\Users\\King\\.nuget\\packages\\",
+      "outputPath": "D:\\_PROJECT_\\GalaxyPremiere\\galaxypremiere.Common\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\IRANFILMPORT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\King\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
