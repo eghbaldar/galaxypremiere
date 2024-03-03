@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Application.Services.UploadPhoto;
 using galaxypremiere.Application.Services.UploadSmallFiles;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationBIO;
 using galaxypremiere.Common.DTOs;
@@ -69,7 +70,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                     var mappedDto = _mapper.Map<RequestUpdateUsersInformationHeadshotServiceDto>(req);
                     _mapper.Map(mappedDto, userHeadshot);
                     //========================= Upload Headshot
-                    var file = CreateFilename(req.Photo,req.UsersId);
+                    var file = CreateFilename(req.Photo, req.UsersId);
                     switch (file.Success)
                     {
                         case true:
@@ -100,20 +101,38 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                 };
             }
         }
-
-        private ResultUploadDto CreateFilename(IFormFile file,long userId)
+        private ResultUploadDto CreateFilename(IFormFile file, long userId)
         {
-            UploadSmallFilesService uploadSmallFilesService = new UploadSmallFilesService();
-            var filename = uploadSmallFilesService.UploadFile(new RequestUploadSmallFilesServiceDto
+            UploadPhotoService uploadPhotoService = new UploadPhotoService();
+            var filename = uploadPhotoService.UploadFile(new RequestUploadPhotoServiceDto
             {
                 DirectoryNameLevelParent = "images",
                 DirectoryNameLevelChild = "user-headshot",
                 Exension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
                 FileSize = "2097152", // => 2 Mb
                 File = file,
-                UsersId=userId,
+                UsersId = userId,
+                Dimensions = new Dictionary<string, string>
+                        {
+                        {"original","500" },
+                        {"thumb","150" },
+                        }
             });
             return filename;
         }
+        //private ResultUploadDto CreateFilename(IFormFile file,long userId)
+        //{
+        //    UploadSmallFilesService uploadSmallFilesService = new UploadSmallFilesService();
+        //    var filename = uploadSmallFilesService.UploadFile(new RequestUploadSmallFilesServiceDto
+        //    {
+        //        DirectoryNameLevelParent = "images",
+        //        DirectoryNameLevelChild = "user-headshot",
+        //        Exension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
+        //        FileSize = "2097152", // => 2 Mb
+        //        File = file,
+        //        UsersId=userId,
+        //    });
+        //    return filename;
+        //}
     }
 }

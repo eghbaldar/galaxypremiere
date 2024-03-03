@@ -9,117 +9,117 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Endpoint.Site
 build_property.RootNamespace = Endpoint.Site
-build_property.ProjectDir = D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site\
+build_property.ProjectDir = D:\_PROJECT_\GalaxyPremiere\Endpoint.Site\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\Endpoint.Site
+build_property.MSBuildProjectDirectory = D:\_PROJECT_\GalaxyPremiere\Endpoint.Site
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Areas/Admin/Views/Auth/login.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Areas/Admin/Views/Auth/login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXV0aFxsb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Areas/Admin/Views/Home/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Areas/Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Areas/Admin/Views/Shared/_Layout.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Areas/Admin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Areas/Admin/Views/User/Create.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Areas/Admin/Views/User/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Areas/Admin/Views/User/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Areas/Admin/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Areas/Admin/Views/User/Information.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Areas/Admin/Views/User/Information.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmZvcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Areas/Admin/Views/User/LoginLogs.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Areas/Admin/Views/User/LoginLogs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxMb2dpbkxvZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Pages/Error.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Pages/_Layout.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Pages/_ViewImports.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Pages/_ViewStart.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Home/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Profile/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Profile/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Shared/Components/ModalLogin/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Shared/Components/ModalLogin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTW9kYWxMb2dpblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Shared/Components/TopRightUserPanel/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Shared/Components/TopRightUserPanel/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVG9wUmlnaHRVc2VyUGFuZWxcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Shared/Components/UserAccountNavigation/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Shared/Components/UserAccountNavigation/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVXNlckFjY291bnROYXZpZ2F0aW9uXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Shared/Components/UserLeftSliderMenu/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Shared/Components/UserLeftSliderMenu/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVXNlckxlZnRTbGlkZXJNZW51XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Shared/Components/UserPhotosNavigation/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Shared/Components/UserPhotosNavigation/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVXNlclBob3Rvc05hdmlnYXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Shared/Components/UserProfileNavigation/Index.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Shared/Components/UserProfileNavigation/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVXNlclByb2ZpbGVOYXZpZ2F0aW9uXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Shared/_LayoutInnerPages.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Shared/_LayoutInnerPages.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRJbm5lclBhZ2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/User/Me.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/User/Me.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxNZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/User/Photos.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/User/Photos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxQaG90b3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/User/Profile.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/User/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/_ViewImports.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/_ViewStart.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/_Developing_/GalaxyPremiere/Project/galaxypremiere/Endpoint.Site/Views/Shared/_Layout.cshtml]
+[D:/_PROJECT_/GalaxyPremiere/Endpoint.Site/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-oqejla57e6

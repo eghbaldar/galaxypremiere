@@ -10,3 +10,15 @@ D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Common\obj\
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Common\obj\Debug\net6.0\refint\galaxypremiere.Common.dll
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Common\obj\Debug\net6.0\galaxypremiere.Common.pdb
 D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Common\obj\Debug\net6.0\ref\galaxypremiere.Common.dll
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\bin\Debug\net6.0\galaxypremiere.Common.deps.json
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\bin\Debug\net6.0\galaxypremiere.Common.dll
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\bin\Debug\net6.0\galaxypremiere.Common.pdb
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\obj\Debug\net6.0\galaxypremiere.Common.csproj.AssemblyReference.cache
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\obj\Debug\net6.0\galaxypremiere.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\obj\Debug\net6.0\galaxypremiere.Common.AssemblyInfoInputs.cache
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\obj\Debug\net6.0\galaxypremiere.Common.AssemblyInfo.cs
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\obj\Debug\net6.0\galaxypremiere.Common.csproj.CoreCompileInputs.cache
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\obj\Debug\net6.0\galaxypremiere.Common.dll
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\obj\Debug\net6.0\refint\galaxypremiere.Common.dll
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\obj\Debug\net6.0\galaxypremiere.Common.pdb
+D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\obj\Debug\net6.0\ref\galaxypremiere.Common.dll

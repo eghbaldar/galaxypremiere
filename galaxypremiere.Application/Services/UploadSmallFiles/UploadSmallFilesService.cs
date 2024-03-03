@@ -58,56 +58,16 @@ namespace galaxypremiere.Application.Services.UploadSmallFiles
             string filename = DateTime.Now.Ticks.ToString() + "-" + req.UsersId + info.Extension.ToLower();
             // copy file ...
             var filePath = Path.Combine(uploadRootFolder, filename);
-            //using (var fileStream = new FileStream(filePath, FileMode.Create))
-            //{
-            //    req.File.CopyTo(fileStream);
-            //}
-            using (MemoryStream memoryStream = new MemoryStream())
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
-                // Copy the file contents to the MemoryStream
-                req.File.CopyTo(memoryStream);
-
-                // Reset the position of the MemoryStream to the beginning
-                memoryStream.Position = 0;
-
-                // Now you can use the MemoryStream as needed
-                // For example, you can pass it to the SaveImageFromMemoryStream method
-                SaveImageFromMemoryStream(memoryStream);
+                req.File.CopyTo(fileStream);
             }
-
             return new ResultUploadDto
             {
                 Success = true,
                 Message = "File is uploaded succesfully",
                 Filename = filename,
             };
-        }
-
-        public void SaveImageFromMemoryStream(MemoryStream memoryStream)
-        {
-            // Load the image from the MemoryStream
-            using (Image image = Image.FromStream(memoryStream))
-            {
-                // Generate a unique file name
-                string uniqueFileName = Guid.NewGuid().ToString() + ".jpg";
-
-                // Determine the path where you want to save the image
-                string imagePath = Path.Combine($@"wwwroot\SiteTemplate\innerpages\", uniqueFileName);
-                // Calculate the new width and height based on the desired percentage
-                // Calculate the new dimensions based on the desired width and the aspect ratio
-                int newWidth = 150;
-                int newHeight = (int)Math.Round(image.Height * ((double)newWidth / image.Width));
-
-                // Resize the image if desired
-                using (Bitmap bitmap = new Bitmap(image))
-                {
-                    using (Bitmap resizedBitmap = new Bitmap(bitmap, new Size(newWidth, newHeight)))
-                    {
-                        // Save the resized image to the specified path
-                        resizedBitmap.Save(imagePath);
-                    }
-                }
-            }
         }
     }
 }

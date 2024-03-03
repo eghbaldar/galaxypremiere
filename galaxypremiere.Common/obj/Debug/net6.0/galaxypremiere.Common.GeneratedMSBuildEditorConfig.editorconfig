@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = galaxypremiere.Common
-build_property.ProjectDir = D:\_Developing_\GalaxyPremiere\Project\galaxypremiere\galaxypremiere.Common\
+build_property.ProjectDir = D:\_PROJECT_\GalaxyPremiere\galaxypremiere.Common\
