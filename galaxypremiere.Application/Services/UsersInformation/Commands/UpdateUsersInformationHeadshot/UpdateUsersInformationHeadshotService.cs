@@ -108,31 +108,17 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
             {
                 DirectoryNameLevelParent = "images",
                 DirectoryNameLevelChild = "user-headshot",
-                Exension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
+                Extension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
                 FileSize = "2097152", // => 2 Mb
                 File = file,
                 UsersId = userId,
-                Dimensions = new Dictionary<string, string>
+                Scales = new Dictionary<string, string>
                         {
-                        {"original","500" },
+                        {"original","600" },
                         {"thumb","150" },
                         }
             });
             return filename;
         }
-        //private ResultUploadDto CreateFilename(IFormFile file,long userId)
-        //{
-        //    UploadSmallFilesService uploadSmallFilesService = new UploadSmallFilesService();
-        //    var filename = uploadSmallFilesService.UploadFile(new RequestUploadSmallFilesServiceDto
-        //    {
-        //        DirectoryNameLevelParent = "images",
-        //        DirectoryNameLevelChild = "user-headshot",
-        //        Exension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
-        //        FileSize = "2097152", // => 2 Mb
-        //        File = file,
-        //        UsersId=userId,
-        //    });
-        //    return filename;
-        //}
     }
 }

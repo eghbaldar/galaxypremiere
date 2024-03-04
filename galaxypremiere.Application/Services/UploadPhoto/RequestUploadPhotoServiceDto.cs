@@ -12,13 +12,13 @@ namespace galaxypremiere.Application.Services.UploadPhoto
         public string DirectoryNameLevelParent { get; set; } // Y=> wwwroot + Y 
         public string DirectoryNameLevelChild { get; set; } // X=> wwwroot + Y + X
         public IFormFile File { get; set; }
-        public string[] Exension { get; set; } // acceptable extension
+        public string[] Extension { get; set; } // acceptable extension
         public string FileSize { get; set; } // acceptable fileSize
         public long UsersId { get; set; }
-        public Dictionary<string, string> Dimensions { get; set; }
-        // for example, if we want to create to photos with different scales, we have to send: "{'original','550'},{'thumb','150'}}"
-        // but if you desire to have one photo just pass a dimension: "{'original','550'}}"
-        // 150 is width, and height is defined automatically based on its aspect ratio.
-        // original and thumb are only samples to name those dimensions, not more.
+        public Dictionary<string, string> Scales { get; set; }
+        // For example, if we want to create photos with different scales, we need to send: "{'original', '550'}, {'thumb', '150'}"
+        // However, if you only desire to have one photo, simply pass a single scale: "{'original', '550'}"
+        // Here, 150 represents the width, and the height is automatically determined based on the photo's aspect ratio.
+        // The terms 'original' and 'thumb' are merely sample names for those scale; they hold no additional significance.
     }
 }

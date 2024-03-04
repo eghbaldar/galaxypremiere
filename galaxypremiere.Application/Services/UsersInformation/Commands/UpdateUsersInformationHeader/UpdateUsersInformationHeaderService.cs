@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Application.Services.UploadPhoto;
 using galaxypremiere.Application.Services.UploadSmallFiles;
 using galaxypremiere.Common.DTOs;
 using Microsoft.AspNetCore.Http;
@@ -101,15 +102,19 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
 
         private ResultUploadDto CreateFilename(IFormFile file,long userId)
         {
-            UploadSmallFilesService uploadSmallFilesService = new UploadSmallFilesService();
-            var filename = uploadSmallFilesService.UploadFile(new RequestUploadSmallFilesServiceDto
+            UploadPhotoService uploadPhotoService = new UploadPhotoService();
+            var filename = uploadPhotoService.UploadFile(new RequestUploadPhotoServiceDto
             {
                 DirectoryNameLevelParent = "images",
                 DirectoryNameLevelChild = "user-header",
-                Exension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
+                Extension = new string[] { ".jpg", ".png", ".bmp", ".jpeg" }, // always must be in way of lowerCase()s
                 FileSize = "5242880", // => 5 Mb
                 File = file,
                 UsersId=userId,
+                Scales = new Dictionary<string, string>
+                        {
+                        {"original","2500" },
+                        }
             });
             return filename;
         }

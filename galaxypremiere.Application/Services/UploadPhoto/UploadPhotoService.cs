@@ -25,12 +25,12 @@ namespace galaxypremiere.Application.Services.UploadPhoto
             }
             // check extension ....
             FileInfo info = new FileInfo(req.File.FileName);
-            if (Array.IndexOf(req.Exension, info.Extension.ToLower()) < 0)
+            if (Array.IndexOf(req.Extension, info.Extension.ToLower()) < 0)
             {
                 return new ResultUploadDto
                 {
                     Success = false,
-                    Message = $"File extension (${Array.IndexOf(req.Exension, info.Extension.ToLower())}) is unacceptable",
+                    Message = $"File extension (${Array.IndexOf(req.Extension, info.Extension.ToLower())}) is unacceptable",
                     Filename = "",
                 };
             }
@@ -63,7 +63,7 @@ namespace galaxypremiere.Application.Services.UploadPhoto
                     memoryStream,
                     req.UsersId,
                     info.Extension.ToLower(),
-                    req.Dimensions,
+                    req.Scales,
                     uploadRootFolder);
             }
             return new ResultUploadDto
@@ -78,20 +78,18 @@ namespace galaxypremiere.Application.Services.UploadPhoto
             MemoryStream memoryStream,
             long userId,
             string extension,
-            Dictionary<string, string> dimensions,
+            Dictionary<string, string> scales,
             string uploadPath
             )
         {
             using (Image image = Image.FromStream(memoryStream))
             {
-                string firstPartOfFilename = $"{DateTime.Now.Ticks.ToString()}-{userId.ToString()}";
-                for(int i = 0;i < dimensions.Count; i++)
+                string firstPartOfFilename = $"{DateTime.Now.ToString("yyyyMMddHHmmss")}-{DateTime.Now.Ticks.ToString()}-{userId.ToString()}";
+                for(int i = 0;i < scales.Count; i++)
                 {
-                    //Dictionary<string, string> scaleInfo = dimensions[i];
-
-                    string uniqueFileName = $"{firstPartOfFilename}-{dimensions.ElementAt(i).Key}{extension}"; // Guid.NewGuid().ToString() + ".jpg";
-                    string imagePath = $"{uploadPath}{uniqueFileName}";
-                    int Width = int.Parse(dimensions.ElementAt(i).Value);
+                    string uniqueFileName = $"{firstPartOfFilename}-{scales.ElementAt(i).Key}{extension}"; // Guid.NewGuid().ToString() + ".jpg";
+                    string imagePath = $"{uploadPath}/{uniqueFileName}";
+                    int Width = int.Parse(scales.ElementAt(i).Value);
                     int Height = (int)Math.Round(image.Height * ((double)Width / image.Width));
                     using (Bitmap bitmap = new Bitmap(image))
                     {

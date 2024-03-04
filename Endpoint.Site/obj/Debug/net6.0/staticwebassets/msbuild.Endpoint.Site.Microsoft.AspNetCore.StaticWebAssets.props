@@ -10880,22 +10880,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-headshot\638441237948065607-1.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-headshot638450890957917217-1-original.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>Endpoint.Site</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Endpoint.Site</BasePath>
-      <RelativePath>SiteTemplate/innerpages/images/user-headshot638450890957917217-1-original.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-headshot638450890957917217-1-original.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\SiteTemplate\innerpages\images\user-photos\638436008103474274-1.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Endpoint.Site</SourceId>
