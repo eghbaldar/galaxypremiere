@@ -1,9 +1,14 @@
 ﻿using galaxypremiere.Application.Services.UploadSmallFiles;
 using galaxypremiere.Common.DTOs;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO.Compression;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,7 +59,7 @@ namespace galaxypremiere.Application.Services.UploadPhoto
             //var filePath = Path.Combine(uploadRootFolder, filename);
             string filename;
             using (MemoryStream memoryStream = new MemoryStream())
-            { 
+            {
                 req.File.CopyTo(memoryStream);// Copy the file contents to the MemoryStream
                 memoryStream.Position = 0;// Reset the position of the MemoryStream to the beginning
                 // Now you can use the MemoryStream as needed
@@ -85,23 +90,49 @@ namespace galaxypremiere.Application.Services.UploadPhoto
             using (Image image = Image.FromStream(memoryStream))
             {
                 string firstPartOfFilename = $"{DateTime.Now.ToString("yyyyMMddHHmmss")}-{DateTime.Now.Ticks.ToString()}-{userId.ToString()}";
-                for(int i = 0;i < scales.Count; i++)
+                for (int i = 0; i < scales.Count; i++)
                 {
-                    string uniqueFileName = $"{firstPartOfFilename}-{scales.ElementAt(i).Key}{extension}"; // Guid.NewGuid().ToString() + ".jpg";
-                    string imagePath = $"{uploadPath}/{uniqueFileName}";
                     int Width = int.Parse(scales.ElementAt(i).Value);
                     int Height = (int)Math.Round(image.Height * ((double)Width / image.Width));
-                    using (Bitmap bitmap = new Bitmap(image))
+
+                    string uniqueFileName = $"{firstPartOfFilename}-{scales.ElementAt(i).Key}{extension}"; // Guid.NewGuid().ToString() + ".jpg";
+                    string imagePath = $"{uploadPath}/{uniqueFileName}";
+
+
+                    if (Width <= image.Width)
                     {
-                        using (Bitmap resizedBitmap = new Bitmap(bitmap, new Size(Width, Height)))
+                        using (Bitmap bitmap = new Bitmap(image, Width, Height))
                         {
-                            resizedBitmap.Save(imagePath);  // Save the resized image to the specified path
+                            ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
+
+                            // https://learn.microsoft.com/en-us/dotnet/desktop/winforms/advanced/how-to-set-jpeg-compression-level?view=netframeworkdesktop-4.8&redirectedfrom=MSDN
+                            System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                            EncoderParameters myEncoderParameters = new EncoderParameters(1);
+
+                            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 40L);
+                            myEncoderParameters.Param[0] = myEncoderParameter;
+                            bitmap.Save(imagePath, jpgEncoder, myEncoderParameters);
                         }
                     }
-
+                    else
+                    {
+                        image.Save(imagePath, ImageFormat.Jpeg);
+                    }
                 }
                 return firstPartOfFilename;
             }
+        }
+        private static ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
         }
     }
 }
