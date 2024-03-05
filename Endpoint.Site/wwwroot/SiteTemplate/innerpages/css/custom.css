@@ -6,8 +6,54 @@
     object-fit: cover !important;
     /** use ".rounded-circle" to make cirle your photo **/
 }
+
 .kingImgWH100 {
     width: 35px !important;
     height: 35px !important;
     object-fit: cover;
+}
+
+.icon_info ul.user_profile_dd li > a::after {
+    height: 0 !important;
+    right: 10px !important;
+}
+
+@media (max-width: 768px) {
+    .user_profile_dd .name_user {
+        width: 100%;
+        width: 150px;
+        white-space: nowrap;
+        overflow: clip;
+        text-overflow: ellipsis;
+    }
+    }
+    .logo_section {
+        display: none;
+    }
+}
+
+@media (max-width: 444px) {
+    .user_profile_dd .name_user {
+        display: none;
+    }
+
+    .dropdown-toggle {
+        padding-right: 35px;
+    }
+}
+
+@media (max-width: 575px) {
+    .icon_info #icons {
+        display: none;
+    }
+}
+@media (max-width: 400px) {
+    .user_profile_dd .name_user {
+        display: none;
+        padding-right: 55px;
+    }
+
+    .dropdown-toggle {
+        padding-right: 35px;
+    }
 }
