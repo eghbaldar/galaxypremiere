@@ -480,6 +480,9 @@ function dropavatar(e) {
             data: postData,
             url: 'MeHeadshot',
             success: function (data) {
+                ///////////////////////////// change header headshot automatically!
+                var photo = "/SiteTemplate/innerpages/images/user-headshot/"+data.data+"-thumb.jpg";
+                $("#TopRightUserPanelHeadshotImg").attr('src', photo);
                 //////////////////////////// Loaders
                 $("#HeadshotLoader").css("display", "none"); // circle loading on photo
                 $("#dropzoneAvatar *").attr("disabled", false).off('click'); // enable clickable                 

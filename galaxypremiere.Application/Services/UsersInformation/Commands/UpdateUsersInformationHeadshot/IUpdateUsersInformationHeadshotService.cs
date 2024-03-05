@@ -5,6 +5,6 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
 {
     public interface IUpdateUsersInformationHeadshotService
     {
-        ResultDto Execute(RequestUpdateUsersInformationHeadshotServiceDto req);
+        ResultDto<string> Execute(RequestUpdateUsersInformationHeadshotServiceDto req);
     }
 }

@@ -45,7 +45,7 @@ public class TopRightUserPanelViewComponent : ViewComponent
                 if (retrieve != null)
                 {
                     username = retrieve.Username;
-                    headshot = (string.IsNullOrEmpty(retrieve.Photo)) ? "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg" : $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}";
+                    headshot = (string.IsNullOrEmpty(retrieve.Photo)) ? "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg" : $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg";
                 }
                 else
                 {

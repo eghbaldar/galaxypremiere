@@ -55,8 +55,6 @@ namespace galaxypremiere.Application.Services.UploadPhoto
                 req.DirectoryNameLevelChild;
             var uploadRootFolder = Path.Combine(Environment.CurrentDirectory, folder);
             if (!Directory.Exists(uploadRootFolder)) Directory.CreateDirectory(uploadRootFolder);
-            //string filename = DateTime.Now.Ticks.ToString() + "-" + req.UsersId + info.Extension.ToLower();
-            //var filePath = Path.Combine(uploadRootFolder, filename);
             string filename;
             using (MemoryStream memoryStream = new MemoryStream())
             {
@@ -103,14 +101,14 @@ namespace galaxypremiere.Application.Services.UploadPhoto
                     {
                         using (Bitmap bitmap = new Bitmap(image, Width, Height))
                         {
-                            ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
-
+                            // make compress the photo
                             // https://learn.microsoft.com/en-us/dotnet/desktop/winforms/advanced/how-to-set-jpeg-compression-level?view=netframeworkdesktop-4.8&redirectedfrom=MSDN
+                            ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
                             System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
                             EncoderParameters myEncoderParameters = new EncoderParameters(1);
-
                             EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 40L);
                             myEncoderParameters.Param[0] = myEncoderParameter;
+                            // save the photo
                             bitmap.Save(imagePath, jpgEncoder, myEncoderParameters);
                         }
                     }

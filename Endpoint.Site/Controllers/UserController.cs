@@ -65,6 +65,7 @@ using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoPhoto
 using System.Dynamic;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosInformation;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoPhoto;
+using Endpoint.Site.Views.Shared.Components;
 
 namespace Endpoint.Site.Controllers
 {
@@ -204,9 +205,11 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.Photo = Request.Form.Files[0];
-            return Json(_userInformationFacade
+            var result = _userInformationFacade
                 .UpdateUsersInformationHeadshotService
-                .Execute(req));
+                .Execute(req);
+            if(result.IsSuccess) TopRightUserPanelViewComponent.headshot = $"/SiteTemplate/innerpages/images/user-headshot/{result.Data}-thumb.jpg";
+            return Json(result);
         }
         [HttpPost]
         public IActionResult MeHeader(RequestUpdateUsersInformationHeaderServiceDto req)

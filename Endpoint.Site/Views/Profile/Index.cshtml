@@ -242,7 +242,7 @@
                                     <div class="col-xl-4 col-md-4 d-flex justify-content-center">
                                         <div class="image-default">
                                             <img class="kingImgFit rounded-circle"
-                                             src=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Photo != null ? "/SiteTemplate/innerpages/images/user-headshot/"+Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Photo : "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg")
+                                             src=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Photo != null ? "/SiteTemplate/innerpages/images/user-headshot/"+Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Photo+"-thumb.jpg" : "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg")
                                              onerror="this.src='/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg'"
                                              alt=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Fullname.Trim() != "" ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Fullname : Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Username)>
                                         </div>
@@ -1211,7 +1211,7 @@ else
         <script>
             $(document).ready(function () {
                 var filename = '@Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Header';
-                $(".jumbotron").css("background-image", "url('SiteTemplate/innerpages/images/user-header/" + filename + "')");
+                $(".jumbotron").css("background-image", "url('SiteTemplate/innerpages/images/user-header/" + filename + "-original.jpg')");
             });
         </script>
     }

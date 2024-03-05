@@ -458,7 +458,7 @@
                         @{
                             if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Photo != null)
                             {
-                                <img src="~/SiteTemplate/innerpages/images/user-headshot/@Model.getUsersInformationServiceDto.Photo" />
+                                <img src="~/SiteTemplate/innerpages/images/user-headshot/@Model.getUsersInformationServiceDto.Photo-original.jpg" />
                             }
                         }
                     </div>
@@ -1101,7 +1101,7 @@ data-seletedItem=@{
         {
             <script>
                 var header = @(Html.Raw(Json.Serialize(@Model.getUsersInformationServiceDto.Header)));
-                $("#dropzoneHeader").css("background", "url('" + "../../SiteTemplate/innerpages/images/user-header/" + header + "') center/cover");
+                $("#dropzoneHeader").css("background", "url('" + "../../SiteTemplate/innerpages/images/user-header/" + header +"-original.jpg" + "') center/cover");
             </script>
         }
         if (Model.getUsersInformationServiceDto != null && Model.getUsersInformationServiceDto.Photo != null)

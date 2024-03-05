@@ -19,11 +19,11 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
             _context = context;
             _mapper = mapper;
         }
-        public ResultDto Execute(RequestUpdateUsersInformationHeadshotServiceDto req)
+        public ResultDto<string> Execute(RequestUpdateUsersInformationHeadshotServiceDto req)
         {
             if (req == null)
             {
-                return new ResultDto
+                return new ResultDto<string>
                 {
                     IsSuccess = false,
                     Message = "Something went wrong."
@@ -48,7 +48,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                             usersInfo.Photo = file.Filename;
                             break;
                         case false:
-                            return new ResultDto
+                            return new ResultDto<string>
                             {
                                 IsSuccess = false,
                                 Message = file.Message,
@@ -58,15 +58,15 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                     _context.UsersInformation.Add(usersInfo);
                     _context.SaveChanges();
 
-                    return new ResultDto
+                    return new ResultDto<string>
                     {
+                        Data = file.Filename,
                         IsSuccess = true,
                         Message = "Headshot has just been updated successfully.1"
                     };
                 }
                 else // The user already existed (UPDATE)
                 {
-
                     var mappedDto = _mapper.Map<RequestUpdateUsersInformationHeadshotServiceDto>(req);
                     _mapper.Map(mappedDto, userHeadshot);
                     //========================= Upload Headshot
@@ -77,7 +77,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                             userHeadshot.Photo = file.Filename;
                             break;
                         case false:
-                            return new ResultDto
+                            return new ResultDto<string>
                             {
                                 IsSuccess = false,
                                 Message = file.Message,
@@ -85,8 +85,9 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
                     }
                     //=========================
                     _context.SaveChanges();
-                    return new ResultDto
+                    return new ResultDto<string>
                     {
+                        Data = file.Filename,
                         IsSuccess = true,
                         Message = "Headshot has just been updated successfully.2"
                     };
@@ -94,7 +95,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUs
             }
             else
             {
-                return new ResultDto
+                return new ResultDto<string>
                 {
                     IsSuccess = false,
                     Message = "The user doesn not exist."

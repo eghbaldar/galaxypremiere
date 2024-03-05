@@ -5,4 +5,9 @@
     aspect-ratio: 1 !important;
     object-fit: cover !important;
     /** use ".rounded-circle" to make cirle your photo **/
-}	
+}
+.kingImgWH100 {
+    width: 35px !important;
+    height: 35px !important;
+    object-fit: cover;
+}

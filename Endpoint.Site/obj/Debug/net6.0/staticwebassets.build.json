@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3bIb+rjllqH0CWIItugKgUAOH3T8qL3VIan7YQ/u/uc=",
+  "Hash": "Om2JU+GMPDhRWdn6FBl2sCLGjxMZqy3fwB4dGXktNdU=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -11577,12 +11577,12 @@
       "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
     },
     {
-      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220332-638451866121867869-1-original.jpg",
+      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240305143111-638452458711123163-1-original.jpg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-header/20240304220332-638451866121867869-1-original.jpg",
+      "RelativePath": "SiteTemplate/innerpages/images/user-header/20240305143111-638452458711123163-1-original.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11591,15 +11591,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220332-638451866121867869-1-original.jpg"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240305143111-638452458711123163-1-original.jpg"
     },
     {
-      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220351-638451866318692399-1-original.jpg",
+      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240305144549-638452467499711815-1-original.jpg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-header/20240304220351-638451866318692399-1-original.jpg",
+      "RelativePath": "SiteTemplate/innerpages/images/user-header/20240305144549-638452467499711815-1-original.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11608,15 +11608,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220351-638451866318692399-1-original.jpg"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240305144549-638452467499711815-1-original.jpg"
     },
     {
-      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220430-638451866700759923-1-original.jpg",
+      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305143106-638452458668746492-1-original.jpg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-header/20240304220430-638451866700759923-1-original.jpg",
+      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/20240305143106-638452458668746492-1-original.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11625,15 +11625,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220430-638451866700759923-1-original.jpg"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305143106-638452458668746492-1-original.jpg"
     },
     {
-      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220507-638451867073722591-1-original.jpg",
+      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305143106-638452458668746492-1-thumb.jpg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-header/20240304220507-638451867073722591-1-original.jpg",
+      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/20240305143106-638452458668746492-1-thumb.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11642,15 +11642,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220507-638451867073722591-1-original.jpg"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305143106-638452458668746492-1-thumb.jpg"
     },
     {
-      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220517-638451867172743183-1-original.jpg",
+      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305145024-638452470242185583-1-original.jpg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-header/20240304220517-638451867172743183-1-original.jpg",
+      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/20240305145024-638452470242185583-1-original.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11659,15 +11659,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220517-638451867172743183-1-original.jpg"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305145024-638452470242185583-1-original.jpg"
     },
     {
-      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220629-638451867892078568-1-original.jpg",
+      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305145024-638452470242185583-1-thumb.jpg",
       "SourceId": "Endpoint.Site",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\",
       "BasePath": "_content/Endpoint.Site",
-      "RelativePath": "SiteTemplate/innerpages/images/user-header/20240304220629-638451867892078568-1-original.jpg",
+      "RelativePath": "SiteTemplate/innerpages/images/user-headshot/20240305145024-638452470242185583-1-thumb.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -11676,7 +11676,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240304220629-638451867892078568-1-original.jpg"
+      "OriginalItemSpec": "wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305145024-638452470242185583-1-thumb.jpg"
     },
     {
       "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638436008103474274-1.jpg",
