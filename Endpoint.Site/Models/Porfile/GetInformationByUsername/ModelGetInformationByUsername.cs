@@ -10,5 +10,6 @@ namespace Endpoint.Site.Models.Porfile.GetInformationByUsername
     {
         public ResultGetUsersInformationByUsernameServiceDto ResultGetUsersInformationByUsernameServiceDto { get; set; }
         public ResultGetUsersInformationPhotosByUsernameServiceDto ResultGetUsersInformationPhotosByUsernameServiceDto { get; set; }
+        public bool IsVisitorOwner; // If the visitor is the same as the owner of the page, this variable will be filled with 'true'; otherwise, it will be filled with 'false'.
     }
 }

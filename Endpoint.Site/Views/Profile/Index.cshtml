@@ -23,6 +23,10 @@
         background-color: #5bc0de;
     }
     /*General*/
+    #txtPost {
+        background-color: #d9d9d9 !important;
+    }
+
     .cursor {
         cursor: pointer;
     }
@@ -111,6 +115,7 @@
     }
 
     .loadingBox {
+        display:none;
         position: absolute;
         top: 0;
         left: 0;
@@ -426,10 +431,20 @@
                             <div class="tab-content">
                                 <div id="profile-posts" class="tab-pane fade active show">
                                     <div class="my-post-content pt-3">
-                                        <div class="post-input">
-                                            <textarea name="textarea" id="textarea" cols="30" rows="5" class="form-control bg-transparent" placeholder="Please type what you want...."></textarea> <a href="javascript:void()"><i class="ti-clip"></i> </a>
-                                            <a href="javascript:void()"><i class="ti-camera"></i> </a><a href="javascript:void()" class="btn btn-primary">Post</a>
-                                        </div>
+
+                                        @if (User.Identity.IsAuthenticated && Model.IsVisitorOwner)
+                                        {
+                                            <div class="loadingBox" id="divPhotoPostLoader">
+                                                <div class="loadingBoxLoader"></div>
+                                            </div>
+
+                                            <div class="post-input">
+                                                <textarea name="textarea" id="txtPost" cols="30" rows="5"
+                                                  class="form-control" placeholder="Please type what you want...."></textarea>
+                                                <a onclick="PostPost();" class="btn btn-primary">Post1</a>
+                                                <a href="javascript:void()"><i class="fa fa-camera"></i> </a>
+                                            </div>
+                                        }
 
                                         <ul class="timeline">
                                             <li>
@@ -1123,7 +1138,7 @@ else
                                     <span class="pull-right text-muted" id="spanPhotoVisitorCouter"></span>
                                 </div>
                             </div>
-                            <div class="row" id="PhotoModalBoxDetail" >
+                            <div class="row" id="PhotoModalBoxDetail">
                                 <div class="col p-2">
                                     <span id="PhotoModalDetail"></span>
                                 </div>
@@ -1217,7 +1232,7 @@ else
     }
     <script>
         // Modal
-        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes,fullname,headshot,commenterHeadshot) {
+        function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes, fullname, headshot, commenterHeadshot) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
             $("#PhotoModal").modal("show");
@@ -1232,7 +1247,7 @@ else
             $("#spanPhotoOwnerName").text(fullname);
             $("#imgPhotoCommenterHeadshot").attr("src", commenterHeadshot);
             if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"); else $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/user-headshot/" + headshot);
-            if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden",true); else $('#PhotoModalBoxDetail').prop("hidden",false);
+            if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden", true); else $('#PhotoModalBoxDetail').prop("hidden", false);
             if (CountLikes == null || CountLikes.trim() == '') $('#spanPhotoCountLikes').text("0"); else $('#spanPhotoCountLikes').text(CountLikes);
             if (countComments == null || countComments.trim() == '') $('#spanPhotoCountComments').text("0"); else $('#spanPhotoCountComments').text(countComments);
             if (like == 'True') {// liked
@@ -1626,26 +1641,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
             var allowToRemove = o.allowToRemove;
             return `
-                                                <div class="media pb10" id="photoCommentBox_` + o.id + `">
-                                                    <a class="pull-left" href="#">
-                                                        <div class="user">
-                                                                <img class="kingImgFit"
-                                                                    src=`+ avatar + ` alt="...">
-                                                        </div>
-                                                    </a>
-                                                <div class="media-body mb5">
+                                                                        <div class="media pb10" id="photoCommentBox_` + o.id + `">
+                                                                            <a class="pull-left" href="#">
+                                                                                <div class="user">
+                                                                                        <img class="kingImgFit"
+                                                                                            src=`+ avatar + ` alt="...">
+                                                                                </div>
+                                                                            </a>
+                                                                        <div class="media-body mb5">
 
-                                                    <h5 class="media-heading mbn"> `+ name + `
-                                                        <small> - `+ commentDate + `</small>
-                                                    </h5>
+                                                                            <h5 class="media-heading mbn"> `+ name + `
+                                                                                <small> - `+ commentDate + `</small>
+                                                                            </h5>
 
-                                                    <p class="commentsText">`+ o.comment + `</p>
+                                                                            <p class="commentsText">`+ o.comment + `</p>
 
-                                                </div>
-                                                        ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
+                                                                        </div>
+                                                                                ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
 
-                                                </div>
-                                                  `
+                                                                        </div>
+                                                                          `
         }
         function laodComments(id) {
 
@@ -1732,6 +1747,32 @@ else
                     alert(req + status + err);
                 }
             });
+        }
+        // Post
+        function PostPost() {
+            $('#divPhotoPostLoader').css('display', 'block'); // get started loading ...
+            setTimeout(function () {
+                $.ajax({
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: { 'POST': $("#txtPost").val(), },
+                    url: 'profile/PostPost',
+                    success: function (data) {
+                        if (data.isSuccess) {
+                            alert('1');
+                            $("#txtPost").val('');
+                        } else {
+                            alert('2');
+                        }
+                    },
+                    error: function (req, status, err) {
+                        alert(req + status + err);
+                    }
+                }).done(function () {
+                    $('#divPhotoPostLoader').css('display', 'none');  // get stopped loading ...
+                });
+            }, 2000);
         }
     </script>
 }

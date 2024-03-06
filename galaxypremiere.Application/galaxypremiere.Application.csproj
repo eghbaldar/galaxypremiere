@@ -29,6 +29,7 @@
     <Folder Include="Services\Metags\Commands\" />
     <Folder Include="Services\Roles\Commands\" />
     <Folder Include="Services\UserActionsLog\Queries\" />
+    <Folder Include="Services\UsersPosts\Queries\" />
   </ItemGroup>
 
 </Project>

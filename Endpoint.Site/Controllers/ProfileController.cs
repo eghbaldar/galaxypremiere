@@ -18,6 +18,8 @@ using Endpoint.Site.Views.Shared.Components;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoComment;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoIncreaseVisitorCounter;
 using galaxypremiere.Application.Services.Likes.Commands.PostLike;
+using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationUsernameByUserId;
+using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost;
 
 namespace Endpoint.Site.Controllers
 {
@@ -26,13 +28,16 @@ namespace Endpoint.Site.Controllers
         private readonly IUserInformationFacade _userInformationFacade;
         private readonly IUserPhotoFacade _userPhoto;
         private readonly ILikesFacade _ikesFacade;
+        private readonly IUsersPostFacade _usersPost;
         public ProfileController(IUserInformationFacade userInformationFacade,
             IUserPhotoFacade userPhotoFacade,
-            ILikesFacade ikesFacade)
+            ILikesFacade ikesFacade,
+            IUsersPostFacade usersPost)
         {
             _userInformationFacade = userInformationFacade;
             _userPhoto = userPhotoFacade;
             _ikesFacade = ikesFacade;
+            _usersPost = usersPost;
         }
         [HttpGet]
         public IActionResult Index(string username)
@@ -49,8 +54,12 @@ namespace Endpoint.Site.Controllers
                 {
                     Username = username,
                     TotalPhotos = 6,
-                    UserId= userId,
+                    UserId = userId,
                 }),
+                IsVisitorOwner = (_userInformationFacade.GetUsersInformationUsernameByUserIdService.Execute(new RequestGetUsersInformationUsernameByUserIdServiceDto
+                {
+                    UsersId = userId,
+                }).Data == username) ? true : false
             };
             return View(modelGetInformationByUsername);
         }
@@ -118,6 +127,13 @@ namespace Endpoint.Site.Controllers
             req.UsersId = userId;
             req.Section = SectionsConstants.UserPhotos; // drived from "SectionsConstants.cs"
             return Json(_ikesFacade.PostLikeService.Execute(req));
+        }
+        [HttpPost]
+        public IActionResult PostPost(RequestPostUsersPostServiceDto req)
+        {
+            long userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            req.UsersId = userId;
+            return Json(_usersPost.PostUsersPostService.Execute(req));
         }
     }
 }

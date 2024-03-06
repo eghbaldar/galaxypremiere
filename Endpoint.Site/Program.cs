@@ -11,6 +11,7 @@ using galaxypremiere.Application.Services.UserPosition.FacadePattern;
 using galaxypremiere.Application.Services.Users.FacadePattern;
 using galaxypremiere.Application.Services.UsersInformation.FacadePattern;
 using galaxypremiere.Application.Services.UsersPhotos.FacadePattern;
+using galaxypremiere.Application.Services.UsersPosts.FacadePattern;
 using galaxypremiere.Application.Services.UsersProfile.FacadePattern;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Domain.Entities.Users;
@@ -20,6 +21,7 @@ using galaxypremiere.Infrastructure.MappingProfiles.Users;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersInformation;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersLoginLog;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersPositions;
+using galaxypremiere.Infrastructure.MappingProfiles.UsersPosts;
 using galaxypremiere.Infrastructure.MappingProfiles.UsersProfile;
 using galaxypremiere.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -50,6 +52,7 @@ builder.Services.AddScoped<IUserProfileFacade, UserProfileFacade>();
 builder.Services.AddScoped<IMetagsFacade, MetagsFacade>();
 builder.Services.AddScoped<IUserPhotoFacade, UserPhotoFacade>();
 builder.Services.AddScoped<ILikesFacade, LikesFacade>();
+builder.Services.AddScoped<IUsersPostFacade, UsersPostFacade>();
 
 // SqlServer
 var ConStr = builder.Configuration.GetConnectionString("LocalServer");
@@ -63,6 +66,7 @@ builder.Services.AddAutoMapper(typeof(UserPositionsMappingProfile));
 builder.Services.AddAutoMapper(typeof(UserProfileMappingProfile));
 builder.Services.AddAutoMapper(typeof(ProfilesMappingProfile));
 builder.Services.AddAutoMapper(typeof(LikesMappingProfile));
+builder.Services.AddAutoMapper(typeof(UserPostsMappingProfile));
 
 // ASN // Add Authentication & Auhortization
 builder.Services.AddAuthentication(option =>
