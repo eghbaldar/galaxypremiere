@@ -53,6 +53,7 @@ namespace galaxypremiere.Persistence.Context
         public DbSet<UsersPhotos> UsersPhotos { get; set; } // Users' Photos
         public DbSet<UsersPhotoComments> UsersPhotoComments { get; set; } // Users' Photos Comment
         public DbSet<Likes> Likes { get; set; } // Likes
+        public DbSet<UsersPosts> UsersPosts { get; set; } // Users' Posts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //> FLuent API of Entity Configurations

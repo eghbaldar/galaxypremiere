@@ -4194,6 +4194,38 @@ namespace galaxypremiere.Persistence.Migrations
                     b.ToTable("UsersPositions");
                 });
 
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPosts", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Archive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Post")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UsersId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("UsersPosts");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Common.Likes", b =>
                 {
                     b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
@@ -4373,6 +4405,17 @@ namespace galaxypremiere.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("UsersAlbums");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.UsersPosts", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("galaxypremiere.Domain.Entities.Users.Roles", b =>

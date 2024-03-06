@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace galaxypremiere.Domain.Entities.Users
 {
+    // SECTION ID:0 => SectionsConstants.cs
     public class UsersPhotos:BaseEntityGuid
     {
         public Guid UsersAlbumsId { get; set; }

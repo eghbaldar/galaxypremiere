@@ -2809,124 +2809,16 @@
       "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\logo\\logo_icon.png"
     },
     {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240305143111-638452458711123163-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\20240305143111-638452458711123163-1-original.jpg"
+      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240306123057-638453250572667620-1-original.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\20240306123057-638453250572667620-1-original.jpg"
     },
     {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-header\\20240305144549-638452467499711815-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-header\\20240305144549-638452467499711815-1-original.jpg"
+      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240306123051-638453250515602704-1-original.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240306123051-638453250515602704-1-original.jpg"
     },
     {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305143106-638452458668746492-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305143106-638452458668746492-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305143106-638452458668746492-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305143106-638452458668746492-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305145024-638452470242185583-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305145024-638452470242185583-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305145024-638452470242185583-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305145024-638452470242185583-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151355-638452484353895269-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151355-638452484353895269-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151355-638452484353895269-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151355-638452484353895269-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151432-638452484727547331-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151432-638452484727547331-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151432-638452484727547331-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151432-638452484727547331-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151510-638452485107613772-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151510-638452485107613772-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151510-638452485107613772-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151510-638452485107613772-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151535-638452485350904776-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151535-638452485350904776-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151535-638452485350904776-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151535-638452485350904776-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151546-638452485465148035-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151546-638452485465148035-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151546-638452485465148035-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151546-638452485465148035-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151632-638452485921775727-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151632-638452485921775727-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151632-638452485921775727-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151632-638452485921775727-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151639-638452485992000219-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151639-638452485992000219-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151639-638452485992000219-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305151639-638452485992000219-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305152109-638452488698824326-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305152109-638452488698824326-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305152109-638452488698824326-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305152109-638452488698824326-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305153654-638452498148880100-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305153654-638452498148880100-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305153654-638452498148880100-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305153654-638452498148880100-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154039-638452500396565456-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154039-638452500396565456-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154039-638452500396565456-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154039-638452500396565456-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154052-638452500528523981-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154052-638452500528523981-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154052-638452500528523981-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154052-638452500528523981-1-thumb.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154103-638452500635656558-1-original.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154103-638452500635656558-1-original.jpg"
-    },
-    {
-      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154103-638452500635656558-1-thumb.jpg",
-      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240305154103-638452500635656558-1-thumb.jpg"
+      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-headshot\\20240306123051-638453250515602704-1-thumb.jpg",
+      "PackagePath": "staticwebassets\\SiteTemplate\\innerpages\\images\\user-headshot\\20240306123051-638453250515602704-1-thumb.jpg"
     },
     {
       "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\SiteTemplate\\innerpages\\images\\user-photos\\638436008103474274-1.jpg",
