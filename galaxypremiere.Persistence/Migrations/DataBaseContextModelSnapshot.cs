@@ -4206,6 +4206,9 @@ namespace galaxypremiere.Persistence.Migrations
                     b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("From")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
 

@@ -20,6 +20,7 @@ using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoInc
 using galaxypremiere.Application.Services.Likes.Commands.PostLike;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationUsernameByUserId;
 using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost;
+using galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts;
 
 namespace Endpoint.Site.Controllers
 {
@@ -59,7 +60,11 @@ namespace Endpoint.Site.Controllers
                 IsVisitorOwner = (_userInformationFacade.GetUsersInformationUsernameByUserIdService.Execute(new RequestGetUsersInformationUsernameByUserIdServiceDto
                 {
                     UsersId = userId,
-                }).Data == username) ? true : false
+                }).Data == username) ? true : false,
+                ResultGetUsersPostsServiceDto = _usersPost.GetUsersPostsService.Execute(new RequestGetUsersPostsServiceDto
+                {
+                    Username= username,
+                }).Data,
             };
             return View(modelGetInformationByUsername);
         }
@@ -133,6 +138,7 @@ namespace Endpoint.Site.Controllers
         {
             long userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UsersId = userId;
+            req.From = userId;
             return Json(_usersPost.PostUsersPostService.Execute(req));
         }
     }

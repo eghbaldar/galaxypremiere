@@ -2,6 +2,7 @@
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost;
+using galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,17 @@ namespace galaxypremiere.Application.Services.UsersPosts.FacadePattern
             _context = context;
             _mapper = mapper;
         }
-        ///////////// Post UsersPost
+        ///////////// Post Users' Post
         private PostUsersPostService _postUsersPostService;
         public PostUsersPostService PostUsersPostService
         {
             get { return _postUsersPostService = _postUsersPostService ?? new PostUsersPostService(_context, _mapper); }
+        }
+        ///////////// Get Users' Posts
+        private GetUsersPostsService _getUsersPostsService;
+        public GetUsersPostsService GetUsersPostsService
+        {
+            get { return _getUsersPostsService = _getUsersPostsService ?? new GetUsersPostsService(_context); }
         }
     }
 }
