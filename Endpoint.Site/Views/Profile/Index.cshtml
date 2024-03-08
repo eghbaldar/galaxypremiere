@@ -442,7 +442,7 @@
                                                 <textarea name="textarea" id="txtPost" cols="30" rows="5"
                                                   class="form-control" placeholder="Please type what you want...."></textarea>
                                                 <a onclick="PostPost();" class="btn btn-primary">Post1</a>
-                                                <a href="javascript:void()"><i class="fa fa-camera"></i> </a>
+                                                <a onclick="OpenPostPhotoUploadModal();"><i class="fa fa-camera"></i> </a>
                                             </div>
                                         }
                                         @if (Model.ResultGetUsersPostsServiceDto.resultGetUsersPostsServiceDto != null)
@@ -473,16 +473,17 @@
                                                                     else
                                                                     {
                                                                         <img src="/SiteTemplate/innerpages/images/user-headshot/@post.OwnerHeadshot-thumb.jpg" alt="">
-                                                                    }                                                                    
+                                                                    }
                                                                 </span>
-                                                                @if(String.IsNullOrEmpty(post.OwnerFullname))
+                                                                @if (String.IsNullOrEmpty(post.OwnerFullname))
                                                                 {
                                                                     <span class="username"><a href="./@post.OwnerUsername">@post.OwnerUsername</a></span>
-                                                                }else
+                                                                }
+                                                                else
                                                                 {
                                                                     <span class="username"><a href="./@post.OwnerUsername">@post.OwnerFullname</a></span>
                                                                 }
-                                                               @* <span class="pull-right text-muted">18 Views</span>*@
+                                                                @* <span class="pull-right text-muted">18 Views</span>*@
                                                             </div>
                                                             <div class="timeline-content">
                                                                 <p>
@@ -1133,7 +1134,21 @@ else
                 <a class="btn-close" data-dismiss="modal" aria-label="Close"></a>
             </div>
             <div class="modal-body">
-                <div class="row">                    
+                <div>
+                    <div class="p-3">
+                        <input class="form-control form-control-lg" id="fileuploadpostphoto" multiple type="file">
+                    </div>
+                    <div class="slideshow-container" id="slideshowContainer"></div>
+                    <ul class="slideshow-indicators" id="slideshowIndicators"></ul>
+
+                    <div class="alert alert-primary m-3" role="alert">
+                        You are allowed to choose four photos with a maximum size of 2MB each.
+                    </div>
+                    <div class="pl-3 pb-3">
+                        <button type="button" onclick="" id="" class="btn cur-p btn-primary">
+                            Add
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1142,6 +1157,52 @@ else
 
 
 @section Styles{
+    <style>
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slideshow-image {
+            display: none;
+            width: 100%;
+            height: 100%;
+             object-fit: contain;
+        }
+
+            .slideshow-image.active {
+                display: block;
+            }
+
+        .slideshow-indicators {
+            position: absolute;
+            margin-top: 80px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .slideshow-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+            .slideshow-indicator.active {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+    </style>
     <link href="~/lib/modal/modal-user-photo.css" rel="stylesheet" />
     <link href="~/sitetemplate/profilepages/assets/css/style.css" rel="stylesheet" />
     <link href="~/sitetemplate/innerpages/pagecssjs/profile/profile.css" rel="stylesheet" />
@@ -1568,26 +1629,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
             var allowToRemove = o.allowToRemove;
             return `
-                                                                                                <div class="media pb10" id="photoCommentBox_` + o.id + `">
-                                                                                                    <a class="pull-left" href="#">
-                                                                                                        <div class="user">
-                                                                                                                <img class="kingImgFit"
-                                                                                                                    src=`+ avatar + ` alt="...">
+                                                                                                        <div class="media pb10" id="photoCommentBox_` + o.id + `">
+                                                                                                            <a class="pull-left" href="#">
+                                                                                                                <div class="user">
+                                                                                                                        <img class="kingImgFit"
+                                                                                                                            src=`+ avatar + ` alt="...">
+                                                                                                                </div>
+                                                                                                            </a>
+                                                                                                        <div class="media-body mb5">
+
+                                                                                                            <h5 class="media-heading mbn"> `+ name + `
+                                                                                                                <small> - `+ commentDate + `</small>
+                                                                                                            </h5>
+
+                                                                                                            <p class="commentsText">`+ o.comment + `</p>
+
                                                                                                         </div>
-                                                                                                    </a>
-                                                                                                <div class="media-body mb5">
+                                                                                                                ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
 
-                                                                                                    <h5 class="media-heading mbn"> `+ name + `
-                                                                                                        <small> - `+ commentDate + `</small>
-                                                                                                    </h5>
-
-                                                                                                    <p class="commentsText">`+ o.comment + `</p>
-
-                                                                                                </div>
-                                                                                                        ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
-
-                                                                                                </div>
-                                                                                                  `
+                                                                                                        </div>
+                                                                                                          `
         }
         function laodComments(id) {
 
@@ -1703,66 +1764,66 @@ else
         }
         var postsBox = function (o) {
             return `
-                                    <li>
+                                            <li>
 
-                                    <div class="timeline-time">
-                                        <span class="date">today</span>
-                                        <span class="time">04:20</span>
-                                    </div>
-
-
-                                    <div class="timeline-icon">
-                                        <a href="javascript:;">&nbsp;</a>
-                                    </div>
-
-
-                                    <div class="timeline-body">
-                                        <div class="timeline-header">
-                                            <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
-                                            <span class="username"><a href="javascript:;">Sean Ngu</a> <small></small></span>
-                                            <span class="pull-right text-muted">18 Views</span>
-                                        </div>
-                                        <div class="timeline-content">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
-                                                Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
-                                            </p>
-                                        </div>
-                                        <div class="timeline-likes">
-                                            <div class="stats-right">
-                                                <span class="stats-text">259 Shares</span>
-                                                <span class="stats-text">21 Comments</span>
+                                            <div class="timeline-time">
+                                                <span class="date">today</span>
+                                                <span class="time">04:20</span>
                                             </div>
-                                            <div class="stats">
-                                                <span class="fa-stack fa-fw stats-icon">
-                                                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
-                                                    <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
-                                                </span>
-                                                <span class="fa-stack fa-fw stats-icon">
-                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                                    <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
-                                                </span>
-                                                <span class="stats-total">4.3k</span>
+
+
+                                            <div class="timeline-icon">
+                                                <a href="javascript:;">&nbsp;</a>
                                             </div>
-                                        </div>
-                                        <div class="timeline-footer">
-                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                                        </div>
-                                        <div class="timeline-comment-box">
-                                            <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
-                                            <div class="input">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
-                                                    <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Dark</button>
+
+
+                                            <div class="timeline-body">
+                                                <div class="timeline-header">
+                                                    <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+                                                    <span class="username"><a href="javascript:;">Sean Ngu</a> <small></small></span>
+                                                    <span class="pull-right text-muted">18 Views</span>
+                                                </div>
+                                                <div class="timeline-content">
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
+                                                        Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
+                                                    </p>
+                                                </div>
+                                                <div class="timeline-likes">
+                                                    <div class="stats-right">
+                                                        <span class="stats-text">259 Shares</span>
+                                                        <span class="stats-text">21 Comments</span>
+                                                    </div>
+                                                    <div class="stats">
+                                                        <span class="fa-stack fa-fw stats-icon">
+                                                            <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                                                            <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+                                                        </span>
+                                                        <span class="fa-stack fa-fw stats-icon">
+                                                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                            <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                                                        </span>
+                                                        <span class="stats-total">4.3k</span>
+                                                    </div>
+                                                </div>
+                                                <div class="timeline-footer">
+                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
+                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                                </div>
+                                                <div class="timeline-comment-box">
+                                                    <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
+                                                    <div class="input">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                                            <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Dark</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                </li>
-                                    `;
+                                        </li>
+                                            `;
         };
         // to change user's post inserttime to my special form
         const dateElements = document.querySelectorAll('.date');
@@ -1774,10 +1835,66 @@ else
         const timeElements = document.querySelectorAll('.time');
         timeElements.forEach(dateElement => {
             const insertDate = dateElement.getAttribute('data-insert-date');
-             const time = KingSeparateOnlyTimeFromDatetime(insertDate.toString());
+            const time = KingSeparateOnlyTimeFromDatetime(insertDate.toString());
             dateElement.textContent = time;
-           
+
         });
-        // end
+        // Post Photo
+        function OpenPostPhotoUploadModal() {
+            $("#PostPhotoUploadModal").modal("show");
+        }
+        let currentIndex = 0;
+        const slideshowContainer = document.getElementById('slideshowContainer');
+        const slideshowIndicators = document.getElementById('slideshowIndicators');
+        const slideshowImages = [];
+
+        document.getElementById('fileuploadpostphoto').addEventListener('change', function (event) {
+            const files = event.target.files;
+
+            // Clear previous slideshow images and indicators
+            slideshowContainer.innerHTML = '';
+            slideshowIndicators.innerHTML = '';
+            currentIndex = 0;
+            slideshowImages.length = 0;
+
+            // Iterate over selected files
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+
+                // Create <img> element for each photo
+                const img = document.createElement('img');
+                img.classList.add('slideshow-image');
+                img.src = URL.createObjectURL(file);
+
+                // Append <img> element to the slideshow container
+                slideshowContainer.appendChild(img);
+                slideshowImages.push(img);
+
+                // Create indicator element for each photo
+                const indicator = document.createElement('li');
+                indicator.classList.add('slideshow-indicator');
+                indicator.addEventListener('click', function () {
+                    showImage(i);
+                });
+
+                slideshowIndicators.appendChild(indicator);
+            }
+
+            // Display the first image and set the first indicator as active
+            showImage(0);
+            slideshowIndicators.children[0].classList.add('active');
+        });
+
+        function showImage(index) {
+            if (index >= 0 && index < slideshowImages.length) {
+                for (let i = 0; i < slideshowImages.length; i++) {
+                    slideshowImages[i].classList.remove('active');
+                    slideshowIndicators.children[i].classList.remove('active');
+                }
+                slideshowImages[index].classList.add('active');
+                slideshowIndicators.children[index].classList.add('active');
+                currentIndex = index;
+            }
+        }
     </script>
 }`
