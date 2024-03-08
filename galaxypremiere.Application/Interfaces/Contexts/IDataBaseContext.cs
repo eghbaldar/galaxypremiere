@@ -33,6 +33,7 @@ namespace galaxypremiere.Application.Interfaces.Contexts
         DbSet<UsersPhotoComments> UsersPhotoComments { get; set; } // Users' Photos Comment
         DbSet<Likes> Likes { get; set; } // Likes
         DbSet<UsersPosts> UsersPosts { get; set; } // Users' Posts
+        DbSet<UsersPostsPhotos> UsersPostsPhotos { get; set; } // Users' Posts's Photos
         // END OF USER'S ENTITIES ======================================================
 
         //SaveChanges

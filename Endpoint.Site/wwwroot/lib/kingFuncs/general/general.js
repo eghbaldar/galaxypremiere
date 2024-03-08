@@ -52,7 +52,7 @@ function KingIsUrlValidWithoutDomain(link) {
     return false;
 };
 // give a data and get the time ago based on the following structure
-function getTimeAgo(date) {
+function KingGetTimeAgo(date) {
     var currentDate = new Date();
     var timeDiff = currentDate.getTime() - date.getTime();
     var seconds = Math.floor(timeDiff / 1000);
@@ -78,4 +78,12 @@ function getTimeAgo(date) {
     } else {
         return years + " year ago";
     }
+}
+// return only time or date from datetime: for example '2022-03-15T12:30:45'
+function KingSeparateOnlyTimeFromDatetime(datetimeString) {
+    var d = (datetimeString.split(' ')[1]).split(':');
+    return d[0] + ':' + d[1];
+}
+function KingSeparateOnlyDateFromDatetime(datetimeString) {
+    return (datetimeString.split(' ')[0]);
 }
