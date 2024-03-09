@@ -23,8 +23,14 @@
         background-color: #5bc0de;
     }
     /*General*/
+    #txtimgContainer {
+        background-color: #d9d9d9;
+    }
+
     #txtPost {
-        background-color: #d9d9d9 !important;
+        background-color: #d9d9d9;
+        border: 0;
+        resize: none;
     }
 
     .cursor {
@@ -439,11 +445,17 @@
                                             </div>
 
                                             <div class="post-input">
-                                                <textarea name="textarea" id="txtPost" cols="30" rows="5"
-                                                  class="form-control" placeholder="Please type what you want...."></textarea>
-                                                <a onclick="PostPost();" class="btn btn-primary">Post1</a>
+                                                <div id="txtimgContainer" class="rounded">
+                                                    <textarea name="textarea" id="txtPost" cols="30" rows="5"
+                                                      class="form-control" placeholder="Please type what you want...."></textarea>
+                                                    <div id="imgsPostPhotosContainerSelected" hidden>
+                                                        <div id="imgsPostPhotosSelected" class="row"></div>
+                                                    </div>
+                                                </div>
+                                                <a onclick="PostPost();" class="btn btn-primary">Post</a>
                                                 <a onclick="OpenPostPhotoUploadModal();"><i class="fa fa-camera"></i> </a>
                                             </div>
+
                                         }
                                         @if (Model.ResultGetUsersPostsServiceDto.resultGetUsersPostsServiceDto != null)
                                         {
@@ -1145,7 +1157,7 @@ else
                         You are allowed to choose four photos with a maximum size of 2MB each.
                     </div>
                     <div class="pl-3 pb-3">
-                        <button type="button" onclick="" id="" class="btn cur-p btn-primary">
+                        <button type="button" onclick="AddSelectedPhoto()" id="btnAddSelectedPhoto" class="btn cur-p btn-primary">
                             Add
                         </button>
                     </div>
@@ -1158,11 +1170,10 @@ else
 
 @section Styles{
     <style>
-
+        /*Modal Select Post Photos*/
         .slideshow-container {
             position: relative;
             max-width: 100%;
-            
             margin: auto;
             overflow: hidden;
         }
@@ -1171,7 +1182,7 @@ else
             display: none;
             width: 100%;
             height: 100%;
-             object-fit: contain;
+            object-fit: contain;
         }
 
             .slideshow-image.active {
@@ -1203,11 +1214,30 @@ else
                 background-color: rgba(0, 0, 0, 0.8);
             }
     </style>
+    <style>
+
+        #txtimgContainer input:focus,
+        #txtimgContainer textarea:focus {
+            box-shadow: 0 0 0 0 !important;
+        }
+
+        #imgsPostPhotosContainerSelected {
+            background-color: #d9d9d9;
+            padding: 10px;
+        }
+
+        #imgsPostPhotosSelected {
+            width: 100% !important;
+        }
+
+    </style>
     <link href="~/lib/modal/modal-user-photo.css" rel="stylesheet" />
     <link href="~/sitetemplate/profilepages/assets/css/style.css" rel="stylesheet" />
     <link href="~/sitetemplate/innerpages/pagecssjs/profile/profile.css" rel="stylesheet" />
 }
 @section Scripts{
+        @* File Extension and Volume *@
+    <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
     @* set user 's headshot and header *@
     @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Header != null)
     {
@@ -1219,7 +1249,7 @@ else
         </script>
     }
     <script>
-        // Modal
+        //////////////////////// Modal + Tabs
         function openModalPhotos6(id, file, title, detail, visitorCounter, countComments, like, CountLikes, fullname, headshot, commenterHeadshot) {
             $("#PhotoModalComment").prop("hidden", true);
             $("#PhotoModalCaption").prop("hidden", false);
@@ -1574,7 +1604,7 @@ else
                 }
             });
         }
-        // Comments Section
+        ////////////////////////// Comments Section
         function PostModalComment() {
             $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
             setTimeout(function () {
@@ -1629,26 +1659,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
             var allowToRemove = o.allowToRemove;
             return `
-                                                                                                        <div class="media pb10" id="photoCommentBox_` + o.id + `">
-                                                                                                            <a class="pull-left" href="#">
-                                                                                                                <div class="user">
-                                                                                                                        <img class="kingImgFit"
-                                                                                                                            src=`+ avatar + ` alt="...">
-                                                                                                                </div>
-                                                                                                            </a>
-                                                                                                        <div class="media-body mb5">
+                                                                                                                                                <div class="media pb10" id="photoCommentBox_` + o.id + `">
+                                                                                                                                                    <a class="pull-left" href="#">
+                                                                                                                                                        <div class="user">
+                                                                                                                                                                <img class="kingImgFit"
+                                                                                                                                                                    src=`+ avatar + ` alt="...">
+                                                                                                                                                        </div>
+                                                                                                                                                    </a>
+                                                                                                                                                <div class="media-body mb5">
 
-                                                                                                            <h5 class="media-heading mbn"> `+ name + `
-                                                                                                                <small> - `+ commentDate + `</small>
-                                                                                                            </h5>
+                                                                                                                                                    <h5 class="media-heading mbn"> `+ name + `
+                                                                                                                                                        <small> - `+ commentDate + `</small>
+                                                                                                                                                    </h5>
 
-                                                                                                            <p class="commentsText">`+ o.comment + `</p>
+                                                                                                                                                    <p class="commentsText">`+ o.comment + `</p>
 
-                                                                                                        </div>
-                                                                                                                ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
+                                                                                                                                                </div>
+                                                                                                                                                        ${allowToRemove ? `<span onclick="removeComment('${o.id}')" class="close-button cursor">&times;</span>` : ''}
 
-                                                                                                        </div>
-                                                                                                          `
+                                                                                                                                                </div>
+                                                                                                                                                  `
         }
         function laodComments(id) {
 
@@ -1710,7 +1740,7 @@ else
                 });
             }, 2000);
         }
-        // Like Section
+        //////////////////////// Like Section
         function ApplyLike() {
             $.ajax({
                 contentType: 'application/x-www-form-urlencoded',
@@ -1736,15 +1766,22 @@ else
                 }
             });
         }
-        // Post
+        //////////////////////// Post Section
+        var files; // a global variable to store selected photo for current post
         function PostPost() {
             $('#divPhotoPostLoader').css('display', 'block'); // get started loading ...
+
+            var postData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                postData.append("Photos", files[i]);
+            }
+            postData.append("Post", $("#txtPost").val());
             setTimeout(function () {
                 $.ajax({
-                    contentType: 'application/x-www-form-urlencoded',
-                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
                     type: 'POST',
-                    data: { 'POST': $("#txtPost").val(), },
+                    data: postData,
                     url: 'profile/PostPost',
                     success: function (data) {
                         if (data.isSuccess) {
@@ -1764,66 +1801,66 @@ else
         }
         var postsBox = function (o) {
             return `
-                                            <li>
+                                                                                    <li>
 
-                                            <div class="timeline-time">
-                                                <span class="date">today</span>
-                                                <span class="time">04:20</span>
-                                            </div>
-
-
-                                            <div class="timeline-icon">
-                                                <a href="javascript:;">&nbsp;</a>
-                                            </div>
+                                                                                    <div class="timeline-time">
+                                                                                        <span class="date">today</span>
+                                                                                        <span class="time">04:20</span>
+                                                                                    </div>
 
 
-                                            <div class="timeline-body">
-                                                <div class="timeline-header">
-                                                    <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
-                                                    <span class="username"><a href="javascript:;">Sean Ngu</a> <small></small></span>
-                                                    <span class="pull-right text-muted">18 Views</span>
-                                                </div>
-                                                <div class="timeline-content">
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
-                                                        Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
-                                                    </p>
-                                                </div>
-                                                <div class="timeline-likes">
-                                                    <div class="stats-right">
-                                                        <span class="stats-text">259 Shares</span>
-                                                        <span class="stats-text">21 Comments</span>
-                                                    </div>
-                                                    <div class="stats">
-                                                        <span class="fa-stack fa-fw stats-icon">
-                                                            <i class="fa fa-circle fa-stack-2x text-danger"></i>
-                                                            <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
-                                                        </span>
-                                                        <span class="fa-stack fa-fw stats-icon">
-                                                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                                            <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
-                                                        </span>
-                                                        <span class="stats-total">4.3k</span>
-                                                    </div>
-                                                </div>
-                                                <div class="timeline-footer">
-                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                                                </div>
-                                                <div class="timeline-comment-box">
-                                                    <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
-                                                    <div class="input">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
-                                                            <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Dark</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                                                    <div class="timeline-icon">
+                                                                                        <a href="javascript:;">&nbsp;</a>
+                                                                                    </div>
 
-                                        </li>
-                                            `;
+
+                                                                                    <div class="timeline-body">
+                                                                                        <div class="timeline-header">
+                                                                                            <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+                                                                                            <span class="username"><a href="javascript:;">Sean Ngu</a> <small></small></span>
+                                                                                            <span class="pull-right text-muted">18 Views</span>
+                                                                                        </div>
+                                                                                        <div class="timeline-content">
+                                                                                            <p>
+                                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
+                                                                                                Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="timeline-likes">
+                                                                                            <div class="stats-right">
+                                                                                                <span class="stats-text">259 Shares</span>
+                                                                                                <span class="stats-text">21 Comments</span>
+                                                                                            </div>
+                                                                                            <div class="stats">
+                                                                                                <span class="fa-stack fa-fw stats-icon">
+                                                                                                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                                                                                                    <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+                                                                                                </span>
+                                                                                                <span class="fa-stack fa-fw stats-icon">
+                                                                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                                                                    <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                                                                                                </span>
+                                                                                                <span class="stats-total">4.3k</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="timeline-footer">
+                                                                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
+                                                                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                                                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                                                                        </div>
+                                                                                        <div class="timeline-comment-box">
+                                                                                            <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
+                                                                                            <div class="input">
+                                                                                                <div class="input-group">
+                                                                                                    <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                                                                                    <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Dark</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </li>
+                                                                                    `;
         };
         // to change user's post inserttime to my special form
         const dateElements = document.querySelectorAll('.date');
@@ -1843,24 +1880,32 @@ else
         function OpenPostPhotoUploadModal() {
             $("#PostPhotoUploadModal").modal("show");
         }
+        // Modal to select photos
         let currentIndex = 0;
         const slideshowContainer = document.getElementById('slideshowContainer');
         const slideshowIndicators = document.getElementById('slideshowIndicators');
         const slideshowImages = [];
-
         document.getElementById('fileuploadpostphoto').addEventListener('change', function (event) {
-            const files = event.target.files;
-
+            files = event.target.files;
+            if (files.length > 4) {
+                alert('only four photos');
+                $("#fileuploadpostphoto").val('');
+                return false;
+            }
             // Clear previous slideshow images and indicators
             slideshowContainer.innerHTML = '';
             slideshowIndicators.innerHTML = '';
             currentIndex = 0;
             slideshowImages.length = 0;
-
             // Iterate over selected files
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-
+                // check the file
+                if (!KingCheckSizeExtension(file, ["jpg", "png", "bmp", "jpeg"], "2097152", true)) {
+                    alert('only select a file less than 2mb with "jpg", "png", "bmp", "jpeg" froamt');
+                    $("#fileuploadpostphoto").val('');
+                    return false;
+                }
                 // Create <img> element for each photo
                 const img = document.createElement('img');
                 img.classList.add('slideshow-image');
@@ -1884,7 +1929,6 @@ else
             showImage(0);
             slideshowIndicators.children[0].classList.add('active');
         });
-
         function showImage(index) {
             if (index >= 0 && index < slideshowImages.length) {
                 for (let i = 0; i < slideshowImages.length; i++) {
@@ -1896,5 +1940,22 @@ else
                 currentIndex = index;
             }
         }
+        function AddSelectedPhoto() {
+            if (files.length > 0) {
+                $("#PostPhotoUploadModal").modal("hide");
+                $("#imgsPostPhotosContainerSelected").prop("hidden", false)
+                const imageContainer = document.getElementById('imgsPostPhotosSelected');
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.classList.add('img-fluid', 'rounded', 'mb-3'); // Bootstrap image classes
+                    const imgWrapper = document.createElement('div');
+                    imgWrapper.classList.add('col-md-4', 'thumbnail');
+                    imgWrapper.appendChild(img);
+                    imageContainer.appendChild(imgWrapper);
+                }
+            }
+        }
     </script>
-}`
+}
