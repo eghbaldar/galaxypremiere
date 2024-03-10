@@ -5,6 +5,28 @@
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
 <style>
+    .masonry {
+  column-count: 2; /* Adjust the number of columns as desired */
+  column-gap: 5px; /* Adjust the gap between columns as desired */
+
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+    .masonry .item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px; /* Adjust the vertical margin between items as desired */
+}
+
+    .masonry .item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+</style>
+<style>
     /*tags*/
     .label {
         display: inline;
@@ -449,7 +471,7 @@
                                                     <textarea name="textarea" id="txtPost" cols="30" rows="5"
                                                       class="form-control" placeholder="Please type what you want...."></textarea>
                                                     <div id="imgsPostPhotosContainerSelected" hidden>
-                                                        <div id="imgsPostPhotosSelected" class="row"></div>
+                                                        <div id="imgsPostPhotosSelected" class="masonry"></div>
                                                     </div>
                                                 </div>
                                                 <a onclick="PostPost();" class="btn btn-primary">Post</a>
@@ -501,6 +523,18 @@
                                                                 <p>
                                                                     @post.Post
                                                                 </p>
+                                                                <div class="masonry">
+
+                                                                @foreach(var photo in @post.resultGetPostPhotosByPostIdDto.resultGetPostPhotosByPostIdDto)
+                                                                {
+                                                                     <div class="item">
+                                                                    <img src="/SiteTemplate/innerpages/images/user-post-photos/@photo.Filename-thumb.jpg"
+                                                                     class="img-thumbnail mr-0"
+                                                                  />
+                                                                    </div>
+                                                                }
+                                                                </div>
+                                                                
                                                             </div>
                                                             <div class="timeline-likes">
                                                                 <div class="stats-right">
@@ -1223,11 +1257,11 @@ else
 
         #imgsPostPhotosContainerSelected {
             background-color: #d9d9d9;
-            padding: 10px;
+            /*padding: 10px;*/
         }
 
         #imgsPostPhotosSelected {
-            width: 100% !important;
+            padding:10px;
         }
 
     </style>
@@ -1945,17 +1979,19 @@ else
                 $("#PostPhotoUploadModal").modal("hide");
                 $("#imgsPostPhotosContainerSelected").prop("hidden", false)
                 const imageContainer = document.getElementById('imgsPostPhotosSelected');
+                imageContainer.innerHTML='';
                 for (let i = 0; i < files.length; i++) {
                     const file = files[i];
                     const img = document.createElement('img');
                     img.src = URL.createObjectURL(file);
-                    img.classList.add('img-fluid', 'rounded', 'mb-3'); // Bootstrap image classes
+                    img.classList.add('thumbnail');
                     const imgWrapper = document.createElement('div');
-                    imgWrapper.classList.add('col-md-4', 'thumbnail');
-                    imgWrapper.appendChild(img);
+                    imgWrapper.classList.add('item');
+                    imgWrapper.appendChild(img);                    
                     imageContainer.appendChild(imgWrapper);
                 }
             }
         }
     </script>
+
 }

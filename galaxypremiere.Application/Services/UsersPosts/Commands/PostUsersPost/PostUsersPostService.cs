@@ -40,7 +40,6 @@ namespace galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost
                             return new ResultDto { IsSuccess = false };
                     }
                     //========================= 
-                    //usersPostPhotos.Filename = photo.FileName;
                     _context.UsersPostsPhotos.Add(usersPostPhotos);                    
                 }                
             }

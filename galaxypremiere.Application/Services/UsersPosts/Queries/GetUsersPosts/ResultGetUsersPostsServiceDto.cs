@@ -2,6 +2,6 @@
 {
     public class ResultGetUsersPostsServiceDto
     {
-        public List<GetUsersPostsServiceDto> resultGetUsersPostsServiceDto { get; set; }
+        public List<GetUsersPostsServiceDto> resultGetUsersPostsServiceDto { get; set; }        
     }
 }

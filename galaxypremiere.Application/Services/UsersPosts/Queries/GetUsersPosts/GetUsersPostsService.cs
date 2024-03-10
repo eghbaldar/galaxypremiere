@@ -3,7 +3,7 @@ using galaxypremiere.Common.DTOs;
 
 namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
 {
-    public class GetUsersPostsService : IGetUsersPostsService
+    public partial class GetUsersPostsService : IGetUsersPostsService
     {
         private readonly IDataBaseContext _context;
         public GetUsersPostsService(IDataBaseContext context)
@@ -31,6 +31,19 @@ namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
                      FromUsername = "",
                      OwnerHeadshot = info.Photo,
                      FromHeadshot = "",
+                     resultGetPostPhotosByPostIdDto = new ResultGetPostPhotosByPostIdDto
+                     {
+                         resultGetPostPhotosByPostIdDto = _context.UsersPostsPhotos
+                         .Select(upp => new GetPostPhotosByPostIdDto
+                         {
+                             Filename = upp.Filename,
+                             Id = upp.Id,
+                             InsertTime = upp.InsertDate,
+                             PostId= upp.UsersPostsId,
+                         })
+                         .Where(upp => upp.PostId == p.Id)
+                         .ToList(),
+                     }
                  }).ToList();
             return new ResultDto<ResultGetUsersPostsServiceDto>
             {

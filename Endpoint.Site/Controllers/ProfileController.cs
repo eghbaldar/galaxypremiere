@@ -11,10 +11,6 @@ using Endpoint.Site.Utilities;
 using System.Security.Claims;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUserPhotoComments;
 using galaxypremiere.Common.Constants;
-using galaxypremiere.Domain.Entities.Users;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Endpoint.Site.Views.Shared.Components;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoComment;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoIncreaseVisitorCounter;
 using galaxypremiere.Application.Services.Likes.Commands.PostLike;
@@ -30,15 +26,18 @@ namespace Endpoint.Site.Controllers
         private readonly IUserPhotoFacade _userPhoto;
         private readonly ILikesFacade _ikesFacade;
         private readonly IUsersPostFacade _usersPost;
+        private readonly IUsersPostsPhotosFacade _usersPostsPhotosFacade;
         public ProfileController(IUserInformationFacade userInformationFacade,
             IUserPhotoFacade userPhotoFacade,
             ILikesFacade ikesFacade,
-            IUsersPostFacade usersPost)
+            IUsersPostFacade usersPost,
+            IUsersPostsPhotosFacade usersPostsPhotosFacade)
         {
             _userInformationFacade = userInformationFacade;
             _userPhoto = userPhotoFacade;
             _ikesFacade = ikesFacade;
             _usersPost = usersPost;
+            _usersPostsPhotosFacade = usersPostsPhotosFacade;
         }
         [HttpGet]
         public IActionResult Index(string username)
