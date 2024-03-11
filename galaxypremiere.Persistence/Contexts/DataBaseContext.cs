@@ -53,6 +53,7 @@ namespace galaxypremiere.Persistence.Context
         public DbSet<UsersPhotos> UsersPhotos { get; set; } // Users' Photos
         public DbSet<UsersPhotoComments> UsersPhotoComments { get; set; } // Users' Photos Comment
         public DbSet<Likes> Likes { get; set; } // Likes
+        public DbSet<Comments> Comments { get; set; } // Comments
         public DbSet<UsersPosts> UsersPosts { get; set; } // Users' Posts
         public DbSet<UsersPostsPhotos> UsersPostsPhotos { get; set; } // Users' Posts's Photos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -84,6 +85,7 @@ namespace galaxypremiere.Persistence.Context
             modelBuilder.ApplyConfiguration(new UsersPhotoPhotoConfigurations());
             //---- Photo Comments
             modelBuilder.ApplyConfiguration(new UsersPhotoCommentsConfigurations());
+            modelBuilder.ApplyConfiguration(new CommentsConfigurations());
             //< End
         }
         public override int SaveChanges()

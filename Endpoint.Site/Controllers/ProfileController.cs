@@ -17,6 +17,9 @@ using galaxypremiere.Application.Services.Likes.Commands.PostLike;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationUsernameByUserId;
 using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost;
 using galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts;
+using galaxypremiere.Application.Services.Comments.Commands.PostComment;
+using galaxypremiere.Application.Services.Comments.Commands.DeleteComment;
+using galaxypremiere.Application.Services.Comments.Queries.GetCommentsBySectionId;
 
 namespace Endpoint.Site.Controllers
 {
@@ -27,17 +30,20 @@ namespace Endpoint.Site.Controllers
         private readonly ILikesFacade _ikesFacade;
         private readonly IUsersPostFacade _usersPost;
         private readonly IUsersPostsPhotosFacade _usersPostsPhotosFacade;
+        private readonly ICommentsFacade _commentsFacade;
         public ProfileController(IUserInformationFacade userInformationFacade,
             IUserPhotoFacade userPhotoFacade,
             ILikesFacade ikesFacade,
             IUsersPostFacade usersPost,
-            IUsersPostsPhotosFacade usersPostsPhotosFacade)
+            IUsersPostsPhotosFacade usersPostsPhotosFacade,
+            ICommentsFacade commentsFacade)
         {
             _userInformationFacade = userInformationFacade;
             _userPhoto = userPhotoFacade;
             _ikesFacade = ikesFacade;
             _usersPost = usersPost;
             _usersPostsPhotosFacade = usersPostsPhotosFacade;
+            _commentsFacade = commentsFacade;
         }
         [HttpGet]
         public IActionResult Index(string username)
@@ -62,7 +68,7 @@ namespace Endpoint.Site.Controllers
                 }).Data == username) ? true : false,
                 ResultGetUsersPostsServiceDto = _usersPost.GetUsersPostsService.Execute(new RequestGetUsersPostsServiceDto
                 {
-                    Username= username,
+                    Username = username,
                 }).Data,
             };
             return View(modelGetInformationByUsername);
@@ -92,32 +98,41 @@ namespace Endpoint.Site.Controllers
             }));
         }
         [HttpPost]
-        public IActionResult PostPhotoComment(RequestPostUsersPhotoCommentServiceDto req)
+        public IActionResult PostPhotoComment(RequestPostCommentServiceDto req)
         {
             var userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UsersId = userId;
+            req.Section = 0;
             req.Email = ClaimUtility.GetUserEmail(User as ClaimsPrincipal);
-            return Json(_userPhoto.PostUsersPhotoCommentService.Execute(req));
+            return Json(_commentsFacade.PostCommentService.Execute(req));
+            //return Json(_userPhoto.PostUsersPhotoCommentService.Execute(req));
         }
         [HttpGet]
         public IActionResult GetPhotoCommentById(Guid Id)
         {
             long userId = 0;
             if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
-
-            return Json(_userPhoto.GetUserPhotoCommentsService.Execute(new RequestGetUserPhotoCommentsServiceDto
+            return Json(_commentsFacade.GetCommentsBySectionIdService.Execute(new RequestGetCommentsBySectionIdServiceDto
             {
-                Id = Id,
+                Section = 0,
+                SectionId = Id,
                 UserId = userId,
             }));
+            //return Json(_userPhoto.GetUserPhotoCommentsService.Execute(new RequestGetUserPhotoCommentsServiceDto
+            //{
+            //    Id = Id,
+            //    UserId = userId,
+            //}));
         }
         [HttpPost]
-        public IActionResult DeletePhotoComment(RequestDeleteUsersPhotoCommentServiceDto req)
+        public IActionResult DeletePhotoComment(RequestDeleteCommentServiceDto req)
         {
             long userId = 0;
             if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UserId = userId;
-            return Json(_userPhoto.DeleteUsersPhotoCommentService.Execute(req));
+            req.Section = 0;// Derived from SectionsConstants.cs
+            return Json(_commentsFacade.DeleteCommentService.Execute(req));
+            //return Json(_userPhoto.DeleteUsersPhotoCommentService.Execute(req));
         }
         [HttpPost]
         public IActionResult PostPhotoIncrementVisitorCounter(RequestPostUsersPhotoIncreaseVisitorCounterServiceDto req)

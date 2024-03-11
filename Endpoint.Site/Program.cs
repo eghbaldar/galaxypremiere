@@ -1,5 +1,6 @@
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.Comments.FacadePattern;
 using galaxypremiere.Application.Services.Countries.FacadePattern;
 using galaxypremiere.Application.Services.Languages.FacadePattern;
 using galaxypremiere.Application.Services.Likes.FacadePattern;
@@ -55,7 +56,8 @@ builder.Services.AddScoped<IMetagsFacade, MetagsFacade>();
 builder.Services.AddScoped<IUserPhotoFacade, UserPhotoFacade>();
 builder.Services.AddScoped<ILikesFacade, LikesFacade>();
 builder.Services.AddScoped<IUsersPostFacade, UsersPostFacade>();
-builder.Services.AddScoped<IUsersPostsPhotosFacade, UsersPostsPhotosPattern>();
+builder.Services.AddScoped<IUsersPostsPhotosFacade, UsersPostsPhotosFacade>();
+builder.Services.AddScoped<ICommentsFacade, CommentsFacade>();
 
 // SqlServer
 var ConStr = builder.Configuration.GetConnectionString("LocalServer");

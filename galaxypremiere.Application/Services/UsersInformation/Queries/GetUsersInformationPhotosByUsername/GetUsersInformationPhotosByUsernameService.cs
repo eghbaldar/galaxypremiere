@@ -17,8 +17,8 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
         {
             if (req == null) return null;
 
-            var groupedComments = _context.UsersPhotoComments
-                    .GroupBy(p => p.UsersPhotosId, p => p.Comment, (key, g) => new { PhotoId = key, Count = g.Count() });
+            var groupedComments = _context.Comments
+                    .GroupBy(p => p.SectionId, p => p.Comment, (key, g) => new { PhotoId = key, Count = g.Count() });
             var groupedLikes = _context.Likes
                      .Where(l => l.DeleteTime == null && l.Section == SectionsConstants.UserPhotos)
                      .GroupBy(l => new { l.SectionId, l.Section })

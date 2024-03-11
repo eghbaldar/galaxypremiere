@@ -22,6 +22,41 @@ namespace galaxypremiere.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("galaxypremiere.Domain.Common.Comments", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("Parent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("Section")
+                        .HasColumnType("tinyint");
+
+                    b.Property<Guid>("SectionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("UsersId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("galaxypremiere.Domain.Common.Countries", b =>
                 {
                     b.Property<int>("Id")
@@ -4256,6 +4291,17 @@ namespace galaxypremiere.Persistence.Migrations
                     b.HasIndex("UsersPostsId");
 
                     b.ToTable("UsersPostsPhotos");
+                });
+
+            modelBuilder.Entity("galaxypremiere.Domain.Common.Comments", b =>
+                {
+                    b.HasOne("galaxypremiere.Domain.Entities.Users.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("galaxypremiere.Domain.Common.Likes", b =>
