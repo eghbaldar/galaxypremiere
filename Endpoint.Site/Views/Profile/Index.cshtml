@@ -232,6 +232,48 @@
         font-size: 11px !important;
     }
 </style>
+<style>
+    .dropbtn {
+    background-color: transparent;    
+    padding: 5px;
+    font-size: 26px;
+    border: none;
+    
+}
+.dropbtn i{
+    color: #ccc;
+
+}
+.dropdown {
+    position: relative;
+    display: inline-block;  
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+        right: 0; /* Add this line to make the dropdown open from right */
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 9px 13px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
 @if (Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.IsSuccess)
 {
     @*HEADER*@
@@ -499,26 +541,39 @@
 
                                                         <div class="timeline-body">
                                                             <div class="timeline-header">
-                                                                <span class="userimage">
-                                                                    @if (String.IsNullOrEmpty(post.OwnerHeadshot))
-                                                                    {
-                                                                        <img src="/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg" alt="">
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <img src="/SiteTemplate/innerpages/images/user-headshot/@post.OwnerHeadshot-thumb.jpg" alt="">
-                                                                    }
-                                                                </span>
-                                                                @if (String.IsNullOrEmpty(post.OwnerFullname))
-                                                                {
-                                                                    <span class="username"><a href="./@post.OwnerUsername">@post.OwnerUsername</a></span>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <span class="username"><a href="./@post.OwnerUsername">@post.OwnerFullname</a></span>
-                                                                }
-                                                                @* <span class="pull-right text-muted">18 Views</span>*@
-                                                            </div>
+
+
+
+                            <span class="userimage">
+                                @if (String.IsNullOrEmpty(post.OwnerHeadshot))
+                                {
+                                    <img src="/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg" alt="">
+                                }
+                                else
+                                {
+                                    <img src="/SiteTemplate/innerpages/images/user-headshot/@post.OwnerHeadshot-thumb.jpg" alt="">
+                                }
+                            </span>
+                            @if (String.IsNullOrEmpty(post.OwnerFullname))
+                            {
+                                <span class="username"><a href="./@post.OwnerUsername">@post.OwnerUsername</a></span>
+                            }
+                            else
+                            {
+                                <span class="username"><a href="./@post.OwnerUsername">@post.OwnerFullname</a></span>
+                            }
+                            @* <span class="pull-right text-muted">18 Views</span>*@
+                                        <div class="dropdown pull-right">
+                                            <button class="dropbtn">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </button>
+                                            <div class="dropdown-content">
+                                                <a onclick="ApplyArchivePost('@post.PostId');">Archive</a>
+                                                <a onclick="DeletePost('@post.PostId');">Delete</a>
+                                            </div>
+                                        </div>
+                        </div>
+
                                                             <div class="timeline-content">
                                                                 <p>
                                                                     @post.Post
@@ -1991,6 +2046,12 @@ else
                     imageContainer.appendChild(imgWrapper);
                 }
             }
+        }
+        function ApplyArchivePost(id){
+            alert(id);
+        }
+        function DeletePost(id){
+            alert(id);
         }
     </script>
 
