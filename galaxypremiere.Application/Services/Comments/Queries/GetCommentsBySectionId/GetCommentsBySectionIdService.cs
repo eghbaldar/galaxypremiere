@@ -31,6 +31,7 @@ namespace galaxypremiere.Application.Services.Comments.Queries.GetCommentsBySect
                         user.Email,
                         AllowToRemove = req.UserId != 0 ? c.UsersId.Equals(req.UserId) ? true : false : false,
                         CountComments = c.Comment.Length,
+                        Nickname = c.Users.Nickname,
                     }
                     )
                     .Select(x => new GetCommentsBySectionIdServiceDto
@@ -41,7 +42,7 @@ namespace galaxypremiere.Application.Services.Comments.Queries.GetCommentsBySect
                         Comment = x.Comments.Comment,
                         InsertDate = x.Comments.InsertTime,
                         Email = x.Email,
-                        Fullname = (x.information.Firstname ?? null) + (x.information.MiddleName ?? null) + (x.information.Surname ?? null),
+                        Nickname= x.Nickname,
                         AllowToRemove = x.AllowToRemove,
                     })
                     .OrderBy(x => x.InsertDate)

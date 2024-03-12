@@ -66,6 +66,7 @@ using System.Dynamic;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosInformation;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoPhoto;
 using Endpoint.Site.Views.Shared.Components;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationNickname;
 
 namespace Endpoint.Site.Controllers
 {
@@ -138,6 +139,14 @@ namespace Endpoint.Site.Controllers
             });
         }
         [HttpPost]
+        public IActionResult MeNickname(RequestUpdateUsersInformationNicknameServiceDto req)
+        {
+            req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+            var result = _userInformationFacade.UpdateUsersInformationNicknameService.Execute(req);
+            if (result.IsSuccess) GeneralConstants.Nickname = req.Nickname;
+            return Json(result);
+        }
+        [HttpPost]
         public IActionResult MeAccount(RequestUpdateUsersInformationAccountDto req)
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
@@ -208,7 +217,7 @@ namespace Endpoint.Site.Controllers
             var result = _userInformationFacade
                 .UpdateUsersInformationHeadshotService
                 .Execute(req);
-            if(result.IsSuccess) GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{result.Data}-thumb.jpg";
+            if (result.IsSuccess) GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{result.Data}-thumb.jpg";
             return Json(result);
         }
         [HttpPost]
@@ -417,7 +426,7 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             return Json(_userPhotoFacade.UpdateUsersPhotoInformationService.Execute(req));
-        }     
+        }
         [HttpPost]
         public IActionResult DeletePhoto(RequestDeleteUsersPhotoPhotoServiceDto req)
         {

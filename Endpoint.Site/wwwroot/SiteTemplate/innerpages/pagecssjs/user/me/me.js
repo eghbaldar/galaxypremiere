@@ -1,4 +1,32 @@
-﻿function UpdateInfoAccount() {
+﻿function UpdateInfoNickname() {
+    pageWaitMe("progress"); // loading process starts
+    btnWaitMe_Start('btnUpdateInfoNickname'); // Loading Button Start
+
+    var postData = {
+        'Nickname': $('#txtNickname').val(),
+    }
+    $.ajax({
+        contentType: 'application/x-www-form-urlencoded',
+        dataType: 'json',
+        type: 'POST',
+        data: postData,
+        url: 'MeNickname',
+        success: function (data) {
+            if (data.isSuccess) {
+                $("#TopRightUserPanel_Nickname").text(data.data);
+                KingSweetAlert(true, null);
+            }
+            else KingSweetAlert(false, null);
+        },
+        error: function (request, status, error) {
+            KingSweetAlert(false, null);
+        }
+    }).always(function () {
+        btnWaitMe_Stop('btnUpdateInfoNickname'); // Loading Button Stops
+        pageWaitMeRemove(); // loading process stops
+    });
+}
+function UpdateInfoAccount() {
 
     pageWaitMe("progress"); // loading process starts
     btnWaitMe_Start('btnUpdateAccount'); // Loading Button Start

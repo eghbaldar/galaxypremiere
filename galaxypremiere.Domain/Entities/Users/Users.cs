@@ -13,7 +13,7 @@ namespace galaxypremiere.Domain.Entities.Users
         [Required(ErrorMessage = "Name is mandatory")]
         [MinLength(10, ErrorMessage = "Name characters should be more than 10 characters.")]
         [MaxLength(50,ErrorMessage ="Name characters should not be more than 50 characters.")]
-        public string Nickname { get; set; }
+        public string Nickname { get; set; } //Only your nickname will be shown throughout GalaxyPremiere, but your first, middle, and surname will only be accessible for festivals and companies.
         [Required(ErrorMessage = "Email Address is mandatory.")]
         [EmailAddress(ErrorMessage = "Email Address is invalid.")]
         public string Email { get; set; }

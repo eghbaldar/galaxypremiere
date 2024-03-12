@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.Constants;
+using galaxypremiere.Domain.Entities.Users;
 
 namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPhotosByUsername
 {
@@ -33,14 +34,17 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                 from p in _context.UsersPhotos
                 join albums in _context.UsersAlbums on p.UsersAlbumsId equals albums.Id into GroupAlbums
                 from albums in GroupAlbums.DefaultIfEmpty()
-                join info in _context.UsersInformation on albums.UsersId equals info.UsersId into GroupUser
-                from info in GroupUser.DefaultIfEmpty()
+                join info in _context.UsersInformation on albums.UsersId equals info.UsersId into GroupInfo
+                from info in GroupInfo.DefaultIfEmpty()
+                join user in _context.Users on info.UsersId equals user.Id into GroupUser
+                from user in GroupUser.DefaultIfEmpty()
                 where (info.Username == req.Username)
                 select new
                 {
                     Photos = p,
                     Fullname = $"{info.Firstname} {info.MiddleName} {info.Surname}",
                     info = info,
+                    User = user,
                 }
                 )
                 .OrderBy(p => p.Photos.InsertDate)
@@ -54,7 +58,7 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                     CountComments = groupedComments.Where(gc => gc.PhotoId == p.Photos.Id).Select(gc => gc.Count).First().ToString(),
                     CountLikes = groupedLikes.Where(gl => gl.SectionId == p.Photos.Id).Select(gl => gl.Count).First().ToString(),
                     Like = currentUserLikeUnlike.Where(x => x.SectionId == p.Photos.Id).Any(),
-                    Fullname= (string.IsNullOrEmpty(p.Fullname.Trim()))?p.info.Username:p.Fullname,
+                    Nickname = p.User.Nickname,
                     Headshot = p.info.Photo,
                 })
                 .Take(6)

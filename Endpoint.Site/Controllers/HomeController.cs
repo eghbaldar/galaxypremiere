@@ -74,7 +74,7 @@ namespace Endpoint.Site.Controllers
                     });
                     // Set Static Values
                     GeneralConstants.UserId = login.Data.IdUser;
-                    GeneralConstants.Fullname = login.Data.Nickname;
+                    GeneralConstants.Nickname = login.Data.Nickname;
                     var retrieve = _userInformationFacade.GetUsersInformationServiceService.Execute
                        (new galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation.RequestGetUsersInformationServiceDto
                        {
@@ -99,7 +99,7 @@ namespace Endpoint.Site.Controllers
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
             GeneralConstants.Username = null;
-            GeneralConstants.Fullname = null;
+            GeneralConstants.Nickname = null;
             GeneralConstants.UserId = 0;
             string currentUrl = Request.Headers["Referer"].ToString(); // Get the current URL
             return Redirect(currentUrl);

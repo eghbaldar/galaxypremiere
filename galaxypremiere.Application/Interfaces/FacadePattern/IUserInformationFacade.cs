@@ -4,6 +4,7 @@ using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersI
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationGeneral;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeader;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationHeadshot;
+using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationNickname;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationOther;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPassword;
 using galaxypremiere.Application.Services.UsersInformation.Commands.UpdateUsersInformationPrivacy;
@@ -46,5 +47,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         public GetUsersInformationContactByUsernameService GetUsersInformationContactByUsernameService { get; }
         public GetUsersInformationPhotosByUsernameService GetUsersInformationPhotosByUsernameService { get; }
         public GetUsersInformationUsernameByUserIdService GetUsersInformationUsernameByUserIdService { get; }
+        public UpdateUsersInformationNicknameService UpdateUsersInformationNicknameService { get; }
     }
 }

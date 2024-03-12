@@ -27,17 +27,21 @@ namespace galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersI
                 };
 
             var userInformation = (
-            from i in _context.UsersInformation
-            where (i.Username == req.Username)
+            from info in _context.UsersInformation
+            join user in _context.Users on info.UsersId equals user.Id into GroupUser
+            from user in GroupUser.DefaultIfEmpty()
+            where (info.Username == req.Username)
             select new
             {
-                UserInformation = i,
+                UserInformation = info,
+                User = user,
             }
             ).FirstOrDefault();
 
             if (userInformation != null)
             {
                 var mappedUserInformation = _mapper.Map<GetUsersInformationByUsernameServiceDto>(userInformation.UserInformation);
+                mappedUserInformation.Nickname = userInformation.User.Nickname;
 
                 return new ResultGetUsersInformationByUsernameServiceDto
                 {

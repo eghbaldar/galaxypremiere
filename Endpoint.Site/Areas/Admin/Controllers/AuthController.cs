@@ -65,7 +65,7 @@ namespace Endpoint.Site.Areas.Admin.Controllers
                     // clear static variables ...>
                     GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
                     GeneralConstants.Username = null;
-                    GeneralConstants.Fullname = null;
+                    GeneralConstants.Nickname = null;
                     GeneralConstants.UserId = 0;
                     // end of cleaning ...<
                     HttpContext.SignInAsync(principal, propertise);

@@ -17,7 +17,6 @@ namespace galaxypremiere.Infrastructure.MappingProfiles.Profiles
         public ProfilesMappingProfile()
         {
             CreateMap<Domain.Entities.Users.UsersInformation, GetUsersInformationByUsernameServiceDto>()
-                .ForMember(dest => dest.Fullname, act => act.MapFrom(src => $"{src.Firstname} {src.MiddleName} {src.Surname}"))
                 .ForMember(dest => dest.AccountType, act => act.MapFrom(src => ChangeAccountType(src.AccountType)))
                 .ReverseMap();
             CreateMap<Domain.Entities.Users.UsersInformation, GetUsersInformationAboutByUsernameServiceDto>()

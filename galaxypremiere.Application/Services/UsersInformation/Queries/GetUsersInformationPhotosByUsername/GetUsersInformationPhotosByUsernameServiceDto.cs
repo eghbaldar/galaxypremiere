@@ -10,7 +10,7 @@
         public string CountComments { get; set; } // the number of all comments
         public bool Like { get; set; } // true: liked | false: unliked
         public string CountLikes { get; set; }
-        public string Fullname { get; set; }
+        public string Nickname { get; set; }
         public string Headshot { get; set; }
     }
 }

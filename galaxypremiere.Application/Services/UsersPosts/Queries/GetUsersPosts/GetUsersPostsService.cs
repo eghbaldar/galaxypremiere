@@ -16,14 +16,16 @@ namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
             var result =
                 (from p in _context.UsersPosts
                  join info in _context.UsersInformation on p.UsersId equals info.UsersId
+                 join user in _context.Users on info.UsersId equals user.Id into GroupUser
+                 from user in GroupUser.DefaultIfEmpty()
                  where info.Username == req.Username && p.UsersId == info.UsersId && p.Archive == false
                  orderby p.InsertDate descending
                  select new GetUsersPostsServiceDto
                  {
                      UsersId = info.UsersId,
                      From = p.From,
-                     OwnerFullname = $"{info.Firstname ?? null} {info.MiddleName ?? null} {info.Surname ?? null}",
-                     FromFullname = "",
+                     OwnerNickname = user.Nickname,
+                     FromNickname = "",
                      Post = p.Post,
                      PostId = p.Id,
                      InsertDate = p.InsertDate,

@@ -106,7 +106,7 @@ namespace Endpoint.Site.Controllers
             return Json(_commentsFacade.PostCommentService.Execute(req));
         }
         [HttpGet]
-        public IActionResult GetPhotoCommentById(Guid Id)
+        public IActionResult GetCommentById(Guid Id)
         {
             long userId = 0;
             if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);

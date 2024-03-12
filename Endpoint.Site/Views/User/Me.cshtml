@@ -1,5 +1,6 @@
 ﻿@* DevelopeR: Alimohammad Eghbaldar http://eghbaldar.ir *@
 @using Endpoint.Site.Models.Users.GetInformation;
+@using galaxypremiere.Common.Constants;
 @model ModelGetInformation;
 @{
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
@@ -26,7 +27,21 @@
         <div class="card-body">
             <div class="basic-form">
                 <form asp-action="Create" id="frmAddUser" method="post">
-
+                    
+                    <div class="input-group mb-3">
+                    <span class="input-group-text">Nickname</span>
+                        <input type="text"
+                               class="form-control"
+                               id="txtNickname"
+                               placeholder="John"
+                               value="@GeneralConstants.Nickname">
+                               <button type="button" onclick="UpdateInfoNickname()" id="btnUpdateInfoNickname" class="btn cur-p btn-primary">
+                        Update
+                    </button>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+  Only your nickname will be shown throughout GalaxyPremiere, but your first, middle, and surname will only be accessible for festivals and companies.
+</div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Firstname</span>
                         <input type="text"
