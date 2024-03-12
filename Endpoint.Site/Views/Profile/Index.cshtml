@@ -1145,7 +1145,8 @@ else
                         <div id="PhotoModalCaption">
                             <div class="row">
                                 <div class="timeline-header p-2">
-                                    <span class="userimage"><img class="img-fluid kingImgFit" id="imgPhotoOwnerHeadshot" alt=""></span>
+                                    <span class="userimage"><img class="img-fluid kingImgFit"
+                                        id="imgPhotoOwnerHeadshot" alt=""></span>
                                     <span class="username" id="spanPhotoOwnerName"></span>
                                     <span class="pull-right text-muted" id="spanPhotoVisitorCouter"></span>
                                 </div>
@@ -1181,7 +1182,8 @@ else
                         <div id="PhotoModalComment" hidden>
                             <a onclick="closeComments();" class="cursor"> <i class="fa fa-mail-reply"></i> </a>
                             <div class="timeline-comment-box">
-                                <div class="user"><img id="imgPhotoCommenterHeadshot" alt="" /></div>
+                                <div class="user"><img class="img-responsive rounded-circle img-fluid kingImgWH100" id="imgPhotoCommenterHeadshot" alt="" />
+                                </div>
                                 <div class="input">
                                     <div class="input-group">
                                         <input type="text"
@@ -1353,7 +1355,7 @@ else
             $("#PhotoModalDetail").html(detail);
             $("#spanPhotoOwnerName").text(fullname);
             $("#imgPhotoCommenterHeadshot").attr("src", commenterHeadshot);
-            if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"); else $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/user-headshot/" + headshot);
+            if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"); else $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/user-headshot/" + headshot + "-thumb.jpg");
             if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden", true); else $('#PhotoModalBoxDetail').prop("hidden", false);
             if (CountLikes == null || CountLikes.trim() == '') $('#spanPhotoCountLikes').text("0"); else $('#spanPhotoCountLikes').text(CountLikes);
             if (countComments == null || countComments.trim() == '') $('#spanPhotoCountComments').text("0"); else $('#spanPhotoCountComments').text(countComments);
@@ -1734,7 +1736,7 @@ else
         function openComments() {
             $("#PhotoModalComment").prop("hidden", false);
             $("#PhotoModalCaption").prop("hidden", true);
-            laodComments($("#hiddenPhotoModalId").val());
+            LoadComments($("#hiddenPhotoModalId").val());
         }
         function closeComments() {
             $("#PhotoModalComment").prop("hidden", true);
@@ -1767,9 +1769,10 @@ else
         </div>
 `
         }
-        function laodComments(id) {
+        function LoadComments(id) {
 
             $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
+            $("#imgPhotoCommenterHeadshot").attr("src", '@TopRightUserPanelViewComponent.headshot');
             setTimeout(function () {
 
                 $.ajax({
