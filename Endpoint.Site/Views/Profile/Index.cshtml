@@ -1,5 +1,6 @@
 ﻿@using Endpoint.Site.Models.Porfile.GetInformationByUsername;
 @using Endpoint.Site.Views.Shared.Components;
+@using galaxypremiere.Common.Constants;
 @model ModelGetInformationByUsername;
 @{
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
@@ -424,7 +425,7 @@
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
-                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Fullname','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Headshot','@TopRightUserPanelViewComponent.headshot')">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Fullname','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Headshot','@GeneralConstants.PrivateHeadshot')">
 
 
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
@@ -614,7 +615,8 @@
                                                                 <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
                                                             </div>
                                                             <div class="timeline-comment-box">
-                                                                <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
+                                                                <div class="user"><img class="img-responsive rounded-circle img-fluid kingImgWH100"
+                                                                    src='@GeneralConstants.PrivateHeadshot'></div>
                                                                 <div class="input">
                                                                     <div class="input-group">
                                                                         <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
@@ -1182,7 +1184,9 @@ else
                         <div id="PhotoModalComment" hidden>
                             <a onclick="closeComments();" class="cursor"> <i class="fa fa-mail-reply"></i> </a>
                             <div class="timeline-comment-box">
-                                <div class="user"><img class="img-responsive rounded-circle img-fluid kingImgWH100" id="imgPhotoCommenterHeadshot" alt="" />
+                                <div class="user">
+                                    <img class="img-responsive rounded-circle img-fluid kingImgWH100"
+                                    id="imgPhotoCommenterHeadshot" alt="" />
                                 </div>
                                 <div class="input">
                                     <div class="input-group">
@@ -1355,7 +1359,7 @@ else
             $("#PhotoModalDetail").html(detail);
             $("#spanPhotoOwnerName").text(fullname);
             $("#imgPhotoCommenterHeadshot").attr("src", commenterHeadshot);
-            if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"); else $("#imgPhotoOwnerHeadshot").attr("src", "/SiteTemplate/innerpages/images/user-headshot/" + headshot + "-thumb.jpg");
+            if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "@GeneralConstants.PublicHeadshot"); else $("#imgPhotoOwnerHeadshot").attr("src", "@GeneralConstants.PrivateHeadshot");
             if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden", true); else $('#PhotoModalBoxDetail').prop("hidden", false);
             if (CountLikes == null || CountLikes.trim() == '') $('#spanPhotoCountLikes').text("0"); else $('#spanPhotoCountLikes').text(CountLikes);
             if (countComments == null || countComments.trim() == '') $('#spanPhotoCountComments').text("0"); else $('#spanPhotoCountComments').text(countComments);
@@ -1412,7 +1416,7 @@ else
                                 contentType: 'application/x-www-form-urlencoded',
                                 dataType: 'json',
                                 type: 'GET',
-                                data: { 'username': '@TopRightUserPanelViewComponent.username' },
+                                data: { 'username': '@GeneralConstants.Username' },
                                 url: 'profile/GetInfoAbout',
                                 success: function (data) {
                                     if (data.resultGetUsersInformationAboutByUsernameServiceDto.isSuccess) {
@@ -1526,7 +1530,7 @@ else
                                 contentType: 'application/x-www-form-urlencoded',
                                 dataType: 'json',
                                 type: 'GET',
-                                data: { 'username': '@TopRightUserPanelViewComponent.username' },
+                                data: { 'username': 'GeneralConstants.Username' },
                                 url: 'profile/GetInfoContact',
                                 success: function (data) {
                                     if (data.resultGetUsersInformationContactByUsernameServiceDto.isSuccess) {
@@ -1745,7 +1749,7 @@ else
         var commentsBox = function (o) {
             var name; if (o.fullname == null || o.fullname.trim() == '') name = o.email; else name = o.fullname;
             var commentDate; if (o.insertDate == null) commentDate = 'NEW'; else commentDate = KingGetTimeAgo(new Date(o.insertDate));
-            var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar;
+            var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar + '-thumb.jpg';
             var allowToRemove = o.allowToRemove;
             return `
                 <div class="media pb10" id="photoCommentBox_` + o.sectionId + `">
@@ -1772,7 +1776,7 @@ else
         function LoadComments(id) {
 
             $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
-            $("#imgPhotoCommenterHeadshot").attr("src", '@TopRightUserPanelViewComponent.headshot');
+            $("#imgPhotoCommenterHeadshot").attr("src", '@GeneralConstants.PrivateHeadshot');
             setTimeout(function () {
 
                 $.ajax({

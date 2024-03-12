@@ -9,7 +9,6 @@ using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInfor
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoComment;
 using Endpoint.Site.Utilities;
 using System.Security.Claims;
-using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUserPhotoComments;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.DeleteUsersPhotoComment;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotoIncreaseVisitorCounter;
@@ -105,7 +104,6 @@ namespace Endpoint.Site.Controllers
             req.Section = 0;
             req.Email = ClaimUtility.GetUserEmail(User as ClaimsPrincipal);
             return Json(_commentsFacade.PostCommentService.Execute(req));
-            //return Json(_userPhoto.PostUsersPhotoCommentService.Execute(req));
         }
         [HttpGet]
         public IActionResult GetPhotoCommentById(Guid Id)
@@ -118,11 +116,6 @@ namespace Endpoint.Site.Controllers
                 SectionId = Id,
                 UserId = userId,
             }));
-            //return Json(_userPhoto.GetUserPhotoCommentsService.Execute(new RequestGetUserPhotoCommentsServiceDto
-            //{
-            //    Id = Id,
-            //    UserId = userId,
-            //}));
         }
         [HttpPost]
         public IActionResult DeletePhotoComment(RequestDeleteCommentServiceDto req)
@@ -132,7 +125,6 @@ namespace Endpoint.Site.Controllers
             req.UserId = userId;
             req.Section = 0;// Derived from SectionsConstants.cs
             return Json(_commentsFacade.DeleteCommentService.Execute(req));
-            //return Json(_userPhoto.DeleteUsersPhotoCommentService.Execute(req));
         }
         [HttpPost]
         public IActionResult PostPhotoIncrementVisitorCounter(RequestPostUsersPhotoIncreaseVisitorCounterServiceDto req)

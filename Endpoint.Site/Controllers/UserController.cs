@@ -208,7 +208,7 @@ namespace Endpoint.Site.Controllers
             var result = _userInformationFacade
                 .UpdateUsersInformationHeadshotService
                 .Execute(req);
-            if(result.IsSuccess) TopRightUserPanelViewComponent.headshot = $"/SiteTemplate/innerpages/images/user-headshot/{result.Data}-thumb.jpg";
+            if(result.IsSuccess) GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{result.Data}-thumb.jpg";
             return Json(result);
         }
         [HttpPost]

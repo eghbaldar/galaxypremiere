@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using System.Net.Http;
 using AutoMapper;
 using Endpoint.Site.Views.Shared.Components;
+using galaxypremiere.Common.Constants;
 
 namespace Endpoint.Site.Areas.Admin.Controllers
 {
@@ -62,10 +63,11 @@ namespace Endpoint.Site.Areas.Admin.Controllers
                         IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     });
                     // clear static variables ...>
-                    TopRightUserPanelViewComponent.username = null;
-                    TopRightUserPanelViewComponent.fullname = null;
-                    TopRightUserPanelViewComponent.userId = 0;
-                    // end cleanliness ...<
+                    GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
+                    GeneralConstants.Username = null;
+                    GeneralConstants.Fullname = null;
+                    GeneralConstants.UserId = 0;
+                    // end of cleaning ...<
                     HttpContext.SignInAsync(principal, propertise);
                 }
             }

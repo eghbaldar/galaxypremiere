@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
-using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUserPhotoComments;
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
 

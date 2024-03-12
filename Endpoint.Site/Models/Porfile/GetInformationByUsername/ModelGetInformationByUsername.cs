@@ -2,7 +2,6 @@
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationContactByUsername;
 using galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformationPhotosByUsername;
-using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUserPhotoComments;
 using galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts;
 
 namespace Endpoint.Site.Models.Porfile.GetInformationByUsername

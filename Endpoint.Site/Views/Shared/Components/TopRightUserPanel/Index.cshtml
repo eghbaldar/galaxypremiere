@@ -1,4 +1,5 @@
 ﻿@using Endpoint.Site.Views.Shared.Components;
+@using galaxypremiere.Common.Constants;
 
 <div class="icon_info">
     <ul id="icons">
@@ -10,19 +11,19 @@
         <li>
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <img class="img-responsive rounded-circle img-fluid kingImgWH100" id="TopRightUserPanelHeadshotImg"
-                     src=@TopRightUserPanelViewComponent.headshot alt="#" />
+                     src=@GeneralConstants.PrivateHeadshot alt="#" />
                 <span class="name_user">
-                    @TopRightUserPanelViewComponent.fullname
+                    @GeneralConstants.Fullname
                 </span>
             </a>
             <div class="dropdown-menu">
-                @if (@TopRightUserPanelViewComponent.username == null || @TopRightUserPanelViewComponent.username == "")
+                @if (GeneralConstants.Username == null || GeneralConstants.Username == "")
                 {
                     <a class="dropdown-item" onclick="setUsernameAtFirst()">My Profile</a>
                 }
                 else
                 {
-                    <a class="dropdown-item" href="~/@TopRightUserPanelViewComponent.username">My Profile</a>
+                    <a class="dropdown-item" href="~/@GeneralConstants.Username">My Profile</a>
                 }
                 <a class="dropdown-item" href="settings.html">Settings</a>
                 <a class="dropdown-item" href="help.html">Help</a>

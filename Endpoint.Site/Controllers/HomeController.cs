@@ -14,6 +14,8 @@ using galaxypremiere.Application.Services.UserLoginLog.Commands.PostUserLoginLog
 using galaxypremiere.Common.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Endpoint.Site.Views.Shared.Components;
+using galaxypremiere.Domain.Entities.Users;
+using Endpoint.Site.Utilities;
 
 namespace Endpoint.Site.Controllers
 {
@@ -22,12 +24,16 @@ namespace Endpoint.Site.Controllers
     {
         private readonly IUserFacade _userFacade;
         private readonly IUserLoginLogFacade _userLoginLogFacade;
+        private readonly IUserInformationFacade _userInformationFacade;
+
         public HomeController(
             IUserFacade userFacade,
-            IUserLoginLogFacade userLoginLogFacade)
+            IUserLoginLogFacade userLoginLogFacade,
+            IUserInformationFacade userInformationFacade)
         {
             _userFacade = userFacade;
             _userLoginLogFacade = userLoginLogFacade;
+            _userInformationFacade = userInformationFacade;
         }
         [HttpGet]
         public IActionResult Index(string ReturnUrl)
@@ -39,10 +45,9 @@ namespace Endpoint.Site.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Login(RequestAuthLoginUsersServiceDto req)
-            {
+        {
             var login = _userFacade.AuthLoginUsersService.Execute(req);
             if (login != null)
             {
@@ -67,11 +72,22 @@ namespace Endpoint.Site.Controllers
                         UsersId = login.Data.IdUser,
                         IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     });
-                    // clear static variables ...>
-                    TopRightUserPanelViewComponent.username = null;
-                    TopRightUserPanelViewComponent.fullname = null;
-                    TopRightUserPanelViewComponent.userId = 0;
-                    // end cleanliness ...<
+                    // Set Static Values
+                    GeneralConstants.UserId = login.Data.IdUser;
+                    GeneralConstants.Fullname = login.Data.Nickname;
+                    var retrieve = _userInformationFacade.GetUsersInformationServiceService.Execute
+                       (new galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation.RequestGetUsersInformationServiceDto
+                       {
+                           UsersId = login.Data.IdUser,
+                       });
+                    if (retrieve != null)
+                    {
+                        GeneralConstants.Username = retrieve.Username;
+                        if (string.IsNullOrEmpty(retrieve.Photo))
+                            GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
+                        else
+                            GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg";
+                    }
                     HttpContext.SignInAsync(principal, propertise);
                 }
             }
@@ -81,6 +97,10 @@ namespace Endpoint.Site.Controllers
 
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
+            GeneralConstants.Username = null;
+            GeneralConstants.Fullname = null;
+            GeneralConstants.UserId = 0;
             string currentUrl = Request.Headers["Referer"].ToString(); // Get the current URL
             return Redirect(currentUrl);
         }

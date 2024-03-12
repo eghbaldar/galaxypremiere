@@ -7,7 +7,6 @@ using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosAl
 using galaxypremiere.Application.Services.UsersPhotos.Commands.PostUsersPhotosPhoto;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosAlbumRename;
 using galaxypremiere.Application.Services.UsersPhotos.Commands.UpdateUsersPhotosInformation;
-using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUserPhotoComments;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoAlbum;
 using galaxypremiere.Application.Services.UsersPhotos.Queries.GetUsersPhotoPhotos;
 using System;
@@ -29,7 +28,6 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
         UpdateUsersPhotoInformationService UpdateUsersPhotoInformationService { get; }
         DeleteUsersPhotoPhotoService DeleteUsersPhotoPhotoService { get; }
         PostUsersPhotoCommentService PostUsersPhotoCommentService { get; }
-        GetUserPhotoCommentsService GetUserPhotoCommentsService { get; }
         DeleteUsersPhotoCommentService DeleteUsersPhotoCommentService { get; }
         PostUsersPhotoIncreaseVisitorCounterService PostUsersPhotoIncreaseVisitorCounterService { get; }
     }
