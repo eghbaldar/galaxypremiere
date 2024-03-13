@@ -48,8 +48,6 @@ namespace Endpoint.Site.Controllers
         [HttpPost]
         public IActionResult Login(RequestAuthLoginUsersServiceDto req)
         {
-            HttpContext.Session.SetString("name","king");
-            HttpContext.Session.GetString("name");
             var login = _userFacade.AuthLoginUsersService.Execute(req);
             if (login != null)
             {
@@ -75,8 +73,8 @@ namespace Endpoint.Site.Controllers
                         IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
                     });
                     // Set Static Values
-                    GeneralConstants.UserId = login.Data.IdUser;
-                    GeneralConstants.Nickname = login.Data.Nickname;
+                    HttpContext.Session.SetString("UserSession:user-id", login.Data.IdUser.ToString());
+                    HttpContext.Session.SetString("UserSession:user-nickname", login.Data.Nickname);
                     var retrieve = _userInformationFacade.GetUsersInformationServiceService.Execute
                        (new galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation.RequestGetUsersInformationServiceDto
                        {
@@ -84,11 +82,11 @@ namespace Endpoint.Site.Controllers
                        });
                     if (retrieve != null)
                     {
-                        GeneralConstants.Username = retrieve.Username;
+                        HttpContext.Session.SetString("UserSession:user-username", retrieve.Username);
                         if (string.IsNullOrEmpty(retrieve.Photo))
-                            GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
+                            HttpContext.Session.SetString("UserSession:user-privateheadshot", GeneralConstants.PublicHeadshot);
                         else
-                            GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg";
+                            HttpContext.Session.SetString("UserSession:user-privateheadshot", $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg");
                     }
                     HttpContext.SignInAsync(principal, propertise);
                 }
@@ -99,10 +97,7 @@ namespace Endpoint.Site.Controllers
 
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
-            GeneralConstants.Username = null;
-            GeneralConstants.Nickname = null;
-            GeneralConstants.UserId = 0;
+            HttpContext.Session.Remove("UserSession");
             string currentUrl = Request.Headers["Referer"].ToString(); // Get the current URL
             return Redirect(currentUrl);
         }

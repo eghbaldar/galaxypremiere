@@ -143,7 +143,7 @@ namespace Endpoint.Site.Controllers
         {
             req.UsersId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             var result = _userInformationFacade.UpdateUsersInformationNicknameService.Execute(req);
-            if (result.IsSuccess) GeneralConstants.Nickname = req.Nickname;
+            if (result.IsSuccess) HttpContext.Session.SetString("UserSession:user-nikcname", req.Nickname);
             return Json(result);
         }
         [HttpPost]
@@ -217,7 +217,7 @@ namespace Endpoint.Site.Controllers
             var result = _userInformationFacade
                 .UpdateUsersInformationHeadshotService
                 .Execute(req);
-            if (result.IsSuccess) GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{result.Data}-thumb.jpg";
+            if (result.IsSuccess) HttpContext.Session.SetString("UserSession:user-privateheadshot", $"/SiteTemplate/innerpages/images/user-headshot/{result.Data}-thumb.jpg");
             return Json(result);
         }
         [HttpPost]

@@ -5,6 +5,9 @@
 @{
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
+@{
+    string nickname = @Context.Session.GetString("UserSession:user-nickname");
+}
 @section Styles{
     @*Only for this page*@
     <link href="~/sitetemplate/innerpages/pagecssjs/user/me/me.css" rel="stylesheet" />
@@ -34,7 +37,7 @@
                                class="form-control"
                                id="txtNickname"
                                placeholder="John"
-                               value="@GeneralConstants.Nickname">
+                               value="@nickname">
                                <button type="button" onclick="UpdateInfoNickname()" id="btnUpdateInfoNickname" class="btn cur-p btn-primary">
                         Update
                     </button>

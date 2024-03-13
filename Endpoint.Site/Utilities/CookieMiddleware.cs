@@ -1,6 +1,7 @@
 ﻿using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Common.Constants;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using NuGet.Protocol.Plugins;
 using System.Security.Claims;
@@ -22,13 +23,11 @@ namespace Endpoint.Site.Utilities
 
             if (context.User.Identity.IsAuthenticated)
             {
+                if(!context.Session.Keys.Contains("UserSession") || !context.Session.TryGetValue("UserSession:user-id", out _))
+                {
+                    context.Session.SetString("UserSession:user-id", ClaimUtility.GetUserId(context.User as ClaimsPrincipal).ToString());
+                    context.Session.SetString("UserSession:user-nickname", ClaimUtility.GetUserFullname(context.User as ClaimsPrincipal));
 
-                context.Session.SetString("Session_Nickname", ClaimUtility.GetUserFullname(context.User as ClaimsPrincipal));
-
-                if (string.IsNullOrEmpty(GeneralConstants.Nickname)) GeneralConstants.Nickname = ClaimUtility.GetUserFullname(context.User as ClaimsPrincipal);
-                if (GeneralConstants.UserId == 0) GeneralConstants.UserId = (long)ClaimUtility.GetUserId(context.User as ClaimsPrincipal);
-
-                if (string.IsNullOrEmpty(GeneralConstants.Username))
                     using (var scope = _serviceProvider.CreateScope())
                     {
                         var dbContext = scope.ServiceProvider.GetRequiredService<IUserInformationFacade>();
@@ -36,17 +35,45 @@ namespace Endpoint.Site.Utilities
                         var retrieve = dbContext.GetUsersInformationServiceService.Execute
                          (new galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation.RequestGetUsersInformationServiceDto
                          {
-                             UsersId = GeneralConstants.UserId,
+                             UsersId = long.Parse(context.Session.GetString("UserSession:user-id")),
                          });
                         if (retrieve != null)
                         {
-                            GeneralConstants.Username = retrieve.Username;
+                            //GeneralConstants.Username = retrieve.Username;
+                            context.Session.SetString("UserSession:user-username", retrieve.Username);
                             if (string.IsNullOrEmpty(retrieve.Photo))
-                                GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
+                                context.Session.SetString("UserSession:user-privateheadshot", GeneralConstants.PublicHeadshot);
+                            //GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
                             else
-                                GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg";
+                                context.Session.SetString("UserSession:user-privateheadshot", $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg");
+                            //GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg";
                         }
                     }
+                }
+                
+
+                //if (string.IsNullOrEmpty(GeneralConstants.Nickname)) GeneralConstants.Nickname = ClaimUtility.GetUserFullname(context.User as ClaimsPrincipal);
+                //if (GeneralConstants.UserId == 0) GeneralConstants.UserId = (long)ClaimUtility.GetUserId(context.User as ClaimsPrincipal);
+
+                //if (string.IsNullOrEmpty(GeneralConstants.Username))
+                    //using (var scope = _serviceProvider.CreateScope())
+                    //{
+                    //    var dbContext = scope.ServiceProvider.GetRequiredService<IUserInformationFacade>();
+
+                    //    var retrieve = dbContext.GetUsersInformationServiceService.Execute
+                    //     (new galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation.RequestGetUsersInformationServiceDto
+                    //     {
+                    //         UsersId = GeneralConstants.UserId,
+                    //     });
+                    //    if (retrieve != null)
+                    //    {
+                    //        GeneralConstants.Username = retrieve.Username;
+                    //        if (string.IsNullOrEmpty(retrieve.Photo))
+                    //            GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
+                    //        else
+                    //            GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg";
+                    //    }
+                    //}
             }
 
             await _next(context);

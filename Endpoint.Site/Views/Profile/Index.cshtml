@@ -5,6 +5,12 @@
 @{
     Layout = "~/Views/Shared/_LayoutInnerPages.cshtml";
 }
+@{
+    string username = @Context.Session.GetString("UserSession:user-username");
+    string privateheadshot = @Context.Session.GetString("UserSession:user-privateheadshot");
+    string nickname = @Context.Session.GetString("UserSession:user-nickname");
+}
+
 <style>
     .masonry {
         column-count: 2; /* Adjust the number of columns as desired */
@@ -424,7 +430,7 @@
                                 @for (byte i = 0; i <= Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto.Count - 1; i++)
                                 {
                                     <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col cursor">
-                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Nickname','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Headshot','@GeneralConstants.PrivateHeadshot')">
+                                        <a onclick="openModalPhotos6('@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Id','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Title','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Detail','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].VisitorCounter','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountComments','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Like','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].CountLikes','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Nickname','@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Headshot','@privateheadshot')">
 
 
                                             <img src="~/SiteTemplate/innerpages/images/user-photos/@Model.ResultGetUsersInformationPhotosByUsernameServiceDto.resultGetUsersInformationPhotosByUsernameServiceDto[i].Filename" alt=""
@@ -614,8 +620,7 @@
                                                             </div>
                                                             <div class="timeline-comment-box">
                                                                 <div class="user">
-                                                                    <img class="img-responsive rounded-circle img-fluid kingImgWH100"
-                                                             src='@GeneralConstants.PrivateHeadshot'>
+                                                                    <img class="img-responsive rounded-circle img-fluid kingImgWH100" src='@privateheadshot'>
                                                                 </div>
                                                                 <div class="input">
                                                                     <div class="input-group">
@@ -1361,7 +1366,7 @@ else
             $("#PhotoModalDetail").html(detail);
             $("#spanPhotoOwnerName").text(nickname);
             $("#imgPhotoCommenterHeadshot").attr("src", commenterHeadshot);
-            if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "@GeneralConstants.PublicHeadshot"); else $("#imgPhotoOwnerHeadshot").attr("src", "@GeneralConstants.PrivateHeadshot");
+            if (headshot == null || headshot.trim() == '') $("#imgPhotoOwnerHeadshot").attr("src", "@GeneralConstants.PublicHeadshot"); else $("#imgPhotoOwnerHeadshot").attr("src", "@privateheadshot");
             if (detail.trim() == '<i class="fa fa-quote-left fa-fw"></i><br><i class="fa fa-quote-right fa-fw"></i>') $('#PhotoModalBoxDetail').prop("hidden", true); else $('#PhotoModalBoxDetail').prop("hidden", false);
             if (CountLikes == null || CountLikes.trim() == '') $('#spanPhotoCountLikes').text("0"); else $('#spanPhotoCountLikes').text(CountLikes);
             if (countComments == null || countComments.trim() == '') $('#spanPhotoCountComments').text("0"); else $('#spanPhotoCountComments').text(countComments);
@@ -1418,7 +1423,7 @@ else
                                 contentType: 'application/x-www-form-urlencoded',
                                 dataType: 'json',
                                 type: 'GET',
-                                data: { 'username': '@GeneralConstants.Username' },
+                                data: { 'username': '@username' },
                                 url: 'profile/GetInfoAbout',
                                 success: function (data) {
                                     if (data.resultGetUsersInformationAboutByUsernameServiceDto.isSuccess) {
@@ -1778,7 +1783,7 @@ else
         function LoadComments(id) {
 
             $('#divPhotoCommentLoader').css('display', 'block'); // get started loading ...
-            $("#imgPhotoCommenterHeadshot").attr("src", '@GeneralConstants.PrivateHeadshot');
+            $("#imgPhotoCommenterHeadshot").attr("src", '@privateheadshot');
             setTimeout(function () {
 
                 $.ajax({

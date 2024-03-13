@@ -1,6 +1,11 @@
 ﻿@using Endpoint.Site.Views.Shared.Components;
 @using galaxypremiere.Common.Constants;
 
+@{
+    string username = @Context.Session.GetString("UserSession:user-username");
+    string privateheadshot = @Context.Session.GetString("UserSession:user-privateheadshot");
+    string nickname = @Context.Session.GetString("UserSession:user-nickname");
+}
 
 <div class="icon_info">
     <ul id="icons">
@@ -12,22 +17,20 @@
         <li>
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <img class="img-responsive rounded-circle img-fluid kingImgWH100" id="TopRightUserPanelHeadshotImg"
-                     src=@GeneralConstants.PrivateHeadshot alt="#" />
+                     src=@privateheadshot alt="#" />
                 <span class="name_user" id="TopRightUserPanel_Nickname">
-                    @GeneralConstants.Nickname
+                    @nickname
                 </span>
             </a>
             <div class="dropdown-menu" style="z-index: 9999 !important;">
-                @if (GeneralConstants.Username == null || GeneralConstants.Username == "")
+                @if (username == null || username == "")
                 {
                     <a class="dropdown-item" onclick="setUsernameAtFirst()">My Profile</a>
                 }
                 else
                 {
-                    <a class="dropdown-item" href="~/@GeneralConstants.Username">My Profile</a>
+                    <a class="dropdown-item" href="~/@username">My Profile</a>
                 }
-                <a class="dropdown-item" href="settings.html">@Context.Session.GetString("Session_Nickname")</a>
-                <a class="dropdown-item" href="settings.html">@Context.Session.GetString("name")</a>
                 <a class="dropdown-item" href="settings.html">Settings</a>
                 <a class="dropdown-item" href="help.html">Help</a>
                 <a class="dropdown-item" href="~/home/Logout">

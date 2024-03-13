@@ -35,43 +35,40 @@ namespace Endpoint.Site.Areas.Admin.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Login(RequestAuthLoginUsersServiceDto req)
-        {
-            var login = _userFacade.AuthLoginUsersService.Execute(req);
-            if (login != null)
-            {
-                if (login.IsSuccess)
-                {
-                    var claims = new List<Claim>() {
-                        new Claim(ClaimTypes.NameIdentifier,login.Data.IdUser.ToString()),
-                        new Claim(ClaimTypes.Email,req.Email),
-                        new Claim(ClaimTypes.Name,login.Data.Nickname),
-                        new Claim(ClaimTypes.Role,login.Data.Role),
-                    };
+        //[HttpPost]
+        //public IActionResult Login(RequestAuthLoginUsersServiceDto req)
+        //{
+        //    var login = _userFacade.AuthLoginUsersService.Execute(req);
+        //    if (login != null)
+        //    {
+        //        if (login.IsSuccess)
+        //        {
+        //            var claims = new List<Claim>() {
+        //                new Claim(ClaimTypes.NameIdentifier,login.Data.IdUser.ToString()),
+        //                new Claim(ClaimTypes.Email,req.Email),
+        //                new Claim(ClaimTypes.Name,login.Data.Nickname),
+        //                new Claim(ClaimTypes.Role,login.Data.Role),
+        //            };
 
-                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var principal = new ClaimsPrincipal(identity);
-                    var propertise = new AuthenticationProperties()
-                    {
-                        IsPersistent = true,
-                        ExpiresUtc = DateTime.Now.AddYears(1),
-                    };
-                    _userLoginLogFacade.PostUserLoginLogService.Execute(new RequestPostUserLoginLogServiceDto
-                    {
-                        UsersId = login.Data.IdUser,
-                        IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
-                    });
-                    // clear static variables ...>
-                    GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
-                    GeneralConstants.Username = null;
-                    GeneralConstants.Nickname = null;
-                    GeneralConstants.UserId = 0;
-                    // end of cleaning ...<
-                    HttpContext.SignInAsync(principal, propertise);
-                }
-            }
-            return Json(login);
-        }
+        //            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //            var principal = new ClaimsPrincipal(identity);
+        //            var propertise = new AuthenticationProperties()
+        //            {
+        //                IsPersistent = true,
+        //                ExpiresUtc = DateTime.Now.AddYears(1),
+        //            };
+        //            _userLoginLogFacade.PostUserLoginLogService.Execute(new RequestPostUserLoginLogServiceDto
+        //            {
+        //                UsersId = login.Data.IdUser,
+        //                IP = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
+        //            });
+        //            // clear static variables ...>
+        //            HttpContext.Session.Remove("UserSession");`
+        //            // end of cleaning ...<
+        //            HttpContext.SignInAsync(principal, propertise);
+        //        }
+        //    }
+        //    return Json(login);
+        //}
     }
 }
