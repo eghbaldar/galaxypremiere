@@ -48,6 +48,8 @@ namespace Endpoint.Site.Controllers
         [HttpPost]
         public IActionResult Login(RequestAuthLoginUsersServiceDto req)
         {
+            HttpContext.Session.SetString("name","king");
+            HttpContext.Session.GetString("name");
             var login = _userFacade.AuthLoginUsersService.Execute(req);
             if (login != null)
             {

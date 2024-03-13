@@ -1,3 +1,4 @@
+using Endpoint.Site.Utilities;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
 using galaxypremiere.Application.Services.Comments.FacadePattern;
@@ -114,6 +115,16 @@ builder.Services.AddAuthentication()
         //option.CallbackPath = "/signin-instagram";
     });
 
+builder.Services.AddSession(options =>
+{
+    // Configure session options as needed
+    options.Cookie.Name = "UserSession";
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    // Add other session options as needed
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -132,6 +143,10 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseSession();
+
+app.UseMiddleware<CookieMiddleware>(); // this code have to be placed after UseAuthentication() and UseAuthorization()
+
 app.MapControllerRoute(
       name: "areas",
       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
@@ -146,4 +161,4 @@ app.MapControllerRoute(
     defaults: new { controller = "Profile", action = "Index", username = "" }
 );
 
-app.Run();
+    app.Run();
