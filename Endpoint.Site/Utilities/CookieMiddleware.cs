@@ -39,41 +39,14 @@ namespace Endpoint.Site.Utilities
                          });
                         if (retrieve != null)
                         {
-                            //GeneralConstants.Username = retrieve.Username;
                             context.Session.SetString("UserSession:user-username", retrieve.Username);
                             if (string.IsNullOrEmpty(retrieve.Photo))
                                 context.Session.SetString("UserSession:user-privateheadshot", GeneralConstants.PublicHeadshot);
-                            //GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
                             else
                                 context.Session.SetString("UserSession:user-privateheadshot", $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg");
-                            //GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg";
                         }
                     }
                 }
-                
-
-                //if (string.IsNullOrEmpty(GeneralConstants.Nickname)) GeneralConstants.Nickname = ClaimUtility.GetUserFullname(context.User as ClaimsPrincipal);
-                //if (GeneralConstants.UserId == 0) GeneralConstants.UserId = (long)ClaimUtility.GetUserId(context.User as ClaimsPrincipal);
-
-                //if (string.IsNullOrEmpty(GeneralConstants.Username))
-                    //using (var scope = _serviceProvider.CreateScope())
-                    //{
-                    //    var dbContext = scope.ServiceProvider.GetRequiredService<IUserInformationFacade>();
-
-                    //    var retrieve = dbContext.GetUsersInformationServiceService.Execute
-                    //     (new galaxypremiere.Application.Services.UsersInformation.Queries.GetUsersInformation.RequestGetUsersInformationServiceDto
-                    //     {
-                    //         UsersId = GeneralConstants.UserId,
-                    //     });
-                    //    if (retrieve != null)
-                    //    {
-                    //        GeneralConstants.Username = retrieve.Username;
-                    //        if (string.IsNullOrEmpty(retrieve.Photo))
-                    //            GeneralConstants.PrivateHeadshot = GeneralConstants.PublicHeadshot;
-                    //        else
-                    //            GeneralConstants.PrivateHeadshot = $"/SiteTemplate/innerpages/images/user-headshot/{retrieve.Photo}-thumb.jpg";
-                    //    }
-                    //}
             }
 
             await _next(context);

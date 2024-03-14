@@ -68,6 +68,7 @@ namespace Endpoint.Site.Controllers
                 ResultGetUsersPostsServiceDto = _usersPost.GetUsersPostsService.Execute(new RequestGetUsersPostsServiceDto
                 {
                     Username = username,
+                    UserId = (User.Identity.IsAuthenticated? userId : 0),
                 }).Data,
             };
             return View(modelGetInformationByUsername);
@@ -97,11 +98,10 @@ namespace Endpoint.Site.Controllers
             }));
         }
         [HttpPost]
-        public IActionResult PostPhotoComment(RequestPostCommentServiceDto req)
+        public IActionResult PostComment(RequestPostCommentServiceDto req)
         {
             var userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UsersId = userId;
-            req.Section = 0;
             req.Email = ClaimUtility.GetUserEmail(User as ClaimsPrincipal);
             return Json(_commentsFacade.PostCommentService.Execute(req));
         }
@@ -118,12 +118,11 @@ namespace Endpoint.Site.Controllers
             }));
         }
         [HttpPost]
-        public IActionResult DeletePhotoComment(RequestDeleteCommentServiceDto req)
+        public IActionResult DeleteComment(RequestDeleteCommentServiceDto req)
         {
             long userId = 0;
             if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UserId = userId;
-            req.Section = 0;// Derived from SectionsConstants.cs
             return Json(_commentsFacade.DeleteCommentService.Execute(req));
         }
         [HttpPost]

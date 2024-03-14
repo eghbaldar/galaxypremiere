@@ -94,10 +94,9 @@ namespace Endpoint.Site.Controllers
             return Json(login);
         }
         public IActionResult Logout()
-
         {
+            HttpContext.Session.Clear();
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.Session.Remove("UserSession");
             string currentUrl = Request.Headers["Referer"].ToString(); // Get the current URL
             return Redirect(currentUrl);
         }

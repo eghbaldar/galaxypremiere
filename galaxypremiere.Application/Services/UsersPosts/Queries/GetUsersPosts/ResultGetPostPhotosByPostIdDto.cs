@@ -1,10 +1,9 @@
-﻿namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
+﻿using static galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts.GetUsersPostsService;
+
+namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
 {
-    public partial class GetUsersPostsService
+    public class ResultGetPostPhotosByPostIdDto
     {
-        public class ResultGetPostPhotosByPostIdDto
-        {
-            public List<GetPostPhotosByPostIdDto> resultGetPostPhotosByPostIdDto { get; set; }
-        }
+        public List<GetPostPhotosByPostIdDto> resultGetPostPhotosByPostIdDto { get; set; }
     }
 }

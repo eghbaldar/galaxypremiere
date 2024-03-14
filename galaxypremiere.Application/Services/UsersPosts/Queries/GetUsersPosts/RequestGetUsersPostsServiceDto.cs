@@ -3,5 +3,6 @@
     public class RequestGetUsersPostsServiceDto
     {
         public string Username { get; set; }
+        public long UserId { get; set; } // who are vising the page?
     }
 }
