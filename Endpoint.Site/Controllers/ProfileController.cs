@@ -131,11 +131,10 @@ namespace Endpoint.Site.Controllers
             return Json(_userPhoto.PostUsersPhotoIncreaseVisitorCounterService.Execute(req));
         }
         [HttpPost]
-        public IActionResult PostPhotoLike(RequestPostLikeServiceDto req)
+        public IActionResult PostLike(RequestPostLikeServiceDto req)
         {
             long userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             req.UsersId = userId;
-            req.Section = SectionsConstants.UserPhotos; // drived from "SectionsConstants.cs"
             return Json(_ikesFacade.PostLikeService.Execute(req));
         }
         [HttpPost]
