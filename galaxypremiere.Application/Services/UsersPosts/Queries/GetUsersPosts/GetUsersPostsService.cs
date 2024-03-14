@@ -1,4 +1,5 @@
 ﻿using galaxypremiere.Application.Interfaces.Contexts;
+using galaxypremiere.Common.Constants;
 using galaxypremiere.Common.DTOs;
 
 namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
@@ -63,12 +64,12 @@ namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
                               InsertTime = c.InsertTime,
                               NicknameCommenter = u.Nickname,
                               UserId = u.Id,
-                              Headshot= info.Photo,
+                              Headshot = info.Photo,
                               AllowToRemove = c.UsersId == req.UserId,
                           }
                          ).ToList(),
-                     }
-
+                     },
+                     Liked = _context.Likes.Where(l => l.UsersId == req.UserId && l.SectionId == p.Id && l.DeleteTime == null && l.Section == SectionsConstants.UserPosts).Any()
                  }).ToList();
             return new ResultDto<ResultGetUsersPostsServiceDto>
             {
