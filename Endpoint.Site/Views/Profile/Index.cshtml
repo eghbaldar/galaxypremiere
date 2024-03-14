@@ -593,9 +593,9 @@
                                                             </div>
                                                             <div class="timeline-likes">
                                                                 <div class="stats-right">
-                                                                    <span class="stats-text">21 Comments</span>
-                                                                    <span class="stats-text">259 Shares</span>
-                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                                                    <span class="stats-text" id="spanPostCountComment_@post.PostId">@post.CountComments</span>&nbsp;Comments
+                                                                    @*<span class="stats-text">259 Shares</span>*@
+                                                                    @*<a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>*@
                                                                 </div>
                                                                 <div class="stats">
 
@@ -617,7 +617,7 @@
                                                                     }
 
 
-                                                                    <span class="stats-total">4.3k</span>
+                                                                    <span id="spanPostCountLikes_@post.PostId" class="stats-total">@post.CountLikes</span>
                                                                 </div>
                                                             </div>
                                                             <div class="timeline-comment-box">
@@ -640,7 +640,7 @@
                                                                         {
                                                                             <button type="button"
                                                                     id="btnPostComment_@post.PostId"
-                                                                    onclick="PostModalComment('1','@post.PostId')" class="btn cur-p btn-dark" style="border-radius:0px !important;">
+                                                                    onclick="PostComment('1','@post.PostId')" class="btn cur-p btn-dark" style="border-radius:0px !important;">
                                                                                 Leave it
                                                                             </button>
                                                                         }
@@ -1289,7 +1289,7 @@ else
                                         {
                                             <button type="button" disabled
                                                 id="btnPostModalComment"
-                                                onclick="PostModalComment('0','')"
+                                                onclick="PostComment('0','')"
                                                 class="btn cur-p btn-dark" style="border-radius:0px !important;">
                                                 Comment
                                             </button>
@@ -1791,7 +1791,7 @@ else
             });
         }
         ////////////////////////// Comments Section
-        function PostModalComment(section, sectionId) {
+        function PostComment(section, sectionId) {
 
             var _comment, _sectionId;
             switch (section) {
@@ -1832,9 +1832,16 @@ else
                             'comment': _comment,
                             'email': data.data.email,
                         };
-                        $("#txtPostModalComment").val('');
-                        $("#media-body-comments").append(commentsBox(fetchedData));
-                        $('#spanPhotoCountComments').text(parseInt($('#spanPhotoCountComments').text()) + 1);
+                        switch (section) {
+                            case '0': // Photo Comment (SectionsConstants.cs)
+                                $("#txtPostModalComment").val('');
+                                $("#media-body-comments").append(commentsBox(fetchedData));
+                                $('#spanPhotoCountComments').text(parseInt($('#spanPhotoCountComments').text()) + 1);
+                                break;
+                            case '1': // Post Comment (SectionsConstants.cs)
+                                $('#spanPostCountComment_' + _sectionId).text(parseInt($('#spanPostCountComment_' + _sectionId).text()) + 1);
+                                break;
+                        }
                     },
                     error: function (req, status, error) {
                         alert(req.responseText + status + error)
@@ -1845,7 +1852,7 @@ else
                             $('#divPhotoCommentLoader').css('display', 'none');
                             break;
                         case '1': // Post Comment (SectionsConstants.cs)
-                            $('#divPostCommentLoader_' + sectionId).css('display', 'none');
+                            $('#divPostCommentLoader_' + _sectionId).css('display', 'none');
                             break;
                     }
                 });
@@ -1866,26 +1873,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar + '-thumb.jpg';
             var allowToRemove = o.allowToRemove;
             return `
-                                                                                                                        <div class="media pb10" id="photoCommentBox_` + o.sectionId + `">
-                                                                                                                    <a class="pull-left" href="#">
-                                                                                                                        <div class="user">
-                                                                                                                                <img class="kingImgFit"
-                                                                                                                                    src=`+ avatar + ` alt="...">
-                                                                                                                        </div>
-                                                                                                                    </a>
-                                                                                                                <div class="media-body mb5">
+                                                                                                                                        <div class="media pb10" id="photoCommentBox_` + o.sectionId + `">
+                                                                                                                                    <a class="pull-left" href="#">
+                                                                                                                                        <div class="user">
+                                                                                                                                                <img class="kingImgFit"
+                                                                                                                                                    src=`+ avatar + ` alt="...">
+                                                                                                                                        </div>
+                                                                                                                                    </a>
+                                                                                                                                <div class="media-body mb5">
 
-                                                                                                                    <h5 class="media-heading mbn"> `+ name + `
-                                                                                                                        <small> - `+ commentDate + `</small>
-                                                                                                                    </h5>
+                                                                                                                                    <h5 class="media-heading mbn"> `+ name + `
+                                                                                                                                        <small> - `+ commentDate + `</small>
+                                                                                                                                    </h5>
 
-                                                                                                                    <p class="commentsText">`+ o.comment + `</p>
+                                                                                                                                    <p class="commentsText">`+ o.comment + `</p>
 
-                                                                                                                </div>
-                                                                                                                                ${allowToRemove ? `<span onclick="removeComment('0','${o.sectionId}','')" class="close-button cursor">&times;</span>` : ''}
+                                                                                                                                </div>
+                                                                                                                                                ${allowToRemove ? `<span onclick="removeComment('0','${o.sectionId}','')" class="close-button cursor">&times;</span>` : ''}
 
-                                                                                                                </div>
-                                                                                                        `
+                                                                                                                                </div>
+                                                                                                                        `
         }
         function LoadComments(id) {
 
@@ -1948,6 +1955,7 @@ else
                                     $('#spanPhotoCountComments').text(parseInt($('#spanPhotoCountComments').text()) - 1);
                                     break;
                                 case '1': // Post Comments
+                                    $('#spanPostCountComment_' + post_id).text(parseInt($('#spanPostCountComment_' + post_id).text()) - 1);
                                     break;
                             }
                         }
@@ -2002,7 +2010,7 @@ else
                                 case '1': // Post Like =>"SectionsConstants.cs"
                                     $("#anchorPostLike_" + postId).removeClass("fa-heart-o");
                                     $("#anchorPostLike_" + postId).addClass("fa-heart");
-                                    //$('#spanPhotoCountLikes').text(parseInt($('#spanPhotoCountLikes').text()) + 1);
+                                    $('#spanPostCountLikes_' + postId).text(parseInt($('#spanPostCountLikes_' + postId).text()) + 1);
                                     break;
                             }
                         } else { // unliked
@@ -2015,7 +2023,7 @@ else
                                 case '1': // Post Like =>"SectionsConstants.cs"
                                     $("#anchorPostLike_" + postId).removeClass("fa-heart");
                                     $("#anchorPostLike_" + postId).addClass("fa-heart-o");
-                                    //$('#spanPhotoCountLikes').text(parseInt($('#spanPhotoCountLikes').text()) - 1);
+                                    $('#spanPostCountLikes_' + postId).text(parseInt($('#spanPostCountLikes_' + postId).text()) - 1);
                                     break;
                             }
 
@@ -2064,66 +2072,66 @@ else
         }
         var postsBox = function (o) {
             return `
-                                                                                                                                                                                            <li>
+                                                                                                                                                                                                            <li>
 
-                                                                                                                                                                                            <div class="timeline-time">
-                                                                                                                                                                                                <span class="date">today</span>
-                                                                                                                                                                                                <span class="time">04:20</span>
-                                                                                                                                                                                            </div>
-
-
-                                                                                                                                                                                            <div class="timeline-icon">
-                                                                                                                                                                                                <a href="javascript:;">&nbsp;</a>
-                                                                                                                                                                                            </div>
+                                                                                                                                                                                                            <div class="timeline-time">
+                                                                                                                                                                                                                <span class="date">today</span>
+                                                                                                                                                                                                                <span class="time">04:20</span>
+                                                                                                                                                                                                            </div>
 
 
-                                                                                                                                                                                            <div class="timeline-body">
-                                                                                                                                                                                                <div class="timeline-header">
-                                                                                                                                                                                                    <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
-                                                                                                                                                                                                    <span class="username"><a href="javascript:;">Sean Ngu</a> <small></small></span>
-                                                                                                                                                                                                    <span class="pull-right text-muted">18 Views</span>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <div class="timeline-content">
-                                                                                                                                                                                                    <p>
-                                                                                                                                                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
-                                                                                                                                                                                                        Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
-                                                                                                                                                                                                    </p>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <div class="timeline-likes">
-                                                                                                                                                                                                    <div class="stats-right">
-                                                                                                                                                                                                        <span class="stats-text">259 Shares</span>
-                                                                                                                                                                                                        <span class="stats-text">21 Comments</span>
-                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                    <div class="stats">
-                                                                                                                                                                                                        <span class="fa-stack fa-fw stats-icon">
-                                                                                                                                                                                                            <i class="fa fa-circle fa-stack-2x text-danger"></i>
-                                                                                                                                                                                                            <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
-                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                        <span class="fa-stack fa-fw stats-icon">
-                                                                                                                                                                                                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                                                                                                                                                                                            <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
-                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                        <span class="stats-total">4.3k</span>
-                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <div class="timeline-footer">
-                                                                                                                                                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                                                                                                                                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                                                                                                                                                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                                <div class="timeline-comment-box">
-                                                                                                                                                                                                    <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
-                                                                                                                                                                                                    <div class="input">
-                                                                                                                                                                                                        <div class="input-group">
-                                                                                                                                                                                                            <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
-                                                                                                                                                                                                            <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Dark</button>
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                            </div>
+                                                                                                                                                                                                            <div class="timeline-icon">
+                                                                                                                                                                                                                <a href="javascript:;">&nbsp;</a>
+                                                                                                                                                                                                            </div>
 
-                                                                                                                                                                                        </li>
-                                                                                                                                                                                            `;
+
+                                                                                                                                                                                                            <div class="timeline-body">
+                                                                                                                                                                                                                <div class="timeline-header">
+                                                                                                                                                                                                                    <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+                                                                                                                                                                                                                    <span class="username"><a href="javascript:;">Sean Ngu</a> <small></small></span>
+                                                                                                                                                                                                                    <span class="pull-right text-muted">18 Views</span>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                <div class="timeline-content">
+                                                                                                                                                                                                                    <p>
+                                                                                                                                                                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
+                                                                                                                                                                                                                        Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
+                                                                                                                                                                                                                    </p>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                <div class="timeline-likes">
+                                                                                                                                                                                                                    <div class="stats-right">
+                                                                                                                                                                                                                        <span class="stats-text">259 Shares</span>
+                                                                                                                                                                                                                        <span class="stats-text">21 Comments</span>
+                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                    <div class="stats">
+                                                                                                                                                                                                                        <span class="fa-stack fa-fw stats-icon">
+                                                                                                                                                                                                                            <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                                                                                                                                                                                                                            <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                        <span class="fa-stack fa-fw stats-icon">
+                                                                                                                                                                                                                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                                                                                                                                                                                            <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                        <span class="stats-total">4.3k</span>
+                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                <div class="timeline-footer">
+                                                                                                                                                                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
+                                                                                                                                                                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                                                                                                                                                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                <div class="timeline-comment-box">
+                                                                                                                                                                                                                    <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
+                                                                                                                                                                                                                    <div class="input">
+                                                                                                                                                                                                                        <div class="input-group">
+                                                                                                                                                                                                                            <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                                                                                                                                                                                                            <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Dark</button>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            </div>
+
+                                                                                                                                                                                                        </li>
+                                                                                                                                                                                                            `;
         };
         // to change user's post inserttime to my special form
         const dateElements = document.querySelectorAll('.date');

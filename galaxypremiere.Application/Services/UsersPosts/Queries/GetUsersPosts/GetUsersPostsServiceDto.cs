@@ -18,5 +18,7 @@ namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
         public ResultGetPostPhotosByPostIdDto resultGetPostPhotosByPostIdDto { get; set; }
         public ResultGetPostCommentsByPostIdDto resultGetPostCommentsByPostIdDto { get; set; }
         public bool Liked { get; set; } // whether this post is liked by the logged user or not.
+        public string CountLikes { get; set; }
+        public string CountComments { get; set; }
     }
 }

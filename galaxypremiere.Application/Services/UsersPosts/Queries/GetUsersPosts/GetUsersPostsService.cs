@@ -69,7 +69,9 @@ namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
                           }
                          ).ToList(),
                      },
-                     Liked = _context.Likes.Where(l => l.UsersId == req.UserId && l.SectionId == p.Id && l.DeleteTime == null && l.Section == SectionsConstants.UserPosts).Any()
+                     Liked = _context.Likes.Where(l => l.UsersId == req.UserId && l.SectionId == p.Id && l.DeleteTime == null && l.Section == SectionsConstants.UserPosts).Any(),
+                     CountLikes = _context.Likes.Where(l=>l.SectionId == p.Id && l.DeleteTime == null && l.Section == SectionsConstants.UserPosts).Count().ToString(),
+                     CountComments = _context.Comments.Where(c => c.SectionId == p.Id && c.DeleteTime == null && c.Section == SectionsConstants.UserPosts).Count().ToString(),
                  }).ToList();
             return new ResultDto<ResultGetUsersPostsServiceDto>
             {
