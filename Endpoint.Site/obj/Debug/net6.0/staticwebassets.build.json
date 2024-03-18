@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "guDqdAuCp1DWzvqnbeOV7V7HYQw6mAG0DsYB5kByuts=",
+  "Hash": "Qy4v8nhVwtDOjrApbX9AMJr9UVeZKNV/yXwzh4QPeVk=",
   "Source": "Endpoint.Site",
   "BasePath": "_content/Endpoint.Site",
   "Mode": "Default",
@@ -9178,6 +9178,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\kingFuncs\\general\\general.js"
+    },
+    {
+      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\lightbox\\lightbox.css",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "lib/kingFuncs/lightbox/lightbox.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\kingFuncs\\lightbox\\lightbox.css"
+    },
+    {
+      "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\lightbox\\lightbox.js",
+      "SourceId": "Endpoint.Site",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\",
+      "BasePath": "_content/Endpoint.Site",
+      "RelativePath": "lib/kingFuncs/lightbox/lightbox.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\kingFuncs\\lightbox\\lightbox.js"
     },
     {
       "Identity": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\password\\password.css",

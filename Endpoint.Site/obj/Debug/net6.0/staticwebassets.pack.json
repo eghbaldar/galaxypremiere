@@ -5205,6 +5205,14 @@
       "PackagePath": "staticwebassets\\lib\\kingFuncs\\general\\general.js"
     },
     {
+      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\lightbox\\lightbox.css",
+      "PackagePath": "staticwebassets\\lib\\kingFuncs\\lightbox\\lightbox.css"
+    },
+    {
+      "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\lightbox\\lightbox.js",
+      "PackagePath": "staticwebassets\\lib\\kingFuncs\\lightbox\\lightbox.js"
+    },
+    {
       "Id": "D:\\_PROJECT_\\GalaxyPremiere\\Endpoint.Site\\wwwroot\\lib\\kingFuncs\\password\\password.css",
       "PackagePath": "staticwebassets\\lib\\kingFuncs\\password\\password.css"
     },

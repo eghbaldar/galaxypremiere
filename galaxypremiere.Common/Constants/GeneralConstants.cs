@@ -10,5 +10,6 @@ namespace galaxypremiere.Common.Constants
     {
         public static string PublicHeadshot = @"/SiteTemplate/innerpages/images/layout_img/img-avatar.jpg";
         public static string PrivateHeadshot = @"/SiteTemplate/innerpages/images/user-headshot";
+        public static string PostPhoto = @"/SiteTemplate/innerpages/images/user-post-photos";
     }
 }

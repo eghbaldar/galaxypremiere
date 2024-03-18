@@ -580,14 +580,18 @@
                                                                     @post.Post
                                                                 </p>
                                                                 <div class="masonry">
-
+                                                                    
                                                                     @foreach (var photo in @post.resultGetPostPhotosByPostIdDto.resultGetPostPhotosByPostIdDto)
                                                                     {
-                                                                        <div class="item">
-                                                                            <img src="/SiteTemplate/innerpages/images/user-post-photos/@photo.Filename-thumb.jpg"
-                                                                 class="img-thumbnail mr-0" />
-                                                                        </div>
+    <div class="item" id="item_@post.PostId">
+        <img src="/SiteTemplate/innerpages/images/user-post-photos/@photo.Filename-thumb.jpg"
+        onclick="setUniquePostPhotosId('@photo.Id','@GeneralConstants.PostPhoto');"
+        id="imgPostPhotos_@photo.Id"
+        data-src="@photo.Filename"
+        class="img-thumbnail mr-0 gallery-image" />        
+    </div>
                                                                     }
+
                                                                 </div>
 
                                                             </div>
@@ -1216,7 +1220,16 @@ else
         </div>
     </div>
 }
+<!-- Modal: Showing Post Photos-->
+     <div id="Kinglightbox" class="Kinglightbox" style="display:none;">
+      <span class="KinglightboxClose" id="KinglightboxClose">&times;</span>
+         <img id="Kinglightbox-image" alt="Kinglightbox Image">
+            <div class="KinglightboxControls">                                                                                
+            <span id="KinglightboxPrev" class="KinglightboxControl">&#10094;</span>
+            <span id="KinglightboxNext"  class="KinglightboxControl">&#10095;</span>
+            </div>
 
+    </div>
 <!-- Modal: Albums Photos-->
 <div class="modal fade" id="PhotoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -1420,8 +1433,12 @@ else
     <link href="~/lib/modal/modal-user-photo.css" rel="stylesheet" />
     <link href="~/sitetemplate/profilepages/assets/css/style.css" rel="stylesheet" />
     <link href="~/sitetemplate/innerpages/pagecssjs/profile/profile.css" rel="stylesheet" />
+    @* Lightbox - Gallery *@
+<link href="~/lib/kingfuncs/lightbox/lightbox.css" rel="stylesheet" />
 }
 @section Scripts{
+    @* Lightbox - Gallery *@
+    <script src="~/lib/kingfuncs/lightbox/lightbox.js"></script>
     @* File Extension and Volume *@
     <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
     @* set user 's headshot and header *@
