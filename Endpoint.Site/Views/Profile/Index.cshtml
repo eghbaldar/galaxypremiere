@@ -585,9 +585,10 @@
                                                                     {
     <div class="item" id="item_@post.PostId">
         <img src="/SiteTemplate/innerpages/images/user-post-photos/@photo.Filename-thumb.jpg"
-        onclick="setUniquePostPhotosId('@photo.Id','@GeneralConstants.PostPhoto');"
+        onclick="setUniquePostPhotosId('@photo.Id','@GeneralConstants.PostPhoto','@post.PostId');"
         id="imgPostPhotos_@photo.Id"
         data-src="@photo.Filename"
+        style="cursor:pointer;"
         class="img-thumbnail mr-0 gallery-image" />        
     </div>
                                                                     }
@@ -1437,7 +1438,7 @@ else
 <link href="~/lib/kingfuncs/lightbox/lightbox.css" rel="stylesheet" />
 }
 @section Scripts{
-    @* Lightbox - Gallery *@
+                    @* Lightbox - Gallery *@
     <script src="~/lib/kingfuncs/lightbox/lightbox.js"></script>
     @* File Extension and Volume *@
     <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
