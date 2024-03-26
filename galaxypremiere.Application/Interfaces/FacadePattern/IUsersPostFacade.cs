@@ -1,4 +1,6 @@
-﻿using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost;
+﻿using galaxypremiere.Application.Services.UsersPosts.Commands.DeleteUsersPost;
+using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost;
+using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPostArchive;
 using galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts;
 using System;
 using System.Collections.Generic;
@@ -12,5 +14,7 @@ namespace galaxypremiere.Application.Interfaces.FacadePattern
     {
         public PostUsersPostService PostUsersPostService { get; }
         public GetUsersPostsService GetUsersPostsService { get; }
+        public UpdateUsersPostArchiveService UpdateUsersPostArchiveService { get; }
+        public DeleteUsersPostService DeleteUsersPostService { get; }
     }
 }

@@ -86,6 +86,8 @@ namespace galaxypremiere.Persistence.Context
             //---- Photo Comments
             modelBuilder.ApplyConfiguration(new UsersPhotoCommentsConfigurations());
             modelBuilder.ApplyConfiguration(new CommentsConfigurations());
+            //---- Profile Posts
+            modelBuilder.ApplyConfiguration(new UsersProfilePostsConfigurations());
             //< End
         }
         public override int SaveChanges()

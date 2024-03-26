@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Application.Interfaces.FacadePattern;
+using galaxypremiere.Application.Services.UsersPosts.Commands.DeleteUsersPost;
 using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost;
+using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPostArchive;
 using galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,18 @@ namespace galaxypremiere.Application.Services.UsersPosts.FacadePattern
         public GetUsersPostsService GetUsersPostsService
         {
             get { return _getUsersPostsService = _getUsersPostsService ?? new GetUsersPostsService(_context); }
+        }     
+        ///////////// Update Archive
+        private UpdateUsersPostArchiveService _updateUsersPostArchiveService;
+        public UpdateUsersPostArchiveService UpdateUsersPostArchiveService
+        {
+            get { return _updateUsersPostArchiveService = _updateUsersPostArchiveService ?? new UpdateUsersPostArchiveService(_context); }
+        }       
+        ///////////// Delete Post
+        private DeleteUsersPostService _deleteUsersPostService;
+        public DeleteUsersPostService DeleteUsersPostService
+        {
+            get { return _deleteUsersPostService = _deleteUsersPostService ?? new DeleteUsersPostService(_context); }
         }
     }
 }

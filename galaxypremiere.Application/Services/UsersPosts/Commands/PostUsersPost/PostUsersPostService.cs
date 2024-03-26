@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost
 {
-    public class PostUsersPostService : IPostUsersPostService
+    public partial class PostUsersPostService : IPostUsersPostService
     {
         private readonly IDataBaseContext _context;
         private readonly IMapper _mapper;
@@ -16,14 +16,6 @@ namespace galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost
         {
             _context = context;
             _mapper = mapper;
-        }
-        public class PostUsersPostServiceDto
-        {
-            public Guid Id { get; set; }
-            public string Post { get; set; }
-            public DateTime InsertDate { get; set; }
-            //public List<Dictionary<Guid, string>> PhotosToReturn { get; set; }
-            public string PhotosToReturn { get; set; }
         }
         public ResultDto<PostUsersPostServiceDto> Execute(RequestPostUsersPostServiceDto req)
         {
@@ -33,7 +25,7 @@ namespace galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost
             usersPosts = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersPosts>(req);
             _context.UsersPosts.Add(usersPosts);
 
-            List<Dictionary<Guid, string>> photosToReturn = new List<Dictionary<Guid, string>>();
+            List<Dictionary<Guid, string>> photosToReturn = new List<Dictionary<Guid, string>>(); // add all of photo photos into this dictionary at first
 
             if (req.Photos != null && req.Photos.Count > 0)
             {
@@ -69,7 +61,7 @@ namespace galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost
                     Id = usersPosts.Id,
                     Post = usersPosts.Post,
                     InsertDate = DateTime.Now,
-                    PhotosToReturn = JsonConvert.SerializeObject(photosToReturn),
+                    PhotosToReturn = photosToReturn,
                 },
                 IsSuccess = true
             };

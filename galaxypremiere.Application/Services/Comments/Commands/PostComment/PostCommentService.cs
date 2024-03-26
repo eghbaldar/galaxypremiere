@@ -20,9 +20,6 @@ namespace galaxypremiere.Application.Services.Comments.Commands.PostComment
             _comments = _mapper.Map<Domain.Common.Comments>(req);
             _context.Comments.Add(_comments);
             _context.SaveChanges();
-            // retirive avatar and fullname of person who is going to leave a comment
-            //var info = _context.UsersInformation
-            //    .Where(u => u.UsersId == req.UsersId).FirstOrDefault();
             var result = (
                 from user in _context.Users
                 join info in _context.UsersInformation on user.Id equals info.UsersId into GroupInfo

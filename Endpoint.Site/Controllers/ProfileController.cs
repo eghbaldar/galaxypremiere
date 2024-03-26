@@ -19,6 +19,8 @@ using galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts;
 using galaxypremiere.Application.Services.Comments.Commands.PostComment;
 using galaxypremiere.Application.Services.Comments.Commands.DeleteComment;
 using galaxypremiere.Application.Services.Comments.Queries.GetCommentsBySectionId;
+using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPostArchive;
+using galaxypremiere.Application.Services.UsersPosts.Commands.DeleteUsersPost;
 
 namespace Endpoint.Site.Controllers
 {
@@ -144,6 +146,16 @@ namespace Endpoint.Site.Controllers
             req.UsersId = userId;
             req.From = userId;
             return Json(_usersPost.PostUsersPostService.Execute(req));
+        }
+        [HttpPut]
+        public IActionResult UpdatePostArchive(RequestUpdateUsersPostArchiveServiceDto req)
+        {
+            return Json(_usersPost.UpdateUsersPostArchiveService.Execute(req));
+        }
+        [HttpDelete]
+        public IActionResult DeletePost(RequestDeleteUsersPostServiceDto req)
+        {
+            return Json(_usersPost.DeleteUsersPostService.Execute(req));
         }
     }
 }
