@@ -516,7 +516,7 @@
                                         @if (User.Identity.IsAuthenticated && Model.IsVisitorOwner)
                                         {
                                             <div class="loadingBox" id="divPhotoPostLoader">
-                                                <div class="loadingBoxLoader"></div>
+                                                <div class="loadingBoxLoader" style="top:50px !important;"></div>
                                             </div>
 
                                             <div class="post-input">
@@ -2381,6 +2381,7 @@ else
             }
         }
         function ApplyArchivePost(id) {
+            $('#divPhotoPostLoader').css('display', 'block');  // get started loading ...
             $.ajax({
                 contentType: 'application/json',
                 url: 'profile/UpdatePostArchive/' + id.toString(),
@@ -2389,8 +2390,11 @@ else
                     if (data.isSuccess) {
                         $("#liDivTimeLine_" + id).prop("hidden", true);
                         if ($('#divTimeLine').find('li').not(':hidden').length == 0) $("#divEmptyPostWarning").prop("hidden", false);
+                         $('#divPhotoPostLoader').css('display', 'none');  // get stopped loading ...
                     }
                 }
+            }).done(function () {
+                $('#divPhotoPostLoader').css('display', 'none');  // get stopped loading ...
             });
         }
         function DeletePost(id) {
@@ -2403,7 +2407,8 @@ else
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
-                if (result.isConfirmed) {
+                if (result.isConfirmed) {                     
+                                $('#divPhotoPostLoader').css('display', 'block');  // get started loading ...
                     $.ajax({
                         contentType: 'application/json',
                         url: 'profile/DeletePost/' + id.toString(),
@@ -2412,14 +2417,17 @@ else
                             if (data.isSuccess) {
                                 $("#liDivTimeLine_" + id).prop("hidden", true);
                                 if ($('#divTimeLine').find('li').not(':hidden').length == 0) $("#divEmptyPostWarning").prop("hidden", false);
+                                 $('#divPhotoPostLoader').css('display', 'none');  // get stopped loading ...
                             }
                         }
+                    }).done(function(){
+                        $('#divPhotoPostLoader').css('display', 'none');  // get stopped loading ...
                     });
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your file has been deleted.",
                         icon: "success"
-                    });
+                    });                    
                 }
             });
         }
