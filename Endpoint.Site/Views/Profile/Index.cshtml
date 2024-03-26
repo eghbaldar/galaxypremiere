@@ -13,15 +13,14 @@
 
 <style>
     .masonry {
-        column-count: 2; /* Adjust the number of columns as desired */
+        column-count: 3; /* Adjust the number of columns as desired */
         column-gap: 5px; /* Adjust the gap between columns as desired */
-
         flex-wrap: wrap;
         justify-content: space-between;
     }
 
         .masonry .item {
-            display: inline-block;
+            display: flex;
             width: 100%;
             margin-bottom: 5px; /* Adjust the vertical margin between items as desired */
         }
@@ -30,6 +29,11 @@
                 width: 100%;
                 height: auto;
                 object-fit: cover;
+            }
+            @@media (max-width:800px) {
+                .masonry {
+                     column-count: 1;
+                }
             }
 </style>
 <style>
@@ -1438,7 +1442,7 @@ else
 <link href="~/lib/kingfuncs/lightbox/lightbox.css" rel="stylesheet" />
 }
 @section Scripts{
-                    @* Lightbox - Gallery *@
+    @* Lightbox - Gallery (show post photos) *@
     <script src="~/lib/kingfuncs/lightbox/lightbox.js"></script>
     @* File Extension and Volume *@
     <script src="~/lib/kingfuncs/fileextensionsize/fileextensionsize.js"></script>
