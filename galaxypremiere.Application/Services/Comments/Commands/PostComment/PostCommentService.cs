@@ -21,13 +21,27 @@ namespace galaxypremiere.Application.Services.Comments.Commands.PostComment
             _context.Comments.Add(_comments);
             _context.SaveChanges();
             // retirive avatar and fullname of person who is going to leave a comment
-            var info = _context.UsersInformation.Where(u => u.UsersId == req.UsersId).FirstOrDefault();
+            //var info = _context.UsersInformation
+            //    .Where(u => u.UsersId == req.UsersId).FirstOrDefault();
+            var result = (
+                from user in _context.Users
+                join info in _context.UsersInformation on user.Id equals info.UsersId into GroupInfo
+                from info in GroupInfo.DefaultIfEmpty()
+                where user.Id == req.UsersId
+                select new
+                {
+                    User = user,
+                    Info = info,
+                }
+                );
             string avatar = "", fullname = "";
-            if (info != null)
+            if (result != null)
             {
-                avatar = info.Photo;
-                fullname = (info.Firstname ?? null) + (info.MiddleName ?? null) + (info.Surname ?? null);
+                avatar = result.First().Info.Photo;
+                fullname = result.First().User.Nickname;
             }
+            else return new ResultDto<PostCommentServiceDto> { IsSuccess = false, };
+
             return new ResultDto<PostCommentServiceDto>
             {
                 Data = new PostCommentServiceDto

@@ -4,6 +4,7 @@ using galaxypremiere.Application.Services.UploadPhoto;
 using galaxypremiere.Common.DTOs;
 using galaxypremiere.Domain.Entities.Users;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost
 {
@@ -16,15 +17,27 @@ namespace galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost
             _context = context;
             _mapper = mapper;
         }
-        public ResultDto Execute(RequestPostUsersPostServiceDto req)
+        public class PostUsersPostServiceDto
         {
-            if (req == null) return new ResultDto { IsSuccess = false };
-            galaxypremiere.Domain.Entities.Users.UsersPosts usersPosts = new galaxypremiere.Domain.Entities.Users.UsersPosts();            
+            public Guid Id { get; set; }
+            public string Post { get; set; }
+            public DateTime InsertDate { get; set; }
+            //public List<Dictionary<Guid, string>> PhotosToReturn { get; set; }
+            public string PhotosToReturn { get; set; }
+        }
+        public ResultDto<PostUsersPostServiceDto> Execute(RequestPostUsersPostServiceDto req)
+        {
+            if (req == null || String.IsNullOrEmpty(req.Post)) return new ResultDto<PostUsersPostServiceDto> { IsSuccess = false };
+
+            galaxypremiere.Domain.Entities.Users.UsersPosts usersPosts = new galaxypremiere.Domain.Entities.Users.UsersPosts();
             usersPosts = _mapper.Map<galaxypremiere.Domain.Entities.Users.UsersPosts>(req);
             _context.UsersPosts.Add(usersPosts);
+
+            List<Dictionary<Guid, string>> photosToReturn = new List<Dictionary<Guid, string>>();
+
             if (req.Photos != null && req.Photos.Count > 0)
             {
-                if (req.Photos.Count > 4) { return new ResultDto { IsSuccess = false }; }
+                if (req.Photos.Count > 4) { return new ResultDto<PostUsersPostServiceDto> { IsSuccess = false }; }
                 foreach (var photo in req.Photos)
                 {
                     galaxypremiere.Domain.Entities.Users.UsersPostsPhotos usersPostPhotos = new galaxypremiere.Domain.Entities.Users.UsersPostsPhotos();
@@ -37,14 +50,29 @@ namespace galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPost
                             usersPostPhotos.Filename = file.Filename;
                             break;
                         case false:
-                            return new ResultDto { IsSuccess = false };
+                            return new ResultDto<PostUsersPostServiceDto> { IsSuccess = false };
                     }
                     //========================= 
-                    _context.UsersPostsPhotos.Add(usersPostPhotos);                    
-                }                
+                    _context.UsersPostsPhotos.Add(usersPostPhotos);
+                    photosToReturn.Add(new Dictionary<Guid, string>
+                            {
+                                {usersPostPhotos.Id, file.Filename},
+                            });
+                }
             }
             _context.SaveChanges();
-            return new ResultDto { IsSuccess = true };
+
+            return new ResultDto<PostUsersPostServiceDto>
+            {
+                Data = new PostUsersPostServiceDto
+                {
+                    Id = usersPosts.Id,
+                    Post = usersPosts.Post,
+                    InsertDate = DateTime.Now,
+                    PhotosToReturn = JsonConvert.SerializeObject(photosToReturn),
+                },
+                IsSuccess = true
+            };
         }
         private ResultUploadDto CreateFilename(IFormFile file, long userId)
         {

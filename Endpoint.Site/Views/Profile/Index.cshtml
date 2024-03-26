@@ -30,11 +30,12 @@
                 height: auto;
                 object-fit: cover;
             }
-            @@media (max-width:800px) {
-                .masonry {
-                     column-count: 1;
-                }
-            }
+
+    @@media (max-width:800px) {
+        .masonry {
+            column-count: 1;
+        }
+    }
 </style>
 <style>
     /*tags*/
@@ -332,7 +333,7 @@
                                              alt=@(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Nickname.Trim() != "" ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Nickname : Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Username)>
                                         </div>
                                         <div class="infos">
-                                            <h2>
+                                            <h2 id="h2OwnerNickname">
                                                 @(Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data?.Nickname.Trim() != "" ? Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Nickname : Model.ResultGetUsersInformationByUsernameServiceDto.resultGetUsersInformationByUsernameServiceDto.Data.Username)
                                             </h2>
                                             <div class="location">
@@ -584,17 +585,17 @@
                                                                     @post.Post
                                                                 </p>
                                                                 <div class="masonry">
-                                                                    
+
                                                                     @foreach (var photo in @post.resultGetPostPhotosByPostIdDto.resultGetPostPhotosByPostIdDto)
                                                                     {
-    <div class="item" id="item_@post.PostId">
-        <img src="/SiteTemplate/innerpages/images/user-post-photos/@photo.Filename-thumb.jpg"
-        onclick="setUniquePostPhotosId('@photo.Id','@GeneralConstants.PostPhoto','@post.PostId');"
-        id="imgPostPhotos_@photo.Id"
-        data-src="@photo.Filename"
-        style="cursor:pointer;"
-        class="img-thumbnail mr-0 gallery-image" />        
-    </div>
+                                                                        <div class="item" id="item_@post.PostId">
+                                                                            <img src="/SiteTemplate/innerpages/images/user-post-photos/@photo.Filename-thumb.jpg"
+                                                                 onclick="setUniquePostPhotosId('@photo.Id','@GeneralConstants.PostPhoto','@post.PostId');"
+                                                                 id="imgPostPhotos_@photo.Id"
+                                                                 data-src="@photo.Filename"
+                                                                 style="cursor:pointer;"
+                                                                 class="img-thumbnail mr-0 gallery-image" />
+                                                                        </div>
                                                                     }
 
                                                                 </div>
@@ -657,8 +658,6 @@
                                                                         {
                                                                             <a onclick="showLoginModal();" id="" class="btn cur-p btn-dark">Sign Up</a>
                                                                         }
-
-
 
                                                                     </div>
                                                                 </div>
@@ -730,7 +729,7 @@
                                         }
                                         @if (Model.ResultGetUsersPostsServiceDto.resultGetUsersPostsServiceDto.Count == 0)
                                         {
-                                            <div class="alert alert-dark" role="alert">Nothing has been posted yet.</div>
+                                            <div id="divEmptyPostWarning" class="alert alert-dark" role="alert">Nothing has been posted yet.</div>
                                         }
 
                                         <div class="text-center mb-2">
@@ -1226,15 +1225,15 @@ else
     </div>
 }
 <!-- Modal: Showing Post Photos-->
-     <div id="Kinglightbox" class="Kinglightbox" style="display:none;">
-      <span class="KinglightboxClose" id="KinglightboxClose">&times;</span>
-         <img id="Kinglightbox-image" alt="Kinglightbox Image">
-            <div class="KinglightboxControls">                                                                                
-            <span id="KinglightboxPrev" class="KinglightboxControl">&#10094;</span>
-            <span id="KinglightboxNext"  class="KinglightboxControl">&#10095;</span>
-            </div>
-
+<div id="Kinglightbox" class="Kinglightbox" style="display:none;">
+    <span class="KinglightboxClose" id="KinglightboxClose">&times;</span>
+    <img id="Kinglightbox-image" alt="Kinglightbox Image">
+    <div class="KinglightboxControls">
+        <span id="KinglightboxPrev" class="KinglightboxControl">&#10094;</span>
+        <span id="KinglightboxNext" class="KinglightboxControl">&#10095;</span>
     </div>
+
+</div>
 <!-- Modal: Albums Photos-->
 <div class="modal fade" id="PhotoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -1439,7 +1438,7 @@ else
     <link href="~/sitetemplate/profilepages/assets/css/style.css" rel="stylesheet" />
     <link href="~/sitetemplate/innerpages/pagecssjs/profile/profile.css" rel="stylesheet" />
     @* Lightbox - Gallery *@
-<link href="~/lib/kingfuncs/lightbox/lightbox.css" rel="stylesheet" />
+    <link href="~/lib/kingfuncs/lightbox/lightbox.css" rel="stylesheet" />
 }
 @section Scripts{
     @* Lightbox - Gallery (show post photos) *@
@@ -1829,7 +1828,7 @@ else
                     if (_comment == null || _comment.trim() == '' || _sectionId == null || _sectionId == 0) return false;
                     $('#divPostCommentLoader_' + sectionId).css('display', 'block'); // get started loading ...
                     break;
-            }            
+            }
             setTimeout(function () {
 
                 var postData = {
@@ -1898,26 +1897,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar + '-thumb.jpg';
             var allowToRemove = o.allowToRemove;
             return `
-                            <div class="media pb10" id="photoCommentBox_` + o.sectionId + `">
-                        <a class="pull-left" href="#">
-                            <div class="user">
-                                    <img class="kingImgFit"
-                                        src=`+ avatar + ` alt="...">
-                            </div>
-                        </a>
-                    <div class="media-body mb5">
+                                                                            <div class="media pb10" id="photoCommentBox_` + o.sectionId + `">
+                                                                        <a class="pull-left" href="#">
+                                                                            <div class="user">
+                                                                                    <img class="kingImgFit"
+                                                                                        src=`+ avatar + ` alt="...">
+                                                                            </div>
+                                                                        </a>
+                                                                    <div class="media-body mb5">
 
-                        <h5 class="media-heading mbn"> `+ name + `
-                            <small> - `+ commentDate + `</small>
-                        </h5>
+                                                                        <h5 class="media-heading mbn"> `+ name + `
+                                                                            <small> - `+ commentDate + `</small>
+                                                                        </h5>
 
-                        <p class="commentsText">`+ o.comment + `</p>
+                                                                        <p class="commentsText">`+ o.comment + `</p>
 
-                    </div>
-                                    ${allowToRemove ? `<span onclick="removeComment('0','${o.sectionId}','')" class="close-button cursor">&times;</span>` : ''}
+                                                                    </div>
+                                                                                    ${allowToRemove ? `<span onclick="removeComment('0','${o.sectionId}','')" class="close-button cursor">&times;</span>` : ''}
 
-                    </div>
-                    `
+                                                                    </div>
+                                                                    `
         }
         var commentsPostBox = function (o) {
 
@@ -1929,9 +1928,9 @@ else
             var AllowToRemove = o.allowToRemove;
             var PostId = o.postId;
             var result;
-            result = ` <div class="media pb10" id="postCommentBox_`+ CommentId + `" style="margin:10px;">
-                                                                                        <a class="pull-left" href="#">
-                                                                                            <div class="user">`;
+            result = ` <div class="media pb10" id="postCommentBox_` + CommentId + `" style="margin:10px;">
+                                                                                                                                        <a class="pull-left" href="#">
+                                                                                                                                            <div class="user">`;
 
             if (Headshot == null) {
                 result += `<img class="kingImgFit" src="@GeneralConstants.PublicHeadshot" alt="...">`;
@@ -1939,28 +1938,28 @@ else
             else {
                 result += `<img class="kingImgFit" src="${Headshot}" alt="...">`;
             }
-            
+
 
             result += ` </div>
-                    </a>
-                    <div class="media-body mb5">
+                                                                    </a>
+                                                                    <div class="media-body mb5">
 
-                        <h5 class="media-heading mbn">
-                            ${NicknameCommenter}
-                                    <small class="spanPostCommentDate">${commentDate}</small>
-                        </h5>
+                                                                        <h5 class="media-heading mbn">
+                                                                            ${NicknameCommenter}
+                                                                                    <small class="spanPostCommentDate">${commentDate}</small>
+                                                                        </h5>
 
-                        <p class="commentsText">${Comment}</p>
+                                                                        <p class="commentsText">${Comment}</p>
 
-                    </div>
-            `;
-            
-            if (AllowToRemove) { 
+                                                                    </div>
+                                                            `;
+
+            if (AllowToRemove) {
                 result += `<span onclick="removeComment('1','${CommentId}','${PostId}')" class="close-button cursor" >&times; </span>`;
             }
             result += `</div>`;
             return result;
-          
+
         }
         function LoadComments(id) {
 
@@ -2109,12 +2108,18 @@ else
         //////////////////////// Post Section
         var files; // a global variable to store selected photo for current post
         function PostPost() {
-            $('#divPhotoPostLoader').css('display', 'block'); // get started loading ...
 
-            var postData = new FormData();
-            for (var i = 0; i < files.length; i++) {
-                postData.append("Photos", files[i]);
+            if($("#txtPost").val()==null || $("#txtPost").val().trim()==''){                
+                 alert('text');
+                return false;
             }
+
+            $('#divPhotoPostLoader').css('display', 'block'); // get started loading ...
+            var postData = new FormData();
+            if (files != null)
+                for (var i = 0; i < files.length; i++) {
+                    postData.append("Photos", files[i]);
+                }
             postData.append("Post", $("#txtPost").val());
             setTimeout(function () {
                 $.ajax({
@@ -2125,8 +2130,10 @@ else
                     url: 'profile/PostPost',
                     success: function (data) {
                         if (data.isSuccess) {
-                            alert('1');
+                            $("#divTimeLine").prepend(postsBox(data.data));
                             $("#txtPost").val('');
+                            $("#imgsPostPhotosContainerSelected").prop("hidden", true);
+                            $("#divEmptyPostWarning").prop("hidden",true);
                         } else {
                             alert('2');
                         }
@@ -2139,85 +2146,160 @@ else
                 });
             }, 2000);
         }
-        var postsBox = function (o) {
+        var postphotosbox = function (key, value, postId) {
+            // key = photo id | value = photo filename | o.id = post id
             return `
-                                                                                                                                                                                                                            <li>
+                                    <div class="item" id="item_`+ postId + `">
+                                                        <img src="/SiteTemplate/innerpages/images/user-post-photos/`+ value + `-thumb.jpg"
+                                                                        onclick="setUniquePostPhotosId('`+ key + `','@GeneralConstants.PostPhoto','` + postId + `');"
+                                                id="imgPostPhotos_`+ key + `"
+                                                data-src="`+ value + `"
+                                                style="cursor:pointer;"
+                                                class="img-thumbnail mr-0 gallery-image" />
+                                                    </div>
+                                    `
+        }
+        var postsBox = function (o) {
+            // change date & time to my format
+            var dateAgo = KingGetTimeAgo(new Date(o.insertDate));
+            var timeAgo = KingSeparateOnlyTimeFromDatetime(o.insertDate.toString().replace('T', ' '));
+            // headshot
+            var headshot = $("#TopRightUserPanelHeadshotImg").attr('src');
+            var Nickname = $("#h2OwnerNickname").text();
+            //Photos
+            var photos = [];
+            var photosToReturn2 = JSON.parse(o.photosToReturn); // convert dictionaries to readable JSON // key = photo id | value = photo filename
+            for (var i = 0; i < photosToReturn2.length; i++) {
+                var dictionary = photosToReturn2[i];
+                for (var key in dictionary) {
+                    var value = dictionary[key];
+                    photos.push(postphotosbox(key, value, o.id));
+                }
+            }
+            return `
+                        <li>
 
-                                                                                                                                                                                                                            <div class="timeline-time">
-                                                                                                                                                                                                                                <span class="date">today</span>
-                                                                                                                                                                                                                                <span class="time">04:20</span>
-                                                                                                                                                                                                                            </div>
+                        <div class="timeline-time">
+                                <span class="date">`+ dateAgo.toString() + `</span>
+                                <span class="time">`+ timeAgo.toString() + `</span>
+                        </div>
 
 
-                                                                                                                                                                                                                            <div class="timeline-icon">
-                                                                                                                                                                                                                                <a href="javascript:;">&nbsp;</a>
-                                                                                                                                                                                                                            </div>
+                        <div class="timeline-icon">
+                            <a href="javascript:;">&nbsp;</a>
+                        </div>
 
 
-                                                                                                                                                                                                                            <div class="timeline-body">
-                                                                                                                                                                                                                                <div class="timeline-header">
-                                                                                                                                                                                                                                    <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
-                                                                                                                                                                                                                                    <span class="username"><a href="javascript:;">Sean Ngu</a> <small></small></span>
-                                                                                                                                                                                                                                    <span class="pull-right text-muted">18 Views</span>
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                <div class="timeline-content">
-                                                                                                                                                                                                                                    <p>
-                                                                                                                                                                                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus.
-                                                                                                                                                                                                                                        Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
-                                                                                                                                                                                                                                    </p>
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                <div class="timeline-likes">
-                                                                                                                                                                                                                                    <div class="stats-right">
-                                                                                                                                                                                                                                        <span class="stats-text">259 Shares</span>
-                                                                                                                                                                                                                                        <span class="stats-text">21 Comments</span>
-                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                    <div class="stats">
-                                                                                                                                                                                                                                        <span class="fa-stack fa-fw stats-icon">
-                                                                                                                                                                                                                                            <i class="fa fa-circle fa-stack-2x text-danger"></i>
-                                                                                                                                                                                                                                            <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
-                                                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                                                        <span class="fa-stack fa-fw stats-icon">
-                                                                                                                                                                                                                                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                                                                                                                                                                                                                            <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
-                                                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                                                        <span class="stats-total">4.3k</span>
-                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                <div class="timeline-footer">
-                                                                                                                                                                                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                                                                                                                                                                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                                                                                                                                                                                                                                    <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                <div class="timeline-comment-box">
-                                                                                                                                                                                                                                    <div class="user"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
-                                                                                                                                                                                                                                    <div class="input">
-                                                                                                                                                                                                                                        <div class="input-group">
-                                                                                                                                                                                                                                            <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
-                                                                                                                                                                                                                                            <button type="button" class="btn cur-p btn-dark" style="border-radius:0px !important;">Dark</button>
-                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                            </div>
+                        <div class="timeline-body">
+                            <div class="timeline-header">
+                                    <span class="userimage"><img src="`+ headshot + `" alt=""></span>
+                                    <span class="username"><a href="javascript:;">`+ Nickname + `</a> <small></small></span>
 
-                                                                                                                                                                                                                        </li>
-                                                                                                                                                                                                                            `;
+
+                            <div class="dropdown pull-right">
+                                <button class="dropbtn">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a onclick="ApplyArchivePost('`+ o.id + `');">Archive</a>
+                                            <a onclick="DeletePost('`+ o.id + `');">Delete</a>
+                                </div>
+                            </div>
+
+
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    `+ o.post + `
+                                </p>
+
+
+
+                        <div class="masonry">
+
+                        `+ photos.join(',') + `
+
+
+                    </div>
+
+
+
+                            </div>
+                            <div class="timeline-likes">
+                                <div class="stats-right">
+                                        <span class="stats-text" id="spanPostCountComment_`+o.id+`">0</span>&nbsp;Comments                                    
+                                </div>
+                                <div class="stats">
+                                            <a onclick="ApplyLike('1','`+ o.id + `')" id="anchorPostLike_` + o.id + `" class="fa fa-heart-o cursor" style="font-size:15px;"></a>
+                                            <span id="spanPostCountLikes_`+ o.id + `" class="stats-total">0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-comment-box">
+                            <div class="user">
+                                        <div class="user"><img src="`+ headshot + `"></div>
+                                        </div>
+
+                                        <div class="input">
+                                            <div class="input-group">
+                                                <input type="text" id="txtPostComment_`+ o.id + `" class="form-control rounded-corner" placeholder="Write a comment...">
+
+                                                        <button type="button"
+                                        id="btnPostComment_`+ o.id + `"
+                                        onclick="PostComment('1','`+ o.id + `')" class="btn cur-p btn-dark" style="border-radius:0px !important;">
+                                                            Leave it
+                                                        </button>
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                                <div class="media commentsBox">
+                                                                            <div class="media-body mb5" id="media-body-post-comments">
+
+                                                                                        <div class="loadingBox" id="divPostCommentLoader_`+ o.id + `">
+                                                                                    <div class="loadingBoxLoader"></div>
+                                                                                </div>
+
+        
+                                                                            </div>
+                                                                        </div>
+
+
+
+
+                            </div>
+                        </div>
+
+                    </li>
+                                                        `;
         };
         // to change user's post inserttime to my special form
         const dateElements = document.querySelectorAll('.date');
         dateElements.forEach(dateElement => {
             const insertDate = dateElement.getAttribute('data-insert-date');
-            const timeAgo = KingGetTimeAgo(new Date(insertDate));
-            dateElement.textContent = timeAgo;
+            const dateAgo = KingGetTimeAgo(new Date(insertDate));
+            dateElement.textContent = dateAgo;
         });
         const timeElements = document.querySelectorAll('.time');
         timeElements.forEach(dateElement => {
             const insertDate = dateElement.getAttribute('data-insert-date');
-            const time = KingSeparateOnlyTimeFromDatetime(insertDate.toString());
-            dateElement.textContent = time;
+            const timeAgo = KingSeparateOnlyTimeFromDatetime(insertDate.toString());
+            dateElement.textContent = timeAgo;
 
         });
         // Post Photo
         function OpenPostPhotoUploadModal() {
+            // Clear previous slideshow images and indicators
+            const slideshowContainer = document.getElementById('slideshowContainer');
+            const slideshowIndicators = document.getElementById('slideshowIndicators');
+            slideshowContainer.innerHTML = '';
+            slideshowIndicators.innerHTML = '';
+            $("#fileuploadpostphoto").val('');
+            // end of clearliness
             $("#PostPhotoUploadModal").modal("show");
         }
         // Modal to select photos
