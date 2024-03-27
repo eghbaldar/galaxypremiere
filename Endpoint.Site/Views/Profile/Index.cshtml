@@ -1900,26 +1900,26 @@ else
             var avatar; if (o.avatar == null || o.avatar.trim() == '') avatar = "SiteTemplate/innerpages/images/layout_img/img-avatar.jpg"; else avatar = 'SiteTemplate/innerpages/images/user-headshot/' + o.avatar + '-thumb.jpg';
             var allowToRemove = o.allowToRemove;
             return `
-                                                                                                                                    <div class="media pb10" id="photoCommentBox_` + o.sectionId + `">
-                                                                                                                                <a class="pull-left" href="#">
-                                                                                                                                    <div class="user">
-                                                                                                                                            <img class="kingImgFit"
-                                                                                                                                                src=`+ avatar + ` alt="...">
+                                                                                                                                            <div class="media pb10" id="photoCommentBox_` + o.sectionId + `">
+                                                                                                                                        <a class="pull-left" href="#">
+                                                                                                                                            <div class="user">
+                                                                                                                                                    <img class="kingImgFit"
+                                                                                                                                                        src=`+ avatar + ` alt="...">
+                                                                                                                                            </div>
+                                                                                                                                        </a>
+                                                                                                                                    <div class="media-body mb5">
+
+                                                                                                                                        <h5 class="media-heading mbn"> `+ name + `
+                                                                                                                                            <small> - `+ commentDate + `</small>
+                                                                                                                                        </h5>
+
+                                                                                                                                        <p class="commentsText">`+ o.comment + `</p>
+
                                                                                                                                     </div>
-                                                                                                                                </a>
-                                                                                                                            <div class="media-body mb5">
+                                                                                                                                                    ${allowToRemove ? `<span onclick="removeComment('0','${o.sectionId}','')" class="close-button cursor">&times;</span>` : ''}
 
-                                                                                                                                <h5 class="media-heading mbn"> `+ name + `
-                                                                                                                                    <small> - `+ commentDate + `</small>
-                                                                                                                                </h5>
-
-                                                                                                                                <p class="commentsText">`+ o.comment + `</p>
-
-                                                                                                                            </div>
-                                                                                                                                            ${allowToRemove ? `<span onclick="removeComment('0','${o.sectionId}','')" class="close-button cursor">&times;</span>` : ''}
-
-                                                                                                                            </div>
-                                                                                                                            `
+                                                                                                                                    </div>
+                                                                                                                                    `
         }
         var commentsPostBox = function (o) {
 
@@ -1932,8 +1932,8 @@ else
             var PostId = o.postId;
             var result;
             result = ` <div class="media pb10" id="postCommentBox_` + CommentId + `" style="margin:10px;">
-                                                                                                                                                                                                <a class="pull-left" href="#">
-                                                                                                                                                                                                    <div class="user">`;
+                                                                                                                                                                                                        <a class="pull-left" href="#">
+                                                                                                                                                                                                            <div class="user">`;
 
             if (Headshot == null) {
                 result += `<img class="kingImgFit" src="@GeneralConstants.PublicHeadshot" alt="...">`;
@@ -1944,18 +1944,18 @@ else
 
 
             result += ` </div>
-                                                                                                                            </a>
-                                                                                                                            <div class="media-body mb5">
+                                                                                                                                    </a>
+                                                                                                                                    <div class="media-body mb5">
 
-                                                                                                                                <h5 class="media-heading mbn">
-                                                                                                                                    ${NicknameCommenter}
-                                                                                                                                            <small class="spanPostCommentDate">${commentDate}</small>
-                                                                                                                                </h5>
+                                                                                                                                        <h5 class="media-heading mbn">
+                                                                                                                                            ${NicknameCommenter}
+                                                                                                                                                    <small class="spanPostCommentDate">${commentDate}</small>
+                                                                                                                                        </h5>
 
-                                                                                                                                <p class="commentsText">${Comment}</p>
+                                                                                                                                        <p class="commentsText">${Comment}</p>
 
-                                                                                                                            </div>
-                                                                                                                    `;
+                                                                                                                                    </div>
+                                                                                                                            `;
 
             if (AllowToRemove) {
                 result += `<span onclick="removeComment('1','${CommentId}','${PostId}')" class="close-button cursor" >&times; </span>`;
@@ -2153,15 +2153,15 @@ else
         var postphotosbox = function (key, value, postId) {
             // key = photo id | value = photo filename | o.id = post id
             return `
-        <div class="item" id="item_`+ postId + `">
-                    <img src="/SiteTemplate/innerpages/images/user-post-photos/`+ value + `-thumb.jpg"
-                                    onclick="setUniquePostPhotosId('`+ key + `','@GeneralConstants.PostPhoto','` + postId + `');"
-            id="imgPostPhotos_`+ key + `"
-            data-src="`+ value + `"
-            style="cursor:pointer;"
-            class="img-thumbnail mr-0 gallery-image" />
-                </div>
-`
+                <div class="item" id="item_`+ postId + `">
+                            <img src="/SiteTemplate/innerpages/images/user-post-photos/`+ value + `-thumb.jpg"
+                                            onclick="setUniquePostPhotosId('`+ key + `','@GeneralConstants.PostPhoto','` + postId + `');"
+                    id="imgPostPhotos_`+ key + `"
+                    data-src="`+ value + `"
+                    style="cursor:pointer;"
+                    class="img-thumbnail mr-0 gallery-image" />
+                        </div>
+        `
         }
         var postsBox = function (o) {
             // change date & time to my format
@@ -2180,105 +2180,105 @@ else
                 }
             }
             return `
-                                                                                                <li id="liDivTimeLine_`+ o.id + `">
+                                                                                                        <li id="liDivTimeLine_`+ o.id + `">
 
-                                                                                <div class="timeline-time">
-                                                                                        <span class="date">`+ dateAgo.toString() + `</span>
-                                                                                        <span class="time">`+ timeAgo.toString() + `</span>
-                                                                                </div>
-
-
-                                                                                <div class="timeline-icon">
-                                                                                    <a href="javascript:;">&nbsp;</a>
-                                                                                </div>
-
-
-                                                                                <div class="timeline-body">
-                                                                                    <div class="timeline-header">
-                                                                                            <span class="userimage"><img src="`+ headshot + `" alt=""></span>
-                                                                                            <span class="username"><a href="javascript:;">`+ Nickname + `</a> <small></small></span>
-
-
-                                                                                    <div class="dropdown pull-right">
-                                                                                        <button class="dropbtn">
-                                                                                            <i class="fa fa-ellipsis-v"></i>
-                                                                                        </button>
-                                                                                        <div class="dropdown-content">
-                                                                                            <a onclick="ApplyArchivePost('`+ o.id + `');">Archive</a>
-                                                                                                    <a onclick="DeletePost('`+ o.id + `');">Delete</a>
+                                                                                        <div class="timeline-time">
+                                                                                                <span class="date">`+ dateAgo.toString() + `</span>
+                                                                                                <span class="time">`+ timeAgo.toString() + `</span>
                                                                                         </div>
-                                                                                    </div>
 
 
-                                                                                    </div>
-                                                                                    <div class="timeline-content">
-                                                                                        <p>
-                                                                                            `+ o.post + `
-                                                                                        </p>
-
-
-
-                                                                                <div class="masonry">
-
-                                                                                `+ photos.join('') + `
-
-
-                                                                            </div>
-
-
-
-                                                                                    </div>
-                                                                                    <div class="timeline-likes">
-                                                                                        <div class="stats-right">
-                                                                                                <span class="stats-text" id="spanPostCountComment_`+ o.id + `">0</span>&nbsp;Comments
+                                                                                        <div class="timeline-icon">
+                                                                                            <a href="javascript:;">&nbsp;</a>
                                                                                         </div>
-                                                                                        <div class="stats">
-                                                                                                    <a onclick="ApplyLike('1','`+ o.id + `')" id="anchorPostLike_` + o.id + `" class="fa fa-heart-o cursor" style="font-size:15px;"></a>
-                                                                                                    <span id="spanPostCountLikes_`+ o.id + `" class="stats-total">0</span>
-                                                                                        </div>
-                                                                                    </div>
 
-                                                                                    <div class="timeline-comment-box">
-                                                                                    <div class="user">
-                                                                                                <div class="user"><img src="`+ headshot + `"></div>
+
+                                                                                        <div class="timeline-body">
+                                                                                            <div class="timeline-header">
+                                                                                                    <span class="userimage"><img src="`+ headshot + `" alt=""></span>
+                                                                                                    <span class="username"><a href="javascript:;">`+ Nickname + `</a> <small></small></span>
+
+
+                                                                                            <div class="dropdown pull-right">
+                                                                                                <button class="dropbtn">
+                                                                                                    <i class="fa fa-ellipsis-v"></i>
+                                                                                                </button>
+                                                                                                <div class="dropdown-content">
+                                                                                                    <a onclick="ApplyArchivePost('`+ o.id + `');">Archive</a>
+                                                                                                            <a onclick="DeletePost('`+ o.id + `');">Delete</a>
                                                                                                 </div>
-
-                                                                                                <div class="input">
-                                                                                                    <div class="input-group">
-                                                                                                        <input type="text" id="txtPostComment_`+ o.id + `" class="form-control rounded-corner" placeholder="Write a comment...">
-
-                                                                                                                <button type="button"
-                                                                                                id="btnPostComment_`+ o.id + `"
-                                                                                                onclick="PostComment('1','`+ o.id + `')" class="btn cur-p btn-dark" style="border-radius:0px !important;">
-                                                                                                                    Leave it
-                                                                                                                </button>
+                                                                                            </div>
 
 
-                                                                                                    </div>
+                                                                                            </div>
+                                                                                            <div class="timeline-content">
+                                                                                                <p>
+                                                                                                    `+ o.post + `
+                                                                                                </p>
+
+
+
+                                                                                        <div class="masonry">
+
+                                                                                        `+ photos.join('') + `
+
+
+                                                                                    </div>
+
+
+
+                                                                                            </div>
+                                                                                            <div class="timeline-likes">
+                                                                                                <div class="stats-right">
+                                                                                                        <span class="stats-text" id="spanPostCountComment_`+ o.id + `">0</span>&nbsp;Comments
                                                                                                 </div>
+                                                                                                <div class="stats">
+                                                                                                            <a onclick="ApplyLike('1','`+ o.id + `')" id="anchorPostLike_` + o.id + `" class="fa fa-heart-o cursor" style="font-size:15px;"></a>
+                                                                                                            <span id="spanPostCountLikes_`+ o.id + `" class="stats-total">0</span>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="timeline-comment-box">
+                                                                                            <div class="user">
+                                                                                                        <div class="user"><img src="`+ headshot + `"></div>
+                                                                                                        </div>
+
+                                                                                                        <div class="input">
+                                                                                                            <div class="input-group">
+                                                                                                                <input type="text" id="txtPostComment_`+ o.id + `" class="form-control rounded-corner" placeholder="Write a comment...">
+
+                                                                                                                        <button type="button"
+                                                                                                        id="btnPostComment_`+ o.id + `"
+                                                                                                        onclick="PostComment('1','`+ o.id + `')" class="btn cur-p btn-dark" style="border-radius:0px !important;">
+                                                                                                                            Leave it
+                                                                                                                        </button>
+
+
+                                                                                                            </div>
+                                                                                                        </div>
 
 
 
 
-                                                                                                        <div class="media commentsBox">
-                                                                                                                                    <div class="media-body mb5" id="media-body-post-comments">
+                                                                                                                <div class="media commentsBox">
+                                                                                                                                            <div class="media-body mb5" id="media-body-post-comments">
 
-                                                                                                                                                <div class="loadingBox" id="divPostCommentLoader_`+ o.id + `">
-                                                                                                                                            <div class="loadingBoxLoader"></div>
+                                                                                                                                                        <div class="loadingBox" id="divPostCommentLoader_`+ o.id + `">
+                                                                                                                                                    <div class="loadingBoxLoader"></div>
+                                                                                                                                                </div>
+
+
+                                                                                                                                            </div>
                                                                                                                                         </div>
 
 
-                                                                                                                                    </div>
-                                                                                                                                </div>
 
 
+                                                                                            </div>
+                                                                                        </div>
 
-
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </li>
-                                                                                                                `;
+                                                                                    </li>
+                                                                                                                        `;
         };
         // to change user's post inserttime to my special form
         const dateElements = document.querySelectorAll('.date');
@@ -2442,9 +2442,9 @@ else
             if (scrollTop + windowHeight >= documentHeight) {
                 GetMorePostWithScroll();
             }
-        }        
+        }
         window.addEventListener('scroll', checkScroll); // Add the event listener to monitor scroll position
-        var currentPage = 2; // becasue page 1 is already loaded at the beginning of the process        
+        var currentPage = 2; // becasue page 1 is already loaded at the beginning of the process
         function GetMorePostWithScroll() {
             $.ajax({
                 contenttype: 'applicatio/json',
@@ -2468,137 +2468,146 @@ else
             // change date & time to my format
             var dateAgo = KingGetTimeAgo(new Date(o.insertDate));
             var timeAgo = KingSeparateOnlyTimeFromDatetime(o.insertDate.toString().replace('T', ' '));
-            // headshot
-            var headshot = '@privateheadshot';
-            //privateheadshot
+            // owner and commenter's headshot
+            var headshotOwner = '@GeneralConstants.PrivateHeadshot' +'/' + o.ownerHeadshot + '-thumb.jpg'
+            var headshotCommenter;
+            if ('@privateheadshot' == null || '@privateheadshot' == '')
+                {
+                    headshotCommenter = `<img class="img-responsive rounded-circle img-fluid kingImgWH100" src="`+'@GeneralConstants.PublicHeadshot'+`">`
+                }
+                else
+                {
+                    headshotCommenter = `<img class="img-responsive rounded-circle img-fluid kingImgWH100" src='@privateheadshot'>`
+                }
+            // Nickname
             var Nickname = o.ownerNickname;
-            //Like
-            var like;
-                var isAuthenticated = @User.Identity.IsAuthenticated.ToString().ToLower();
-                if (isAuthenticated) {
+            //Like & Comment
+            var like,comment;
+            var isAuthenticated = @User.Identity.IsAuthenticated.ToString().ToLower();
+            if (isAuthenticated) {
+                //Like
                 if (o.liked) {
                     like = `<a onclick="ApplyLike('1','` + o.postId + `')" id="anchorPostLike_` + o.postId + `" class="fa fa-heart cursor" style="font-size:15px;"></a>`;
                 }
                 else {
                     like = `<a onclick="ApplyLike('1','` + o.postId + `')" id="anchorPostLike_` + o.postId + `" class="fa fa-heart-o cursor" style="font-size:15px;"></a>`;
                 }
+                // Comment
+                comment = `<button type="button" id="btnPostComment_` + o.postId + `" onclick="PostComment('1','` + o.postId + `')" class="btn cur-p btn-dark" style="border-radius:0px !important;"> Leave it </button>`;
             }
             else {
                 like = `<a onclick="showLoginModal();" class="fa fa-heart-o cursor" style="font-size:15px;"></a>`;
-            }
+                comment = `<a onclick="showLoginModal();" id="" class="btn cur-p btn-dark">Sign Up</a>`;
+            }            
             //Photos
             var photosFromService = o.resultGetPostPhotosByPostIdDto.resultGetPostPhotosByPostIdDto;
             var photos = [];
             for (var i = 0; i < photosFromService.length; i++) {
                 var dictionary = photosFromService[i];
-                var id,filename;
+                var id, filename;
                 for (var key in dictionary) {
                     var value = dictionary[key];
-                    if(key=='id') id=value;
-                    if(key=='filename') filename=value;     
+                    if (key == 'id') id = value;
+                    if (key == 'filename') filename = value;
                 }
                 photos.push(postphotosbox(id, filename, o.postId));
             }
             return `
-                                                        <li id="liDivTimeLine_`+ o.postId + `">
+                                                                <li id="liDivTimeLine_`+ o.postId + `">
 
-                                        <div class="timeline-time">
-                                                <span class="date">`+ dateAgo.toString() + `</span>
-                                                <span class="time">`+ timeAgo.toString() + `</span>
-                                        </div>
-
-
-                                        <div class="timeline-icon">
-                                            <a href="javascript:;">&nbsp;</a>
-                                        </div>
-
-
-                                        <div class="timeline-body">
-                                            <div class="timeline-header">
-                                                    <span class="userimage"><img src="`+ headshot + `" alt=""></span>
-                                                    <span class="username"><a href="javascript:;">`+ Nickname + `</a> <small></small></span>
-
-
-                                            <div class="dropdown pull-right">
-                                                <button class="dropbtn">
-                                                    <i class="fa fa-ellipsis-v"></i>
-                                                </button>
-                                                <div class="dropdown-content">
-                                                    <a onclick="ApplyArchivePost('`+ o.postId + `');">Archive</a>
-                                                            <a onclick="DeletePost('`+ o.postId + `');">Delete</a>
+                                                <div class="timeline-time">
+                                                        <span class="date">`+ dateAgo.toString() + `</span>
+                                                        <span class="time">`+ timeAgo.toString() + `</span>
                                                 </div>
-                                            </div>
 
 
-                                            </div>
-                                            <div class="timeline-content">
-                                                <p>
-                                                    `+ o.post + `
-                                                </p>
-
-
-
-                                        <div class="masonry">
-
-                                        `+ photos.join('') + `
-
-
-                                    </div>
-
-
-
-                                            </div>
-                                            <div class="timeline-likes">
-                                                <div class="stats-right">
-                                                        <span class="stats-text" id="spanPostCountComment_`+ o.postId + `">0</span>&nbsp;Comments
+                                                <div class="timeline-icon">
+                                                    <a href="javascript:;">&nbsp;</a>
                                                 </div>
-                                                <div class="stats">`+
+
+
+                                                <div class="timeline-body">
+                                                    <div class="timeline-header">
+                                                            <span class="userimage"><img src="`+ headshotOwner + `" alt=""></span>
+                                                            <span class="username"><a href="javascript:;">`+ Nickname + `</a> <small></small></span>
+
+
+                                                    <div class="dropdown pull-right">
+                                                        <button class="dropbtn">
+                                                            <i class="fa fa-ellipsis-v"></i>
+                                                        </button>
+                                                        <div class="dropdown-content">
+                                                            <a onclick="ApplyArchivePost('`+ o.postId + `');">Archive</a>
+                                                                    <a onclick="DeletePost('`+ o.postId + `');">Delete</a>
+                                                        </div>
+                                                    </div>
+
+
+                                                    </div>
+                                                    <div class="timeline-content">
+                                                        <p>
+                                                            `+ o.post + `
+                                                        </p>
+
+
+
+                                                <div class="masonry">
+
+                                                `+ photos.join('') + `
+
+
+                                            </div>
+
+
+
+                                                    </div>
+                                                    <div class="timeline-likes">
+                                                        <div class="stats-right">
+                                                                <span class="stats-text" id="spanPostCountComment_`+ o.postId + `">0</span>&nbsp;Comments
+                                                        </div>
+                                                        <div class="stats">`+
                 like
-                + `<span id="spanPostCountLikes_` + o.postId + `" class="stats-total">`+o.countLikes+`</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="timeline-comment-box">
-                                            <div class="user">
-                                                        <div class="user"><img src="`+ headshot + `"></div>
+                + `<span id="spanPostCountLikes_` + o.postId + `" class="stats-total">` + o.countLikes + `</span>
                                                         </div>
+                                                    </div>
 
-                                                        <div class="input">
-                                                            <div class="input-group">
-                                                                <input type="text" id="txtPostComment_`+ o.postId + `" class="form-control rounded-corner" placeholder="Write a comment...">
+                                                    <div class="timeline-comment-box">
+                                                    <div class="user">
+                                                                `+headshotCommenter+`
+                                                                </div>
 
-                                                                        <button type="button"
-                                                        id="btnPostComment_`+ o.postId + `"
-                                                        onclick="PostComment('1','`+ o.postId + `')" class="btn cur-p btn-dark" style="border-radius:0px !important;">
-                                                                            Leave it
-                                                                        </button>
+                                                                <div class="input">
+                                                                    <div class="input-group">
+                                                                        <input type="text" id="txtPostComment_`+ o.postId + `" class="form-control rounded-corner" placeholder="Write a comment...">
+
+                                                                                        `+ comment + `
 
 
+                                                                    </div>
+                                                                </div>
+
+
+
+
+                                                    <div class="media commentsBox">
+                                                        <div class="media-body mb5" id="media-body-post-comments">
+
+                                                                    <div class="loadingBox" id="divPostCommentLoader_`+ o.postId + `">
+                                                                <div class="loadingBoxLoader"></div>
                                                             </div>
+
+
                                                         </div>
+                                                    </div>
 
 
 
 
-                                                                <div class="media commentsBox">
-                                                                                            <div class="media-body mb5" id="media-body-post-comments">
+                                                    </div>
+                                                </div>
 
-                                                                                                        <div class="loadingBox" id="divPostCommentLoader_`+ o.postId + `">
-                                                                                                    <div class="loadingBoxLoader"></div>
-                                                                                                </div>
-
-
-                                                                                            </div>
-                                                                                        </div>
-
-
-
-
-                                            </div>
-                                        </div>
-
-                                    </li>
-                                                                        `;
+                                            </li>
+                                                                                `;
         };
     </script>
 
