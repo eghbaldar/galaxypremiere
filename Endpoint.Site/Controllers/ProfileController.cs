@@ -21,6 +21,7 @@ using galaxypremiere.Application.Services.Comments.Commands.DeleteComment;
 using galaxypremiere.Application.Services.Comments.Queries.GetCommentsBySectionId;
 using galaxypremiere.Application.Services.UsersPosts.Commands.PostUsersPostArchive;
 using galaxypremiere.Application.Services.UsersPosts.Commands.DeleteUsersPost;
+using galaxypremiere.Domain.Entities.Users;
 
 namespace Endpoint.Site.Controllers
 {
@@ -47,12 +48,14 @@ namespace Endpoint.Site.Controllers
             _commentsFacade = commentsFacade;
         }
         [HttpGet]
-        public IActionResult Index(string username)
+        public IActionResult Index(string username, int page)
         {
-            long userId = 0;
+            // NOTE: the USERNAME is going to be given by ROUTE system!
+            long userId = 0; // The user who is visiting the page
             if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
             ModelGetInformationByUsername modelGetInformationByUsername = new ModelGetInformationByUsername
             {
+                UsernameOfThePage = username,
                 ResultGetUsersInformationByUsernameServiceDto = _userInformationFacade.GetUsersInformationByUsernameService.Execute(new RequestUsersInformationByUsernameServiceDto
                 {
                     Username = username
@@ -70,10 +73,25 @@ namespace Endpoint.Site.Controllers
                 ResultGetUsersPostsServiceDto = _usersPost.GetUsersPostsService.Execute(new RequestGetUsersPostsServiceDto
                 {
                     Username = username,
-                    UserId = (User.Identity.IsAuthenticated? userId : 0),
+                    UserId = userId,
+                    CurrentPage = page,
                 }).Data,
             };
             return View(modelGetInformationByUsername);
+        }
+        [HttpGet]
+        public IActionResult GetMorePost(string username, int page)
+        {
+            // NOTE: the USERNAME is going to be given by MODEL and the MODEL will be filled up when the page loads!
+            long userId = 0; // The user who is visiting the page
+            if (User.Identity.IsAuthenticated) userId = (long)ClaimUtility.GetUserId(User as ClaimsPrincipal);
+
+            return Json(_usersPost.GetUsersPostsService.Execute(new RequestGetUsersPostsServiceDto
+            {
+                Username = username,
+                UserId = userId,
+                CurrentPage = page,
+            }).Data);
         }
         [HttpGet]
         public IActionResult GetInfoAbout(string username)

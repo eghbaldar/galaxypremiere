@@ -1,4 +1,5 @@
-﻿using galaxypremiere.Application.Interfaces.Contexts;
+﻿using alefbafilms.Common;
+using galaxypremiere.Application.Interfaces.Contexts;
 using galaxypremiere.Common.Constants;
 using galaxypremiere.Common.DTOs;
 
@@ -14,6 +15,10 @@ namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
         public ResultDto<ResultGetUsersPostsServiceDto> Execute(RequestGetUsersPostsServiceDto req)
         {
             if (req == null) return new ResultDto<ResultGetUsersPostsServiceDto> { Data = null, IsSuccess = false };
+
+            int RowsCount;//  <---- Pagination
+            int RowsOnEachOage = 3;//  <---- Pagination
+
             var result =
                 (from p in _context.UsersPosts
                  join info in _context.UsersInformation on p.UsersId equals info.UsersId
@@ -72,12 +77,16 @@ namespace galaxypremiere.Application.Services.UsersPosts.Queries.GetUsersPosts
                      Liked = _context.Likes.Where(l => l.UsersId == req.UserId && l.SectionId == p.Id && l.DeleteTime == null && l.Section == SectionsConstants.UserPosts).Any(),
                      CountLikes = _context.Likes.Where(l=>l.SectionId == p.Id && l.DeleteTime == null && l.Section == SectionsConstants.UserPosts).Count().ToString(),
                      CountComments = _context.Comments.Where(c => c.SectionId == p.Id && c.DeleteTime == null && c.Section == SectionsConstants.UserPosts).Count().ToString(),
-                 }).ToList();
+                 })
+                 .ToPaged(req.CurrentPage, RowsOnEachOage, out RowsCount) //  <---- Pagination
+                 .ToList();
             return new ResultDto<ResultGetUsersPostsServiceDto>
             {
                 Data = new ResultGetUsersPostsServiceDto
                 {
                     resultGetUsersPostsServiceDto = result,
+                    RowCount = RowsCount, //  <---- Pagination
+                    RowsOnEachOage = RowsOnEachOage, //  <---- Pagination
                 }
             };
             // check the archive ...

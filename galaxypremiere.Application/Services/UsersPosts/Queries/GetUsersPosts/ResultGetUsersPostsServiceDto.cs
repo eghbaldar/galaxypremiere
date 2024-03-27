@@ -2,6 +2,8 @@
 {
     public class ResultGetUsersPostsServiceDto
     {
-        public List<GetUsersPostsServiceDto> resultGetUsersPostsServiceDto { get; set; }        
+        public List<GetUsersPostsServiceDto> resultGetUsersPostsServiceDto { get; set; }
+        public int RowCount { get; set; } //  <---- Pagination
+        public int RowsOnEachOage { get; set; } //  <---- Pagination
     }
 }
